@@ -1,0 +1,8 @@
+{
+    "API_HEADERS": {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+    },
+
+    "API_BASE_URL": "https://api.g9design.ae/"
+}

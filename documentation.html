@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Meta -->
+    <meta name="description" content="">
+    <meta name="author" content="Themepixels">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="public/favicon.ico">
+
+    <title>DashByte - React Documentation</title>
+
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="../HTML/dist/lib/remixicon/fonts/remixicon.css">
+    <link rel="stylesheet" href="../HTML/dist/lib/prismjs/themes/prism.min.css">
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="../HTML/dist/assets/css/style.min.css">
+    <style>
+      .sidebar-body { height: calc(100% - 72px); }
+
+      .file-structure {
+        padding: 15px;
+        border: 1px solid #e2e5ec;
+        line-height: 1.7;
+      }
+
+      .file-structure ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .file-structure ul ul { padding-left: 15px; }
+      .file-structure ul li { padding-left: 4px; }
+      .file-structure > ul > li { padding-left: 0; }
+      .file-structure strong { font-weight: 600; }
+      .file-structure i { opacity: .65  ; }
+
+      :not(pre) > code[class*="language-"],
+      pre[class*="language-"] { background-color: #f3f5f9; }
+    </style>
+  </head>
+  <body data-bs-spy="scroll" data-bs-target="#navSidebar">
+
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <a href="../" class="sidebar-logo">dashbyte</a>
+      </div><!-- sidebar-header -->
+      <div id="sidebarMenu" class="sidebar-body">
+        <div class="nav-group show">
+          <a href="#" class="nav-label">Documentation</a>
+          <ul id="navSidebar" class="nav nav-sidebar">
+            <li class="nav-item">
+              <a href="#section1" class="nav-link active"><span>Introduction</span></a>
+            </li>
+            <li class="nav-item">
+              <a href="#section2" class="nav-link"><span>File Structure</span></a>
+            </li>
+            <li class="nav-item">
+              <a href="#section3" class="nav-link"><span>Prerequisites</span></a>
+            </li>
+            <li class="nav-item">
+              <a href="#section4" class="nav-link"><span>Running the App</span></a>
+            </li>
+            <li class="nav-item">
+              <a href="#section5" class="nav-link"><span>Template Skin</span></a>
+            </li>
+            <li class="nav-item">
+              <a href="#section6" class="nav-link"><span>Navigation</span></a>
+            </li>
+            <li class="nav-item">
+              <a href="#section7" class="nav-link"><span>Routing</span></a>
+            </li>
+            <li class="nav-item">
+              <a href="#section8" class="nav-link"><span>References</span></a>
+            </li>
+            <li class="nav-item">
+              <a href="#section9" class="nav-link"><span>Customer Support</span></a>
+            </li>
+          </ul>
+        </div><!-- nav-group -->
+      </div><!-- sidebar-body -->
+    </div><!-- sidebar -->
+
+    <div class="main-mobile-header doc-mobile-header">
+      <a id="menuLink" href="#" class="menu-link"><i class="ri-menu-line"></i></a>
+    </div><!-- main-mobile-header -->
+
+    <div class="main main-docs">
+      <div class="container">
+        <h2 class="main-title mb-3">Dashbyte React Documentation</h2>
+        <p class="main-title-text">Thank you so much for purchasing our theme. If you have any questions that are beyond the scope of this help file, please feel free to <a href="mailto:themepixels@gmail.com">email us</a> or submit a comment to this template. Thanks so much!</p>
+
+        <hr class="main-separator">
+
+        <h5 id="section1" class="main-subtitle mb-4">Introduction</h5>
+
+        <p>Dashbyte, a premium quality modern and clean React & Bootstrap 5 dashboard template using simplicity and minimal design. It is fully responsive built using SASS preprocessor, HTML5, CSS3. It uses most of the helper/utilities classes which are reusable class that makes the page faster and increases the speed of page time load.</p>
+        <p>This part of the doc will help you to quick start your project and will give you a basic idea about how this template work. For you to get started, open the template download package.</p>
+
+        <hr class="main-separator">
+
+        <h5 id="section2" class="main-subtitle mb-4">File Structure</h5>
+
+        <div class="file-structure">
+          <ul>
+            <li>
+              |-- <strong>React/</strong>
+              <ul>
+                <li>
+                  |-- <strong>public/</strong>
+                  <ul>
+                    <li>
+                      |-- <strong>apps</strong>
+                      <ul>
+                        <li>|-- <i class="text-secondary">apps pages...</i></li>
+                      </ul>
+                    </li>
+                    <li>
+                      |-- <strong>assets</strong>
+                      <ul>
+                        <li>|-- <i class="text-secondary">css, fonts, images and svgs...</i></li>
+                      </ul>
+                    </li>
+                    <li>
+                      |-- <strong>components</strong>
+                      <ul>
+                        <li>|-- <i class="text-secondary">added custom components...</i></li>
+                      </ul>
+                    </li>
+                    <li>
+                      |-- <strong>dashboard</strong>
+                      <ul>
+                        <li>|-- <i class="text-secondary">dashboard pages...</i></li>
+                      </ul>
+                    </li>
+                    <li>
+                      |-- <strong>data</strong>
+                      <ul>
+                        <li>|-- <i class="text-secondary">some menu, dashboard, calendar datas...</i></li>
+                      </ul>
+                    </li>
+                    <li>
+                      |-- <strong>docs</strong>
+                      <ul>
+                        <li>|-- <i class="text-secondary">accordion, alerts, buttons, etc...</i></li>
+                      </ul>
+                    </li>
+                    <li>
+                      |-- <strong>layouts</strong>
+                      <ul>
+                        <li>|-- <i class="text-secondary">header, sidebar, footer, etc...</i></li>
+                      </ul>
+                    </li>
+                    <li>
+                      |-- <strong>pages</strong>
+                      <ul>
+                        <li>|-- <i class="text-secondary">signin, settings, pricing, etc...</i></li>
+                      </ul>
+                    </li>
+                    <li>
+                      |-- <strong>routes</strong>
+                      <ul>
+                        <li>|-- <i class="text-secondary">protected and public routes...</i></li>
+                      </ul>
+                    </li>
+                    <li>
+                      |-- <strong>scss</strong>
+                      <ul>
+                        <li>|-- <i class="text-secondary">this is where all styles located...</i></li>
+                      </ul>
+                    </li>
+                    <li>|-- App.js</li>
+                    <li>|-- App.test.js</li>
+                    <li>|-- index.js</li>
+                    <li>|-- reportWebVitals.js</li>
+                    <li>|-- setupTests.js</li>
+                  </ul>
+                </li>
+                <li>
+                  |-- <strong>src/</strong>
+                </li>
+                <li>|-- documentation.html</li>
+                <li>|-- package.lock.json</li>
+                <li>|-- package.json</li>
+                <li>|-- README.md</li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- file-structure -->
+
+        <hr class="main-separator">
+
+        <h5 id="section3" class="main-subtitle">Prerequisites</h5>
+        <p class="mb-5">Please follow the below steps to install and setup all prerequisites:</p>
+
+        <h6 class="fs-16 fw-semibold text-dark">Node.js</h6>
+        <p>Make sure to have the Node.js installed & running on your computer. If you already have installed Node on your computer, you can skip this step.</p>
+
+        <p class="mb-2"><span class="fw-semibold">Installing Node.js via package manager</span></p>
+        <p>You can install node.js using different package manager of your choice by referring to this page: <a href="https://nodejs.org/en/download/package-manager/" target="_blank">https://nodejs.org/en/download/package-manager/</a></p>
+
+        <p class="mb-2"><span class="fw-semibold">Installing in MacOS and Windows</span></p>
+        <p>Download the <a href="https://nodejs.org/en/#home-downloadhead" target="_blank">macOS and windows Installer</a> directly from the <a href="https://nodejs.org/" target="_blank">nodejs.org</a> web site.</p>
+
+        <hr class="main-separator">
+
+        <h5 id="section4" class="main-subtitle">Running the App</h5>
+        <p class="mb-4">You're moments away to see the React template up and running in your local machine. First, go to the React folder where the package.json located. Please run the following command below.</p>
+
+        <pre class="mb-4"><code class="language-js">$ npm install</code></pre>
+
+        <p>This will download all dependencies defined in package.json file. Once it finished running the command, it will generate a folder name node_modules/ where you see downloaded files.</p>
+
+        <p>Now you're good to go in running the template and preview it in browser by running the command below.</p>
+
+        <pre class="mb-4"><code class="language-js">$ npm start</code></pre>
+
+        <p class="mb-5">The template is now up and running in your browser. Feel free to visit each page and familiarize the flow of it.</p>
+
+        <h6 class="text-dark fs-15 fw-semibold">Running in Production</h6>
+        <p>On your application’s root directory, The command you’ll run is:</p>
+
+        <pre class="mb-4"><code class="language-js">$ npm run build</code></pre>
+
+        <p>You’ll notice this creates a new directory in your project called <code>build</code>.</p>
+
+        <p>This folder is essentially a super-compressed version of your program that has everything your browser needs to identify and run your app.</p>
+
+        <hr class="main-separator">
+
+        <h5 id="section5" class="main-subtitle">Template Skin</h5>
+
+        <p>In this template, there are two skin mode, the light (as the default) and the dark skin.</p>
+
+        <p>You can simply set the template to dark skin as default by going to the file <code>public/index.html</code>. From the index.html simply edit the tag name html and add a new attribute <code>data-skin</code> with a value of <code>dark</code>. See example code below:</p>
+
+
+        <pre class="mb-4"><code class="language-html">&lt;html lang="en" data-skin="dark"&gt;</code></pre>
+
+        <p>Also, there are 3 skin mode (default,prime,dark) in the sidebar to choose from. You can simply set the sidebar skin by editing the file <code>public/index.html</code>. Simply edit the tag name html and add a new attribute <code>data-sidebar</code> with a value of your choise. See example below</p>
+
+        <pre class="mb-4"><code class="language-html">&lt;html lang="en" data-sidebar="prime"&gt;</code></pre>
+
+        <hr class="main-separator">
+
+        <h5 id="section6" class="main-subtitle">Navigation</h5>
+
+        <p>In order to add, change or remove menu items from the sidebar navigation, simple edit the file <code>src/data/Menu.js</code></p>
+
+        <p>Below is an example of top level menu</p>
+
+        <pre class="mb-4"><code class="language-js">{
+  "label": "Finance Monitoring",
+  "link": "/dashboard/finance",
+  "icon": "ri-pie-chart-2-line"
+}</code></pre>
+
+        <p>Below is an example of menu with sub level menu</p>
+
+        <pre class="mb-4"><code class="language-js">{
+  "label": "Media Gallery",
+  "icon": "ri-gallery-line",
+  "submenu": [
+    {
+      "label": "Music Stream",
+      "link": "/apps/gallery-music"
+    },
+    {
+      "label": "Video Stream",
+      "link": "/apps/gallery-video"
+    }
+  ]
+}</code></pre>
+
+
+        <hr class="main-separator">
+
+        <h5 id="section7" class="main-subtitle">Routing</h5>
+
+        <p>In traditional websites, the browser requests a document from a web server, downloads and evaluates CSS and JavaScript assets, and renders the HTML sent from the server. When the user clicks a link, it starts the process all over again for a new page.</p>
+
+        <p>This enables faster user experiences because the browser doesn't need to request an entirely new document or re-evaluate CSS and JavaScript assets for the next page.</p>
+
+        <p>You can easily add, change or remove any route by simply making changes described below:</p>
+
+        <p>1. Open the file <code>src/routes/ProtectedRoutes.js</code> or <code>src/routes/PublicRoutes.js</code> and declare your component:</p>
+
+        <pre class="mb-4"><code class="language-js">import NewPage from "../pages/NewPage.js"</code></pre>
+
+        <p>2. Make sure to add the entry for same with path and other properties like path and component same as other routes declared there.</p>
+
+        <pre class="mb-4"><code class="language-js">{ path: "path/new-page", element: &lt;NewPage /&gt; }</code></pre>
+
+        <hr class="main-separator">
+
+        <h5 id="section8" class="main-subtitle">References</h5>
+        <p>Below list are some package dependencies used in this template for your reference.</p>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Package</th>
+              <th>Repository</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>@fullcalendar/react</td>
+              <td><a href="https://github.com/fullcalendar/fullcalendar-react" target="_blank">https://github.com/fullcalendar/fullcalendar-react</a></td>
+            </tr>
+            <tr>
+              <td>@react-jvectormap/core</td>
+              <td><a href="https://github.com/kadoshms/react-jvectormap" target="_blank">https://github.com/kadoshms/react-jvectormap</a></td>
+            </tr>
+            <tr>
+              <td>gridjs-react</td>
+              <td><a href="https://github.com/grid-js/gridjs-react" target="_blank">https://github.com/grid-js/gridjs-react</a></td>
+            </tr>
+            <tr>
+              <td>react-apexcharts</td>
+              <td><a href="https://github.com/apexcharts/react-apexcharts" target="_blank">https://github.com/apexcharts/react-apexcharts</a></td>
+            </tr>
+            <tr>
+              <td>react-bootstrap</td>
+              <td><a href="https://github.com/react-bootstrap/react-bootstrap" target="_blank">https://github.com/react-bootstrap/react-bootstrap</a></td>
+            </tr>
+            <tr>
+              <td>react-chartjs-2</td>
+              <td><a href="https://github.com/reactchartjs/react-chartjs-2" target="_blank">https://github.com/reactchartjs/react-chartjs-2</a></td>
+            </tr>
+            <tr>
+              <td>react-color</td>
+              <td><a href="https://github.com/casesandberg/react-color" target="_blank">https://github.com/casesandberg/react-color</a></td>
+            </tr>
+            <tr>
+              <td>react-datepicker</td>
+              <td><a href="https://github.com/Hacker0x01/react-datepicker" target="_blank">https://github.com/Hacker0x01/react-datepicker</a></td>
+            </tr>
+            <tr>
+              <td>react-leaflet</td>
+              <td><a href="https://github.com/PaulLeCam/react-leaflet" target="_blank">https://github.com/PaulLeCam/react-leaflet</a></td>
+            </tr>
+            <tr>
+              <td>react-perfect-scrollbar</td>
+              <td><a href="https://github.com/goldenyz/react-perfect-scrollbar" target="_blank">https://github.com/goldenyz/react-perfect-scrollbar</a></td>
+            </tr>
+            <tr>
+              <td>react-quill</td>
+              <td><a href="https://github.com/zenoamaro/react-quill" target="_blank">https://github.com/zenoamaro/react-quill</a></td>
+            </tr>
+            <tr>
+              <td>react-select</td>
+              <td><a href="https://github.com/JedWatson/react-select/tree/master" target="_blank">https://github.com/JedWatson/react-select/tree/master</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <hr class="main-separator">
+
+        <h5 id="section9" class="main-subtitle">Customer Support</h5>
+
+        <p>You can request for support via email or themeforest item comments.</p>
+
+        <p>We will assist you any problem you encounter while buidling your dashboard via this template</p>
+
+        <p>We use request help form in comments and <a href="mailto:themepixels@gmail.com">email</a> to manage customer support. Soon, as we grow, we will invest and find the best customer support system we can use to serve you better. </p>
+
+        <p>For the meantime, submit a help request to the link given for any issues and concerns that you have. Don't worry, we will respond to you as quickly as we can. <strong class="fw-medium">Thank you!</strong></p>
+
+        <div class="ht-100"></div>
+
+      </div><!-- container -->
+    </div><!-- main -->
+
+    <div class="main-footer main-footer-docs">
+      <span>&copy; 2023. Dashbyte. All Rights Reserved.</span>
+      <span>Created by: <a href="http://themepixels.me" target="_blank">Themepixels</a></span>
+    </div><!-- main-footer -->
+
+    <script src="../HTML/dist/lib/jquery/jquery.min.js"></script>
+    <script src="../HTML/dist/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../HTML/dist/lib/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="../HTML/dist/lib/prismjs/prism.js"></script>
+
+    <script src="../HTML/dist/assets/js/script.js"></script>
+    <script>
+      'use strict'
+
+
+    </script>
+  </body>
+</html>
