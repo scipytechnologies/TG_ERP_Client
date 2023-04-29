@@ -1,8 +1,38 @@
 const scenes = [
   {
     "label": "Company Registration",
-    "link": "/company-registration",
-    "icon": "ri-suitcase-2-line"
+    "link": "/dashboard/company-registration",
+    "icon": "ri-building-4-line"
+  },
+  {
+    "label": "CRM",
+    "link": "/dashboard/crm",
+    "icon": "ri-team-fill"
+  },
+  {
+    "label": "HRM",
+    "link": "/dashboard/hrm",
+    "icon": "ri-user-star-fill"
+  },
+  {
+    "label": "Employee",
+    "link": "dashboard/employee",
+    "icon": "ri-user-2-fill"
+  },
+  {
+    "label": "Inventory",
+    "link": "/dashboard/inventory",
+    "icon": "ri-shopping-cart-2-fill"
+  },
+  {
+    "label": "Invoice",
+    "link": "/dashboard/invoice",
+    "icon": "ri-money-dollar-circle-line"
+  },
+  {
+    "label": "RFQ",
+    "link": "/dashboard/rfq",
+    "icon": "ri-water-flash-line"
   }
 ];
 

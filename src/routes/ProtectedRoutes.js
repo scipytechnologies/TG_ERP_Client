@@ -85,12 +85,48 @@ import IconFeather from "../docs/IconFeather";
 // scenes
 import Home from "../dashboard/Home";
 import CompanyRegistration from "../scenes/company/CompanyRegistraton"
+import CRM from "../scenes/crm/CRM"
+import AddCrm from "../scenes/crm/AddCrm"
+import AddOpportunity from "../scenes/crm/AddOpportunity"
+import AddAppoinment from "../scenes/crm/AddAppoinment"
+import HRM from "../scenes/hrm/HRM"
+import AddHrm from "../scenes/hrm/AddHrm"
+import Employee from "../scenes/employee/Employee"
+import AddEmployee from "../scenes/employee/AddEmployee"
+import ProductList from "../scenes/inventory/ProductList"
+import Products from "../scenes/inventory/Products"
+import AddProduct from "../scenes/inventory/AddProduct"
+import Invoice from "../scenes/invoice/Invoice"
+import AddInvoice from "../scenes/invoice/AddInvoice"
+import PrintInvoice from "../scenes/invoice/PrintInvoice"
+import RFQ from "../scenes/rfq/RFQ"
+import AddRfq from "../scenes/rfq/AddRfq"
+import Vendor from "../scenes/vendor/Vendor"
+import AddVendor from "../scenes/vendor/AddVendor"
 
 
 const protectedRoutes = [
   { path: "dashboard/home", element: <Home /> },
   // { path: "/registerCompany", element: <CompanyRegistration /> },
-
+  //  { path: "dashboard/company-registration", element: <CompanyRegistration /> },
+  { path: "dashboard/crm", element: <CRM /> },
+  { path: "dashboard/crm/AddCrm", element: <AddCrm /> },
+  { path: "dashboard/crm/AddAppoinment", element: <AddAppoinment /> },
+  { path: "dashboard/crm/AddOpportunity", element: <AddOpportunity /> },
+  { path: "dashboard/hrm", element: <HRM /> },
+  { path: "dashboard/hrm/AddHrm", element: <AddHrm /> },
+  { path: "dashboard/employee", element: <Employee /> },
+  { path: "dashboard/employee/AddEmployee", element: <AddEmployee /> },
+  { path: "dashboard/inventory", element: <ProductList /> },
+  { path: "dashboard/inventory/AddProduct", element: <AddProduct /> },
+  { path: "dashboard/inventory/:Product-id", element: <Products /> },
+  { path: "dashboard/invoice", element: <Invoice /> },
+  { path: "dashboard/invoice/AddInvoice", element: <AddInvoice /> },
+  { path: "dashboard/invoice/PrintInvoice", element: <PrintInvoice /> },
+  { path: "dashboard/rfq", element: <RFQ /> },
+  { path: "dashboard/rfq/AddRfq", element: <AddRfq /> },
+  { path: "dashboard/vendor/Vendor", element: <Vendor /> },
+  { path: "dashboard/vendor/AddVendor", element: <AddVendor /> },
 
   // default components and apps
   { path: "dashboard/finance", element: <FinanceMonitoring /> },
