@@ -10,10 +10,23 @@ function AddProduct() {
   const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
+  const [form, setform] = useState("")
+  const onChangeHandler = (event) => {
+    setform({
+      ...form,
+      [event.target.name]: event.target.value
+    })
+  }
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    console.log(form);
+}
 
 
   return (
     <>
+    <form onSubmit={onSubmitHandler} >
       <Header onSkin={setSkin} />
       <div className="main main-app p-3 p-lg-4">
         <div className="d-md-flex align-items-center justify-content-between mb-4">
@@ -23,7 +36,7 @@ function AddProduct() {
               <li className="breadcrumb-item"><Link to="/dashboard/product">Product</Link></li>
               <li className="breadcrumb-item active" aria-current="page">Add Product</li>
             </ol>
-            <h4 className="main-title mb-0">Create New RFQ</h4>
+            <h4 className="main-title mb-0">Add New Product</h4>
           </div>
         </div>
 
@@ -33,34 +46,57 @@ function AddProduct() {
             <Row className="g-4">
               <Col xl="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Email address</Form.Label>
-                  <Form.Control type="email" id="exampleFormControlInput1" placeholder="name@example.com" />
+                  <Form.Label htmlFor="exampleFormControlInput1">SKU No</Form.Label>
+                  <Form.Control type="number" name="SKU No" id="exampleFormControlInput1" placeholder="SKU No" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Email address</Form.Label>
-                  <Form.Control type="email" id="exampleFormControlInput1" placeholder="name@example.com" />
+                  <Form.Label htmlFor="exampleFormControlInput1">Item Name</Form.Label>
+                  <Form.Control type="text" name="Item Name" id="exampleFormControlInput1" placeholder="Item Name" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Email address</Form.Label>
-                  <Form.Control type="email" id="exampleFormControlInput1" placeholder="name@example.com" />
+                  <Form.Label htmlFor="exampleFormControlInput1">Unit OF Measurement</Form.Label>
+                  <Form.Control type="text" name="Unit OF Measurement" id="exampleFormControlInput1" placeholder="Unit OF Measurement" onChange={onChangeHandler} />
+                </div>
+              </Col>
+
+              <Col lg="4" md="6" xs="12">
+                <div className="mt-3">
+                  <Form.Label htmlFor="exampleFormControlInput1">Item Category</Form.Label>
+                  <Form.Control type="text" name="Item Category" id="exampleFormControlInput1" placeholder="Item Category" onChange={onChangeHandler} />
+                </div>
+              </Col>
+
+              <Col lg="4" md="6" xs="12">
+                <div className="mt-3">
+                  <Form.Label htmlFor="exampleFormControlInput1">Current Stock</Form.Label>
+                  <Form.Control type="text" name="Current Stock" id="exampleFormControlInput1" placeholder="Current Stock" onChange={onChangeHandler} />
+                </div>
+              </Col>
+
+              <Col lg="4" md="6" xs="12">
+                <div className="mt-3">
+                  <Form.Label htmlFor="exampleFormControlInput1">Price</Form.Label>
+                  <Form.Control type="number" name="Price" id="exampleFormControlInput1" placeholder="Price" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="3" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Email address</Form.Label>
-                  <Form.Control type="email" id="exampleFormControlInput1" placeholder="name@example.com" />
+                  <Form.Label htmlFor="exampleFormControlInput1">Tax</Form.Label>
+                  <Form.Control type="number" name="Tax" id="exampleFormControlInput1" placeholder="Tax" onChange={onChangeHandler} />
                 </div>
               </Col>
 
-              <Col sx="12">
-                <Button>Submit</Button>
+              <Col xs="12">
+                <div className="mt-3">
+                  <Button type="submit">Submit</Button>
+                </div>
               </Col>
             </Row>
 
@@ -71,6 +107,7 @@ function AddProduct() {
 
         <Footer />
       </div>
+    </form>  
     </>
   )
 }
