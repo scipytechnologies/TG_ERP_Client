@@ -11,9 +11,23 @@ function AddOppoinment() {
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
 
+  const [form, setform] = useState("")
+  const onChangeHandler = (event) => {
+    setform({
+      ...form,
+      [event.target.name]: event.target.value
+    })
+  }
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    console.log(form);
+  }
+
 
   return (
     <>
+      <form onSubmit={onSubmitHandler}>
       <Header onSkin={setSkin} />
       <div className="main main-app p-3 p-lg-4">
         <div className="d-md-flex align-items-center justify-content-between mb-4">
@@ -23,7 +37,7 @@ function AddOppoinment() {
               <li className="breadcrumb-item"><Link to="/dashboard/crm">CRM</Link></li>
               <li className="breadcrumb-item active" aria-current="page">Add Appoinment</li>
             </ol>
-            <h4 className="main-title mb-0">Create New Customer</h4>
+            <h4 className="main-title mb-0">Create New Appointment</h4>
           </div>
         </div>
 
@@ -33,41 +47,41 @@ function AddOppoinment() {
             <Row className="g-4">
               <Col md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Schedule Call</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Schedule Call" />
+                  <Form.Label htmlFor="ScheduleCall">Schedule Call</Form.Label>
+                  <Form.Control type="text" name='ScheduleCall' id="ScheduleCall" placeholder="Schedule Call" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Schedule Meeting</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Schedule Meeting" />
+                  <Form.Label htmlFor="ScheduleMeeting">Schedule Meeting</Form.Label>
+                  <Form.Control type="text" id="ScheduleMeeting" name='ScheduleMeeting' placeholder="Schedule Meeting" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Subject</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Subject" />
+                  <Form.Label htmlFor="Subject">Subject</Form.Label>
+                  <Form.Control type="text" id="Subject" name='Subject' placeholder="Subject" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Start Date</Form.Label>
-                  <Form.Control type="Date" id="exampleFormControlInput1" placeholder="Start Date" />
+                  <Form.Label htmlFor="Description">Start Date</Form.Label>
+                  <Form.Control type="Date" id="Description" name='Description' placeholder="Start Date" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col md="12" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Description</Form.Label>
-                  <Form.Control as="textarea" id="exampleFormControlInput1" rows="4" placeholder="Description" />
+                  <Form.Label htmlFor="StartDate">Description</Form.Label>
+                  <Form.Control as="textarea" id="StartDate" name='StartDate' rows="4" placeholder="Description" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col xs="12">
-                  <Button>Submit</Button>
+                  <Button type='submit'>Submit</Button>
               </Col>
             </Row>
 
@@ -76,12 +90,9 @@ function AddOppoinment() {
           </Card.Body>
         </Card>
 
-
-
-
-
         <Footer />
       </div>
+      </form>
     </>
   )
 }
