@@ -173,7 +173,7 @@ function AddEmployee() {
                   </div>
                 </Col>
 
-                <Col lg="4" md="6" xs="12">
+                <Col xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Address">Address</Form.Label>
                     <Form.Control as="textarea" id="Address" name="Address" rows="4" placeholder="Address" onChange={onChangeHandler}/>

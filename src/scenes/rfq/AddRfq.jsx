@@ -44,7 +44,7 @@ function AddRFQ() {
           <Card>
             <Card.Body>
               <Row className="g-4">
-                <Col xl="4" md="6" xs="12">
+                <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="RequisitionDate">Requisition Date</Form.Label>
                     <Form.Control type="Date" id="RequisitionDate" name="RequisitionDate" placeholder="Requisition Date" onChange={onChangeHandler}/>
