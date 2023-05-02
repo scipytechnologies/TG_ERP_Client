@@ -44,7 +44,7 @@ function AddProduct() {
         <Card>
           <Card.Body>
             <Row className="g-4">
-              <Col xl="4" md="6" xs="12">
+              <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">SKU No</Form.Label>
                   <Form.Control type="number" name="SKU No" id="exampleFormControlInput1" placeholder="SKU No" onChange={onChangeHandler} />
