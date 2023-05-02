@@ -44,7 +44,7 @@ function AddCrm() {
         <Card>
           <Card.Body>
             <Row className="g-4">
-              <Col xl="4" md="6" xs="12">
+              <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">First Name</Form.Label>
                   <Form.Control type="text" id="exampleFormControlInput1" placeholder="first name" onChange={onChangeHandler} />
@@ -219,7 +219,7 @@ function AddCrm() {
                 </div>
               </Col>
 
-              <Col  md="12" xs="12">
+              <Col md="12" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Description</Form.Label>
                   <Form.Control as="textarea" rows= "4" id="exampleFormControlInput1" placeholder="Description" onChange={onChangeHandler} />
