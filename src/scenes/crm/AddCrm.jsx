@@ -10,10 +10,23 @@ function AddCrm() {
   const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
+  const [form, setform] = useState("")
+  const onChangeHandler = (event) => {
+    setform({
+      ...form,
+      [event.target.name]: event.target.value
+    })
+  }
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+    console.log(form);
+}
 
 
   return (
     <>
+    <form onSubmit={onSubmitHandler} >
       <Header onSkin={setSkin} />
       <div className="main main-app p-3 p-lg-4">
         <div className="d-md-flex align-items-center justify-content-between mb-4">
@@ -34,188 +47,188 @@ function AddCrm() {
               <Col xl="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">First Name</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="first name" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="first name" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Last Name</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="second name" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="second name" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1"> Primary Account</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Primary Account" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Primary Account" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Title</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Title" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Title" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Phone Work</Form.Label>
-                  <Form.Control type="Number" id="exampleFormControlInput1" placeholder="Phone Work" />
+                  <Form.Control type="Number" id="exampleFormControlInput1" placeholder="Phone Work" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Phone Home</Form.Label>
-                  <Form.Control type="Number" id="exampleFormControlInput1" placeholder="Phone Home" />
+                  <Form.Control type="Number" id="exampleFormControlInput1" placeholder="Phone Home" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Phone Mobile</Form.Label>
-                  <Form.Control type="Number" id="exampleFormControlInput1" placeholder="Phone Mobile" />
+                  <Form.Control type="Number" id="exampleFormControlInput1" placeholder="Phone Mobile" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Phone Other</Form.Label>
-                  <Form.Control type="Number" id="exampleFormControlInput1" placeholder="Phone Other" />
+                  <Form.Control type="Number" id="exampleFormControlInput1" placeholder="Phone Other" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Website</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="https//Website.com" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="https//Website.com" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Assigned</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Assigned" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Assigned" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Teams</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Teams" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Teams" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Partner</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Partner name" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Partner name" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Category</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Category" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Category" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Department</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Department" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Department" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Business Role</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Business Role" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Business Role" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Reports</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Reports" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Reports" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Assistant Ph</Form.Label>
-                  <Form.Control type="Number" id="exampleFormControlInput1" placeholder="Assistant Ph" />
+                  <Form.Control type="Number" id="exampleFormControlInput1" placeholder="Assistant Ph" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Primary City</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Primary City" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Primary City" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Primary State</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Primary State" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Primary State" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Primary Country</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Primary Country" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Primary Country" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Primary Postal</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Primary Postal" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Primary Postal" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Secondary City</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Secondary City" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Secondary City" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Secondary State</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Secondary State" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Secondary State" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Secondary Country</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Secondary Country" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Secondary Country" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Secondary Postal</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Secondary Postal" />
+                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Secondary Postal" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col  md="12" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Description</Form.Label>
-                  <Form.Control as="textarea" rows= "4" id="exampleFormControlInput1" placeholder="Description" />
+                  <Form.Control as="textarea" rows= "4" id="exampleFormControlInput1" placeholder="Description" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col xs="12">
                 <div className="mt-3">
-                  <Button>Submit</Button>
+                  <Button type="submit">Submit</Button>
                 </div>
               </Col>
             </Row>
@@ -231,6 +244,7 @@ function AddCrm() {
 
         <Footer />
       </div>
+    </form>
     </>
   )
 }
