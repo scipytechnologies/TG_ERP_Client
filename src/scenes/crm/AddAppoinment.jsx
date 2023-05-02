@@ -31,38 +31,38 @@ function AddOppoinment() {
         <Card>
           <Card.Body>
             <Row className="g-4">
-              <Col lg="6" md="6" xs="12">
+              <Col md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Schedule Call</Form.Label>
                   <Form.Control type="text" id="exampleFormControlInput1" placeholder="Schedule Call" />
                 </div>
               </Col>
 
-              <Col lg="6" md="6" xs="12">
+              <Col md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Schedule Meeting</Form.Label>
                   <Form.Control type="text" id="exampleFormControlInput1" placeholder="Schedule Meeting" />
                 </div>
               </Col>
 
-              <Col lg="6" md="6" xs="12">
+              <Col md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Subject</Form.Label>
                   <Form.Control type="text" id="exampleFormControlInput1" placeholder="Subject" />
                 </div>
               </Col>
 
-              <Col lg="6" md="6" xs="12">
-                <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Description</Form.Label>
-                  <Form.Control type="text" id="exampleFormControlInput1" placeholder="Description" />
-                </div>
-              </Col>
-
-              <Col lg="6" md="6" xs="12">
+              <Col md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Start Date</Form.Label>
                   <Form.Control type="Date" id="exampleFormControlInput1" placeholder="Start Date" />
+                </div>
+              </Col>
+
+              <Col md="12" xs="12">
+                <div className="mt-3">
+                  <Form.Label htmlFor="exampleFormControlInput1">Description</Form.Label>
+                  <Form.Control as="textarea" id="exampleFormControlInput1" rows="4" placeholder="Description" />
                 </div>
               </Col>
 
