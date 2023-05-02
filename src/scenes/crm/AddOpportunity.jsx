@@ -31,48 +31,50 @@ function AddOpportunity() {
         <Card>
           <Card.Body>
             <Row className="g-4">
-              <Col xl="4" md="6" xs="12">
+              <Col md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Email address</Form.Label>
-                  <Form.Control type="email" id="exampleFormControlInput1" placeholder="name@example.com" />
+                  <Form.Label htmlFor="OpportunityName">Opportunity Name</Form.Label>
+                  <Form.Control type="text" id="OpportunityName" placeholder="OpportunityName" />
                 </div>
               </Col>
 
-              <Col lg="4" md="6" xs="12">
+              <Col md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Email address</Form.Label>
-                  <Form.Control type="email" id="exampleFormControlInput1" placeholder="name@example.com" />
+                  <Form.Label htmlFor="SalesStage">Sales Stage</Form.Label>
+                  <Form.Control type="text" id="SalesStage" placeholder="SalesStage" />
                 </div>
               </Col>
 
-              <Col lg="4" md="6" xs="12">
+              <Col md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Email address</Form.Label>
-                  <Form.Control type="email" id="exampleFormControlInput1" placeholder="name@example.com" />
+                  <Form.Label htmlFor="CloseDate">Close Date</Form.Label>
+                  <Form.Control type="Date" id="CloseDate" placeholder="CloseDate" />
                 </div>
               </Col>
 
-              <Col lg="3" md="6" xs="12">
+              <Col md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Email address</Form.Label>
-                  <Form.Control type="email" id="exampleFormControlInput1" placeholder="name@example.com" />
+                  <Form.Label htmlFor="Amount">Amount</Form.Label>
+                  <Form.Control type="Number" id="Amount" placeholder="Amount" />
                 </div>
               </Col>
 
-              <Col sx="12">
-                <Button>Submit</Button>
+              <Col md="12" xs="12">
+                <div className="mt-3">
+                  <Form.Label htmlFor="Description">Description</Form.Label>
+                  <Form.Control as="textarea" id="Description" rows="4" placeholder="Description" />
+                </div>
+              </Col>
+
+
+              <Col xs="12">
+                <div className="mt-3">
+                  <Button>Submit</Button>
+                </div>
               </Col>
             </Row>
-
-
-
           </Card.Body>
         </Card>
-
-
-
-
-
         <Footer />
       </div>
     </>
