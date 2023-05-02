@@ -26,7 +26,7 @@ function Invoice() {
           </div>
           <div className="d-flex gap-2 mt-3 mt-md-6">
             <Button variant="primary" className="d-flex align-items-center gap-2" onClick={() => navigate('/dashboard/Invoice/addInvoice')}>
-              <i className="ri-bar-chart-2-line fs-18 lh-1"></i>Add HRM<span className="d-none d-sm-inline"></span>
+              <i className="ri-bar-chart-2-line fs-18 lh-1"></i>Add Inoivce<span className="d-none d-sm-inline"></span>
             </Button>
           </div>
         </div>

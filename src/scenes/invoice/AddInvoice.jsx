@@ -20,10 +20,10 @@ function AddCrm() {
           <div>
             <ol className="breadcrumb fs-sm mb-1">
               <li className="breadcrumb-item"><Link to="/dashboard/home">Dashboard</Link></li>
-              <li className="breadcrumb-item"><Link to="/dashboard/crm">CRM</Link></li>
-              <li className="breadcrumb-item active" aria-current="page">Add Customer</li>
+              <li className="breadcrumb-item"><Link to="/dashboard/crm">Invoice</Link></li>
+              <li className="breadcrumb-item active" aria-current="page">Add Invoice</li>
             </ol>
-            <h4 className="main-title mb-0">Create New Customer</h4>
+            <h4 className="main-title mb-0">Create New Invoice</h4>
           </div>
         </div>
 

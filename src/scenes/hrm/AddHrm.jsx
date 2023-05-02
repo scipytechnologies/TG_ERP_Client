@@ -23,7 +23,7 @@ function AddHrm() {
               <li className="breadcrumb-item"><Link to="/dashboard/hrm">HRM</Link></li>
               <li className="breadcrumb-item active" aria-current="page">Add HRM</li>
             </ol>
-            <h4 className="main-title mb-0">Create New Customer</h4>
+            <h4 className="main-title mb-0">Create New HR</h4>
           </div>
         </div>
 

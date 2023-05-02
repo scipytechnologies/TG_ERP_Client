@@ -74,6 +74,8 @@ function CRM() {
             </Card>
           </Col>
         </Row>
+
+        
         <Footer />
       </div>
     </>
