@@ -103,7 +103,10 @@ import RFQ from "../scenes/rfq/RFQ"
 import AddRfq from "../scenes/rfq/AddRfq"
 import Vendor from "../scenes/vendor/Vendor"
 import AddVendor from "../scenes/vendor/AddVendor"
-
+import ProjectManagement from "../scenes/project managment/ProjectManagment"
+import AddProject from "../scenes/project managment/AddProject"
+import Purchase from "../scenes/purchase/Purchase";
+import AddPurchase from "../scenes/purchase/AddPurchase";
 
 const protectedRoutes = [
   { path: "dashboard/home", element: <Home /> },
@@ -127,6 +130,10 @@ const protectedRoutes = [
   { path: "dashboard/rfq/AddRfq", element: <AddRfq /> },
   { path: "dashboard/vendor/Vendor", element: <Vendor /> },
   { path: "dashboard/vendor/AddVendor", element: <AddVendor /> },
+  { path: "dashboard/projectManagement", element: <ProjectManagement /> },
+  { path: "dashboard/projectManagement/AddProject", element: <AddProject /> },
+  { path: "dashboard/purchase", element: <Purchase /> },
+  { path: "dashboard/purchase/AddPurchase", element: <AddPurchase /> },
 
   // default components and apps
   { path: "dashboard/finance", element: <FinanceMonitoring /> },

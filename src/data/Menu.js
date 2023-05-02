@@ -33,6 +33,16 @@ const scenes = [
     "label": "RFQ",
     "link": "/dashboard/rfq",
     "icon": "ri-water-flash-line"
+  },
+  {
+    "label": "Project",
+    "link": "/dashboard/projectManagement",
+    "icon": "ri-water-flash-line"
+  },
+  {
+    "label": "Purchase",
+    "link": "/dashboard/purchase",
+    "icon": "ri-water-flash-line"
   }
 ];
 
