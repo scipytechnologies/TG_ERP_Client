@@ -33,7 +33,7 @@ function AddRFQ() {
             <div>
               <ol className="breadcrumb fs-sm mb-1">
                 <li className="breadcrumb-item"><Link to="/dashboard/home">Dashboard</Link></li>
-                <li className="breadcrumb-item"><Link to="/dashboard/crm">RFQ</Link></li>
+                <li className="breadcrumb-item"><Link to="/dashboard/RFQ">RFQ</Link></li>
                 <li className="breadcrumb-item active" aria-current="page">Add RFQ</li>
               </ol>
               <h4 className="main-title mb-0">Create New RFQ</h4>

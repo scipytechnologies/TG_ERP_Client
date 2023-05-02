@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 
-function PurchaseOrder() {
+function AddSales() {
   // to maintain dark and light mode
   const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
   const [skin, setSkin] = useState(currentSkin);
@@ -20,8 +20,8 @@ function PurchaseOrder() {
           <div>
             <ol className="breadcrumb fs-sm mb-1">
               <li className="breadcrumb-item"><Link to="/dashboard/home">Dashboard</Link></li>
-              <li className="breadcrumb-item"><Link to="/dashboard/rfq">RFQ</Link></li>
-              <li className="breadcrumb-item active" aria-current="page">Purchase Order</li>
+              <li className="breadcrumb-item"><Link to="/dashboard/sales">Sales</Link></li>
+              <li className="breadcrumb-item active" aria-current="page">Add Sales</li>
             </ol>
             <h4 className="main-title mb-0">Create New HR</h4>
           </div>
@@ -71,4 +71,4 @@ function PurchaseOrder() {
   )
 }
 
-export default PurchaseOrder
+export default AddSales
