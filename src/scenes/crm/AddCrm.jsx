@@ -206,10 +206,10 @@ function AddCrm() {
                 </div>
               </Col>
 
-              <Col lg="4" md="6" xs="12">
+              <Col  md="12" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Description</Form.Label>
-                  <Form.Control type="textarea" id="exampleFormControlInput1" placeholder="Description" />
+                  <Form.Control as="textarea" rows= "4" id="exampleFormControlInput1" placeholder="Description" />
                 </div>
               </Col>
 
