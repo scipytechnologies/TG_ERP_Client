@@ -60,8 +60,8 @@ function AddProduct() {
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Unit OF Measurement</Form.Label>
-                  <Form.Control type="text" name="Unit OF Measurement" id="exampleFormControlInput1" placeholder="Unit OF Measurement" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="exampleFormControlInput1">Unit Of Measurement</Form.Label>
+                  <Form.Control type="text" name="Unit OF Measurement" id="exampleFormControlInput1" placeholder="Unit Of Measurement" onChange={onChangeHandler} />
                 </div>
               </Col>
 
