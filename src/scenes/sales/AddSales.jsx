@@ -4,7 +4,6 @@ import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
-import Sales from './Sales';
 
 function AddSales() {
   // to maintain dark and light mode
@@ -34,8 +33,8 @@ function AddSales() {
             <div>
               <ol className="breadcrumb fs-sm mb-1">
                 <li className="breadcrumb-item"><Link to="/dashboard/home">Dashboard</Link></li>
-                <li className="breadcrumb-item"><Link to="/dashboard/crm">Invoice</Link></li>
-                <li className="breadcrumb-item active" aria-current="page">Add Invoice</li>
+                <li className="breadcrumb-item"><Link to="/dashboard/sales">Sales</Link></li>
+                <li className="breadcrumb-item active" aria-current="page">Add Sales</li>
               </ol>
               <h4 className="main-title mb-0">Create New Sales</h4>
             </div>
@@ -62,21 +61,21 @@ function AddSales() {
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Day">Day</Form.Label>
-                    <Form.Control type="Day" id="Day" name='Day' placeholder="Day" onChange={onChangeHandler} />
+                    <Form.Control type="text" id="Day" name='Day' placeholder="Day" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Month">Month</Form.Label>
-                    <Form.Control type="Month" id="Month" name='Month' placeholder="Month" onChange={onChangeHandler} />
+                    <Form.Control type="text" id="Month" name='Month' placeholder="Month" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Year">Year</Form.Label>
-                    <Form.Control type="Year" id="Year" name='Year' placeholder="Year" onChange={onChangeHandler} />
+                    <Form.Control type="text" id="Year" name='Year' placeholder="Year" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
