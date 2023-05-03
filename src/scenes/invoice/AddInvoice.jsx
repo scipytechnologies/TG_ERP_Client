@@ -128,7 +128,7 @@ function AddCrm() {
                   </div>
                 </Col>
 
-                <Col sx="12">
+                <Col xs="12">
                   <Button type='submit'>Submit</Button>
                 </Col>
               </Row>
