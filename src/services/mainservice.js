@@ -32,17 +32,71 @@ async function InitializeCompany(id,data) {
     const response = await apicall.apicall("put",5000,`initializeCompany/${id}`,data)
     return response;
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//////////////////////////////////////{CRM-Account}////////////////////////////////////
 
+async function createAccount(data){
+    const response = await apicall.apicall("post",5001,"accountRoute/createAccount",data)
+    return res
 
+}
+/////////////////////////////////////////{CRM-Appointment}//////////////////////////////
 
+async function createAppointment(data){
+    const response = await apicall.apicall("post",5002,"appointmentRoute/appointment",data)
+    return res
 
+}
+////////////////////////////////{CRM-Customer}////////////////////////////////////
 
+async function createCustomer(data){
+    const response = await apicall.apicall("post",5003,"customerRoute/customer",data)
+    return res
 
+}
+//////////////////////////////////////{CRM-Opportunity}////////////////////////////////////////
 
+async function createOpportunity(data){
+    const response = await apicall.apicall("post",5004,"opportunityRoute/createOpportunity",data)
+    return res
 
+}
+//////////////////////////////////////{Employee}/////////////////////////////////////////////
 
+async function AddEmployee(data){
+    const response = await apicall.apicall("post",5005,"employeeRoute/addEmployee",data)
+    return res
+
+}
+////////////////////////////////////////{Inventory management}//////////////////////////////////
+
+async function addInventorymanagementDetails(data){
+    const response = await apicall.apicall("post",5006,"inventorymanagementRoute/addInventorymanagementDetails",data)
+    return res
+
+}
+//////////////////////////////////////////{PRJ management}///////////////////////////////////////
+
+async function addPrjmanagerDetails(data){
+    const response = await apicall.apicall("post",5007,"prjmanagerRoute/addPrjmanagerDetails",data)
+    return res
+
+}
+//////////////////////////////////{Product}//////////////////////////////////////
+
+async function addProductDetails(data){
+    const response = await apicall.apicall("post",5008,"productRoute/addProductDetails",data)
+    return res
+
+}
+//////////////////////////////////////{Purchase Module}////////////////////////////////////////////
+
+async function purchase(data){
+    const response = await apicall.apicall("post",5009,"purchaseRoute/purchase",data)
+    return res
+
+}
+/////////////////////////////////////{}////////////////////////////////////////////////
 
 
 
@@ -80,5 +134,6 @@ async function OffersInHome() {
     return response;
 }
 
-    export default {Auth,SignUp,Login,RegisterCompany,InitializeCompany,MainProductsInHome,CategoriesInHome,LatestProductsInHome,RandomProductsInHome,CategoriesWithProductsForHome,TopSellingProductsInHome,OffersInHome};
+    export default {Auth,SignUp,Login,RegisterCompany,InitializeCompany,MainProductsInHome,CategoriesInHome,LatestProductsInHome,RandomProductsInHome,CategoriesWithProductsForHome,TopSellingProductsInHome,OffersInHome,
+    createAccount,createAppointment,createCustomer,createOpportunity,AddEmployee,addInventorymanagementDetails,addPrjmanagerDetails,addProductDetails,purchase,};
     
