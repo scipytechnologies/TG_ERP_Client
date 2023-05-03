@@ -61,7 +61,7 @@ function AddSales() {
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Day">Day</Form.Label>
-                    <Form.Control type="text" id="Day" name='Day' placeholder="Day" onChange={onChangeHandler} />
+                    <Form.Control type="Number" id="Day" name='Day' placeholder="Day" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
@@ -75,7 +75,7 @@ function AddSales() {
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Year">Year</Form.Label>
-                    <Form.Control type="text" id="Year" name='Year' placeholder="Year" onChange={onChangeHandler} />
+                    <Form.Control type="Number" id="Year" name='Year' placeholder="Year" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
