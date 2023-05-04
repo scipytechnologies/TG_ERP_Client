@@ -43,94 +43,96 @@ async function createAccount(data){
 /////////////////////////////////////////{CRM-Appointment}//////////////////////////////
 
 async function createAppointment(data){
-    const response = await apicall.apicall("post",5002,"appointmentRoute/appointment",data)
+    const response = await apicall.apicall("post",5001,"appointmentRoute/appointment",data)
     return response
 
 }
 ////////////////////////////////{CRM-Customer}////////////////////////////////////
 
 async function createCustomer(data){
-    const response = await apicall.apicall("post",5003,"customerRoute/customer",data)
+    const response = await apicall.apicall("post",5001,"customerRoute/customer",data)
     return response
 
 }
 //////////////////////////////////////{CRM-Opportunity}////////////////////////////////////////
 
 async function createOpportunity(data){
-    const response = await apicall.apicall("post",5004,"opportunityRoute/createOpportunity",data)
+    const response = await apicall.apicall("post",5001,"opportunityRoute/createOpportunity",data)
     return response
 
 }
 //////////////////////////////////////{Employee}/////////////////////////////////////////////
 
 async function AddEmployee(data){
-    const response = await apicall.apicall("post",5005,"employeeRoute/addEmployee",data)
+    const response = await apicall.apicall("post",5002,"employeeRoute/addEmployee",data)
     return response
 
 }
 ////////////////////////////////////////{Inventory management}//////////////////////////////////
 
 async function addInventorymanagementDetails(data){
-    const response = await apicall.apicall("post",5006,"inventorymanagementRoute/addInventorymanagementDetails",data)
+    const response = await apicall.apicall("post",5003,"inventorymanagementRoute/addInventorymanagementDetails",data)
     return response
 
 }
 //////////////////////////////////////////{PRJ management}///////////////////////////////////////
 
 async function addPrjmanagerDetails(data){
-    const response = await apicall.apicall("post",5007,"prjmanagerRoute/addPrjmanagerDetails",data)
+    const response = await apicall.apicall("post",5004,"prjmanagerRoute/addPrjmanagerDetails",data)
     return response
 
 }
 //////////////////////////////////{Product}//////////////////////////////////////
 
 async function addProductDetails(data){
-    const response = await apicall.apicall("post",5008,"productRoute/addProductDetails",data)
+    const response = await apicall.apicall("post",5005,"productRoute/addProductDetails",data)
     return response
 
 }
 //////////////////////////////////////{Purchase Module}////////////////////////////////////////////
 
 async function purchase(data){
-    const response = await apicall.apicall("post",5009,"purchaseRoute/purchase",data)
+    const response = await apicall.apicall("post",5006,"purchaseRoute/purchase",data)
     return response
 
 }
 /////////////////////////////////////{RFQ-purchaseitem}////////////////////////////////////////////////
 
 async function purchaseitem(data){
-    const response = await apicall.apicall("post",5010,"purchaseitemRoute/purchaseitem",data)
+    const response = await apicall.apicall("post",5007,"purchaseitemRoute/purchaseitem",data)
     return response
 
 }
 //////////////////////////////////{RFQ-purchaseorder}////////////////////////////////////
 
 async function purchaseorder(data){
-    const response = await apicall.apicall("post",5011,"purchaseorderRoute/purchaseorder",data)
+    const response = await apicall.apicall("post",5007,"purchaseorderRoute/purchaseorder",data)
     return response
 
 }
 /////////////////////////////////{RFQ}//////////////////////////////////////
 
 async function rfq(data){
-    const response = await apicall.apicall("post",5012,"rfqRoute/rfq",data)
+    const response = await apicall.apicall("post",5007,"rfqRoute/rfq",data)
     return response
 
 }
 /////////////////////////////////{Sales-invoice}//////////////////////////////////
 
 async function invoice(data){
-    const response = await apicall.apicall("post",5013,"invoiceRoute/invoice",data)
+    const response = await apicall.apicall("post",5008,"invoiceRoute/invoice",data)
     return response
 
 }
-///////////////////////////////{Sales-invoice}/////////////////////////////////////
+///////////////////////////////{Sales-sales}/////////////////////////////////////
 
 async function sales(data){
-    const response = await apicall.apicall("post",5014,"salesRoute/sales",data)
+    const response = await apicall.apicall("post",5008,"salesRoute/sales",data)
     return response
 
 }
+
+
 
 async function CategoriesInHome() {
     const response = await apicall.apicall("get", "CategoriesInHome","");
