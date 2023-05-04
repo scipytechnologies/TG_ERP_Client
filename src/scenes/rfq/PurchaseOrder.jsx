@@ -4,24 +4,40 @@ import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
+import mainservice from '../../services/mainservice';
+
 
 function PurchaseOrder() {
   // to maintain dark and light mode
   const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
-  const [form, setform] = useState("")
+
+  const [form, setform] = useState({});
   const onChangeHandler = (event) => {
     setform({
       ...form,
       [event.target.name]: event.target.value
-    })
+    });
+    console.log(form);
+  };
+
+  async function PostPurchaseOrder(form) {
+    console.log(form);
+    const res = await mainservice.purchaseorder(form);
+    if (res.data != null) {
+      console.log("PurchaseOrder Added");
+    }
+    else {
+      console.log(res);
+    }
   }
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(form);
-}
+    PostPurchaseOrder(form);
+  }
+
 
 
   return (
@@ -257,7 +273,7 @@ function PurchaseOrder() {
 
               <Col xs="12">
                 <div className="mt-3">
-                  <Button type="submit">Submit</Button>
+                  <Button onClick={onSubmitHandler} type="submit">Submit</Button>
                 </div>
               </Col>
             </Row>

@@ -4,6 +4,7 @@ import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
+import mainservice from '../../services/mainservice';
 
 function AddSales() {
   // to maintain dark and light mode
@@ -11,17 +12,29 @@ function AddSales() {
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
 
-  const [form, setform] = useState("")
+  const [form, setform] = useState({});
   const onChangeHandler = (event) => {
     setform({
       ...form,
       [event.target.name]: event.target.value
-    })
+    });
+    console.log(form);
+  };
+
+  async function PostSales(form) {
+    console.log(form);
+    const res = await mainservice.sales(form);
+    if (res.data != null) {
+      console.log("Sales Added");
+    }
+    else {
+      console.log(res);
+    }
   }
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(form);
+    PostSales(form);
   }
 
   return (
@@ -81,7 +94,7 @@ function AddSales() {
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
-                    <Form.Label htmlFor="DueDate">Status</Form.Label>
+                    <Form.Label htmlFor="Status">Status</Form.Label>
                     <Form.Control type="text" id="Status" name='Status' placeholder="Status" onChange={onChangeHandler} />
                   </div>
                 </Col>
@@ -94,7 +107,7 @@ function AddSales() {
                 </Col>
 
                 <Col xs="12">
-                  <Button type='submit'>Submit</Button>
+                  <Button onClick={onSubmitHandler} type='submit'>Submit</Button>
                 </Col>
               </Row>
 

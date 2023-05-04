@@ -4,6 +4,7 @@ import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
+import mainservice from '../../services/mainservice';
 
 function AddCrm() {
   // to maintain dark and light mode
@@ -11,17 +12,29 @@ function AddCrm() {
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
 
-  const [form, setform] = useState("")
+  const [form, setform] = useState({});
   const onChangeHandler = (event) => {
     setform({
       ...form,
       [event.target.name]: event.target.value
-    })
+    });
+    console.log(form);
+  };
+
+    async function PostInvoice(form) {
+    console.log(form);
+    const res = await mainservice.invoice(form);
+    if (res.data != null) {
+      console.log("Invoice Added");
+    }
+    else {
+      console.log(res);
+    }
   }
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(form);
+    PostInvoice(form);
   }
 
   return (
@@ -129,7 +142,7 @@ function AddCrm() {
                 </Col>
 
                 <Col xs="12">
-                  <Button type='submit'>Submit</Button>
+                  <Button onClick={onSubmitHandler} type='submit'>Submit</Button>
                 </Col>
               </Row>
 
