@@ -4,8 +4,9 @@ import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
+import mainservice from '../../services/mainservice';
 
-function AddProject() {
+function PostProject() {
   // to maintain dark and light mode
   const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
   const [skin, setSkin] = useState(currentSkin);
@@ -17,10 +18,20 @@ function AddProject() {
       [event.target.name]: event.target.value
     })
   }
+  async function addPrjmanagerDetails(form) {
+    console.log(form);
+    const res = await mainservice.addPrjmanagerDetails(form);
+    if (res.data != null) {
+      console.log("Project Added");
+    }
+    else {
+      console.log(res);
+    }
+  }
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(form);
+    addPrjmanagerDetails(form);
   }
 
 
@@ -136,7 +147,7 @@ function AddProject() {
                 </Col>
 
                 <Col md="12">
-                  <Button type="submit">Submit</Button>
+                  <Button onClick={onSubmitHandler} type="submit">Submit</Button>
                 </Col>
               </Row>
             </Card.Body>
@@ -148,4 +159,4 @@ function AddProject() {
   )
 }
 
-export default AddProject
+export default PostProject

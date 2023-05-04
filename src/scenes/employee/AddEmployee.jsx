@@ -4,9 +4,11 @@ import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
+import mainservice from '../../services/mainservice';
 
 
-function AddEmployee() {
+
+function PostEmployee() {
   // to maintain dark and light mode
   const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
   const [skin, setSkin] = useState(currentSkin);
@@ -18,10 +20,20 @@ function AddEmployee() {
       [event.target.name]: event.target.value
     })
   }
+  async function AddEmployee(form) {
+    console.log(form);
+    const res = await mainservice.AddEmployee(form);
+    if (res.data != null) {
+      console.log("Employee Added");
+    }
+    else {
+      console.log(res);
+    }
+  }
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(form);
+    AddEmployee(form);
   }
 
 
@@ -181,7 +193,7 @@ function AddEmployee() {
                 </Col>
 
                 <Col md="12">
-                  <Button type="submit">Submit</Button>
+                  <Button onClick={onSubmitHandler} type="submit">Submit</Button>
                 </Col>
               </Row>
             </Card.Body>
@@ -193,4 +205,4 @@ function AddEmployee() {
   )
 }
 
-export default AddEmployee
+export default PostEmployee
