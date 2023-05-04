@@ -3,7 +3,8 @@ import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
+import mainservice from '../../services/mainservice';
 
 function AddProject() {
   // to maintain dark and light mode
@@ -20,9 +21,19 @@ function AddProject() {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(form);
+    purchase(form);
+    
 }
 
+async function purchase(form) {
+  const res = await mainservice.purchase(form);
+  if(res.data != null) {
+    console.log ("Purchase Added");
+  }
+  else{
+    console.log(res.message);
+  }
+}
 
 
   return (
@@ -55,7 +66,7 @@ function AddProject() {
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Quote Subject</Form.Label>
-                  <Form.Control type="text" name=" QuoteSubject" id="exampleFormControlInput1" placeholder=" Quote Subject" onChange={onChangeHandler} />
+                  <Form.Control type="text" name="QuoteSubject" id="exampleFormControlInput1" placeholder="Quote Subject" onChange={onChangeHandler} />
                 </div>
               </Col>
 
@@ -111,7 +122,7 @@ function AddProject() {
 
               <Col xs="12">
                 <div className="mt-3">
-                  <Button type="submit">Submit</Button>
+                  <Button onClick={onSubmitHandler} type="submit">Submit</Button>
                 </div> 
               </Col>
             </Row>

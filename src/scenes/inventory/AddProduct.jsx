@@ -3,13 +3,15 @@ import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
+import mainservice from '../../services/mainservice';
 
 function AddProduct() {
   // to maintain dark and light mode
   const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
+
   const [form, setform] = useState("")
   const onChangeHandler = (event) => {
     setform({
@@ -20,9 +22,18 @@ function AddProduct() {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(form);
+    addInventorymanagement(form);
 }
 
+async function addInventorymanagement(form) {
+  const res = await mainservice.addInventorymanagementDetails(form);
+  if(res.data != null) {
+    console.log ("Product Added");
+  }
+  else{
+    console.log(res.message);
+  }
+}
 
   return (
     <>
@@ -47,35 +58,35 @@ function AddProduct() {
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">SKU No</Form.Label>
-                  <Form.Control type="number" name="SKU No" id="exampleFormControlInput1" placeholder="SKU No" onChange={onChangeHandler} />
+                  <Form.Control type="number" name="SKUNo" id="exampleFormControlInput1" placeholder="SKU No" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Item Name</Form.Label>
-                  <Form.Control type="text" name="Item Name" id="exampleFormControlInput1" placeholder="Item Name" onChange={onChangeHandler} />
+                  <Form.Control type="text" name="ItemName" id="exampleFormControlInput1" placeholder="Item Name" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Unit Of Measurement</Form.Label>
-                  <Form.Control type="text" name="Unit OF Measurement" id="exampleFormControlInput1" placeholder="Unit Of Measurement" onChange={onChangeHandler} />
+                  <Form.Control type="text" name="UnitOFMeasurement" id="exampleFormControlInput1" placeholder="Unit Of Measurement" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Item Category</Form.Label>
-                  <Form.Control type="text" name="Item Category" id="exampleFormControlInput1" placeholder="Item Category" onChange={onChangeHandler} />
+                  <Form.Control type="text" name="ItemCategory" id="exampleFormControlInput1" placeholder="Item Category" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
                   <Form.Label htmlFor="exampleFormControlInput1">Current Stock</Form.Label>
-                  <Form.Control type="text" name="Current Stock" id="exampleFormControlInput1" placeholder="Current Stock" onChange={onChangeHandler} />
+                  <Form.Control type="text" name="CurrentStock" id="exampleFormControlInput1" placeholder="Current Stock" onChange={onChangeHandler} />
                 </div>
               </Col>
 
@@ -95,16 +106,12 @@ function AddProduct() {
 
               <Col xs="12">
                 <div className="mt-3">
-                  <Button type="submit">Submit</Button>
+                  <Button onClick={onSubmitHandler} type="submit">Submit</Button>
                 </div>
               </Col>
             </Row>
-
-
-
           </Card.Body>
         </Card>
-
         <Footer />
       </div>
     </form>  

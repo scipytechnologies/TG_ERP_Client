@@ -3,7 +3,8 @@ import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
+import mainservice from '../../services/mainservice';
 
 function AddCrm() {
   // to maintain dark and light mode
@@ -20,7 +21,17 @@ function AddCrm() {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(form);
+    createAccount(form);
+}
+
+async function createAccount(form) {
+  const res = await mainservice.createAccount(form);
+  if(res.data != null) {
+    console.log ("Account Added");
+  }
+  else{
+    console.log(res.message);
+  }
 }
 
 
@@ -228,20 +239,12 @@ function AddCrm() {
 
               <Col xs="12">
                 <div className="mt-3">
-                  <Button type="submit">Submit</Button>
+                  <Button onClick={onSubmitHandler} type="submit">Submit</Button>
                 </div>
               </Col>
             </Row>
-
-
-
           </Card.Body>
         </Card>
-
-
-
-
-
         <Footer />
       </div>
     </form>
