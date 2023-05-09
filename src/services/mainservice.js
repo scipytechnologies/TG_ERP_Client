@@ -40,10 +40,20 @@ async function createAccount(data){
     return response
 
 }
+async function accountDetails(data){
+    const response = await apicall.apicall("get",5001,"accountRoute/getAccount",data)
+    return response
+
+}
 /////////////////////////////////////////{CRM-Appointment}//////////////////////////////
 
 async function createAppointment(data){
     const response = await apicall.apicall("post",5001,"appointmentRoute/appointment",data)
+    return response
+
+}
+async function appointmentDetails(data){
+    const response = await apicall.apicall("get",5001,"appointmentRoute/appointmentdetails",data)
     return response
 
 }
@@ -54,10 +64,20 @@ async function createCustomer(data){
     return response
 
 }
+async function customerDetails(data){
+    const response = await apicall.apicall("get",5001,"customerRoute/customerdetails",data)
+    return response
+
+}
 //////////////////////////////////////{CRM-Opportunity}////////////////////////////////////////
 
 async function createOpportunity(data){
     const response = await apicall.apicall("post",5001,"opportunityRoute/createOpportunity",data)
+    return response
+
+}
+async function opportunityDetails(data){
+    const response = await apicall.apicall("get",5001,"opportunityRoute/opportunityDetails",data)
     return response
 
 }
@@ -164,5 +184,6 @@ async function OffersInHome() {
 }
 
     export default {Auth,SignUp,Login,RegisterCompany,InitializeCompany,MainProductsInHome,CategoriesInHome,LatestProductsInHome,RandomProductsInHome,CategoriesWithProductsForHome,TopSellingProductsInHome,OffersInHome,
-    createAccount,createAppointment,createCustomer,createOpportunity,AddEmployee,addInventorymanagementDetails,addPrjmanagerDetails,addProductDetails,purchase,purchaseitem,purchaseorder,rfq,invoice,sales};
+    createAccount,createAppointment,createCustomer,createOpportunity,AddEmployee,addInventorymanagementDetails,addPrjmanagerDetails,addProductDetails,purchase,purchaseitem,purchaseorder,rfq,invoice,sales,
+    accountDetails,appointmentDetails,customerDetails,opportunityDetails,};
     
