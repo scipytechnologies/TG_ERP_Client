@@ -8,7 +8,7 @@ import FinanceMonitoring from "../dashboard/FinanceMonitoring";
 import Cryptocurrency from "../dashboard/Cryptocurrency";
 import HelpdeskService from "../dashboard/HelpdeskService";
 import StorageManagement from "../dashboard/StorageManagement";
-import ProductManagement from "../dashboard/ProductManagement";
+import ProductManagements from "../dashboard/ProductManagement";
 
 // Apps
 import GalleryMusic from "../apps/GalleryMusic";
@@ -93,12 +93,15 @@ import AddCrm from "../scenes/crm/AddCrm"
 import AddOpportunity from "../scenes/crm/AddOpportunity"
 import AddAppoinment from "../scenes/crm/AddAppoinment"
 import HRM from "../scenes/hrm/HRM"
+import ViewHrm from "../scenes/hrm/HrManagement"
 import AddHrm from "../scenes/hrm/AddHrm"
 import Employee from "../scenes/employee/Employee"
+import EmployeeManagement from "../scenes/employee/EmployeeManagement"
 import AddEmployee from "../scenes/employee/AddEmployee"
-import ProductList from "../scenes/inventory/ProductList"
-import Products from "../scenes/inventory/Products"
+import ProductList from "../scenes/inventory/ProductManagement"
+import Inventory from "../scenes/inventory/Inventory"
 import AddProduct from "../scenes/inventory/AddProduct"
+import ProductManagement from "../scenes/inventory/ProductManagement"
 import Invoice from "../scenes/invoice/Invoice"
 import AddInvoice from "../scenes/invoice/AddInvoice"
 import PrintInvoice from "../scenes/invoice/PrintInvoice"
@@ -127,12 +130,15 @@ const protectedRoutes = [
   { path: "dashboard/crm/AddAppoinment", element: <AddAppoinment /> },
   { path: "dashboard/crm/AddOpportunity", element: <AddOpportunity /> },
   { path: "dashboard/hrm", element: <HRM /> },
+  { path: "dashboard/hrm/hrManagement", element: <ViewHrm /> },
   { path: "dashboard/hrm/AddHrm", element: <AddHrm /> },
   { path: "dashboard/employee", element: <Employee /> },
+  { path: "dashboard/employee/employeeManagement", element: <EmployeeManagement /> },
   { path: "dashboard/employee/AddEmployee", element: <AddEmployee /> },
-  { path: "dashboard/inventory", element: <ProductList /> },
+  { path: "dashboard/inventory", element: <Inventory /> },
+  { path: "dashboard/inventory/ProductManagement", element: <ProductManagement /> },
   { path: "dashboard/inventory/AddProduct", element: <AddProduct /> },
-  { path: "dashboard/inventory/:Product-id", element: <Products /> },
+  // { path: "dashboard/inventory/:Product-id", element: <Products /> },
   { path: "dashboard/invoice", element: <Invoice /> },
   { path: "dashboard/invoice/AddInvoice", element: <AddInvoice /> },
   { path: "dashboard/invoice/PrintInvoice", element: <PrintInvoice /> },
@@ -157,7 +163,7 @@ const protectedRoutes = [
   { path: "dashboard/crypto", element: <Cryptocurrency /> },
   { path: "dashboard/helpdesk", element: <HelpdeskService /> },
   { path: "dashboard/storage", element: <StorageManagement /> },
-  { path: "dashboard/product", element: <ProductManagement /> },
+  { path: "dashboard/product", element: <ProductManagements /> },
   { path: "apps/gallery-music", element: <GalleryMusic /> },
   { path: "apps/gallery-video", element: <GalleryVideo /> },
   { path: "apps/tasks", element: <Tasks /> },

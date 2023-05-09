@@ -10,7 +10,7 @@ const scenes = [
     "icon": "ri-team-fill",
     "submenu": [
       {
-        "label": "Home",
+        "label": "CRM",
         "link": "/dashboard/crm"
       },
       {
@@ -30,18 +30,47 @@ const scenes = [
   },
   {
     "label": "HRM",
-    "link": "/dashboard/hrm",
-    "icon": "ri-user-star-fill"
+
+    "icon": "ri-user-star-fill",
+    "submenu": [
+      {
+        "label": "HRM",
+        "link": "/dashboard/hrm",
+      },
+      {
+        "label": "HR Management",
+        "link": "/dashboard/hrm/hrManagement"
+      },
+    ]
   },
   {
     "label": "Employee",
-    "link": "dashboard/employee",
-    "icon": "ri-user-2-fill"
+    "icon": "ri-user-2-fill",
+    "submenu": [
+      {
+        "label" : "Employee",
+        "link": "dashboard/employee"
+      },
+      {
+        "label" : "Manage Employee",
+        "link": "dashboard/employee/EmployeeManagement"
+      }
+    ]
   },
   {
     "label": "Inventory",
-    "link": "/dashboard/inventory",
-    "icon": "ri-shopping-cart-2-fill"
+    "icon": "ri-shopping-cart-2-fill",
+    "submenu": [
+      {
+        "label" : "Products",
+        "link": "/dashboard/inventory",
+
+      },
+      {
+        "label" : "Product Management",
+        "link": "dashboard/inventory/ProductManagement"
+      }
+    ]
   },
   {
     "label": "Invoice",

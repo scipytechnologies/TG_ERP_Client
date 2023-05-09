@@ -4,9 +4,9 @@ import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
-import {Grid} from "gridjs-react"
+import { Grid } from "gridjs-react"
 
-function Inventory() {
+function ProductManagement() {
   // to maintain dark and light mode
   const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
   const [skin, setSkin] = useState(currentSkin);
@@ -21,9 +21,10 @@ function Inventory() {
           <div>
             <ol className="breadcrumb fs-sm mb-1">
               <li className="breadcrumb-item"><Link to="/dashboard/home">Dashboard</Link></li>
-              <li className="breadcrumb-item active" aria-current="page">Inventory</li>
+              <li className="breadcrumb-item"><Link to="/dashboard/inventory">Product</Link></li>
+              <li className="breadcrumb-item active" aria-current="page">Product Management</li>
             </ol>
-            <h4 className="main-title mb-0">Customer Managment</h4>
+            <h4 className="main-title mb-0">Product Management</h4>
           </div>
           <div className="d-flex gap-2 mt-3 mt-md-6">
             <Button variant="primary" className="d-flex align-items-center gap-2" onClick={() => navigate('/dashboard/inventory/AddProduct')}>
@@ -33,47 +34,6 @@ function Inventory() {
         </div>
 
         {/* analatics cards */}
-        <Row className="g-3">
-          <Col xl="4">
-            <Card className="card-one">
-              <Card.Body className="overflow-hidden">
-                <h2 className="card-value mb-1">75<span>%</span></h2>
-                <h6 className="text-dark fw-semibold mb-1">Gross Profit Margin</h6>
-                <p className="fs-xs text-secondary mb-0 lh-4">The gross profit you make on each dollar of sales.</p>
-
-                {/* <ReactApexChart series={seriesTwo} options={optionTwo} height={100} className="apex-chart-three" /> */}
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col xl="4">
-            <Card className="card-one">
-              <Card.Body className="overflow-hidden">
-                <h2 className="card-value mb-1">75<span>%</span></h2>
-                <h6 className="text-dark fw-semibold mb-1">Gross Profit Margin</h6>
-                <p className="fs-xs text-secondary mb-0 lh-4">The gross profit you make on each dollar of sales.</p>
-
-                {/* <ReactApexChart series={seriesTwo} options={optionTwo} height={100} className="apex-chart-three" /> */}
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col xl="4">
-            <Card className="card-one">
-              <Card.Body className="overflow-hidden">
-                <h2 className="card-value mb-1">75<span>%</span></h2>
-                <h6 className="text-dark fw-semibold mb-1">Gross Profit Margin</h6>
-                <p className="fs-xs text-secondary mb-0 lh-4">The gross profit you make on each dollar of sales.</p>
-
-                {/* <ReactApexChart series={seriesTwo} options={optionTwo} height={100} className="apex-chart-three" /> */}
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-
-
- {/* import {Grid} from "gridjs-react"; */}
- <h5 id="section13" className="main-subtitle mt-5">Product List</h5>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit, sequi?</p>
-
         <Card className="card-example">
           <Card.Body>
             <Grid
@@ -111,12 +71,10 @@ function Inventory() {
             
           </Card.Footer> */}
         </Card>
-
-        
         <Footer />
       </div>
     </>
   )
 }
 
-export default Inventory
+export default ProductManagement
