@@ -7,7 +7,22 @@ const scenes = [
   {
     "label": "CRM",
     "link": "/dashboard/crm",
-    "icon": "ri-team-fill"
+    "icon": "ri-team-fill",
+    "submenu": [
+      {
+        "label": "Customers",
+        "link": "/dashboard/crm/customer"
+      },
+      {
+        "label": "Appoinments",
+        "link": "/dashboard/crm/appoinment"
+      },
+      {
+        "label": "Opportunites",
+        "link": "/dashboard/crm/opportunity"
+      }
+    ]
+
   },
   {
     "label": "HRM",

@@ -86,6 +86,9 @@ import IconFeather from "../docs/IconFeather";
 import Home from "../dashboard/Home";
 import CompanyRegistration from "../scenes/company/CompanyRegistraton"
 import CRM from "../scenes/crm/CRM"
+import Opportunity from "../scenes/crm/Opportunity"
+import Appoinment from "../scenes/crm/Appoinment"
+import Customer from "../scenes/crm/Customer"
 import AddCrm from "../scenes/crm/AddCrm"
 import AddOpportunity from "../scenes/crm/AddOpportunity"
 import AddAppoinment from "../scenes/crm/AddAppoinment"
@@ -117,6 +120,9 @@ const protectedRoutes = [
   // { path: "/registerCompany", element: <CompanyRegistration /> },
   //  { path: "dashboard/company-registration", element: <CompanyRegistration /> },
   { path: "dashboard/crm", element: <CRM /> },
+  { path: "dashboard/crm/opportunity", element: <Opportunity /> },
+  { path: "dashboard/crm/appoinment", element: <Appoinment /> },
+  { path: "dashboard/crm/customer", element: <Customer /> },
   { path: "dashboard/crm/AddCrm", element: <AddCrm /> },
   { path: "dashboard/crm/AddAppoinment", element: <AddAppoinment /> },
   { path: "dashboard/crm/AddOpportunity", element: <AddOpportunity /> },
