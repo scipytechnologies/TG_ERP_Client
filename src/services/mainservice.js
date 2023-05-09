@@ -86,10 +86,20 @@ async function AddEmployee(data) {
     return response
 
 }
+async function employeeDetails(data){
+    const response = await apicall.apicall("get",5002,"employeeRoute/employeeDetails",data)
+    return response
+
+}
 ////////////////////////////////////////{Inventory management}//////////////////////////////////
 
 async function addInventorymanagementDetails(data) {
     const response = await apicall.apicall("post", 5003, "inventorymanagementRoute/addInventorymanagementDetails", data)
+    return response
+
+}
+async function getInventorymanagementDetails(data){
+    const response = await apicall.apicall("get",5003,"inventorymanagementRoute/getInventorymanagementDetails",data)
     return response
 
 }
@@ -100,10 +110,20 @@ async function addPrjmanagerDetails(data) {
     return response
 
 }
+async function getPrjmanagerDetails(data){
+    const response = await apicall.apicall("get",5004,"prjmanagerRoute/getPrjmanagerDetails",data)
+    return response
+
+}
 //////////////////////////////////{Product}//////////////////////////////////////
 
 async function addProductDetails(data) {
     const response = await apicall.apicall("post", 5005, "productRoute/addProductDetails", data)
+    return response
+
+}
+async function getProductDetails(data){
+    const response = await apicall.apicall("get",5005,"productRoute/getProductDetails",data)
     return response
 
 }
@@ -114,10 +134,20 @@ async function purchase(data) {
     return response
 
 }
+async function purchasedetails(data){
+    const response = await apicall.apicall("get",5006,"purchaseRoute/purchasedetails",data)
+    return response
+
+}
 /////////////////////////////////////{RFQ-purchaseitem}////////////////////////////////////////////////
 
 async function purchaseitem(data) {
     const response = await apicall.apicall("post", 5007, "purchaseitemRoute/purchaseitem", data)
+    return response
+
+}
+async function purchaseitemdetails(data){
+    const response = await apicall.apicall("get",5007,"purchaseitemRoute/purchasedetailsitem",data)
     return response
 
 }
@@ -128,10 +158,20 @@ async function purchaseorder(data) {
     return response
 
 }
+async function purchaseorderdetails(data){
+    const response = await apicall.apicall("get",5007,"purchaseorderRoute/purchaseorderdetails",data)
+    return response
+
+}
 /////////////////////////////////{RFQ}//////////////////////////////////////
 
 async function rfq(data) {
     const response = await apicall.apicall("post", 5007, "rfqRoute/rfq", data)
+    return response
+
+}
+async function rfqdetails(data){
+    const response = await apicall.apicall("get",5007,"rfqRoute/rfqdetails",data)
     return response
 
 }
@@ -142,6 +182,11 @@ async function invoice(data) {
     return response
 
 }
+async function invoicedetails(data){
+    const response = await apicall.apicall("get",5008,"invoiceRoute/invoicedetails",data)
+    return response
+
+}
 ///////////////////////////////{Sales-sales}/////////////////////////////////////
 
 async function sales(data) {
@@ -149,6 +194,13 @@ async function sales(data) {
     return response
 
 }
+async function salesdetails(data){
+    const response = await apicall.apicall("get",5008,"salesRoute/salesdetails",data)
+    return response
+
+}
+
+
 
 
 
@@ -181,8 +233,8 @@ async function OffersInHome() {
     return response;
 }
 
-export default {
-    Auth, SignUp, Login, RegisterCompany, InitializeCompany, MainProductsInHome, CategoriesInHome, LatestProductsInHome, RandomProductsInHome, CategoriesWithProductsForHome, TopSellingProductsInHome, OffersInHome,
-    createAccount, createAppointment, createCustomer, createOpportunity, AddEmployee, addInventorymanagementDetails, addPrjmanagerDetails, addProductDetails, purchase, purchaseitem, purchaseorder, rfq, invoice, sales,
-    accountDetails, appointmentDetails, customerDetails, opportunityDetails,
-};
+    export default {Auth,SignUp,Login,RegisterCompany,InitializeCompany,MainProductsInHome,CategoriesInHome,LatestProductsInHome,RandomProductsInHome,CategoriesWithProductsForHome,TopSellingProductsInHome,OffersInHome,
+    createAccount,createAppointment,createCustomer,createOpportunity,AddEmployee,addInventorymanagementDetails,addPrjmanagerDetails,addProductDetails,purchase,purchaseitem,purchaseorder,rfq,invoice,sales,
+    accountDetails,appointmentDetails,customerDetails,opportunityDetails,employeeDetails,getInventorymanagementDetails,getPrjmanagerDetails,getProductDetails,purchasedetails,purchaseitemdetails,purchaseorderdetails,
+    rfqdetails,invoicedetails,salesdetails};
+    
