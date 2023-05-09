@@ -6,9 +6,13 @@ const scenes = [
   },
   {
     "label": "CRM",
-    "link": "/dashboard/crm",
+    // "link": "/dashboard/crm",
     "icon": "ri-team-fill",
     "submenu": [
+      {
+        "label": "Home",
+        "link": "/dashboard/crm"
+      },
       {
         "label": "Customers",
         "link": "/dashboard/crm/customer"
