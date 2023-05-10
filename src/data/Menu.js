@@ -123,7 +123,7 @@ const scenes = [
       },
       {
         "label": "Project List",
-        "link": "/dashboard/project/ProjectList",
+        "link": "/dashboard/project/projectList",
 
       },
     ]
@@ -137,9 +137,8 @@ const scenes = [
         "link": "/dashboard/purchase",
       },
       {
-        "label": "Project List",
+        "label": "Purchase List",
         "link": "/dashboard/purchase/purchaseList",
-
       },
     ]
   },
