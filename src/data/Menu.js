@@ -48,11 +48,11 @@ const scenes = [
     "icon": "ri-user-2-fill",
     "submenu": [
       {
-        "label" : "Employee",
+        "label": "Employee",
         "link": "dashboard/employee"
       },
       {
-        "label" : "Manage Employee",
+        "label": "Manage Employee",
         "link": "dashboard/employee/EmployeeManagement"
       }
     ]
@@ -62,41 +62,92 @@ const scenes = [
     "icon": "ri-shopping-cart-2-fill",
     "submenu": [
       {
-        "label" : "Products",
+        "label": "Products",
         "link": "/dashboard/inventory",
 
       },
       {
-        "label" : "Product Management",
-        "link": "dashboard/inventory/ProductManagement"
+        "label": "Product List",
+        "link": "/dashboard/inventory/ProductList",
+
       }
     ]
   },
   {
     "label": "Invoice",
-    "link": "/dashboard/invoice",
-    "icon": "ri-money-dollar-circle-line"
+    "icon": "ri-money-dollar-circle-line",
+    "submenu": [
+      {
+        "label": "Home",
+        "link": "/dashboard/invoice"
+      },
+      {
+        "label": "Invoice List",
+        "link": "/dashboard/invoice/InvoiceList"
+      }
+    ]
   },
   {
     "label": "RFQ",
-    "link": "/dashboard/rfq",
-    "icon": "ri-water-flash-line"
+    "icon": "ri-water-flash-line",
+    "submenu": [
+      {
+        "label": 'Home',
+        "link": "/dashboard/rfq",
+      },
+      {
+        "label": "RFQ Purchase List",
+        "link": "/dashboard/rfq/RfqPurchaseList",
+
+      },
+    ]
   },
   {
     "label": "Project",
-    "link": "/dashboard/projectManagement",
-    "icon": "ri-water-flash-line"
+    "icon": "ri-water-flash-line",
+    "submenu": [
+      {
+        "label": 'Home',
+        "link": "/dashboard/project",
+      },
+      {
+        "label": "Project List",
+        "link": "/dashboard/project/ProjectList",
+
+      },
+    ]
   },
   {
     "label": "Purchase",
-    "link": "/dashboard/purchase",
-    "icon": "ri-water-flash-line"
+    "icon": "ri-water-flash-line",
+    "submenu": [
+      {
+        "label": 'Home',
+        "link": "/dashboard/purchase",
+      },
+      {
+        "label": "Project List",
+        "link": "/dashboard/purchase/purchaseList",
+
+      },
+    ]
   },
   {
     "label": "Sales",
-    "link": "/dashboard/sales",
-    "icon": "ri-water-flash-line"
-  }
+    
+    "icon": "ri-water-flash-line",
+    "submenu": [
+      {
+        "label": 'Home',
+        "link": "/dashboard/sales",
+      },
+      {
+        "label": "Sales List",
+        "link": "/dashboard/sales/salesList",
+
+      },
+    ]
+  },
 ];
 
 
