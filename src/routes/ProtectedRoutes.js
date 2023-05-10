@@ -111,6 +111,10 @@ import AddRfq from "../scenes/rfq/AddRfq"
 import PurchaseOrder from "../scenes/rfq/PurchaseOrder"
 import PurchaseItem from "../scenes/rfq/PurchaseItem"
 import RfqPurchaseList from "../scenes/rfq/RfqPurchaseList"
+import RfqList from "../scenes/rfq/RfqList"
+import RfqPurchaseOrder from "../scenes/rfq/RfqPurchaseOrder"
+
+
 import Vendor from "../scenes/vendor/Vendor"
 import AddVendor from "../scenes/vendor/AddVendor"
 import Purchase from "../scenes/purchase/Purchase";
@@ -151,11 +155,17 @@ const protectedRoutes = [
   { path: "dashboard/invoice/InvoiceList", element: <InvoiceList /> },
   { path: "dashboard/invoice/AddInvoice", element: <AddInvoice /> },
   { path: "dashboard/invoice/PrintInvoice", element: <PrintInvoice /> },
+
+
   { path: "dashboard/rfq", element: <RFQ /> },
   { path: "dashboard/rfq/AddRfq", element: <AddRfq /> },
   { path: "dashboard/rfq/purchaseOrder", element: <PurchaseOrder /> },
   { path: "dashboard/rfq/purchaseItem", element: <PurchaseItem /> },
-  { path: "dashboard/rfq/RfqPurchaseList", element: <RfqPurchaseList /> },
+  { path: "dashboard/rfq/rfqList", element: <RfqList /> },
+  { path: "dashboard/rfq/rfqPurchaseList", element: <RfqPurchaseList /> },
+  { path: "dashboard/rfq/rfqPurchaseOrder", element: <RfqPurchaseOrder /> },
+
+
   { path: "dashboard/vendor/Vendor", element: <Vendor /> },
   { path: "dashboard/vendor/AddVendor", element: <AddVendor /> },
  

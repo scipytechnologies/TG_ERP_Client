@@ -96,10 +96,21 @@ const scenes = [
         "link": "/dashboard/rfq",
       },
       {
-        "label": "RFQ Purchase List",
-        "link": "/dashboard/rfq/RfqPurchaseList",
+        "label": "RFQ List",
+        "link": "/dashboard/rfq/rfqList",
 
       },
+      {
+        "label": "RFQ Purchase List",
+        "link": "/dashboard/rfq/rfqPurchaseList",
+
+      },
+      {
+        "label": "RFQ Order List",
+        "link": "/dashboard/rfq/rfqPurchaseOrder",
+
+      },
+  
     ]
   },
   {
