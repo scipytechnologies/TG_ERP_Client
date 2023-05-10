@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
+import mainservice from '../../services/mainservice';
 
 import { Grid } from "gridjs-react";
 
@@ -13,6 +14,18 @@ function RfqPurchaseList() {
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
 
+    // get
+
+    const [user, setUser] = useState("")
+    async function purchaseitem() {
+      const res = await mainservice.purchaseitem();
+      console.log('Inventory Details ' + JSON.stringify(res))
+    }
+    useEffect(() => {
+      purchaseitem()
+    }, []);
+  
+    /////////////////////////////////////////////////////////////////////////
 
   return (
     <>
