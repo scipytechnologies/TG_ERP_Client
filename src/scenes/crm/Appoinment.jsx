@@ -5,17 +5,15 @@ import Footer from "../../layouts/Footer";
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
-import { Grid } from "gridjs"
+import { Grid } from "gridjs-react"
 
 function Appoinment() {
-
-
     // to maintain dark and light mode
     const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
 
-    // const [user, setUser] = useState("")
+
     async function appointmentDetails() {
         const res = await mainservice.appointmentDetails();
         console.log('Appointment Details ' + JSON.stringify(res))

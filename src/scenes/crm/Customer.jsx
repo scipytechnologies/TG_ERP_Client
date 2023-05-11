@@ -14,11 +14,14 @@ function Customer() {
     const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
+    const [user, setUser] = useState("") //
+    const [data, setData] = useState([]) //
 
-    // const [user, setUser] = useState("")
     async function customerDetails() {
         const res = await mainservice.customerDetails();
         console.log('Customer Details ' + JSON.stringify(res))
+        console.log(res)//
+        setData(res.data)//
     }
     useEffect(() => {
         customerDetails()
@@ -42,7 +45,17 @@ function Customer() {
 
                 <Card className="card">
                     <Card.Body>
-                        <Grid />
+                        <Grid
+                            data={data}
+                            search={true}
+                            pagination={true}
+                            sort={true}
+                            resizable={true}
+                            className={{
+                                table: 'table table-bordered mb-0'
+                            }}
+
+                        />
                     </Card.Body>
 
                 </Card>

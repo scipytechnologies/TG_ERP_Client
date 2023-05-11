@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
-import { Grid } from "gridjs"
+import { Grid } from "gridjs-react"
 
 function SalesList() {
     // to maintain dark and light mode
