@@ -12,11 +12,13 @@ function Appoinment() {
     const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
+    const [data, setData] = useState([])
 
 
     async function appointmentDetails() {
         const res = await mainservice.appointmentDetails();
         console.log('Appointment Details ' + JSON.stringify(res))
+        setData(res.data)
     }
     useEffect(() => {
         appointmentDetails()
@@ -31,7 +33,7 @@ function Appoinment() {
                         <ol className="breadcrumb fs-sm mb-1">
                             <li className="breadcrumb-item"><Link to="/dashboard/home">Dashboard</Link></li>
                             <li className="breadcrumb-item"><Link to="/dashboard/crm">CRM</Link></li>
-                            <li className="breadcrumb-item active" aria-current="page">Customer List</li>
+                            <li className="breadcrumb-item active" aria-current="page">Appoinment List</li>
                         </ol>
                         <h4 className="main-title mb-0">Appoinment List</h4>
                     </div>
@@ -42,27 +44,8 @@ function Appoinment() {
                 <Card className="card-example">
                     <Card.Body>
                         <Grid
-                            data={[
-                                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
-
-                                ['sdfdsf Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['sdfd Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reysdfdsfnsdfdsante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adriasdfsdfdsfn Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reydsfsdfnante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adrsdfdsfian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['sdfdsfsf Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                            ]}
-                            columns={['Name', 'Job Title', 'Degree', 'Salary']}
+                           data={data}
+                           
                             search={true}
                             pagination={true}
                             sort={true}
