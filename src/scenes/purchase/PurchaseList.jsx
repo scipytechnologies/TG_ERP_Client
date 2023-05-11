@@ -12,6 +12,8 @@ function PurchaseList() {
     const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
+    
+
 
     return (
         <>

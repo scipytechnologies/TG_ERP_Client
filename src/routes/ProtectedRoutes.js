@@ -119,9 +119,9 @@ import Vendor from "../scenes/vendor/Vendor"
 import AddVendor from "../scenes/vendor/AddVendor"
 
 
-import Purchase from "../scenes/purchase/Purchase";
-import AddPurchase from "../scenes/purchase/AddPurchase";
-import PurchaseList from "../scenes/purchase/PurchaseList";
+import Purchase from "../scenes/purchase/Purchase"
+import AddPurchase from "../scenes/purchase/AddPurchase"
+import PurchaseList from "../scenes/purchase/PurchaseList"
 
 import AddSales from "../scenes/sales/AddSales";
 import Sales from "../scenes/sales/Sales";
@@ -175,7 +175,7 @@ const protectedRoutes = [
   
   { path: "dashboard/purchase", element: <Purchase /> },
   { path: "dashboard/purchase/AddPurchase", element: <AddPurchase /> },
-  { path: "dashboard/purchase/purchaseList", element: <PurchaseList /> },
+  { path: "dashboard/purchase/PurchaseList", element: <PurchaseList /> },
 
   
   { path: "dashboard/sales", element: <Sales /> },

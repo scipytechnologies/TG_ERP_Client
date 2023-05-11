@@ -138,7 +138,7 @@ const scenes = [
       },
       {
         "label": "Purchase List",
-        "link": "/dashboard/purchase/purchaseList",
+        "link": "/dashboard/purchase/PurchaseList",
       },
     ]
   },
