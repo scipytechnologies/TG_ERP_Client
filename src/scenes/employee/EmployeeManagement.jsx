@@ -14,13 +14,37 @@ function EmployeeManagement() {
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
     const [user, setUser] = useState("")
+    const [data, setData] = useState([])
+
     async function employeeDetails() {
         const res = await mainservice.employeeDetails();
-        console.log('Opportunity Details ' + JSON.stringify(res))
+        // console.log('employee Details ' + JSON.stringify(res))
+        console.log(res)
+        setData(res.data)
     }
     useEffect(() => {
         employeeDetails()
     }, []);
+
+    // const data = [
+    //     { id: 1, name: 'John', age: 30 },
+    //     { id: 2, name: 'Jane', age: 25 },
+    //     { id: 3, name: 'Bob', age: 40 },
+    //   ];
+
+    //   const columns = [
+    //     // { 
+    //     //   name: 'Full Name', 
+    //     //   formatter: (cell) => {
+    //     //     return <button>{cell}</button>;
+    //     //   },
+    //     //   key: 'EmpCode'
+    //     // },
+    //     { 
+    //       name: 'Age', 
+    //       key: 'EmpCode' 
+    //     }
+    //   ];
 
     return (
         <>
@@ -40,27 +64,24 @@ function EmployeeManagement() {
                 <Card className="card">
                     <Card.Body>
                         <Grid
-                            data={[
-                                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
-
-                                ['sdfdsf Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['sdfd Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reysdfdsfnsdfdsante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adriasdfsdfdsfn Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reydsfsdfnante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adrsdfdsfian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['sdfdsfsf Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                            ]}
-                            columns={['Name', 'Job Title', 'Degree', 'Salary']}
+                            // data={data}
+                            // fields={{
+                            //     // id: (row) => <Link to={`/details/${row.id}`}>{row.id}</Link>,
+                            //     // name: (row) => <span style={{ fontWeight: 'bold' }}>{row.name}</span>,
+                            //     // email: (row) => <a href={`mailto:${row.email}`}>{row.email}</a>,
+                            //     // // status: (row) => <Badge variant={row.status === 'active' ? 'success' : 'danger'}>{row.status}</Badge>,
+                            //     // // add more columns here...
+                            //     EmployeeCode: (row) => row.EmpCode
+                            // }}
+                            // fields={{
+                            //   id: (row) => <Link to={`/details/${row.id}`}>{row.id}</Link>,
+                            //   name: (row) => <span style={{ fontWeight: 'bold' }}>{row.name}</span>,
+                            //   email: (row) => <a href={`mailto:${row.email}`}>{row.email}</a>,
+                            // //   status: (row) => <Badge variant={row.status === 'active' ? 'success' : 'danger'}>{row.status}</Badge>,
+                            //   // add more columns here...
+                            // }}
+                            data={data}
+                            // columns={['_id', "Name", "Address", "BankAccName"]}
                             search={true}
                             pagination={true}
                             sort={true}
