@@ -4,7 +4,7 @@ import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
-import {Grid} from "gridjs-react";
+import { Grid } from "gridjs-react";
 
 function Sales() {
   // to maintain dark and light mode
@@ -26,7 +26,7 @@ function Sales() {
             <h4 className="main-title mb-0">Sales Managment</h4>
           </div>
           <div className="d-flex gap-2 mt-3 mt-md-6">
-            <Button variant="primary" className="d-flex align-items-center gap-2" onClick={() => navigate('/dashboard/Sales/addSales')}>
+            <Button variant="primary" className="d-flex align-items-center gap-2" onClick={() => navigate('/dashboard/sales/addSales')}>
               <i className="ri-bar-chart-2-line fs-18 lh-1"></i>Add Sales<span className="d-none d-sm-inline"></span>
             </Button>
           </div>
@@ -69,8 +69,8 @@ function Sales() {
           </Col>
         </Row>
 
-     
- <h5 id="section13" className="main-subtitle mt-5">Sales List</h5>
+
+        <h5 id="section13" className="main-subtitle mt-5">Sales List</h5>
         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit, sequi?</p>
 
         <Card className="card-example">

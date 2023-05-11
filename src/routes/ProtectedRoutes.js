@@ -105,18 +105,32 @@ import ProductManagement from "../scenes/inventory/ProductManagement"
 import Invoice from "../scenes/invoice/Invoice"
 import AddInvoice from "../scenes/invoice/AddInvoice"
 import PrintInvoice from "../scenes/invoice/PrintInvoice"
+import InvoiceList from "../scenes/invoice/InvoiceList"
 import RFQ from "../scenes/rfq/RFQ"
 import AddRfq from "../scenes/rfq/AddRfq"
 import PurchaseOrder from "../scenes/rfq/PurchaseOrder"
 import PurchaseItem from "../scenes/rfq/PurchaseItem"
+import RfqPurchaseList from "../scenes/rfq/RfqPurchaseList"
+import RfqList from "../scenes/rfq/RfqList"
+import RfqPurchaseOrder from "../scenes/rfq/RfqPurchaseOrder"
+
+
 import Vendor from "../scenes/vendor/Vendor"
 import AddVendor from "../scenes/vendor/AddVendor"
-import ProjectManagement from "../scenes/project managment/ProjectManagment"
-import AddProject from "../scenes/project managment/AddProject"
-import Purchase from "../scenes/purchase/Purchase";
-import AddPurchase from "../scenes/purchase/AddPurchase";
+
+
+import Purchase from "../scenes/purchase/Purchase"
+import AddPurchase from "../scenes/purchase/AddPurchase"
+import PurchaseList from "../scenes/purchase/PurchaseList"
+
 import AddSales from "../scenes/sales/AddSales";
 import Sales from "../scenes/sales/Sales";
+import SalesList from "../scenes/sales/SalesList";
+
+
+import ProjectManagement from "../scenes/project managment/ProjectManagment";
+import ProjectList from "../scenes/project managment/ProjectList";
+import AddProject from "../scenes/project managment/AddProject";
 
 const protectedRoutes = [
   { path: "dashboard/home", element: <Home /> },
@@ -138,22 +152,40 @@ const protectedRoutes = [
   { path: "dashboard/inventory", element: <Inventory /> },
   { path: "dashboard/inventory/ProductManagement", element: <ProductManagement /> },
   { path: "dashboard/inventory/AddProduct", element: <AddProduct /> },
+  { path: "dashboard/inventory/ProductList", element: <ProductList /> },
   // { path: "dashboard/inventory/:Product-id", element: <Products /> },
   { path: "dashboard/invoice", element: <Invoice /> },
+  { path: "dashboard/invoice/InvoiceList", element: <InvoiceList /> },
   { path: "dashboard/invoice/AddInvoice", element: <AddInvoice /> },
   { path: "dashboard/invoice/PrintInvoice", element: <PrintInvoice /> },
+
+
   { path: "dashboard/rfq", element: <RFQ /> },
   { path: "dashboard/rfq/AddRfq", element: <AddRfq /> },
   { path: "dashboard/rfq/purchaseOrder", element: <PurchaseOrder /> },
   { path: "dashboard/rfq/purchaseItem", element: <PurchaseItem /> },
+  { path: "dashboard/rfq/rfqList", element: <RfqList /> },
+  { path: "dashboard/rfq/rfqPurchaseList", element: <RfqPurchaseList /> },
+  { path: "dashboard/rfq/rfqPurchaseOrder", element: <RfqPurchaseOrder /> },
+
+
   { path: "dashboard/vendor/Vendor", element: <Vendor /> },
   { path: "dashboard/vendor/AddVendor", element: <AddVendor /> },
-  { path: "dashboard/projectManagement", element: <ProjectManagement /> },
-  { path: "dashboard/projectManagement/AddProject", element: <AddProject /> },
+ 
+  
   { path: "dashboard/purchase", element: <Purchase /> },
   { path: "dashboard/purchase/AddPurchase", element: <AddPurchase /> },
+  { path: "dashboard/purchase/PurchaseList", element: <PurchaseList /> },
+
+  
   { path: "dashboard/sales", element: <Sales /> },
   { path: "dashboard/sales/addSales", element: <AddSales /> },
+  { path: "dashboard/sales/salesList", element: <SalesList /> },
+
+  { path: "dashboard/project", element: <ProjectManagement /> },
+  { path: "dashboard/project/AddProject", element: <AddProject /> },
+  { path: "dashboard/project/ProjectManagement", element: <ProjectManagement /> },
+  { path: "dashboard/project/ProjectList", element: <ProjectList /> },
 
   // default components and apps
   { path: "dashboard/finance", element: <FinanceMonitoring /> },

@@ -1,27 +1,17 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react';
+import React from 'react'
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
+import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
 import { Grid } from "gridjs"
 
-function Customer() {
-
+function InvoiceList() {
     // to maintain dark and light mode
     const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
-
-    const [user, setUser] = useState("")
-    async function customerDetails() {
-        const res = await mainservice.customerDetails();
-        console.log('Customer Details ' + JSON.stringify(res))
-    }
-    useEffect(() => {
-        customerDetails()
-    }, []);
 
     return (
         <>
@@ -31,14 +21,15 @@ function Customer() {
                     <div>
                         <ol className="breadcrumb fs-sm mb-1">
                             <li className="breadcrumb-item"><Link to="/dashboard/home">Dashboard</Link></li>
-                            <li className="breadcrumb-item"><Link to="/dashboard/crm">CRM</Link></li>
-                            <li className="breadcrumb-item active" aria-current="page">Customer List</li>
+                            <li className="breadcrumb-item"><Link to="/dashboard/crm">Invoice</Link></li>
+                            <li className="breadcrumb-item active" aria-current="page">Add Invoice</li>
                         </ol>
-                        <h4 className="main-title mb-0">Customer List</h4>
+                        <h4 className="main-title mb-0">Create New Invoice</h4>
                     </div>
                 </div>
 
-
+                <h5 id="section13" className="main-subtitle mt-5">Invoice List</h5>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit, sequi?</p>
 
                 <Card className="card-example">
                     <Card.Body>
@@ -80,6 +71,4 @@ function Customer() {
     )
 }
 
-export default Customer;
-
-
+export default InvoiceList
