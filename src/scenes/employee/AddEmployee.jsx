@@ -20,6 +20,7 @@ function PostEmployee() {
       [event.target.name]: event.target.value
     })
   }
+  
   async function AddEmployee(form) {
     console.log(form);
     const res = await mainservice.AddEmployee(form);
