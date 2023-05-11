@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState } from 'react';
@@ -13,7 +13,18 @@ function PurchaseList() {
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
     
+  // get
 
+  const [user, setUser] = useState("")
+  async function purchasedetails() {
+    const res = await mainservice.purchasedetails();
+    console.log('Purchase Details ' + JSON.stringify(res))
+  }
+  useEffect(() => {
+    purchasedetails()
+  }, []);
+
+  /////////////////////////////////////////////////////////////////////////
 
     return (
         <>

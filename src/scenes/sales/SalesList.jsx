@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState } from 'react';
@@ -13,6 +13,19 @@ function SalesList() {
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
 
+    // get
+
+    const [user, setUser] = useState("")
+    async function salesdetails() {
+        const res = await mainservice.salesdetails();
+        console.log('Sales Details ' + JSON.stringify(res))
+    }
+    useEffect(() => {
+        salesdetails()
+    }, []);
+
+    /////////////////////////////////////////////////////////////////////////
+
     return (
         <>
             <Header onSkin={setSkin} />
@@ -21,10 +34,10 @@ function SalesList() {
                     <div>
                         <ol className="breadcrumb fs-sm mb-1">
                             <li className="breadcrumb-item"><Link to="/dashboard/home">Dashboard</Link></li>
-                            <li className="breadcrumb-item"><Link to="/dashboard/crm">Purchase</Link></li>
-                            <li className="breadcrumb-item active" aria-current="page">PurchaseList</li>
+                            <li className="breadcrumb-item"><Link to="/dashboard/sales">Purchase</Link></li>
+                            <li className="breadcrumb-item active" aria-current="page">Sales List</li>
                         </ol>
-                        <h4 className="main-title mb-0">Purchase List</h4>
+                        <h4 className="main-title mb-0">Sales List</h4>
                     </div>
                 </div>
 

@@ -81,46 +81,6 @@ function RFQ() {
           </Col>
         </Row>
 
-        <h5 id="section13" className="main-subtitle mt-5">RFQ List</h5>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit, sequi?</p>
-
-        <Card className="card-example">
-          <Card.Body>
-            <Grid
-              data={[
-                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
-
-                ['sdfdsf Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                ['sdfd Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                ['Reysdfdsfnsdfdsante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                ['Adriasdfsdfdsfn Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                ['Reydsfsdfnante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                ['Adrsdfdsfian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                ['sdfdsfsf Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-              ]}
-              columns={['Name', 'Job Title', 'Degree', 'Salary']}
-              search={true}
-              pagination={true}
-              sort={true}
-              resizable={true}
-              className={{
-                table: 'table table-bordered mb-0'
-              }}
-            />
-          </Card.Body>
-          {/* <Card.Footer>
-            
-          </Card.Footer> */}
-        </Card>
         <Footer />
       </div>
     </>
