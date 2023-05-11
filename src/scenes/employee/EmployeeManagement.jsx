@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import { Grid } from "gridjs-react";
+import mainservice from '../../services/mainservice';
 
 
 function EmployeeManagement() {
@@ -12,7 +13,14 @@ function EmployeeManagement() {
     const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
-
+    const [user, setUser] = useState("")
+    async function employeeDetails() {
+        const res = await mainservice.employeeDetails();
+        console.log('Opportunity Details ' + JSON.stringify(res))
+    }
+    useEffect(() => {
+        employeeDetails()
+    }, []);
 
     return (
         <>

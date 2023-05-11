@@ -104,14 +104,14 @@ function PostEmployee() {
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="BankAccNo">Bank Account No</Form.Label>
-                    <Form.Control type="Number" id="BankAccountNo" name="BankAccountNo" placeholder="Bank Account No" onChange={onChangeHandler}/>
+                    <Form.Control type="Number" id="BankAccountNo" name="BankAccNo" placeholder="Bank Account No" onChange={onChangeHandler}/>
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="BankAccountName">Bank Account Name</Form.Label>
-                    <Form.Control type="text" id="BankAccountName" name="BankAccountName" placeholder="Bank Account Name" onChange={onChangeHandler}/>
+                    <Form.Control type="text" id="BankAccountName" name="BankAccName" placeholder="Bank Account Name" onChange={onChangeHandler}/>
                   </div>
                 </Col>
 
