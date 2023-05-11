@@ -1,20 +1,21 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react';
+import React, { useEffect } from 'react';
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
+import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
+import { Grid } from "gridjs-react";
 import mainservice from '../../services/mainservice';
-import { Grid } from "gridjs"
+
+
 
 function Customer() {
-
     // to maintain dark and light mode
     const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
 
-    const [user, setUser] = useState("")
+    // const [user, setUser] = useState("")
     async function customerDetails() {
         const res = await mainservice.customerDetails();
         console.log('Customer Details ' + JSON.stringify(res))
@@ -22,7 +23,6 @@ function Customer() {
     useEffect(() => {
         customerDetails()
     }, []);
-
     return (
         <>
             <Header onSkin={setSkin} />
@@ -40,39 +40,11 @@ function Customer() {
 
 
 
-                <Card className="card-example">
+                <Card className="card">
                     <Card.Body>
-                        <Grid
-                            data={[
-                                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
-
-                                ['sdfdsf Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['sdfd Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reysdfdsfnsdfdsante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adriasdfsdfdsfn Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reydsfsdfnante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adrsdfdsfian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['sdfdsfsf Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                            ]}
-                            columns={['Name', 'Job Title', 'Degree', 'Salary']}
-                            search={true}
-                            pagination={true}
-                            sort={true}
-                            resizable={true}
-                            className={{
-                                table: 'table table-bordered mb-0'
-                            }}
-                        />
+                        <Grid />
                     </Card.Body>
+
                 </Card>
                 <Footer />
             </div >
@@ -80,6 +52,6 @@ function Customer() {
     )
 }
 
-export default Customer;
+export default Customer
 
 
