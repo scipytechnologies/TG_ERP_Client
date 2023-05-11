@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState } from 'react';
@@ -12,7 +12,15 @@ function ProjectList() {
     const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
-
+    
+    const [user, setUser] = useState("") 
+    async function getPrjmanagerDetails() {
+        const res = await mainservice.getPrjmanagerDetails();
+        console.log('Project Management Details ' + JSON.stringify(res))
+    }
+    useEffect(() => {
+        getPrjmanagerDetails()
+    }, []);
     return (
         <>
             <Header onSkin={setSkin} />

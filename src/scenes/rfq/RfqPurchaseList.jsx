@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
-
 import { Grid } from "gridjs-react";
 
 function RfqPurchaseList() {
@@ -17,12 +16,12 @@ function RfqPurchaseList() {
     // get
 
     const [user, setUser] = useState("")
-    async function purchaseitem() {
-      const res = await mainservice.purchaseitem();
-      console.log('Inventory Details ' + JSON.stringify(res))
+    async function purchaseitemdetails() {
+      const res = await mainservice.purchaseitemdetails();
+      console.log('RFQ Purchase Item Details ' + JSON.stringify(res))
     }
     useEffect(() => {
-      purchaseitem()
+      purchaseitemdetails()
     }, []);
   
     /////////////////////////////////////////////////////////////////////////
@@ -36,7 +35,7 @@ function RfqPurchaseList() {
             <ol className="breadcrumb fs-sm mb-1">
               <li className="breadcrumb-item"><Link to="/dashboard/home">Dashboard</Link></li>
               <li className="breadcrumb-item"><Link to="/dashboard/rfq">RFQ</Link></li>
-              <li className="breadcrumb-item active" aria-current="page">RfqPurchaseList</li>
+              <li className="breadcrumb-item active" aria-current="page">RFQ Purchase List</li>
             </ol>
             <h4 className="main-title mb-0">RFQ Purchase List</h4>
           </div>

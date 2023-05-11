@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useEffect} from 'react'
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState } from 'react';
@@ -12,6 +12,18 @@ function InvoiceList() {
     const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
+    const [user, setUser] = useState("") 
+    const [data, setData] = useState([]) 
+
+    async function invoicedetails() {
+        const res = await mainservice.invoicedetails();
+        console.log('Invoice Details ' + JSON.stringify(res))
+        console.log(res)
+        setData(res.data)
+    }
+    useEffect(() => {
+        invoicedetails()
+    }, []);
 
     return (
         <>
@@ -21,7 +33,7 @@ function InvoiceList() {
                     <div>
                         <ol className="breadcrumb fs-sm mb-1">
                             <li className="breadcrumb-item"><Link to="/dashboard/home">Dashboard</Link></li>
-                            <li className="breadcrumb-item"><Link to="/dashboard/crm">Invoice</Link></li>
+                            <li className="breadcrumb-item"><Link to="/dashboard/invoice">Invoice</Link></li>
                             <li className="breadcrumb-item active" aria-current="page">Add Invoice</li>
                         </ol>
                         <h4 className="main-title mb-0">Create New Invoice</h4>
