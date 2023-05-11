@@ -54,7 +54,6 @@ function Customer() {
                             className={{
                                 table: 'table table-bordered mb-0'
                             }}
-
                         />
                     </Card.Body>
 

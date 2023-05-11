@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
-
 import { Grid } from "gridjs-react";
+import mainservice from '../../services/mainservice';
 
 function RfqPurchaseOrder() {
   // to maintain dark and light mode
@@ -13,6 +13,18 @@ function RfqPurchaseOrder() {
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
 
+    // get
+
+    const [user, setUser] = useState("")
+    async function purchaseorderdetails() {
+      const res = await mainservice.purchaseorderdetails();
+      console.log('RFQ Purchase Order Details ' + JSON.stringify(res))
+    }
+    useEffect(() => {
+      purchaseorderdetails()
+    }, []);
+  
+    /////////////////////////////////////////////////////////////////////////
 
   return (
     <>
