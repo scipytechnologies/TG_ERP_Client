@@ -15,16 +15,16 @@ function ProductManagement() {
 
   // get
 
-  const [user, setUser] = useState("")
+  const [data, setData] = useState([])
   async function getInventorymanagementDetails() {
     const res = await mainservice.getInventorymanagementDetails();
     console.log('Inventory Details ' + JSON.stringify(res))
+    setData(res.data)
   }
   useEffect(() => {
     getInventorymanagementDetails()
   }, []);
 
-  /////////////////////////////////////////////////////////////////////////
 
   return (
     <>
@@ -39,11 +39,7 @@ function ProductManagement() {
             </ol>
             <h4 className="main-title mb-0">Product Management</h4>
           </div>
-          <div className="d-flex gap-2 mt-3 mt-md-6">
-            <Button variant="primary" className="d-flex align-items-center gap-2" onClick={() => navigate('/dashboard/inventory/AddProduct')}>
-              <i className="ri-bar-chart-2-line fs-18 lh-1"></i>Add Product<span className="d-none d-sm-inline"></span>
-            </Button>
-          </div>
+         
         </div>
 
         {/* analatics cards */}
