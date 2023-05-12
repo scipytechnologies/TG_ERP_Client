@@ -18,6 +18,7 @@ function Customer() {
 
     async function customerDetails() {
         const res = await mainservice.customerDetails();
+        console.log('Customer Details ' + JSON.stringify(res))
         console.log(res)
         setData(res.data)
     }

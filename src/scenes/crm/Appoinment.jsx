@@ -5,6 +5,7 @@ import Footer from "../../layouts/Footer";
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
+import { h } from "gridjs";
 import { Grid } from "gridjs-react"
 
 function Appoinment() {
@@ -18,11 +19,16 @@ function Appoinment() {
     async function appointmentDetails() {
         const res = await mainservice.appointmentDetails();
         console.log('Appointment Details ' + JSON.stringify(res))
+        console.log(res)
         setData(res.data)
     }
     useEffect(() => {
         appointmentDetails()
     }, []);
+
+    const handleButtonClick = (row) => {
+        console.log(row);
+    };
 
     return (
         <>
@@ -41,17 +47,46 @@ function Appoinment() {
 
 
 
-                <Card className="card-example">
+                <Card>
                     <Card.Body>
                         <Grid
-                           data={data}
-                           
+                            data={data.map((item) => [
+                                item.ScheduleCall,
+                                item.ScheduleMeeting,
+                                h('div', {}, [
+                                    h(
+                                        'Button',
+                                        {
+                                            onClick: () => handleButtonClick(item),
+                                            className: 'btn btn-outline-success ri-pencil-fill me-1 btn-sm',
+                                        },
+
+                                    ),
+                                    h(
+                                        'Button',
+                                        {
+                                            onClick: () => handleButtonClick(item),
+                                            className: 'btn btn-outline-danger ri-delete-bin-6-line me-1 btn-sm',
+                                        },
+
+                                    ),
+                                    h(
+                                        'Button',
+                                        {
+                                            onClick: () => handleButtonClick(item),
+                                            className: 'btn btn-outline-primary ri-more-fill me-1 btn-sm',
+                                        },
+
+                                    ),
+                                ]),
+                            ])}
+                            columns={['Schedule Call', 'Schedule Meeting', 'Action']}
                             search={true}
                             pagination={true}
                             sort={true}
                             resizable={true}
                             className={{
-                                table: 'table table-bordered mb-0'
+                                table: 'table table-bordered mb-0',
                             }}
                         />
                     </Card.Body>

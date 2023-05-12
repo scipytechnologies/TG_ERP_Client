@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import { Grid } from "gridjs-react";
+import { h } from "gridjs";
 import mainservice from '../../services/mainservice';
 
 
@@ -18,7 +19,7 @@ function EmployeeManagement() {
 
     async function employeeDetails() {
         const res = await mainservice.employeeDetails();
-        // console.log('employee Details ' + JSON.stringify(res))
+        console.log('employee Details ' + JSON.stringify(res))
         console.log(res)
         setData(res.data)
     }
@@ -26,25 +27,9 @@ function EmployeeManagement() {
         employeeDetails()
     }, []);
 
-    // const data = [
-    //     { id: 1, name: 'John', age: 30 },
-    //     { id: 2, name: 'Jane', age: 25 },
-    //     { id: 3, name: 'Bob', age: 40 },
-    //   ];
-
-    //   const columns = [
-    //     // { 
-    //     //   name: 'Full Name', 
-    //     //   formatter: (cell) => {
-    //     //     return <button>{cell}</button>;
-    //     //   },
-    //     //   key: 'EmpCode'
-    //     // },
-    //     { 
-    //       name: 'Age', 
-    //       key: 'EmpCode' 
-    //     }
-    //   ];
+    const handleButtonClick = (row) => {
+        console.log(row);
+    };
 
     return (
         <>
@@ -61,39 +46,49 @@ function EmployeeManagement() {
                     </div>
                 </div>
 
-                <Card className="card">
+                <Card>
                     <Card.Body>
                         <Grid
-                            // data={data}
-                            // fields={{
-                            //     // id: (row) => <Link to={`/details/${row.id}`}>{row.id}</Link>,
-                            //     // name: (row) => <span style={{ fontWeight: 'bold' }}>{row.name}</span>,
-                            //     // email: (row) => <a href={`mailto:${row.email}`}>{row.email}</a>,
-                            //     // // status: (row) => <Badge variant={row.status === 'active' ? 'success' : 'danger'}>{row.status}</Badge>,
-                            //     // // add more columns here...
-                            //     EmployeeCode: (row) => row.EmpCode
-                            // }}
-                            // fields={{
-                            //   id: (row) => <Link to={`/details/${row.id}`}>{row.id}</Link>,
-                            //   name: (row) => <span style={{ fontWeight: 'bold' }}>{row.name}</span>,
-                            //   email: (row) => <a href={`mailto:${row.email}`}>{row.email}</a>,
-                            // //   status: (row) => <Badge variant={row.status === 'active' ? 'success' : 'danger'}>{row.status}</Badge>,
-                            //   // add more columns here...
-                            // }}
-                            data={data}
-                            // columns={['_id', "Name", "Address", "BankAccName"]}
+                            data={data.map((item) => [
+                                item.EmpCode,
+                                item.Name,
+                                h('div', {}, [
+                                    h(
+                                        'Button',
+                                        {
+                                            onClick: () => handleButtonClick(item),
+                                            className: 'btn btn-outline-success ri-pencil-fill me-1 btn-sm',
+                                        },
+
+                                    ),
+                                    h(
+                                        'Button',
+                                        {
+                                            onClick: () => handleButtonClick(item),
+                                            className: 'btn btn-outline-danger ri-delete-bin-6-line me-1 btn-sm',
+                                        },
+
+                                    ),
+                                    h(
+                                        'Button',
+                                        {
+                                            onClick: () => handleButtonClick(item),
+                                            className: 'btn btn-outline-primary ri-more-fill me-1 btn-sm',
+                                        },
+
+                                    ),
+                                ]),
+                            ])}
+                            columns={['Employee Code', 'Name', 'Action']}
                             search={true}
                             pagination={true}
                             sort={true}
                             resizable={true}
                             className={{
-                                table: 'table table-bordered mb-0'
+                                table: 'table table-bordered mb-0',
                             }}
                         />
                     </Card.Body>
-                    {/* <Card.Footer>
-            
-          </Card.Footer> */}
                 </Card>
                 <Footer />
             </div>
