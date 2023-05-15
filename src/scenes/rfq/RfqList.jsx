@@ -6,6 +6,8 @@ import { Button, Card, Col, Nav, ProgressBar, Row } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
 import { Grid } from "gridjs-react";
+import { h } from "gridjs";
+
 
 function RfqList() {
   // to maintain dark and light mode
@@ -16,15 +18,23 @@ function RfqList() {
   // get
 
   const [user, setUser] = useState("")
+  const [data, setData] = useState([])
+
   async function rfqdetails() {
     const res = await mainservice.rfqdetails();
     console.log('RFQ Details ' + JSON.stringify(res))
+    console.log(res)
+    setData(res.data)
   }
   useEffect(() => {
     rfqdetails()
   }, []);
 
   /////////////////////////////////////////////////////////////////////////
+
+  const handleButtonClick = (row) => {
+    console.log(row);
+  };
 
   return (
     <>
@@ -41,43 +51,51 @@ function RfqList() {
           </div>
         </div>
 
-
-        <Card className="card-example">
+        <Card>
           <Card.Body>
             <Grid
-              data={[
-                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
+              data={data.map((item) => [
+                item.RequisitionDate,
+                item.PurchaseRequisition,
+                item.TypeofRequisition,
 
-                ['sdfdsf Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                ['sdfd Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                ['Reysdfdsfnsdfdsante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                ['Adriasdfsdfdsfn Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                ['Reydsfsdfnante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                ['Adrsdfdsfian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                ['sdfdsfsf Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-              ]}
-              columns={['Name', 'Job Title', 'Degree', 'Salary']}
+                h('div', {}, [
+                  h(
+                    'Button',
+                    {
+                      onClick: () => handleButtonClick(item),
+                      className: 'btn btn-outline-success ri-pencil-fill me-1 btn-sm',
+                    },
+
+                  ),
+                  h(
+                    'Button',
+                    {
+                      onClick: () => handleButtonClick(item),
+                      className: 'btn btn-outline-danger ri-delete-bin-6-line me-1 btn-sm',
+                    },
+
+                  ),
+                  h(
+                    'Button',
+                    {
+                      onClick: () => handleButtonClick(item),
+                      className: 'btn btn-outline-primary ri-more-fill me-1 btn-sm',
+                    },
+
+                  ),
+                ]),
+              ])}
+              columns={['Requisition Date', 'Purchase Requisition', 'Type of Requisition', 'Action']}
               search={true}
               pagination={true}
               sort={true}
               resizable={true}
               className={{
-                table: 'table table-bordered mb-0'
+                table: 'table table-bordered mb-0',
               }}
             />
           </Card.Body>
-          {/* <Card.Footer>
-            
-          </Card.Footer> */}
         </Card>
         <Footer />
       </div>

@@ -6,6 +6,8 @@ import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap"
 import { Link, useNavigate } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
 import { Grid } from "gridjs-react"
+import { h } from "gridjs";
+
 
 function SalesList() {
     // to maintain dark and light mode
@@ -16,15 +18,24 @@ function SalesList() {
     // get
 
     const [user, setUser] = useState("")
+    const [data, setData] = useState([])
+
     async function salesdetails() {
         const res = await mainservice.salesdetails();
         console.log('Sales Details ' + JSON.stringify(res))
+        console.log(res)
+        setData(res.data)
     }
     useEffect(() => {
         salesdetails()
     }, []);
 
     /////////////////////////////////////////////////////////////////////////
+
+    const handleButtonClick = (row) => {
+        console.log(row);
+    };
+
 
     return (
         <>
@@ -40,39 +51,48 @@ function SalesList() {
                         <h4 className="main-title mb-0">Sales List</h4>
                     </div>
                 </div>
-
-
-
-                <Card className="card-example">
+                <Card>
                     <Card.Body>
                         <Grid
-                            data={[
-                                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
+                            data={data.map((item) => [
+                                item.OrderNumber,
+                                item.Product,
+                                item.Day,
 
-                                ['sdfdsf Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['sdfd Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reysdfdsfnsdfdsante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adriasdfsdfdsfn Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reydsfsdfnante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adrsdfdsfian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['sdfdsfsf Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                            ]}
-                            columns={['Name', 'Job Title', 'Degree', 'Salary']}
+                                h('div', {}, [
+                                    h(
+                                        'Button',
+                                        {
+                                            onClick: () => handleButtonClick(item),
+                                            className: 'btn btn-outline-success ri-pencil-fill me-1 btn-sm',
+                                        },
+
+                                    ),
+                                    h(
+                                        'Button',
+                                        {
+                                            onClick: () => handleButtonClick(item),
+                                            className: 'btn btn-outline-danger ri-delete-bin-6-line me-1 btn-sm',
+                                        },
+
+                                    ),
+                                    h(
+                                        'Button',
+                                        {
+                                            onClick: () => handleButtonClick(item),
+                                            className: 'btn btn-outline-primary ri-more-fill me-1 btn-sm',
+                                        },
+
+                                    ),
+                                ]),
+                            ])}
+                            columns={['Order Number', 'Product', 'Day', 'Action']}
                             search={true}
                             pagination={true}
                             sort={true}
                             resizable={true}
                             className={{
-                                table: 'table table-bordered mb-0'
+                                table: 'table table-bordered mb-0',
                             }}
                         />
                     </Card.Body>

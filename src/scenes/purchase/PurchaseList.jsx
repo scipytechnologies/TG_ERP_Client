@@ -6,25 +6,35 @@ import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap"
 import { Link, useNavigate } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
 import { Grid } from "gridjs-react"
+import { h } from "gridjs";
+
 
 function PurchaseList() {
     // to maintain dark and light mode
     const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
-    
-  // get
 
-  const [user, setUser] = useState("")
-  async function purchasedetails() {
-    const res = await mainservice.purchasedetails();
-    console.log('Purchase Details ' + JSON.stringify(res))
-  }
-  useEffect(() => {
-    purchasedetails()
-  }, []);
+    // get
 
-  /////////////////////////////////////////////////////////////////////////
+    const [user, setUser] = useState("")
+    const [data, setData] = useState([])
+
+    async function purchasedetails() {
+        const res = await mainservice.purchasedetails();
+        console.log('Purchase Details ' + JSON.stringify(res))
+        console.log(res)
+        setData(res.data)
+    }
+    useEffect(() => {
+        purchasedetails()
+    }, []);
+
+    /////////////////////////////////////////////////////////////////////////
+
+    const handleButtonClick = (row) => {
+        console.log(row);
+    };
 
     return (
         <>
@@ -40,39 +50,48 @@ function PurchaseList() {
                         <h4 className="main-title mb-0">Purchase List</h4>
                     </div>
                 </div>
-
-
-
-                <Card className="card-example">
+                <Card>
                     <Card.Body>
                         <Grid
-                            data={[
-                                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adrian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reynante Labares', 'Product Manager', 'Business Management', '$250,000'],
+                            data={data.map((item) => [
+                                item.QuoteNo,
+                                item.QuoteSubject,
+                                item.QuoteStage,
 
-                                ['sdfdsf Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['sdfd Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reysdfdsfnsdfdsante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adriasdfsdfdsfn Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['Socrates Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                                ['Reydsfsdfnante Labares', 'Product Manager', 'Business Management', '$250,000'],
-                                ['Adrsdfdsfian Monino', 'Front-End Engineer', 'Computer Science', '$120,000'],
-                                ['sdfdsfsf Itumay', 'Software Engineer', 'Computer Engineering', '$150,000'],
-                            ]}
-                            columns={['Name', 'Job Title', 'Degree', 'Salary']}
+                                h('div', {}, [
+                                    h(
+                                        'Button',
+                                        {
+                                            onClick: () => handleButtonClick(item),
+                                            className: 'btn btn-outline-success ri-pencil-fill me-1 btn-sm',
+                                        },
+
+                                    ),
+                                    h(
+                                        'Button',
+                                        {
+                                            onClick: () => handleButtonClick(item),
+                                            className: 'btn btn-outline-danger ri-delete-bin-6-line me-1 btn-sm',
+                                        },
+
+                                    ),
+                                    h(
+                                        'Button',
+                                        {
+                                            onClick: () => handleButtonClick(item),
+                                            className: 'btn btn-outline-primary ri-more-fill me-1 btn-sm',
+                                        },
+
+                                    ),
+                                ]),
+                            ])}
+                            columns={['Quote No', 'Quote Subject', 'Quote Stage', 'Action']}
                             search={true}
                             pagination={true}
                             sort={true}
                             resizable={true}
                             className={{
-                                table: 'table table-bordered mb-0'
+                                table: 'table table-bordered mb-0',
                             }}
                         />
                     </Card.Body>
