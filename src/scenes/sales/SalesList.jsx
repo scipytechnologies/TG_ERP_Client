@@ -54,7 +54,7 @@ function SalesList() {
                 <Card>
                     <Card.Body>
                         <Grid
-                            data={data.map((item) => [
+                            data={data !== undefined ? data.map((item) => [
                                 item.OrderNumber,
                                 item.Product,
                                 item.Day,
@@ -85,7 +85,9 @@ function SalesList() {
 
                                     ),
                                 ]),
-                            ])}
+                            ])
+                            : []
+                        }
                             columns={['Order Number', 'Product', 'Day', 'Action']}
                             search={true}
                             pagination={true}

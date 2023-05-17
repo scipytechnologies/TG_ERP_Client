@@ -50,7 +50,7 @@ function Opportunity() {
                 <Card>
                     <Card.Body>
                         <Grid
-                            data={data.map((item) => [
+                            data={data !== undefined ? data.map((item) => [
                                 item.OpportunityName,
                                 item.SalesStage,
                                 h('div', {}, [
@@ -79,7 +79,9 @@ function Opportunity() {
 
                                     ),
                                 ]),
-                            ])}
+                            ])
+                            : []
+                        }
                             columns={['Opportunity Name', 'Sales Stage', 'Action']}
                             search={true}
                             pagination={true}

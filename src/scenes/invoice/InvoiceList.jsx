@@ -53,7 +53,7 @@ function InvoiceList() {
                 <Card>
                     <Card.Body>
                         <Grid
-                            data={data.map((item) => [
+                            data={data !== undefined ? data.map((item) => [
                                 item.InvoiceNumber,
                                 item.InvoiceSubject,
                                 item.Notes,
@@ -84,7 +84,9 @@ function InvoiceList() {
 
                                     ),
                                 ]),
-                            ])}
+                            ])
+                            : []
+                            }
                             columns={['Invoice Number', 'Invoice Subject', 'Notes', 'Action']}
                             search={true}
                             pagination={true}
