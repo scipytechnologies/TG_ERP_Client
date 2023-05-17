@@ -49,7 +49,7 @@ function EmployeeManagement() {
                 <Card>
                     <Card.Body>
                         <Grid
-                            data={data.map((item) => [
+                            data={data !== undefined ? data.map((item) => [
                                 item.EmpCode,
                                 item.Name,
                                 h('div', {}, [
@@ -78,7 +78,9 @@ function EmployeeManagement() {
 
                                     ),
                                 ]),
-                            ])}
+                            ])
+                            : []
+                        }
                             columns={['Employee Code', 'Name', 'Action']}
                             search={true}
                             pagination={true}
