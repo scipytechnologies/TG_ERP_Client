@@ -29,7 +29,7 @@ function ProductManagement() {
 
   const handleButtonClick = (row) => {
     console.log(row);
-};
+  };
 
 
 
@@ -46,54 +46,56 @@ function ProductManagement() {
             </ol>
             <h4 className="main-title mb-0">Product Management</h4>
           </div>
-         
+
         </div>
 
         {/* analatics cards */}
         <Card>
-                    <Card.Body>
-                        <Grid
-                            data={data.map((item) => [
-                                item.SKUNo,
-                                item.ItemName,
-                                h('div', {}, [
-                                    h(
-                                        'Button',
-                                        {
-                                            onClick: () => handleButtonClick(item),
-                                            className: 'btn btn-outline-success ri-pencil-fill me-1 btn-sm',
-                                        },
+          <Card.Body>
+            <Grid
+              data={data !== undefined ? data.map((item) => [
+                item.SKUNo,
+                item.ItemName,
+                h('div', {}, [
+                  h(
+                    'Button',
+                    {
+                      onClick: () => handleButtonClick(item),
+                      className: 'btn btn-outline-success ri-pencil-fill me-1 btn-sm',
+                    },
 
-                                    ),
-                                    h(
-                                        'Button',
-                                        {
-                                            onClick: () => handleButtonClick(item),
-                                            className: 'btn btn-outline-danger ri-delete-bin-6-line me-1 btn-sm',
-                                        },
+                  ),
+                  h(
+                    'Button',
+                    {
+                      onClick: () => handleButtonClick(item),
+                      className: 'btn btn-outline-danger ri-delete-bin-6-line me-1 btn-sm',
+                    },
 
-                                    ),
-                                    h(
-                                        'Button',
-                                        {
-                                            onClick: () => handleButtonClick(item),
-                                            className: 'btn btn-outline-primary ri-more-fill me-1 btn-sm',
-                                        },
+                  ),
+                  h(
+                    'Button',
+                    {
+                      onClick: () => handleButtonClick(item),
+                      className: 'btn btn-outline-primary ri-more-fill me-1 btn-sm',
+                    },
 
-                                    ),
-                                ]),
-                            ])}
-                            columns={['SKU No', 'Item Name', 'Action']}
-                            search={true}
-                            pagination={true}
-                            sort={true}
-                            resizable={true}
-                            className={{
-                                table: 'table table-bordered mb-0',
-                            }}
-                        />
-                    </Card.Body>
-                </Card>
+                  ),
+                ]),
+              ])
+              : []
+              }
+              columns={['SKU No', 'Item Name', 'Action']}
+              search={true}
+              pagination={true}
+              sort={true}
+              resizable={true}
+              className={{
+                table: 'table table-bordered mb-0',
+              }}
+            />
+          </Card.Body>
+        </Card>
         <Footer />
       </div>
     </>

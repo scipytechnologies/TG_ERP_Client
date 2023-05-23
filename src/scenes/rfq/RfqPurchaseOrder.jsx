@@ -53,7 +53,7 @@ function RfqPurchaseOrder() {
         <Card>
           <Card.Body>
             <Grid
-              data={data.map((item) => [
+              data={data !== undefined ? data.map((item) => [
                 item.REQNo,
                 item.RequisitionDate,
                 item.Supplier,
@@ -84,7 +84,9 @@ function RfqPurchaseOrder() {
 
                   ),
                 ]),
-              ])}
+              ])
+              : []
+              }
               columns={['REQNo', 'RequisitionDate', 'Supplier', 'Action']}
               search={true}
               pagination={true}

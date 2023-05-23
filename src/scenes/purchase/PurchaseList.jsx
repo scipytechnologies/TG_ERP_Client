@@ -53,7 +53,7 @@ function PurchaseList() {
                 <Card>
                     <Card.Body>
                         <Grid
-                            data={data.map((item) => [
+                            data={data !== undefined ? data.map((item) => [
                                 item.QuoteNo,
                                 item.QuoteSubject,
                                 item.QuoteStage,
@@ -84,7 +84,9 @@ function PurchaseList() {
 
                                     ),
                                 ]),
-                            ])}
+                            ])
+                            : []
+                        }
                             columns={['Quote No', 'Quote Subject', 'Quote Stage', 'Action']}
                             search={true}
                             pagination={true}

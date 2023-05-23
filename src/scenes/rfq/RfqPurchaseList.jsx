@@ -56,7 +56,7 @@ function RfqPurchaseList() {
         <Card>
           <Card.Body>
             <Grid
-              data={data.map((item) => [
+              data={data !== undefined ? data.map((item) => [
                 item.Type,
                 item.ItemCategory,
                 item.Item,
@@ -87,7 +87,9 @@ function RfqPurchaseList() {
 
                   ),
                 ]),
-              ])}
+              ])
+              : []
+              }
               columns={['Type', 'ItemCategory', 'Item', 'Action']}
               search={true}
               pagination={true}

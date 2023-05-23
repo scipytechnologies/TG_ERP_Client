@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
@@ -13,9 +13,16 @@ function Appoinment() {
     const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
+    
+    // state for drop down of view more button
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [dropdownItem, setDropdownItem] = useState(null);
+    const handleCloseDropdown = () => {
+        setShowDropdown(false);
+    };
+
+    // axios get interceptor for table data
     const [data, setData] = useState([])
-
-
     async function appointmentDetails() {
         const res = await mainservice.appointmentDetails();
         console.log('Appointment Details ' + JSON.stringify(res))
@@ -29,6 +36,31 @@ function Appoinment() {
     const handleButtonClick = (row) => {
         console.log(row);
     };
+
+    const buttonRef = useRef();
+    const handleViewMore = (row) => {
+        // console.log(row);
+        setDropdownItem(row);
+        setShowDropdown((prev) => !prev ? true : false);
+        const position = buttonRef?.current.getBoundingClientRect();
+        // alert(position)
+        console.log(position);
+    };
+    const dStyle = {
+        position: 'absolute',
+        zIndex: '50',
+        // top: '50%',
+        // right: '12%',
+        top: buttonRef?.current?.getBoundingClientRect().top + buttonRef?.current?.clientHeight,
+        right: 175,
+        top: 200,
+        height: '7rem',
+        width: '7rem',
+        borderRadius: '0.3rem',
+        padding: '0.5rem',
+        backgroundColor: 'white',
+        boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px',
+    }
 
     return (
         <>
@@ -50,7 +82,7 @@ function Appoinment() {
                 <Card>
                     <Card.Body>
                         <Grid
-                            data={data.map((item) => [
+                            data={data !== undefined ? data.map((item) => [
                                 item.ScheduleCall,
                                 item.ScheduleMeeting,
                                 h('div', {}, [
@@ -73,13 +105,16 @@ function Appoinment() {
                                     h(
                                         'Button',
                                         {
-                                            onClick: () => handleButtonClick(item),
+                                            ref: buttonRef,
+                                            onClick: () => handleViewMore(item),
                                             className: 'btn btn-outline-primary ri-more-fill me-1 btn-sm',
                                         },
 
                                     ),
                                 ]),
-                            ])}
+                            ])
+                            : []
+                        }
                             columns={['Schedule Call', 'Schedule Meeting', 'Action']}
                             search={true}
                             pagination={true}
@@ -93,6 +128,14 @@ function Appoinment() {
                 </Card>
                 <Footer />
             </div >
+
+            {
+                showDropdown ?
+                    <div style={dStyle} onClick={handleCloseDropdown}>
+                        hello
+                    </div>
+                    : ''
+            }
         </>
     )
 }
