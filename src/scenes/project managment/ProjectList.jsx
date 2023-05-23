@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react'
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState } from 'react';
@@ -16,8 +16,8 @@ function ProjectList() {
     const [user, setUser] = useState("")
     const [data, setData] = useState([])
 
-    
-   
+
+
     async function getPrjmanagerDetails() {
         const res = await mainservice.getPrjmanagerDetails();
         console.log('Project Management Details ' + JSON.stringify(res))
@@ -51,7 +51,7 @@ function ProjectList() {
                 <Card>
                     <Card.Body>
                         <Grid
-                            data={data.map((item) => [
+                            data={data !== undefined ? data.map((item) => [
                                 item.PrjName,
                                 item.Type,
                                 h('div', {}, [
@@ -80,7 +80,9 @@ function ProjectList() {
 
                                     ),
                                 ]),
-                            ])}
+                            ])
+                            : []
+                        }
                             columns={['Project Name', 'Type', 'Action']}
                             search={true}
                             pagination={true}
