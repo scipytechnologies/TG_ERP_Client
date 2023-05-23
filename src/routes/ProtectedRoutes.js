@@ -132,6 +132,8 @@ import ProjectManagement from "../scenes/project managment/ProjectManagment";
 import ProjectList from "../scenes/project managment/ProjectList";
 import AddProject from "../scenes/project managment/AddProject";
 
+import POS from "../scenes/pos/POS"
+
 const protectedRoutes = [
   { path: "dashboard/home", element: <Home /> },
   // { path: "/registerCompany", element: <CompanyRegistration /> },
@@ -171,13 +173,13 @@ const protectedRoutes = [
 
   { path: "dashboard/vendor/Vendor", element: <Vendor /> },
   { path: "dashboard/vendor/AddVendor", element: <AddVendor /> },
- 
-  
+
+
   { path: "dashboard/purchase", element: <Purchase /> },
   { path: "dashboard/purchase/AddPurchase", element: <AddPurchase /> },
   { path: "dashboard/purchase/PurchaseList", element: <PurchaseList /> },
 
-  
+
   { path: "dashboard/sales", element: <Sales /> },
   { path: "dashboard/sales/addSales", element: <AddSales /> },
   { path: "dashboard/sales/salesList", element: <SalesList /> },
@@ -186,6 +188,8 @@ const protectedRoutes = [
   { path: "dashboard/project/AddProject", element: <AddProject /> },
   { path: "dashboard/project/ProjectManagement", element: <ProjectManagement /> },
   { path: "dashboard/project/ProjectList", element: <ProjectList /> },
+
+  { path: "dashboard/POS", element: <POS /> },
 
   // default components and apps
   { path: "dashboard/finance", element: <FinanceMonitoring /> },

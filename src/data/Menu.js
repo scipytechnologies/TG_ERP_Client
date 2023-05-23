@@ -98,17 +98,14 @@ const scenes = [
       {
         "label": "RFQ List",
         "link": "/dashboard/rfq/rfqList",
-
       },
       {
         "label": "RFQ Purchase List",
         "link": "/dashboard/rfq/rfqPurchaseList",
-
       },
       {
         "label": "RFQ Order List",
         "link": "/dashboard/rfq/rfqPurchaseOrder",
-
       },
   
     ]
@@ -156,6 +153,18 @@ const scenes = [
         "link": "/dashboard/sales/salesList",
 
       },
+    ]
+  },
+
+  {
+    "label": "POS",
+    
+    "icon": "ri-water-flash-line",
+    "submenu": [
+      {
+        "label": 'Home',
+        "link": "/dashboard/POS",
+      }
     ]
   },
 ];
