@@ -347,7 +347,7 @@ export default function Tables() {
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">1</th>
+                    <th scope="row" >1</th>
                     <td>Adrian Monino</td>
                     <td>Front-End Engineer</td>
                     <td>Computer Science</td>

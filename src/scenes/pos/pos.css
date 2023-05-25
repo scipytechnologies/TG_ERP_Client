@@ -1,7 +1,7 @@
 /* pos modal */
 .pos_modal_container {
     position: fixed;
-    z-index: 5;
+    z-index: 1000;
     padding-top: 150px;
     left: 0;
     top: 0;
@@ -11,7 +11,6 @@
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
     transition: .2s ease-in-out;
-
 }
 
 .pos_modal_container_none {
@@ -21,12 +20,39 @@
 .pos_modal {
     background-color: #fefefe;
     margin: auto;
-    padding: 15px;
-    border: 1px solid #888;
-    width: 30%;
+    padding: 10px;
+    border: none;
+    width: 40%;
+    transition: .2s ease-in-out;
 }
 
-.pos_modal_img img {
+.pos-sidebar {
+    position: fixed;
+}
+
+.hide-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.table-containers {
+    max-height: 28vh;
+    width: 27vw;
+    overflow-y: scroll;
+
+}
+
+.tables {
+    table-layout: fixed;
+}
+
+
+
+
+
+
+
+
+/* .pos_modal_img img {
     height: 100%;
     width: 100%;
 }
@@ -53,7 +79,7 @@
     align-items: flex-start;
     justify-content: space-between;
     margin-top: .7rem;
-    /* background-color: #5861FD; */
+    background-color: #5861FD;
 }
 
 .pos_modal_actions select {
@@ -68,7 +94,7 @@
     border-radius: 3rem;
     align-items: center;
     justify-content: space-between;
-    /* border: 1px solid #5861FD; */
+    border: 1px solid #5861FD;
 }
 
 .pos_modal_actions_counter button {
@@ -103,4 +129,4 @@
     background-color: #5861FD;
     color: #fff;
     width: 100%;
-}
+} */
