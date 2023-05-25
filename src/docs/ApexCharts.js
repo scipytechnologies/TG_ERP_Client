@@ -18,7 +18,7 @@ export default function ApexCharts() {
   const optionBar = {
     chart: {
       toolbar: {
-        show: false
+        show: false 
       }
     },
     colors: ["#506fd9"],
