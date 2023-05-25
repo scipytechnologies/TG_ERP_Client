@@ -13,7 +13,8 @@ import {
   Form,
   Dropdown,
   ListGroup,
-  Placeholder
+  Placeholder,
+  Table
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
@@ -83,7 +84,8 @@ function POS() {
 
   // posFilter function
   useEffect(() => {
-    setFilteredProducts(products);
+    setFilteredProducts(products)
+    handle.enter()
   }, []);
 
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -148,7 +150,9 @@ function POS() {
   }, [])
 
   let cartItems = []
+  const [reversedCart, setReversedCart] = useState([])
   const handleCart = (i, name, price, addons, posCount) => {
+    cartItems.push(...cart) //logic for saving previous values in cart
     cartItems.push({
       id: i,
       name: name,
@@ -156,11 +160,11 @@ function POS() {
       addons: addons,
       quantity: posCount
     })
-    console.log(cartItems)
-    cartItems.push(...cart) //logic for saving previous values in cart
     setCart(cartItems)
     handleClose()
   }
+
+
   // let sum = 0
   // function to find percentage
   function percentage(num, per) {
@@ -183,6 +187,7 @@ function POS() {
     // to find grand total
     total = (subTotal + tax) - discount
   })
+
 
   return (
     <>
@@ -266,13 +271,13 @@ function POS() {
           </Slider>
 
           {/* available items  cards */}
+          <p>Available Items</p>
           <div
-            className="mt-3 h-100 overflow-auto"
+            className="mt-3 overflow-auto h-100 hide-scroll"
             style={{ paddingBottom: fullScreen && "15rem" }}
           >
-            <p>Available Items</p>
             <Row>
-              <Col md="8">
+              <Col md="">
                 <Row className="g-3">
                   {filteredProducts != "" ? (
 
@@ -306,107 +311,78 @@ function POS() {
                       No products found on your filter!
                     </p>
                   )}
-
-
                 </Row>
               </Col>
               <Col md="4">
-
-                <div style={{ minHeight: '10vh' }}>
-                  <Card className="h-100  w-100 border p-1">
-
+                <div className={fullScreen && "h-100 overflow-auto position-fixed mb-2"}>
+                  <Card className="border p-1">
                     <Card.Header>
                       <Card.Title as="h6">Order Details</Card.Title>
                     </Card.Header>
-
                     <Card.Body>
-                      <ListGroup as="ul" className="list-group-one">
-                        {[
-                          {
-                            "icon": "btc",
-                            "bg": "orange",
-                            "name": "Bitcoin",
-                            "value": "$4,000.19",
-                            "percent": "0.27%",
-                            "success": true
-                          }, {
-                            "icon": "eth",
-                            "bg": "twitter",
-                            "name": "Ethereum",
-                            "value": "$138.90",
-                            "percent": "0.35%",
-                            "success": true
-                          }, {
-                            "icon": "ltc",
-                            "bg": "litecoin",
-                            "name": "Litecoin",
-                            "value": "$59.95",
-                            "percent": "0.05%",
-                            "success": true
-                          }, {
-                            "icon": "btc",
-                            "bg": "success",
-                            "name": "Bitcoin Cash",
-                            "value": "$160.28",
-                            "percent": "-0.19%",
-                            "success": false
-                          }, {
-                            "icon": "dash",
-                            "bg": "primary",
-                            "name": "Dash",
-                            "value": "$92.20",
-                            "percent": "-0.21%",
-                            "success": false
-                          }, {
-                            "icon": "bsd",
-                            "bg": "ui-02",
-                            "name": "Bitsend",
-                            "value": "$56.53",
-                            "percent": "2.86%",
-                            "success": true
-                          }, {
-                            "icon": "bcn",
-                            "bg": "pink",
-                            "name": "Bytecoin",
-                            "value": "$0.76",
-                            "percent": "-1.32%",
-                            "success": false
-                          }, {
-                            "icon": "dmd",
-                            "bg": "info",
-                            "name": "Diamond",
-                            "value": "$280.80",
-                            "percent": "2.01%",
-                            "success": true
-                          }, {
-                            "icon": "emc",
-                            "bg": "danger",
-                            "name": "Emercoin",
-                            "value": "$48.25",
-                            "percent": "1.22%",
-                            "success": true
-                          }
-                        ].map((item, index) => (
-                          <ListGroup.Item key={index} as="li" className="px-0 d-flex align-items-center gap-2">
-                            {/* <div className={"avatar text-white bg-" + item.bg}>
-                              <i className={"cf cf-" + item.icon}></i>
-                            </div> */}
-                            <div>
-                              <h6 className="mb-0">{item.name}</h6>
 
-                              <small>{item.icon.toUpperCase()}/USD</small>
-                            </div>
-                            <div className="ms-auto text-end">
-                              <h6 className="ff-numerals mb-0">{item.value}</h6>
-                              <small className={"text-" + (item.success ? "success" : "danger")}>{item.percent}</small>
-                            </div>
-                          </ListGroup.Item>
-                        ))}
-                      </ListGroup>
+                      <div className={fullScreen && "table-containers hide-scroll"}>
+                        <Table className="tables">
+                          <thead>
+                            <tr>
+                              <th scope="col">Sl no</th>
+                              <th scope="col">Name</th>
+                              <th scope="col">Qty</th>
+                              <th scope="col">Price</th>
+                            </tr>
+                          </thead>
+                          {
+                            cart !== '' &&
+                            cart.map((item, index) => (
+                              <tbody className="overflow-auto">
+                                <tr>
+                                  <th scope="row">{cart.indexOf(item) + 1}</th>
+                                  <td >{item.name}</td>
+                                  <td>{item.quantity}</td>
+                                  <td>{item.price}</td>
+                                </tr>
+                              </tbody>
+                            ))}
+                        </Table>
+                      </div>
                     </Card.Body>
+                    <Card.Footer>
+                      <div className="d-flex align-items-center justify-content-between">
+                        <div>
+                          <h6>
+                            Sub Total
+                          </h6>
+                          <h6>
+                            Tax (10%)
+                          </h6>
+                          <h6>
+                          </h6>
+                        </div>
+
+                        <div>
+                          <h6 className="text-dark">
+                            &#8377; {subTotal}
+                          </h6>
+                          <h6>
+                            &#8377; {tax}
+                          </h6>
+                          <h6>
+                            &#8377; {discount}
+                          </h6>
+                        </div>
+                      </div>
+                      <div className="d-flex align-items-center justify-content-between">
+                        <h5 className="text-dark">
+                          Grand Total
+                        </h5>
+                        <h5 className="text-dark">
+                          &#8377; {total}/-
+                        </h5>
+                      </div>
+                      <Button className="btn btn-primary btn-sm w-100 mt-1">Print Bill</Button>
+                    </Card.Footer>
                   </Card>
                 </div>
-
               </Col>
             </Row>
 
@@ -419,102 +395,58 @@ function POS() {
         </Row> */}
 
         {/* product modal  */}
-        {/* <div style={{ zIndex: 1000 }}>
-          <Modal show={modal} onHide={handleClose} centered>
-            <Modal.Header closeButton>
-              <Modal.Title>Product Details</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Card>
-                <Card.Img src={modalData.img} variant="top" />
-                <Card.Body>
-                  <div className="d-flex align-items-end justify-content-between">
-                    <div>
-                      <h2 className="card-value mb-1">
-                        <span>&#8377;</span> {modalData.price}
-                      </h2>
-                      <h6 className="fw-semibold mb-1">{modalData.name}</h6>
-                    </div>
-                    <div className="w-25">
-
-                      <Form.Select multiple
-                        value={selectedValues}
-                        onChange={handleSelectChange} name="multiSelect">
-                        <option>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </Form.Select>
-
-                      <div className="mt-2 d-flex align-items-center justify-content-between bg-gray-300 bg-gradient border-none">
-
-
-
-                        <Button
-                          variant="white"
-                          className="btn-icon"
-                          onClick={() =>
-                            setPosCount(
-                              posCount != 0 && posCount != 1
-                                ? posCount - 1
-                                : posCount
-                            )
-                          }
-                        >
-                          <i className="ri-subtract-line  fs-18 lh-1"></i>
-                        </Button>
-                        <div>{posCount}</div>
-                        <Button
-                          variant="white"
-                          className="btn-icon"
-                          onClick={() => setPosCount(posCount + 1)}
-                        >
-                          <i className="ri-add-line  fs-18 lh-1"></i>
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button className="w-100" variant="primary" onClick={handleClose}>
-                Add to Cart
-              </Button>
-            </Modal.Footer>
-          </Modal>
-        </div> */}
 
         <div className={open ? 'pos_modal_container' : 'pos_modal_container_none'} ref={modalRef}>
           <div className="pos_modal">
-            <div className="pos_modal_img">
-              <img src={modalData.img} alt="" />
-            </div>
-            <div className="pos_modal_details">
-              <p>{modalData.name}</p>
-              <p>	&#8377; {modalData.price}</p>
-            </div>
-            <div className="pos_modal_actions">
-              <select name="addons" id="addons" onChange={e => setAddons(e.target.value)}>
-                <option value="addons">Addons</option>
-                <option value="extra">Extra Pickels</option>
-                <option value="add salad">Add salad</option>
-                <option value="mionise">Mionise</option>
-              </select>
+            <Card>
+              <Card.Img src={modalData.img} variant="top" />
+              <Card.Body>
+                <div className="d-flex align-items-end justify-content-between">
+                  <div>
+                    <h2 className="card-value mb-1">
+                      <span>&#8377;</span> {modalData.price}
+                    </h2>
+                    <h6 className="fw-semibold mb-1">{modalData.name}</h6>
+                  </div>
+                  <div className="w-30">
+                    <Form.Select name="addons" id="addons" onChange={e => setAddons(e.target.value)}>
+                      <option value="addons">Addons</option>
+                      <option value="extra">Extra Pickels</option>
+                      <option value="add salad">Add salad</option>
+                      <option value="mionise">Mionise</option>
+                    </Form.Select>
+                    <div className="mt-2 d-flex align-items-center justify-content-between bg-gray-300 bg-gradient border-none">
+                      <Button
+                        variant="white"
+                        className="btn-icon"
+                        onClick={() =>
+                          setPosCount(
+                            posCount != 0 && posCount != 1
+                              ? posCount - 1
+                              : posCount
+                          )
+                        }
+                      >
+                        <i className="ri-subtract-line  fs-18 lh-1"></i>
+                      </Button>
+                      <div>{posCount}</div>
+                      <Button
+                        variant="white"
+                        className="btn-icon"
+                        onClick={() => setPosCount(posCount + 1)}
+                      >
+                        <i className="ri-add-line  fs-18 lh-1"></i>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+                <Button className="primary btn-sm w-100 mt-3" onClick={() => handleCart(modalData.id, modalData.name, modalData.price, addons, posCount)}>Add to cart</Button>
+              </Card.Body>
+            </Card>
 
-              <div className="pos_modal_actions_counter">
-                <button onClick={() => setPosCount((posCount != 0) && (posCount != 1) ? posCount - 1 : posCount)}>-</button>
-                <p>{posCount}</p>
-                <button onClick={(() => setPosCount(posCount + 1))}>+</button>
-              </div>
-            </div>
-
-            <div className="pos_modal_actions_button">
-              <button onClick={() => handleCart(modalData.id, modalData.name, modalData.price, addons, posCount)}>Add To Cart</button>
-            </div>
           </div>
         </div>
-      </FullScreen>
+      </FullScreen >
     </>
   );
 }

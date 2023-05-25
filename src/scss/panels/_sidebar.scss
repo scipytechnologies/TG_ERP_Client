@@ -78,7 +78,7 @@
   opacity: 0;
   visibility: hidden;
   background-color: #fff;
-  z-index: 1000;
+  z-index: 999;
   @include transition(all 0.25s);
 
   @include media-breakpoint-up(lg) {
