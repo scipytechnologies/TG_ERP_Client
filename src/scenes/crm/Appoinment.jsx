@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import './css/table.css'
 import { useState, useRef } from 'react';
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
@@ -7,6 +8,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
 import { h } from "gridjs";
 import { Grid } from "gridjs-react"
+import { _ } from "gridjs-react";
+import SplitButton from 'react-bootstrap/SplitButton';
 
 function Appoinment() {
     // to maintain dark and light mode
@@ -85,37 +88,61 @@ function Appoinment() {
                             data={data !== undefined ? data.map((item) => [
                                 item.ScheduleCall,
                                 item.ScheduleMeeting,
-                                h('div', {}, [
-                                    h(
-                                        'Button',
-                                        {
-                                            onClick: () => handleButtonClick(item),
-                                            className: 'btn btn-outline-success ri-pencil-fill me-1 btn-sm',
-                                        },
+                               
+                                    // h(
+                                    //     'Button',
+                                    //     {
+                                    //         onClick: () => handleButtonClick(item),
+                                    //         className: 'btn btn-outline-success ri-pencil-fill me-1 btn-sm',
+                                    //     },
 
-                                    ),
-                                    h(
-                                        'Button',
-                                        {
-                                            onClick: () => handleButtonClick(item),
-                                            className: 'btn btn-outline-danger ri-delete-bin-6-line me-1 btn-sm',
-                                        },
+                                    // ),
+                                    // h(
+                                    //     'Button',
+                                    //     {
+                                    //         onClick: () => handleButtonClick(item),
+                                    //         className: 'btn btn-outline-danger ri-delete-bin-6-line me-1 btn-sm',
+                                    //     },
 
-                                    ),
-                                    h(
-                                        'Button',
-                                        {
-                                            ref: buttonRef,
-                                            onClick: () => handleViewMore(item),
-                                            className: 'btn btn-outline-primary ri-more-fill me-1 btn-sm',
-                                        },
+                                    // ),
+                                    // h(
+                                    //     'Button',
+                                    //     {
+                                    //         ref: buttonRef,
+                                    //         onClick: () => handleViewMore(item),
+                                    //         className: 'btn btn-outline-primary ri-more-fill me-1 btn-sm',
+                                    //     },
 
-                                    ),
-                                ]),
+                                    // ),
+                                    _(<><div class="dropdown">
+                                            <button class="btn btn-outline-primary ri-more-fill me-1 btn-sm"></button>
+                                            <div class="dropdown-content">
+                                                <a href="#">Link 1</a>
+                                                <a href="#">Link 2</a>
+                                                <a href="#">Link 3</a>
+                                            </div>
+                                        </div><div class="dropdown">
+                                                <button class="btn btn-outline-primary ri-more-fill me-1 btn-sm"></button>
+                                                <div class="dropdown-content">
+                                                    <a href="#">Link 1</a>
+                                                    <a href="#">Link 2</a>
+                                                    <a href="#">Link 3</a>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown">
+                                    <button class="btn btn-outline-primary ri-more-fill me-1 btn-sm"></button>
+                                    <div class="dropdown-content">
+                                      <a href="#">Link 1</a>
+                                      <a href="#">Link 2</a>
+                                      <a href="#">Link 3</a>
+                                    </div>
+                                  </div></>)
+                                     
+                             
                             ])
                             : []
                         }
-                            columns={['Schedule Call', 'Schedule Meeting', 'Action']}
+                            columns={['Schedule Call', 'Schedule Meeting', 'Action',]}
                             search={true}
                             pagination={true}
                             sort={true}
