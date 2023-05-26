@@ -60,3 +60,10 @@
     color: #fff;
   }
 }
+
+.btn-no-outline {
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  border: none !important;
+}

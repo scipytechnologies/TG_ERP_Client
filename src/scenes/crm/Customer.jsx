@@ -2,24 +2,17 @@ import React, { useEffect } from 'react';
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState, useRef } from 'react';
-import { Button, Card, Col, Nav, ProgressBar, Row, Dropdown, Offcanvas } from "react-bootstrap";
+import { Button, Card, Col, Nav, ProgressBar, Row, Dropdown, Offcanvas, ButtonGroup } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import { Grid } from "gridjs-react";
-import { h } from "gridjs";
 import mainservice from '../../services/mainservice';
+import { _ } from "gridjs-react";
 
 function Customer() {
     // to maintain dark and light mode
     const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
-
-    // state for drop down of view more button
-    const [showDropdown, setShowDropdown] = useState(false);
-    const [dropdownItem, setDropdownItem] = useState(null);
-    const handleCloseDropdown = () => {
-        setShowDropdown(false);
-    };
 
     // axios get interceptor for table data
     const [data, setData] = useState([])
@@ -32,36 +25,6 @@ function Customer() {
     useEffect(() => {
         customerDetails()
     }, []);
-
-    const handleButtonClick = (row) => {
-        console.log(row);
-    };
-
-    const buttonRef = useRef();
-    const handleViewMore = (row) => {
-        // console.log(row);
-        setDropdownItem(row);
-        setShowDropdown((prev) => !prev ? true : false);
-        const position = buttonRef?.current.getBoundingClientRect();
-        // alert(position)
-        console.log(position);
-    };
-
-    const dStyle = {
-        position: 'absolute',
-        zIndex: '50',
-        // top: '50%',
-        // right: '12%',
-        top: buttonRef?.current?.getBoundingClientRect().top + buttonRef?.current?.clientHeight,
-        left: 931.390625,
-
-        height: '7rem',
-        width: '7rem',
-        borderRadius: '0.3rem',
-        padding: '0.5rem',
-        backgroundColor: 'white',
-        boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px',
-    }
 
     // Grid js each row clicking funciton
     const [offCanvas, setOffCanvas] = useState(false)
@@ -90,55 +53,37 @@ function Customer() {
                 <Card>
                     <Card.Body>
                         <Grid
-                            // data={data !== undefined ? data.map((item) => {
-                            //     item.FirstName,
-                            //         item.LastName,
-                            //         h('div', {}, [
-                            //             h(
-                            //                 'Button',
-                            //                 {
-                            //                     onClick: () => handleButtonClick(item),
-                            //                     className: 'btn btn-outline-success ri-pencil-fill me-1 btn-sm',
-                            //                 },
-                            //             ),
-                            //             h(
-                            //                 'Button',
-                            //                 {
-                            //                     onClick: () => handleButtonClick(item),
-                            //                     className: 'btn btn-outline-danger ri-delete-bin-6-line me-1 btn-sm',
-                            //                 },
-                            //             ),
-                            //             h(
-                            //                 'Button',
-                            //                 {
-                            //                     ref: buttonRef,
-                            //                     onClick: () => handleViewMore(item),
-                            //                     className: 'btn btn-outline-primary ri-more-fill me-1 btn-sm ',
-                            //                 },
-                            //             ),
-                            //             h(
-                            //                 'Button',
-                            //                 {
-                            //                     ref: buttonRef,
-                            //                     onClick: () => handleCanvas(),
-                            //                     className: 'btn btn-outline-primary me-1 btn-sm ',
-                            //                 },
-                            //                 'Canvas'
-                            //             ),
-                            //         ]),
-                            // }) : []}
+                            data={data !== undefined ? data.map((item) => [
+                                item.FirstName,
+                                item.LastName,
+                                _(
+                                    <>
+                                        <ButtonGroup>
+                                            <Button size="sm" variant='white' onClick={() => handleCanvas()}><i className='ri-eye-line'></i></Button>
+                                            <Button className='p-0' variant="white">
 
 
-                            data={data !== undefined ? data.map((item, val) => {
-                                return (
-                                    <div key={val} onClick={() => handleCanvas(item)}>
-                                        {item.FirstName}
-                                        {/* {item.LastName} */}
-                                    </div>
+                                                <Dropdown drop="end">
+                                                    <Dropdown.Toggle variant='white' size="sm" className='btn-no-outline'>
+                                                        <i className='ri-more-2-fill' color="primary"></i>
+                                                    </Dropdown.Toggle>
+
+                                                    <Dropdown.Menu>
+                                                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                                                        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                                                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                                    </Dropdown.Menu>
+                                                </Dropdown>
+                                            </Button>
+                                        </ButtonGroup>
+
+                                    </>
+
                                 )
-                            }) : []}
+                            ])
+                                : []
+                            }
                             columns={['First Name', 'Last Name', 'Action']}
-                            // onRowClick={(row) => handleCanvas(row)}
                             search={true}
                             pagination={true}
                             sort={true}
@@ -147,18 +92,7 @@ function Customer() {
                                 table: 'table table-bordered mb-0',
                             }}
                         />
-                        {/* view more dropdown
-                        <Dropdown show={showDropdown} onClose={handleCloseDropdown}>
-                            <Dropdown.Toggle variant="secondary">
-                                Dropleft Button
-                            </Dropdown.Toggle>
 
-                            <Dropdown.Menu>
-                                <Dropdown.Item>{dropdownItem && dropdownItem.name}</Dropdown.Item>
-                                <Dropdown.Item>{dropdownItem && dropdownItem.email}</Dropdown.Item>
-                                <Dropdown.Item>Something else</Dropdown.Item>
-                            </Dropdown.Menu> */}
-                        {/* </Dropdown> */}
                     </Card.Body>
                     {/* sidebar offcanvars */}
                     <Offcanvas show={offCanvas} onHide={handleCloseCanvas} placement="end">
@@ -173,14 +107,6 @@ function Customer() {
                 </Card>
                 <Footer />
             </div >
-
-            {
-                showDropdown ?
-                    <div style={dStyle} onClick={handleCloseDropdown}>
-                        hello
-                    </div>
-                    : ''
-            }
         </>
     )
 }

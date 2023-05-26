@@ -531,6 +531,7 @@ export default function ApexCharts() {
           <br /><br /><br />
 
           <h5 id="section8" className="main-subtitle">Pie &amp; Donut Chart</h5>
+          
           <p>Below are an example of data in a pie and donut chart.</p>
 
           <Card className="card-example">
