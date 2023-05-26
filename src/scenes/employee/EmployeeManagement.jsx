@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
-import { useState } from 'react';
-import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
+import { useState, useRef } from 'react';
+import { Button, Card, Col, Nav, ProgressBar, Row, Form, Dropdown, Offcanvas, ButtonGroup } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import { Grid } from "gridjs-react";
-import { h } from "gridjs";
+import { _ } from "gridjs-react";
 import mainservice from '../../services/mainservice';
 
 
@@ -27,9 +27,15 @@ function EmployeeManagement() {
         employeeDetails()
     }, []);
 
-    const handleButtonClick = (row) => {
+    // Grid js each row clicking funciton
+    const [offCanvas, setOffCanvas] = useState(false)
+    const handleCanvas = (row) => {
         console.log(row);
+        setOffCanvas(true)
     };
+    const handleCloseCanvas = () => {
+        setOffCanvas(false)
+    }
 
     return (
         <>
@@ -52,35 +58,33 @@ function EmployeeManagement() {
                             data={data !== undefined ? data.map((item) => [
                                 item.EmpCode,
                                 item.Name,
-                                h('div', {}, [
-                                    h(
-                                        'Button',
-                                        {
-                                            onClick: () => handleButtonClick(item),
-                                            className: 'btn btn-outline-success ri-pencil-fill me-1 btn-sm',
-                                        },
+                                _(
+                                    <>
+                                        <ButtonGroup>
+                                            <Button size="sm" variant='white' onClick={() => handleCanvas()}><i className='ri-eye-line'></i></Button>
+                                            <Button className='p-0' variant="white">
 
-                                    ),
-                                    h(
-                                        'Button',
-                                        {
-                                            onClick: () => handleButtonClick(item),
-                                            className: 'btn btn-outline-danger ri-delete-bin-6-line me-1 btn-sm',
-                                        },
 
-                                    ),
-                                    h(
-                                        'Button',
-                                        {
-                                            onClick: () => handleButtonClick(item),
-                                            className: 'btn btn-outline-primary ri-more-fill me-1 btn-sm',
-                                        },
+                                                <Dropdown drop="end">
+                                                    <Dropdown.Toggle variant='white' size="sm" className='btn-no-outline'>
+                                                        <i className='ri-more-2-fill' color="primary"></i>
+                                                    </Dropdown.Toggle>
 
-                                    ),
-                                ]),
+                                                    <Dropdown.Menu>
+                                                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                                                        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                                                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                                    </Dropdown.Menu>
+                                                </Dropdown>
+                                            </Button>
+                                        </ButtonGroup>
+
+                                    </>
+
+                                )
                             ])
-                            : []
-                        }
+                                : []
+                            }
                             columns={['Employee Code', 'Name', 'Action']}
                             search={true}
                             pagination={true}
@@ -91,6 +95,16 @@ function EmployeeManagement() {
                             }}
                         />
                     </Card.Body>
+                    {/* sidebar offcanvars */}
+                    <Offcanvas show={offCanvas} onHide={handleCloseCanvas} placement="end">
+                        <Offcanvas.Header closeButton>
+                            <Offcanvas.Title>Offcanvas Right</Offcanvas.Title>
+                        </Offcanvas.Header>
+                        <Offcanvas.Body>
+                            Some text as placeholder. In real life you can have the elements you
+                            have chosen. Like, text, images, lists, etc.
+                        </Offcanvas.Body>
+                    </Offcanvas>
                 </Card>
                 <Footer />
             </div>
