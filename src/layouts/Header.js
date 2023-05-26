@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import userAvatar from "../assets/img/img1.jpg";
 import notification from "../data/Notification";
+import Chat from "../data/Chat";
 
 export default function Header({ onSkin }) {
   const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
@@ -46,9 +47,38 @@ export default function Header({ onSkin }) {
       )
     });
 
+
+
     return (
       <ul className="list-group">
         {notiList}
+      </ul>
+    );
+  }
+
+  function ChatList() {
+    const chatlist = Chat.map((item, key) => {
+      return (
+        <li className="list-group-item" key={key}>
+          <div className={(item.status === "online") ? "avatar online" : "avatar"}>{item.avatar}</div>
+          <div className="list-group-body d-flex align-items-center justify-content-between w-100">
+            <div>
+              <p><React.Fragment><strong>{item.userName}</strong></React.Fragment></p>
+              <p className="fs-6">{item.message}</p>
+            </div>
+            <div>
+              <p style={{ fontSize: '.6rem' }}>{item.time}</p>
+            </div>
+          </div>
+        </li>
+      )
+    });
+
+
+
+    return (
+      <ul className="list-group">
+        {chatlist}
       </ul>
     );
   }
@@ -135,9 +165,10 @@ export default function Header({ onSkin }) {
         </Dropdown.Menu>
       </Dropdown>
 
+      {/* notification */}
       <Dropdown className="dropdown-notification ms-3 ms-xl-4" align="end">
         <Dropdown.Toggle as={CustomToggle}>
-          <small>3</small><i className="ri-notification-3-line"></i>
+          <small>5</small><i className="ri-notification-3-line"></i>
         </Dropdown.Toggle>
         <Dropdown.Menu className="mt-10-f me--10-f">
           <div className="dropdown-menu-header">
@@ -145,6 +176,20 @@ export default function Header({ onSkin }) {
           </div>
           {NotificationList()}
           <div className="dropdown-menu-footer"><Link to="#">Show all Notifications</Link></div>
+        </Dropdown.Menu>
+      </Dropdown>
+
+      {/* chat  */}
+      <Dropdown className="dropdown-notification ms-3 ms-xl-4" align="end">
+        <Dropdown.Toggle as={CustomToggle}>
+          <small>3</small><i className="ri-chat-3-line"></i>
+        </Dropdown.Toggle>
+        <Dropdown.Menu className="mt-10-f me--10-f">
+          <div className="dropdown-menu-header">
+            <h6 className="dropdown-menu-title">Chat</h6>
+          </div>
+          {ChatList()}
+          {/* <div className="dropdown-menu-footer"><Link to="#"></Link></div> */}
         </Dropdown.Menu>
       </Dropdown>
 

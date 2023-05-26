@@ -1,22 +1,20 @@
 import React, { useEffect } from 'react'
-import './css/table.css'
 import { useState, useRef } from 'react';
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
-import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
+import { Button, Card, Col, Nav, ProgressBar, Row, Form, ButtonGroup, Dropdown, Offcanvas } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
 import { h } from "gridjs";
 import { Grid } from "gridjs-react"
 import { _ } from "gridjs-react";
-import SplitButton from 'react-bootstrap/SplitButton';
 
 function Appoinment() {
     // to maintain dark and light mode
     const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
-    
+
     // state for drop down of view more button
     const [showDropdown, setShowDropdown] = useState(false);
     const [dropdownItem, setDropdownItem] = useState(null);
@@ -36,35 +34,17 @@ function Appoinment() {
         appointmentDetails()
     }, []);
 
-    const handleButtonClick = (row) => {
+
+
+    // Grid js each row clicking funciton
+    const [offCanvas, setOffCanvas] = useState(false)
+    const handleCanvas = (row) => {
         console.log(row);
+        setOffCanvas(true)
     };
-
-    const buttonRef = useRef();
-    const handleViewMore = (row) => {
-        // console.log(row);
-        setDropdownItem(row);
-        setShowDropdown((prev) => !prev ? true : false);
-        const position = buttonRef?.current.getBoundingClientRect();
-        // alert(position)
-        console.log(position);
-    };
-    const dStyle = {
-        position: 'absolute',
-        zIndex: '50',
-        // top: '50%',
-        // right: '12%',
-        top: buttonRef?.current?.getBoundingClientRect().top + buttonRef?.current?.clientHeight,
-        right: 175,
-        top: 200,
-        height: '7rem',
-        width: '7rem',
-        borderRadius: '0.3rem',
-        padding: '0.5rem',
-        backgroundColor: 'white',
-        boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px',
+    const handleCloseCanvas = () => {
+        setOffCanvas(false)
     }
-
     return (
         <>
             <Header onSkin={setSkin} />
@@ -88,60 +68,33 @@ function Appoinment() {
                             data={data !== undefined ? data.map((item) => [
                                 item.ScheduleCall,
                                 item.ScheduleMeeting,
-                               
-                                    // h(
-                                    //     'Button',
-                                    //     {
-                                    //         onClick: () => handleButtonClick(item),
-                                    //         className: 'btn btn-outline-success ri-pencil-fill me-1 btn-sm',
-                                    //     },
+                                _(
+                                    <>
+                                        <ButtonGroup>
+                                            <Button size="sm" variant='white' onClick={() => handleCanvas()}><i className='ri-eye-line'></i></Button>
+                                            <Button className='p-0' variant="white">
 
-                                    // ),
-                                    // h(
-                                    //     'Button',
-                                    //     {
-                                    //         onClick: () => handleButtonClick(item),
-                                    //         className: 'btn btn-outline-danger ri-delete-bin-6-line me-1 btn-sm',
-                                    //     },
 
-                                    // ),
-                                    // h(
-                                    //     'Button',
-                                    //     {
-                                    //         ref: buttonRef,
-                                    //         onClick: () => handleViewMore(item),
-                                    //         className: 'btn btn-outline-primary ri-more-fill me-1 btn-sm',
-                                    //     },
+                                                <Dropdown drop="end">
+                                                    <Dropdown.Toggle variant='white' size="sm" className='btn-no-outline'>
+                                                        <i className='ri-more-2-fill' color="primary"></i>
+                                                    </Dropdown.Toggle>
 
-                                    // ),
-                                    _(<><div class="dropdown">
-                                            <button class="btn btn-outline-primary ri-more-fill me-1 btn-sm"></button>
-                                            <div class="dropdown-content">
-                                                <a href="#">Link 1</a>
-                                                <a href="#">Link 2</a>
-                                                <a href="#">Link 3</a>
-                                            </div>
-                                        </div><div class="dropdown">
-                                                <button class="btn btn-outline-primary ri-more-fill me-1 btn-sm"></button>
-                                                <div class="dropdown-content">
-                                                    <a href="#">Link 1</a>
-                                                    <a href="#">Link 2</a>
-                                                    <a href="#">Link 3</a>
-                                                </div>
-                                            </div>
-                                            <div class="dropdown">
-                                    <button class="btn btn-outline-primary ri-more-fill me-1 btn-sm"></button>
-                                    <div class="dropdown-content">
-                                      <a href="#">Link 1</a>
-                                      <a href="#">Link 2</a>
-                                      <a href="#">Link 3</a>
-                                    </div>
-                                  </div></>)
-                                     
-                             
+                                                    <Dropdown.Menu>
+                                                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                                                        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                                                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                                    </Dropdown.Menu>
+                                                </Dropdown>
+                                            </Button>
+                                        </ButtonGroup>
+
+                                    </>
+
+                                )
                             ])
-                            : []
-                        }
+                                : []
+                            }
                             columns={['Schedule Call', 'Schedule Meeting', 'Action',]}
                             search={true}
                             pagination={true}
@@ -152,17 +105,18 @@ function Appoinment() {
                             }}
                         />
                     </Card.Body>
+                    <Offcanvas show={offCanvas} onHide={handleCloseCanvas} placement="end">
+                        <Offcanvas.Header closeButton>
+                            <Offcanvas.Title>Offcanvas Right</Offcanvas.Title>
+                        </Offcanvas.Header>
+                        <Offcanvas.Body>
+                            Some text as placeholder. In real life you can have the elements you
+                            have chosen. Like, text, images, lists, etc.
+                        </Offcanvas.Body>
+                    </Offcanvas>
                 </Card>
                 <Footer />
             </div >
-
-            {
-                showDropdown ?
-                    <div style={dStyle} onClick={handleCloseDropdown}>
-                        hello
-                    </div>
-                    : ''
-            }
         </>
     )
 }
