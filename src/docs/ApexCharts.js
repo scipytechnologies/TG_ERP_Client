@@ -33,7 +33,7 @@ export default function ApexCharts() {
     },
     xaxis: {
       categories: ["South Korea", "Canada", "United Kingdom", "Netherlands", "Italy", "France", "Japan",
-      "United States", "China", "Germany"
+        "United States", "China", "Germany"
       ],
     }
   };
@@ -140,7 +140,7 @@ export default function ApexCharts() {
     xaxis: {
       type: "datetime",
       categories: ["01/01/2011 GMT", "01/02/2011 GMT", "01/03/2011 GMT", "01/04/2011 GMT",
-      "01/05/2011 GMT", "01/06/2011 GMT"
+        "01/05/2011 GMT", "01/06/2011 GMT"
       ],
     },
     legend: {
@@ -531,6 +531,7 @@ export default function ApexCharts() {
           <br /><br /><br />
 
           <h5 id="section8" className="main-subtitle">Pie &amp; Donut Chart</h5>
+          
           <p>Below are an example of data in a pie and donut chart.</p>
 
           <Card className="card-example">
