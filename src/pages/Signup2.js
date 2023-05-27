@@ -27,7 +27,7 @@ export default function Signup2() {
       navigate("/pages/signin2")
     }
     else {
-      console.log("moonji");
+      console.log("Something went wrong");
     }
   }
 
