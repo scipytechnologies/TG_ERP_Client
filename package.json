@@ -4,8 +4,6 @@
   "version": "1.0.2",
   "private": true,
   "dependencies": {
-    "slick-carousel": "^1.8.1",
-    "react-slick": "^0.29.0",
     "@fullcalendar/core": "^6.1.4",
     "@fullcalendar/daygrid": "^6.1.4",
     "@fullcalendar/react": "^6.1.4",
@@ -47,7 +45,9 @@
     "react-router-dom": "^6.7.0",
     "react-scripts": "^5.0.1",
     "react-select": "^5.7.0",
-   
+    "react-slick": "^0.29.0",
+    "react-spinners": "^0.13.8",
+    "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

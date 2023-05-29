@@ -102,11 +102,91 @@ function RfqList() {
           {/* sidebar offcanvars */}
           <Offcanvas show={offCanvas} onHide={handleCloseCanvas} placement="end">
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title>Offcanvas Right</Offcanvas.Title>
+              <Offcanvas.Title>Quotation Details</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-              Some text as placeholder. In real life you can have the elements you
-              have chosen. Like, text, images, lists, etc.
+              <div className="w-100">
+                <Card>
+                  <Card.Body>
+
+
+                    {/*Requisition Details */}
+                    <div className="divider"><span>Requisition Details</span></div>
+                    <div className="d-flex align-item-center justify-content-between me-2">
+                      <div>
+                        <p className='mb-0'>Requisition Date</p>
+                        <p className='mb-0'>Purchase Requisition</p>
+                        <p className='mb-0'>Type of Requisition</p>
+                        <p className='mb-0'>JDE Requisition</p>
+                      </div>
+
+                      <div>
+                        <p className='mb-0'>2023-05-29</p>
+                        <p className='mb-0'>PR001</p>
+                        <p className='mb-0'>Material</p>
+                        <p className='mb-0'>JDE001</p>
+                      </div>
+                    </div>
+
+                    {/*Company Details */}
+                    <div className="divider"><span>Company Details</span></div>
+                    <div className="d-flex align-item-center justify-content-between me-2">
+                      <div>
+                        <p className='mb-0'>Company</p>
+                        <p className='mb-0'>Company Code</p>
+
+                      </div>
+
+                      <div>
+                        <p className='mb-0'>ABC Corporation</p>
+                        <p className='mb-0'>ABC123</p>
+
+                      </div>
+                    </div>
+
+                    {/*Requestor Details */}
+                    <div className="divider"><span>Requestor Details </span></div>
+                    <div className="d-flex align-item-center justify-content-between me-2">
+                      <div>
+                        <p className='mb-0'>Requisitor's Name</p>
+                        <p className='mb-0'>Phone</p>
+                        <p className='mb-0'>Department</p>
+
+                      </div>
+
+                      <div>
+                        <p className='mb-0'>John Doe</p>
+                        <p className='mb-0'>123-456-7890</p>
+                        <p className='mb-0'>Procurement</p>
+                      </div>
+                    </div>
+
+                    {/*Project Details: */}
+                    <div className="divider"><span>Project Details:</span></div>
+                    <div className="d-flex align-item-center justify-content-between me-2">
+                      <div>
+                        <p className='mb-0'>Project Name</p>
+                        <p className='mb-0'>Project Code</p>
+                        <p className='mb-0'>Delivery Date</p>
+                        <p className='mb-0'>Point of Delivery</p>
+                        <p className='mb-0'>Received by</p>
+                        <p className='mb-0'>Contact Details</p>
+                      </div>
+
+                      <div>
+                        <p className='mb-0'>Project Alpha</p>
+                        <p className='mb-0'>PA001</p>
+                        <p className='mb-0'>2023-06-15</p>
+                        <p className='mb-0'>High</p>
+                        <p className='mb-0'>Warehouse A
+                        </p>
+                        <p className='mb-0'> Jane Smith</p>
+                        <p className='mb-0'>  janesmith@example.com</p>
+                      </div>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </div>
             </Offcanvas.Body>
           </Offcanvas>
         </Card>

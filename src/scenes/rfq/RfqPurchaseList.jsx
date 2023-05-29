@@ -89,7 +89,7 @@ function RfqPurchaseList() {
 
                 )
               ])
-              : []
+                : []
               }
               columns={['Type', 'ItemCategory', 'Item', 'Action']}
               search={true}
@@ -104,11 +104,38 @@ function RfqPurchaseList() {
           {/* sidebar offcanvars */}
           <Offcanvas show={offCanvas} onHide={handleCloseCanvas} placement="end">
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title>Offcanvas Right</Offcanvas.Title>
+              <Offcanvas.Title>Purchase Item Details</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-              Some text as placeholder. In real life you can have the elements you
-              have chosen. Like, text, images, lists, etc.
+              <div className="w-100">
+                <Card>
+                  <Card.Body>
+
+                    {/*Company Details */}
+                    <div className="d-flex align-item-center justify-content-between me-2">
+                      <div>
+                        <p className='mb-0'>Type</p>
+                        <p className='mb-0'>Item Category</p>
+                        <p className='mb-0'>Item</p>
+                        <p className='mb-0'>Quantity</p>
+                        <p className='mb-0'>Unit</p>
+                        <p className='mb-0'>Unit Price</p>
+                        <p className='mb-0'>Total</p>
+                      </div>
+
+                      <div>
+                        <p className='mb-0'> Purchase Order</p>
+                        <p className='mb-0'>Electronics</p>
+                        <p className='mb-0'>Laptop</p>
+                        <p className='mb-0'>10</p>
+                        <p className='mb-0'>Pieces</p>
+                        <p className='mb-0'>$1000</p>
+                        <p className='mb-0'>$1000</p>
+                      </div>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </div>
             </Offcanvas.Body>
           </Offcanvas>
         </Card>

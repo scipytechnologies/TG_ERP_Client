@@ -195,14 +195,12 @@ function EmployeeManagement() {
                                 </div>
 
                                 {/*Government-Related Details */}
-                                <div className="divider"><span>Bank Details</span></div>
+                                <div className="divider"><span>Government-Related Details</span></div>
                                 <div className="d-flex align-item-center justify-content-between me-2">
                                     <div>
                                         <p className='mb-0'>PF No</p>
                                         <p className='mb-0'>ESI</p>
                                         <p className='mb-0'>UAN</p>
-
-
                                     </div>
 
                                     <div>

@@ -120,7 +120,6 @@ function Customer() {
                                                     <p className="fw-bold fw-normal mb-0">Sales Head</p>
                                                     <p className="fw-normal ">8139031990</p>
                                                 </div>
-
                                             </div>
 
                                             <Link><i className='ri-pencil-line'></i></Link>
