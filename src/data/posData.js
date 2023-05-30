@@ -26,7 +26,7 @@ export const category = [
     {
         id: 5,
         img: 'https://as1.ftcdn.net/v2/jpg/03/07/65/18/1000_F_307651812_yiydVwvUeeZlTCuUs4E2aqsUMUlwIo86.jpg',
-        name: 'vegetarian pizza',
+        name: 'veg pizza',
         amount: '20 Items'
     },
     {

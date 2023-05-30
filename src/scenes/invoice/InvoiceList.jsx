@@ -163,14 +163,16 @@ function InvoiceList() {
                                     <div className="d-flex align-item-center justify-content-between me-2">
                                         <div>
                                             <p className='mb-0'>Billing Address</p>
+                                            <p></p>
                                             <p className='mb-0'>Tax Information</p>
 
 
                                         </div>
 
                                         <div>
-                                            <p className='mb-0'>123 Main Street, City, State, Zipcode</p>
-                                            <p className='mb-0'>Tax ID - 123456789</p>
+                                            <p className='mb-0'>123 Main Street,</p>
+                                            <p className='mb-0'> City, State, Zipcode</p>
+                                            <p >Tax ID - 123456789</p>
 
 
                                         </div>

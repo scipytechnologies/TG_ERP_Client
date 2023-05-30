@@ -108,7 +108,7 @@ function Customer() {
 
                             {/* canvas body */}
                             <div className="w-100">
-                                <Card className='border-bottom-0'>
+                                <Card>
                                     <Card.Body>
                                         <div className="d-flex mb-0 align-item-center justify-content-between w-100">
                                             <div className="d-flex mb-0">
@@ -131,72 +131,72 @@ function Customer() {
                                         </div>
                                         <Button className="btn btn-sm w-100 ">Message</Button>
 
+
+
+                                        <div className="divider"><span>Personal Details</span></div>
+                                        <div className="d-flex align-item-center justify-content-between me-2 mb-3">
+                                            <div>
+                                                <p className='mb-0 fw-lighter'>Phone Home</p>
+                                                <p className='mb-0 fw-lighter'>Phone Other</p>
+                                                <p className='mb-0 fw-lighter'>Website</p>
+                                                <p className='mb-0 fw-lighter'>Primary City</p>
+                                                <p className='mb-0 fw-lighter'>Primary State</p>
+                                                <p className='mb-0 fw-lighter'>Primary Country</p>
+                                                <p className='mb-0 fw-lighter'>Primary Postal</p>
+                                                <p className='mb-0 fw-lighter'>Secondary City</p>
+                                                <p className='mb-0 fw-lighter'>Secondary State</p>
+                                                <p className='mb-0 fw-lighter'>Secondary Country</p>
+                                                <p className='mb-0 fw-lighter'>Secondary Postal</p>
+                                            </div>
+
+                                            <div>
+                                                <p className='mb-0'>813903929</p>
+                                                <p className='mb-0'>721828293</p>
+                                                <p className='mb-0'>www.example.com</p>
+                                                <p className='mb-0'>Kochi</p>
+                                                <p className='mb-0'>Kerala</p>
+                                                <p className='mb-0'>India</p>
+                                                <p className='mb-0'>737238</p>
+                                                <p className='mb-0'>Ernakaulam</p>
+                                                <p className='mb-0'>Kochi</p>
+                                                <p className='mb-0'>India</p>
+                                                <p className='mb-0'>695532</p>
+                                            </div>
+                                        </div>
+
+
+                                        {/* professional details */}
+                                        <div className="divider"><span>Professional Details</span></div>
+                                        <div className="d-flex align-item-center justify-content-between me-2">
+                                            <div>
+                                                <p className='mb-0 fw-lighter'>Title</p>
+                                                <p className='mb-0 fw-lighter'>Phone Work</p>
+                                                <p className='mb-0 fw-lighter'>Assigned</p>
+                                                <p className='mb-0 fw-lighter'>Teams</p>
+                                                <p className='mb-0 fw-lighter'>Partner</p>
+                                                <p className='mb-0 fw-lighter'>Category</p>
+                                                <p className='mb-0 fw-lighter'>Department</p>
+                                                <p className='mb-0 fw-lighter'>Business Role</p>
+                                                <p className='mb-0 fw-lighter'>Reports</p>
+                                                <p className='mb-0 fw-lighter'>Assistant Ph</p>
+                                            </div>
+
+                                            <div>
+                                                <p className='mb-0'>Senior Manager</p>
+                                                <p className='mb-0'>+91 555-789-1234</p>
+                                                <p className='mb-0'>Team A</p>
+                                                <p className='mb-0'>Sales, Marketing</p>
+                                                <p className='mb-0'> XYZ Company</p>
+                                                <p className='mb-0'>Business Development</p>
+                                                <p className='mb-0'>Sales</p>
+                                                <p className='mb-0'>Business Role</p>
+                                                <p className='mb-0'>Account Manager</p>
+                                                <p className='mb-0'>+91 555-321-9876</p>
+                                            </div>
+                                        </div>
                                     </Card.Body>
                                 </Card>
-
-                                <div className="divider"><span>Personal Details</span></div>
-                                <div className="d-flex align-item-center justify-content-between me-2 mb-3">
-                                    <div>
-                                        <p className='mb-0'>Phone Home</p>
-                                        <p className='mb-0'>Phone Other</p>
-                                        <p className='mb-0'>Website</p>
-                                        <p className='mb-0'>Primary City</p>
-                                        <p className='mb-0'>Primary State</p>
-                                        <p className='mb-0'>Primary Country</p>
-                                        <p className='mb-0'>Primary Postal</p>
-                                        <p className='mb-0'>Secondary City</p>
-                                        <p className='mb-0'>Secondary State</p>
-                                        <p className='mb-0'>Secondary Country</p>
-                                        <p className='mb-0'>Secondary Postal</p>
-                                    </div>
-
-                                    <div>
-                                        <p className='mb-0'>813903929</p>
-                                        <p className='mb-0'>721828293</p>
-                                        <p className='mb-0'>www.example.com</p>
-                                        <p className='mb-0'>Kochi</p>
-                                        <p className='mb-0'>Kerala</p>
-                                        <p className='mb-0'>India</p>
-                                        <p className='mb-0'>737238</p>
-                                        <p className='mb-0'>Ernakaulam</p>
-                                        <p className='mb-0'>Kochi</p>
-                                        <p className='mb-0'>India</p>
-                                        <p className='mb-0'>695532</p>
-                                    </div>
-                                </div>
-
-
-                                {/* professional details */}
-                                <div className="divider"><span>Professional Details</span></div>
-                                <div className="d-flex align-item-center justify-content-between me-2">
-                                    <div>
-                                        <p className='mb-0'>Title</p>
-                                        <p className='mb-0'>Phone Work</p>
-                                        <p className='mb-0'>Assigned</p>
-                                        <p className='mb-0'>Teams</p>
-                                        <p className='mb-0'>Partner</p>
-                                        <p className='mb-0'>Category</p>
-                                        <p className='mb-0'>Department</p>
-                                        <p className='mb-0'>Business Role</p>
-                                        <p className='mb-0'>Reports</p>
-                                        <p className='mb-0'>Assistant Ph</p>
-                                    </div>
-
-                                    <div>
-                                        <p className='mb-0'>Senior Manager</p>
-                                        <p className='mb-0'>+91 555-789-1234</p>
-                                        <p className='mb-0'>Team A</p>
-                                        <p className='mb-0'>Sales, Marketing</p>
-                                        <p className='mb-0'> XYZ Company</p>
-                                        <p className='mb-0'>Business Development</p>
-                                        <p className='mb-0'>Sales</p>
-                                        <p className='mb-0'>Business Role</p>
-                                        <p className='mb-0'>Account Manager</p>
-                                        <p className='mb-0'>+91 555-321-9876</p>
-                                    </div>
-                                </div>
                             </div>
-
                         </Offcanvas.Body>
                     </Offcanvas>
                 </Card>

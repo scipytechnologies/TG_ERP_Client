@@ -112,25 +112,30 @@ function Appoinment() {
                         <Offcanvas.Body>
                             {/* canvas body */}
                             <div className="w-100">
-                                <div className="d-flex align-item-center justify-content-between me-2 mb-3">
-                                    <div>
-                                        <p className='mb-0'>Schedule Call</p>
-                                        <p className='mb-0'>Schedule Meeting</p>
-                                        <p className='mb-0'>Subject</p>
-                                        <p className='mb-0'>Start Date</p>
+                                <Card>
+                                    <Card.Body>
 
-                                    </div>
+                                        <div className="d-flex align-item-center justify-content-between me-2 mb-3">
+                                            <div>
+                                                <p className='mb-0'>Schedule Call</p>
+                                                <p className='mb-0'>Schedule Meeting</p>
+                                                <p className='mb-0'>Subject</p>
+                                                <p className='mb-0'>Start Date</p>
 
-                                    <div>
-                                        <p className='mb-0'>10:00 AM - 11:00 AM</p>
-                                        <p className='mb-0'>2:00 PM - 3:00 PM</p>
-                                        <p className='mb-0'> Project Kickoff</p>
-                                        <p className='mb-0'>2023-06-15</p>
+                                            </div>
 
-                                    </div>
-                                </div>
-                                <div className="divider"><span>Description</span></div>
-                                <p>This meeting is to discuss the project goals, timeline, and deliverables.</p>
+                                            <div>
+                                                <p className='mb-0'>10:00 AM - 11:00 AM</p>
+                                                <p className='mb-0'>2:00 PM - 3:00 PM</p>
+                                                <p className='mb-0'> Project Kickoff</p>
+                                                <p className='mb-0'>2023-06-15</p>
+
+                                            </div>
+                                        </div>
+                                        <div className="divider"><span>Description</span></div>
+                                        <p>This meeting is to discuss the project goals, timeline, and deliverables.</p>
+                                    </Card.Body>
+                                </Card>
                             </div>
                         </Offcanvas.Body>
                     </Offcanvas>

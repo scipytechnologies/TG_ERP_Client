@@ -128,88 +128,89 @@ function EmployeeManagement() {
                                         </div>
                                         <Button className="btn btn-sm w-100 ">Message</Button>
 
+
+
+                                        <div className="divider"><span>Employee Details</span></div>
+                                        <div className="d-flex align-item-center justify-content-between me-2 mb-3">
+                                            <div>
+                                                <p className='mb-0'>Employee Code</p>
+                                                <p className='mb-0'>DOB</p>
+                                                <p className='mb-0'>Phone</p>
+                                                <p className='mb-0'>Email</p>
+                                                <p className='mb-0'>Role</p>
+                                                <p className='mb-0'>Address</p>
+                                            </div>
+
+                                            <div>
+                                                <p className='mb-0'>EMP001</p>
+                                                <p className='mb-0'>1990-05-15</p>
+                                                <p className='mb-0'>123-456-7890</p>
+                                                <p className='mb-0'>john.smith@example.com</p>
+                                                <p className='mb-0'> Senior Manager</p>
+                                                <p className='mb-0'>123 Main Street, City</p>
+                                                <p className='mb-0'>State, Country</p>
+                                            </div>
+                                        </div>
+
+
+                                        {/*Employment Details*/}
+                                        <div className="divider"><span>Employment Details</span></div>
+                                        <div className="d-flex align-item-center justify-content-between me-2">
+                                            <div>
+                                                <p className='mb-0'>Department</p>
+                                                <p className='mb-0'>Designation</p>
+                                                <p className='mb-0'>From</p>
+                                                <p className='mb-0'>To</p>
+
+                                            </div>
+
+                                            <div>
+                                                <p className='mb-0'>Sales</p>
+                                                <p className='mb-0'>Sales Manager</p>
+                                                <p className='mb-0'>2022-01-01</p>
+                                                <p className='mb-0'> (if applicable)</p>
+
+                                            </div>
+                                        </div>
+
+                                        {/*Bank Details */}
+                                        <div className="divider"><span>Bank Details</span></div>
+                                        <div className="d-flex align-item-center justify-content-between me-2">
+                                            <div>
+                                                <p className='mb-0'> Account No</p>
+                                                <p className='mb-0'> Account Name</p>
+                                                <p className='mb-0'> Branch</p>
+                                                <p className='mb-0'> IFSC Code</p>
+
+                                            </div>
+
+                                            <div>
+                                                <p className='mb-0'>1234567890</p>
+                                                <p className='mb-0'> John Smith</p>
+                                                <p className='mb-0'>City Branch</p>
+                                                <p className='mb-0'> ABCD1234</p>
+
+                                            </div>
+                                        </div>
+
+                                        {/*Government-Related Details */}
+                                        <div className="divider"><span>Government-Related Details</span></div>
+                                        <div className="d-flex align-item-center justify-content-between me-2">
+                                            <div>
+                                                <p className='mb-0'>PF No</p>
+                                                <p className='mb-0'>ESI</p>
+                                                <p className='mb-0'>UAN</p>
+                                            </div>
+
+                                            <div>
+                                                <p className='mb-0'>PF12345678</p>
+                                                <p className='mb-0'>Yes</p>
+                                                <p className='mb-0'>9876543210</p>
+
+                                            </div>
+                                        </div>
                                     </Card.Body>
                                 </Card>
-
-                                <div className="divider"><span>Employee Details</span></div>
-                                <div className="d-flex align-item-center justify-content-between me-2 mb-3">
-                                    <div>
-                                        <p className='mb-0'>Employee Code</p>
-                                        <p className='mb-0'>DOB</p>
-                                        <p className='mb-0'>Phone</p>
-                                        <p className='mb-0'>Email</p>
-                                        <p className='mb-0'>Role</p>
-                                        <p className='mb-0'>Address</p>
-                                    </div>
-
-                                    <div>
-                                        <p className='mb-0'>EMP001</p>
-                                        <p className='mb-0'>1990-05-15</p>
-                                        <p className='mb-0'>123-456-7890</p>
-                                        <p className='mb-0'>john.smith@example.com</p>
-                                        <p className='mb-0'> Senior Manager</p>
-                                        <p className='mb-0'>123 Main Street, City</p>
-                                        <p className='mb-0'>State, Country</p>
-                                    </div>
-                                </div>
-
-
-                                {/*Employment Details*/}
-                                <div className="divider"><span>Employment Details</span></div>
-                                <div className="d-flex align-item-center justify-content-between me-2">
-                                    <div>
-                                        <p className='mb-0'>Department</p>
-                                        <p className='mb-0'>Designation</p>
-                                        <p className='mb-0'>From</p>
-                                        <p className='mb-0'>To</p>
-
-                                    </div>
-
-                                    <div>
-                                        <p className='mb-0'>Sales</p>
-                                        <p className='mb-0'>Sales Manager</p>
-                                        <p className='mb-0'>2022-01-01</p>
-                                        <p className='mb-0'> (if applicable)</p>
-
-                                    </div>
-                                </div>
-
-                                {/*Bank Details */}
-                                <div className="divider"><span>Bank Details</span></div>
-                                <div className="d-flex align-item-center justify-content-between me-2">
-                                    <div>
-                                        <p className='mb-0'> Account No</p>
-                                        <p className='mb-0'> Account Name</p>
-                                        <p className='mb-0'> Branch</p>
-                                        <p className='mb-0'> IFSC Code</p>
-
-                                    </div>
-
-                                    <div>
-                                        <p className='mb-0'>1234567890</p>
-                                        <p className='mb-0'> John Smith</p>
-                                        <p className='mb-0'>City Branch</p>
-                                        <p className='mb-0'> ABCD1234</p>
-
-                                    </div>
-                                </div>
-
-                                {/*Government-Related Details */}
-                                <div className="divider"><span>Government-Related Details</span></div>
-                                <div className="d-flex align-item-center justify-content-between me-2">
-                                    <div>
-                                        <p className='mb-0'>PF No</p>
-                                        <p className='mb-0'>ESI</p>
-                                        <p className='mb-0'>UAN</p>
-                                    </div>
-
-                                    <div>
-                                        <p className='mb-0'>PF12345678</p>
-                                        <p className='mb-0'>Yes</p>
-                                        <p className='mb-0'>9876543210</p>
-
-                                    </div>
-                                </div>
                             </div>
                         </Offcanvas.Body>
                     </Offcanvas>
