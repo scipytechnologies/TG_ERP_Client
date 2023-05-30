@@ -111,7 +111,7 @@ function RfqList() {
 
 
                     {/*Requisition Details */}
-                    <div className="divider"><span>Requisition Details</span></div>
+                 
                     <div className="d-flex align-item-center justify-content-between me-2">
                       <div>
                         <p className='mb-0'>Requisition Date</p>

@@ -30,16 +30,16 @@ function SalesList() {
         salesdetails()
     }, []);
 
-     // Grid js each row clicking funciton
-     const [offCanvas, setOffCanvas] = useState(false)
-     const handleCanvas = (row) => {
-         console.log(row);
-         setOffCanvas(true)
-     };
-     const handleCloseCanvas = () => {
-         setOffCanvas(false)
-     }
- 
+    // Grid js each row clicking funciton
+    const [offCanvas, setOffCanvas] = useState(false)
+    const handleCanvas = (row) => {
+        console.log(row);
+        setOffCanvas(true)
+    };
+    const handleCloseCanvas = () => {
+        setOffCanvas(false)
+    }
+
 
     return (
         <>
@@ -88,8 +88,8 @@ function SalesList() {
 
                                 )
                             ])
-                            : []
-                        }
+                                : []
+                            }
                             columns={['Order Number', 'Product', 'Day', 'Action']}
                             search={true}
                             pagination={true}
@@ -103,11 +103,65 @@ function SalesList() {
                     {/* sidebar offcanvars */}
                     <Offcanvas show={offCanvas} onHide={handleCloseCanvas} placement="end">
                         <Offcanvas.Header closeButton>
-                            <Offcanvas.Title>Offcanvas Right</Offcanvas.Title>
+                            <Offcanvas.Title>Sales Details</Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
-                            Some text as placeholder. In real life you can have the elements you
-                            have chosen. Like, text, images, lists, etc.
+                            <Card>
+                                <Card.Body>
+
+
+                                    <div className="d-flex align-item-center justify-content-between me-2">
+                                        <div>
+                                            <p className='mb-0'>Order Number</p>
+                                            <p className='mb-0'>Product</p>
+
+                                        </div>
+
+                                        <div>
+                                            <p className='mb-0'>1001</p>
+                                            <p className='mb-0'>Widget X</p>
+
+                                        </div>
+                                    </div>
+
+                                    {/* Order Date */}
+                                    <div className="divider"><span>Order Date</span></div>
+                                    <div className="d-flex align-item-center justify-content-between me-2">
+                                        <div>
+                                            <p className='mb-0'>Day</p>
+                                            <p className='mb-0'>Month</p>
+                                            <p className='mb-0'>Year</p>
+
+                                        </div>
+
+                                        <div>
+                                            <p className='mb-0'>15</p>
+                                            <p className='mb-0'>May</p>
+                                            <p className='mb-0'> 2023</p>
+
+                                        </div>
+                                    </div>
+
+                                    {/* Sales Status and Amount */}
+                                    <div className="divider"><span>Sales Status and Amount</span></div>
+                                    <div className="d-flex align-item-center justify-content-between me-2">
+                                        <div>
+                                            <p className='mb-0'>Status</p>
+                                            <p className='mb-0'>Total Amount</p>
+
+
+                                        </div>
+
+                                        <div>
+                                            <p className='mb-0'>Shipped</p>
+                                            <p className='mb-0'>$500.00</p>
+
+                                        </div>
+                                    </div>
+
+                                   
+                                </Card.Body>
+                            </Card>
                         </Offcanvas.Body>
                     </Offcanvas>
                 </Card>

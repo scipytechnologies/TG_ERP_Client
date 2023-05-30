@@ -46,14 +46,11 @@ function InvoiceList() {
                         <ol className="breadcrumb fs-sm mb-1">
                             <li className="breadcrumb-item"><Link to="/dashboard/home">Dashboard</Link></li>
                             <li className="breadcrumb-item"><Link to="/dashboard/invoice">Invoice</Link></li>
-                            <li className="breadcrumb-item active" aria-current="page">Add Invoice</li>
+                            <li className="breadcrumb-item active" aria-current="page">Invoice List</li>
                         </ol>
-                        <h4 className="main-title mb-0">Create New Invoice</h4>
+                        <h4 className="main-title mb-0">Invoice List</h4>
                     </div>
                 </div>
-
-                <h5 id="section13" className="main-subtitle mt-5">Invoice List</h5>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit, sequi?</p>
 
                 <Card>
                     <Card.Body>
@@ -102,11 +99,84 @@ function InvoiceList() {
                     {/* sidebar offcanvars */}
                     <Offcanvas show={offCanvas} onHide={handleCloseCanvas} placement="end">
                         <Offcanvas.Header closeButton>
-                            <Offcanvas.Title>Offcanvas Right</Offcanvas.Title>
+                            <Offcanvas.Title>Invoice Details</Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
-                            Some text as placeholder. In real life you can have the elements you
-                            have chosen. Like, text, images, lists, etc.
+                            <Card>
+                                <Card.Body>
+
+
+                                    <div className="d-flex align-item-center justify-content-between me-2">
+                                        <div>
+                                            <p className='mb-0'>Invoice Number</p>
+                                            <p className='mb-0'>Invoice Subject</p>
+                                            <p className='mb-0'>Notes</p>
+                                            <p className='mb-0'>Terms</p>
+                                        </div>
+
+                                        <div>
+                                            <p className='mb-0'>INV-2023-001</p>
+                                            <p className='mb-0'>Consulting Services</p>
+                                            <p className='mb-0'> Please submit payment within 30 days.</p>
+                                            <p className='mb-0'>Net 30</p>
+                                        </div>
+                                    </div>
+
+                                    {/* dates and amount */}
+                                    <div className="divider"><span>Dates and Amount</span></div>
+                                    <div className="d-flex align-item-center justify-content-between me-2">
+                                        <div>
+                                            <p className='mb-0'>Invoice Date</p>
+                                            <p className='mb-0'>Due Date</p>
+                                            <p className='mb-0'>Amount Due</p>
+
+                                        </div>
+
+                                        <div>
+                                            <p className='mb-0'>2023-05-29</p>
+                                            <p className='mb-0'>2023-06-28</p>
+                                            <p className='mb-0'>$5,000.00</p>
+
+                                        </div>
+                                    </div>
+
+                                    {/* Related Reference: */}
+                                    <div className="divider"><span>Related Reference</span></div>
+                                    <div className="d-flex align-item-center justify-content-between me-2">
+                                        <div>
+                                            <p className='mb-0'>Quote No</p>
+                                            <p className='mb-0'>Order No</p>
+                                            <p className='mb-0'>Purchase Order No</p>
+
+                                        </div>
+
+                                        <div>
+                                            <p className='mb-0'>QUO-2023-001</p>
+                                            <p className='mb-0'>ORD-2023-001</p>
+                                            <p className='mb-0'>PO-2023-001</p>
+
+                                        </div>
+                                    </div>
+
+                                    {/* Billing and Tax Details: */}
+                                    <div className="divider"><span>Billing and Tax Details</span></div>
+                                    <div className="d-flex align-item-center justify-content-between me-2">
+                                        <div>
+                                            <p className='mb-0'>Billing Address</p>
+                                            <p className='mb-0'>Tax Information</p>
+
+
+                                        </div>
+
+                                        <div>
+                                            <p className='mb-0'>123 Main Street, City, State, Zipcode</p>
+                                            <p className='mb-0'>Tax ID - 123456789</p>
+
+
+                                        </div>
+                                    </div>
+                                </Card.Body>
+                            </Card>
                         </Offcanvas.Body>
                     </Offcanvas>
                 </Card>
