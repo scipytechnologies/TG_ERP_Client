@@ -103,11 +103,90 @@ function PurchaseList() {
                     {/* sidebar offcanvars */}
                     <Offcanvas show={offCanvas} onHide={handleCloseCanvas} placement="end">
                         <Offcanvas.Header closeButton>
-                            <Offcanvas.Title>Offcanvas Right</Offcanvas.Title>
+                            <Offcanvas.Title>Purchase Details</Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
-                            Some text as placeholder. In real life you can have the elements you
-                            have chosen. Like, text, images, lists, etc.
+                            <Card>
+                                <Card.Body>
+
+
+                                    {/*Requisition Details */}
+
+                                    <div className="d-flex align-item-center justify-content-between me-2">
+                                        <div>
+                                            <p className='mb-0'>Quote No</p>
+                                            <p className='mb-0'>Quote Subject</p>
+                                            <p className='mb-0'>Quote Stage</p>
+                                            <p className='mb-0'>Valid Until</p>
+                                        </div>
+
+                                        <div>
+                                            <p className='mb-0'>Q-2023-001</p>
+                                            <p className='mb-0'>Office Furniture</p>
+                                            <p className='mb-0'>Proposal</p>
+                                            <p className='mb-0'>2023-06-30</p>
+                                        </div>
+                                    </div>
+
+                                    {/*Terms and Tax Information: */}
+                                    <div className="divider"><span>Terms and Tax Information</span></div>
+                                    <div className="d-flex align-item-center justify-content-between me-2">
+                                        <div>
+                                            <p className='mb-0'>Terms</p>
+                                            <p className='mb-0'>Tax Information</p>
+
+                                        </div>
+
+                                        <div>
+                                            <p className='mb-0'>Net 30</p>
+                                            <p className='mb-0'>Tax ID - 123456789</p>
+
+                                        </div>
+                                    </div>
+
+                                    {/*Billing and Additional Information */}
+                                    <div className="divider"><span>Billing and Additional Information</span></div>
+                                    <div className="d-flex align-item-center justify-content-between me-2">
+                                        <div>
+                                            <p className='mb-0'>Total Amount</p>
+                                            <p className='mb-0'>Billing Address</p>
+                                            <p className='mb-0'>Notes</p>
+
+
+                                        </div>
+
+                                        <div>
+                                            <p className='mb-0'>$5,000.00</p>
+                                            <p className='mb-0'>123 Main Street, City, State, Zipcode</p>
+                                            <p className='mb-0'>Please include assembly instructions</p>
+                                        </div>
+                                    </div>
+
+                                    {/*Project Details: */}
+                                    <div className="divider"><span>Project Details:</span></div>
+                                    <div className="d-flex align-item-center justify-content-between me-2">
+                                        <div>
+                                            <p className='mb-0'>Project Name</p>
+                                            <p className='mb-0'>Project Code</p>
+                                            <p className='mb-0'>Delivery Date</p>
+                                            <p className='mb-0'>Point of Delivery</p>
+                                            <p className='mb-0'>Received by</p>
+                                            <p className='mb-0'>Contact Details</p>
+                                        </div>
+
+                                        <div>
+                                            <p className='mb-0'>Project Alpha</p>
+                                            <p className='mb-0'>PA001</p>
+                                            <p className='mb-0'>2023-06-15</p>
+                                            <p className='mb-0'>High</p>
+                                            <p className='mb-0'>Warehouse A
+                                            </p>
+                                            <p className='mb-0'> Jane Smith</p>
+                                            <p className='mb-0'>  janesmith@example.com</p>
+                                        </div>
+                                    </div>
+                                </Card.Body>
+                            </Card>
                         </Offcanvas.Body>
                     </Offcanvas>
                 </Card>

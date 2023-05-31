@@ -87,7 +87,7 @@ function RfqPurchaseOrder() {
 
                 )
               ])
-              : []
+                : []
               }
               columns={['REQNo', 'RequisitionDate', 'Supplier', 'Action']}
               search={true}
@@ -102,11 +102,150 @@ function RfqPurchaseOrder() {
           {/* sidebar offcanvars */}
           <Offcanvas show={offCanvas} onHide={handleCloseCanvas} placement="end">
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title>Offcanvas Right</Offcanvas.Title>
+              <Offcanvas.Title>Purchase Order Details</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-              Some text as placeholder. In real life you can have the elements you
-              have chosen. Like, text, images, lists, etc.
+              <div className="w-100">
+                <Card>
+                  <Card.Body>
+
+
+                    {/*Purchase Order Details */}
+                  
+                    <div className="d-flex align-item-center justify-content-between me-2">
+                      <div>
+                        <p className='mb-0'>REQ No</p>
+                        <p className='mb-0'>Requisition Date</p>
+                        <p className='mb-0'>Supplier</p>
+                        <p className='mb-0'>Fed ID</p>
+                        <p className='mb-0'>Phone</p>
+                        <p className='mb-0'>Email</p>
+                      </div>
+
+                      <div>
+                        <p className='mb-0'>PO12345</p>
+                        <p className='mb-0'> 2023-05-29</p>
+                        <p className='mb-0'>XYZ Corporation</p>
+                        <p className='mb-0'>123456789</p>
+                        <p className='mb-0'> 123-456-7890</p>
+                        <p className='mb-0'>supplier@example.com
+                        </p>
+                      </div>
+                    </div>
+
+                    {/*Organization Details*/}
+                    <div className="divider"><span>Organization Details</span></div>
+                    <div className="d-flex align-item-center justify-content-between me-2">
+                      <div>
+                        <p className='mb-0'>Organization Name</p>
+                        <p className='mb-0'>Building</p>
+                        <p className='mb-0'>Room Number</p>
+
+
+                      </div>
+
+                      <div>
+                        <p className='mb-0'> ABC Company</p>
+                        <p className='mb-0'>Main Building</p>
+                        <p className='mb-0'>101</p>
+                      </div>
+                    </div>
+
+                    {/*Delivery Details  */}
+                    <div className="divider"><span>Delivery Details </span></div>
+                    <div className="d-flex align-item-center justify-content-between me-2">
+                      <div>
+                        <p className='mb-0'>Need by Date</p>
+                        <p className='mb-0'>Due</p>
+                        <p className='mb-0'>Paid</p>
+                      </div>
+
+                      <div>
+                        <p className='mb-0'>2023-06-15</p>
+                        <p className='mb-0'>2023-06-30</p>
+                        <p className='mb-0'>No</p>
+                      </div>
+                    </div>
+
+                    {/*Shipping Details */}
+                    <div className="divider"><span>Shipping Details</span></div>
+                    <div className="d-flex align-item-center justify-content-between me-2">
+                      <div>
+                        <p className='mb-0'>Carrier</p>
+                        <p className='mb-0'>FOB</p>
+                        <p className='mb-0'>Destination</p>
+                        <p className='mb-0'>FCA</p>
+                        <p className='mb-0'>Origin</p>
+                      </div>
+
+                      <div>
+                        <p className='mb-0'>ABC Shipping</p>
+                        <p className='mb-0'>Free On Board</p>
+                        <p className='mb-0'>New York</p>
+                        <p className='mb-0'> Free Carrier</p>
+                        <p className='mb-0'>Supplier Location</p>
+
+                      </div>
+                    </div>
+
+
+                    {/*Confirmation and Task Details */}
+                    <div className="divider"><span>Confirmation and Task Details</span></div>
+                    <div className="d-flex align-item-center justify-content-between me-2">
+                      <div>
+                        <p className='mb-0'>Confirmation</p>
+                        <p className='mb-0'>Task</p>
+                      </div>
+
+                      <div>
+                        <p className='mb-0'>Yes</p>
+                        <p className='mb-0'>Purchase Order Approval</p>
+                      </div>
+                    </div>
+
+                    
+                    {/*Financial Details */}
+                    <div className="divider"><span>Financial Details</span></div>
+                    <div className="d-flex align-item-center justify-content-between me-2">
+                      <div>
+                        <p className='mb-0'>Award</p>
+                        <p className='mb-0'>Expenditure Type</p>
+                      </div>
+
+                      <div>
+                        <p className='mb-0'> $10,000</p>
+                        <p className='mb-0'>Operating Expenses</p>
+                      </div>
+                    </div>
+
+
+                    {/*Shipping Details */}
+                    <div className="divider"><span>Requester Details</span></div>
+                    <div className="d-flex align-item-center justify-content-between me-2">
+                      <div>
+                        <p className='mb-0'>Requisitioner</p>
+                        <p className='mb-0'>Phone</p>
+                        <p className='mb-0'>Date</p>
+                        <p className='mb-0'>City</p>
+                        <p className='mb-0'>State</p>
+                        <p className='mb-0'>Zipcode</p>
+                        <p className='mb-0'>Address</p>
+                      </div>
+
+                      <div>
+                        <p className='mb-0'>John Doe</p>
+                        <p className='mb-0'> 987-654-3210</p>
+                        <p className='mb-0'>2023-05-29</p>
+                        <p className='mb-0'> Cityville</p>
+                        <p className='mb-0'>Stateland</p>
+                        <p className='mb-0'>12345</p>
+                        <p className='mb-0'>123 Main Street</p>
+
+                      </div>
+                    </div>
+                  </Card.Body>
+                </Card>
+              </div>
             </Offcanvas.Body>
           </Offcanvas>
         </Card>

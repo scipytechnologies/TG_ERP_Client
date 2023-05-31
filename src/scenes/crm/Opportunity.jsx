@@ -97,11 +97,35 @@ function Opportunity() {
                         </Card.Body>
                         <Offcanvas show={offCanvas} onHide={handleCloseCanvas} placement="end">
                             <Offcanvas.Header closeButton>
-                                <Offcanvas.Title>Offcanvas Right</Offcanvas.Title>
+                                <Offcanvas.Title>Opportunity Details</Offcanvas.Title>
                             </Offcanvas.Header>
                             <Offcanvas.Body>
-                                Some text as placeholder. In real life you can have the elements you
-                                have chosen. Like, text, images, lists, etc.
+
+                                <div className="w-100">
+                                    <Card>
+                                        <Card.Body>
+                                            <div className="d-flex align-item-center justify-content-between me-2 mb-3">
+                                                <div>
+                                                    <p className='mb-0'>Opportunity Name</p>
+                                                    <p className='mb-0'>Sales Stage</p>
+                                                    <p className='mb-0'>Close Date</p>
+                                                    <p className='mb-0'>Amount</p>
+
+                                                </div>
+
+                                                <div>
+                                                    <p className='mb-0'>New Client Acquisition</p>
+                                                    <p className='mb-0'>Proposal Submitted</p>
+                                                    <p className='mb-0'>2023-07-31</p>
+                                                    <p className='mb-0'>$100,000</p>
+
+                                                </div>
+                                            </div>
+                                            <div className="divider"><span>Description</span></div>
+                                            <p>This meeting is to discuss the project goals, timeline, and deliverables.</p>
+                                        </Card.Body>
+                                    </Card>
+                                </div>
                             </Offcanvas.Body>
                         </Offcanvas>
                     </Card>

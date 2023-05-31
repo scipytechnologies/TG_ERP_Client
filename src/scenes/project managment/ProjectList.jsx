@@ -47,12 +47,9 @@ function ProjectList() {
                             <li className="breadcrumb-item"><Link to="/dashboard/project">Project</Link></li>
                             <li className="breadcrumb-item active" aria-current="page">Project List</li>
                         </ol>
-                        <h4 className="main-title mb-0">Create New Invoice</h4>
+                        <h4 className="main-title mb-0">Project List</h4>
                     </div>
                 </div>
-
-                <h5 id="section13" className="main-subtitle mt-5">Invoice List</h5>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit, sequi?</p>
 
                 <Card>
                     <Card.Body>
@@ -100,11 +97,77 @@ function ProjectList() {
                     {/* sidebar offcanvars */}
                     <Offcanvas show={offCanvas} onHide={handleCloseCanvas} placement="end">
                         <Offcanvas.Header closeButton>
-                            <Offcanvas.Title>Offcanvas Right</Offcanvas.Title>
+                            <Offcanvas.Title>Project Details</Offcanvas.Title>
                         </Offcanvas.Header>
                         <Offcanvas.Body>
-                            Some text as placeholder. In real life you can have the elements you
-                            have chosen. Like, text, images, lists, etc.
+                            <Card>
+                                <Card.Body>
+
+
+                                    <div className="d-flex align-item-center justify-content-between me-2">
+                                        <div>
+                                            <p className='mb-0'>Project Name</p>
+                                            <p className='mb-0'>Type</p>
+                                            <p className='mb-0'>Account</p>
+                                            <p className='mb-0'>Assigned To</p>
+                                            <p className='mb-0'>Teams</p>
+                                        </div>
+
+                                        <div>
+                                            <p className='mb-0'> New Website Development</p>
+                                            <p className='mb-0'>Web Development</p>
+                                            <p className='mb-0'>ABC Corporation</p>
+                                            <p className='mb-0'>John Smith</p>
+                                            <p className='mb-0'>Development Team, Design Team</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Status and Duration: */}
+                                    <div className="divider"><span>Status and Duration</span></div>
+                                    <div className="d-flex align-item-center justify-content-between me-2">
+                                        <div>
+                                            <p className='mb-0'>Status</p>
+                                            <p className='mb-0'>Start Date</p>
+                                            <p className='mb-0'>End Date</p>
+
+                                        </div>
+
+                                        <div>
+                                            <p className='mb-0'>In Progress</p>
+                                            <p className='mb-0'>2023-05-15</p>
+                                            <p className='mb-0'> 2023-09-30</p>
+
+                                        </div>
+                                    </div>
+
+                                    {/* Related Reference: */}
+                                    <div className="divider"><span>Related Details</span></div>
+                                    <div className="d-flex align-item-center justify-content-between me-2">
+                                        <div>
+                                            <p className='mb-0'>Use Timesheet</p>
+                                            <p className='mb-0'>Amount</p>
+                                            <p className='mb-0'>Lead Source</p>
+                                            <p className='mb-0'>Progress</p>
+
+                                        </div>
+
+                                        <div>
+                                            <p className='mb-0'>Yes</p>
+                                            <p className='mb-0'> $10,000</p>
+                                            <p className='mb-0'>Referral</p>
+                                            <p className='mb-0'> 50%</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Description */}
+                                    <div className="divider"><span>Description</span></div>
+                                    <div className="d-flex align-item-center justify-content-between me-2">
+                                        <div>
+                                           <p> This project involves developing a responsive website for ABC Corporation, showcasing their products and services. The website will have e-commerce functionality and integrate with their existing systems.</p>
+                                        </div>
+                                    </div>
+                                </Card.Body>
+                            </Card>
                         </Offcanvas.Body>
                     </Offcanvas>
                 </Card>
