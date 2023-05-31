@@ -19,6 +19,10 @@ async function Auth(data) {
     const response = await apicall.apicall("post", 5000, "auth", data);
     return response;
 }
+async function Index(data) {
+    const response = await apicall.apicall("post",5000,"index/createIndex",data)
+    return response;
+}
 
 
 ///////////////////////////////////////////////{Company Api}/////////////////////////////////////////////
@@ -58,13 +62,18 @@ async function appointmentDetails(data) {
 }
 ////////////////////////////////{CRM-Customer}////////////////////////////////////
 
+async function createCustomerCollection(data) {
+    const response = await apicall.apicall("post",5001,"customer/addCustomerCollection",data)
+    return response
+}
+
 async function createCustomer(data) {
-    const response = await apicall.apicall("post", 5001, "customerRoute/customer", data)
+    const response = await apicall.apicall("post", 5001, "customer/customer", data)
     return response
 
 }
 async function customerDetails(data) {
-    const response = await apicall.apicall("get", 5001, "customerRoute/customerdetails", data)
+    const response = await apicall.apicall("get", 5001, "customer/customerdetails", data)
     return response
 }
 //////////////////////////////////////{CRM-Opportunity}////////////////////////////////////////
@@ -233,8 +242,8 @@ async function OffersInHome() {
     return response;
 }
 
-    export default {Auth,SignUp,Login,RegisterCompany,InitializeCompany,MainProductsInHome,CategoriesInHome,LatestProductsInHome,RandomProductsInHome,CategoriesWithProductsForHome,TopSellingProductsInHome,OffersInHome,
-    createAccount,createAppointment,createCustomer,createOpportunity,AddEmployee,addInventorymanagementDetails,addPrjmanagerDetails,addProductDetails,purchase,purchaseitem,purchaseorder,rfq,invoice,sales,
+    export default {Auth,SignUp,Login,Index,RegisterCompany,InitializeCompany,MainProductsInHome,CategoriesInHome,LatestProductsInHome,RandomProductsInHome,CategoriesWithProductsForHome,TopSellingProductsInHome,OffersInHome,
+    createAccount,createAppointment,createCustomerCollection,createCustomer,createOpportunity,AddEmployee,addInventorymanagementDetails,addPrjmanagerDetails,addProductDetails,purchase,purchaseitem,purchaseorder,rfq,invoice,sales,
     accountDetails,appointmentDetails,customerDetails,opportunityDetails,employeeDetails,getInventorymanagementDetails,getPrjmanagerDetails,getProductDetails,purchasedetails,purchaseitemdetails,purchaseorderdetails,
     rfqdetails,invoicedetails,salesdetails};
     

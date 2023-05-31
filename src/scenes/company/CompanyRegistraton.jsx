@@ -5,28 +5,30 @@ import { Col, Row, Form, Nav, Card, Button, Table } from "react-bootstrap";
 import mainservice from "../../services/mainservice";
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
+import { data } from 'jquery';
 
 
 function CompanyRegistraton() {
     const navigate = useNavigate();
     const active = useSelector((state) => state.loginedUser.role);
-    console.log(active,"owner==ano");
+    console.log(active, "owner==ano");
 
-    const RegistrationChecker = (params) =>{
-        if(params == "owner"){
+    const RegistrationChecker = (params) => {
+        if (params == "owner") {
             navigate('/pages/signin2')
         }
     }
 
     useEffect(() => {
         RegistrationChecker(active)
-      }, []);
-    
+    }, []);
+
 
     // dynamic tabs state
     const [activeTab, setActiveTab] = useState('1')
     const [form, setForm] = useState({});
-    
+    const [error,setError] =useState(false)
+
 
     const loginuser = useSelector((state) => state.loginedUser.id)
     function handleTabs(no) {
@@ -36,40 +38,71 @@ function CompanyRegistraton() {
 
     const onChangeHandler = (event) => {
         setForm({
-          ...form,
-          [event.target.name]: event.target.value,
-         
+            ...form,
+            [event.target.name]: event.target.value,
+
         });
         console.log(form);
-      };
-      async function RegsiterCompany(form) {
+    };
+    async function RegsiterCompany(form) {
         console.log(form);
         const res = await mainservice.RegisterCompany(form)
         if (res.data != null) {
-          console.log("Company Registered");
-          const data ={Companyid : res.data._id, userid : loginuser} 
-            const res2 = await mainservice.InitializeCompany(loginuser,data)
-              if(res2.data != null) {
-                console.log(res2.data);
-                console.log("Company Registration in profile also updated");
+            console.log("Company Registered");
+            const data = { Companyid: res.data._id, userid: loginuser }
+            const res2 = await mainservice.InitializeCompany(loginuser, data)     
                 if (res2.data != null) {
                     const token = res2.data
+                    console.log("Company Registration in profile also updated");
                     localStorage.setItem("user-token", JSON.stringify(token));
-                    window.location.reload(false);                   
-                  }
-                
-              }
+                    // window.location.reload(false);
+                    dashboardSetup(res.data._id)
+                }
+                else{
+                    console.log(res2.message);
+                }  
         }
         else {
-          console.log(res.message);
+            console.log(res.message);
         }
-      }
+    }
 
-      const onSubmitHandler = (event) => {
+    const onSubmitHandler = (event) => {
         event.preventDefault();
         RegsiterCompany(form);
-    
-      }
+    }
+
+    const dashboardSetup = async (id) =>{
+        const data= {
+            companyId : id
+        }
+        const customer = await mainservice.createCustomerCollection(data)
+        if(customer.data != null) {
+            console.log(customer.data._id)
+        }
+        else{
+            console.log("error occured in creating customerCollection");
+            setError(true)
+        }
+
+        if(error == false){
+            const index ={
+                CompanyID : id,
+                CrmID: customer.data._id
+            }
+
+            PostIndex(index)
+        }
+    }
+
+    const PostIndex = async (data) =>{
+        const res = await mainservice.Index(data)
+        if(res.data != null) {
+            console.log("index created",res.data);
+
+        }
+    }
+
     return (
         <React.Fragment>
             {/* <HeaderMobile /> */}
@@ -113,7 +146,7 @@ function CompanyRegistraton() {
                                             <p>Enter your company's tagline.</p>
                                         </Col>
                                         <Col md>
-                                            <Form.Control name='TagLine'  value={form.TagLine} type="text" placeholder="Tagline" onChange={onChangeHandler} />
+                                            <Form.Control name='TagLine' value={form.TagLine} type="text" placeholder="Tagline" onChange={onChangeHandler} />
                                         </Col>
                                     </Row>
                                 </div>
@@ -175,7 +208,7 @@ function CompanyRegistraton() {
                                             <p>Please enter the total number of employees currently working in your company, including both full-time and part-time staff.</p>
                                         </Col>
                                         <Col md>
-                                            <Form.Control type="number" name='NoOFEmployee' value={form.NoOFEmployee} placeholder="eg : 10, 100, 1000" onChange={onChangeHandler}/>
+                                            <Form.Control type="number" name='NoOFEmployee' value={form.NoOFEmployee} placeholder="eg : 10, 100, 1000" onChange={onChangeHandler} />
                                         </Col>
                                     </Row>
                                 </div>
@@ -206,7 +239,7 @@ function CompanyRegistraton() {
 
 
                                     <div className="d-flex justify-content-end mb-2 mt-2">
-                                        <Button variant="primary"onClick={() => handleTabs('2')}>Next</Button>
+                                        <Button variant="primary" onClick={() => handleTabs('2')}>Next</Button>
                                     </div>
                                 </div>
 
@@ -232,7 +265,7 @@ function CompanyRegistraton() {
                                             <p>This email address will be used for communication with your customers, suppliers, and other stakeholders.</p>
                                         </Col>
                                         <Col md>
-                                            <Form.Control name='Email' value={form.Email}  type="text" placeholder="seboin@gmail.com"  onChange={onChangeHandler}/>
+                                            <Form.Control name='Email' value={form.Email} type="text" placeholder="seboin@gmail.com" onChange={onChangeHandler} />
                                         </Col>
                                     </Row>
                                 </div>
@@ -243,7 +276,7 @@ function CompanyRegistraton() {
                                             <p>This phone number will be used for communication with your customers, suppliers, and other stakeholders.</p>
                                         </Col>
                                         <Col md>
-                                            <Form.Control name='PhoneNo' value={form.PhoneNo}  type="tel" placeholder="81-390-31770" onChange={onChangeHandler} />
+                                            <Form.Control name='PhoneNo' value={form.PhoneNo} type="tel" placeholder="81-390-31770" onChange={onChangeHandler} />
                                         </Col>
                                     </Row>
                                 </div>
@@ -254,7 +287,7 @@ function CompanyRegistraton() {
                                             <p>Include your street address, city, state/province, and postal/zip code. Ensure that the address you provide is accurate and up-to-date.</p>
                                         </Col>
                                         <Col md>
-                                            <Form.Control name='Address' as="textarea" value={form.Address}  id="exampleFormControlTextarea1" rows="3" placeholder="" onChange={onChangeHandler}></Form.Control>
+                                            <Form.Control name='Address' as="textarea" value={form.Address} id="exampleFormControlTextarea1" rows="3" placeholder="" onChange={onChangeHandler}></Form.Control>
                                         </Col>
                                     </Row>
 
