@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect } from 'react';
 import HeaderMobile from "../../layouts/HeaderMobile"
 import { Col, Row, Form, Nav, Card, Button, Table } from "react-bootstrap";
@@ -84,6 +86,7 @@ function CompanyRegistraton() {
             console.log("error occured in creating customerCollection");
             setError(true)
         }
+        
 
         if(error == false){
             const index ={
