@@ -134,6 +134,8 @@ import AddProject from "../scenes/project managment/AddProject";
 
 import POS from "../scenes/pos/POS"
 
+import Attendence from "../scenes/attendence/Attendence"
+
 const protectedRoutes = [
   { path: "dashboard/home", element: <Home /> },
   // { path: "/registerCompany", element: <CompanyRegistration /> },
@@ -190,6 +192,7 @@ const protectedRoutes = [
   { path: "dashboard/project/ProjectList", element: <ProjectList /> },
 
   { path: "dashboard/POS", element: <POS /> },
+  { path: "dashboard/attendence", element: <Attendence /> },
 
   // default components and apps
   { path: "dashboard/finance", element: <FinanceMonitoring /> },

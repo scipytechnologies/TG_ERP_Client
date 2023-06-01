@@ -167,6 +167,11 @@ const scenes = [
       }
     ]
   },
+  {
+    "label": "Attendence",
+    "link": "/dashboard/attendence",
+    "icon": "ri-water-flash-line"
+  },
 ];
 
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import './splash.css'
 import BeatLoader from "react-spinners/BeatLoader";
+// import { BoxesLoader } from "react-awesome-loaders";
 
 function Splash() {
     return (
@@ -11,6 +12,13 @@ function Splash() {
                 size={26}
                 speedMultiplier={1}
             />
+
+            {/* <BoxesLoader
+                boxColor={"#6366F1"}
+                style={{ marginBottom: "20px" }}
+                desktopSize={"128px"}
+                mobileSize={"80px"}
+            /> */}
         </div>
     )
 }

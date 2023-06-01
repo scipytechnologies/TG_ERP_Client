@@ -54,7 +54,7 @@ export default function AppCalendar() {
               <Button variant="primary" onClick={handleModalShow}>Create New Event</Button>
             </div>
 
-            <ReactDatePicker selected={startDate} onChange={(date) => setStartDate(date)} inline />
+            <ReactDatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
 
             <div className="mb-5"></div>
 
