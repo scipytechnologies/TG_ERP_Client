@@ -78,6 +78,9 @@ function CompanyRegistraton() {
         const data= {
             companyId : id
         }
+
+        // CRM
+
         const customer = await mainservice.createCustomerCollection(data)
         if(customer.data != null) {
             console.log(customer.data._id)
@@ -87,11 +90,124 @@ function CompanyRegistraton() {
             setError(true)
         }
         
+        // EMPLOYEE
+
+        const employee = await mainservice.createEmployeeCollection(data)
+        if(employee.data != null) {
+            console.log(employee.data._id)
+        }
+        else{
+            console.log("error occured in creating employeeCollection");
+            setError(true)
+        }
+
+        // Inventory
+
+        const inventory = await mainservice.createInventorymanagementCollection(data)
+        if(inventory.data != null) {
+            console.log(inventory.data._id)
+        }
+        else{
+            console.log("error occured in creating inventoryCollection");
+            setError(true)
+        }
+
+        // PRJ
+
+        const PRJ = await mainservice.createPrjmanagerCollection(data)
+        if(PRJ.data != null) {
+            console.log(PRJ.data._id)
+        }
+        else{
+            console.log("error occured in creating PRJCollection");
+            setError(true)
+        }
+
+        // Product
+
+        const product = await mainservice.createProductCollection(data)
+        if(product.data != null) {
+            console.log(product.data._id)
+        }
+        else{
+            console.log("error occured in creating productCollection");
+            setError(true)
+        }
+
+        // Purchase
+
+        const purchase = await mainservice.createPurchaseCollection(data)
+        if(purchase.data != null) {
+            console.log(purchase.data._id)
+        }
+        else{
+            console.log("error occured in creating purchaseCollection");
+            setError(true)
+        }
+
+        // RFQ
+
+        const purchaseitem = await mainservice.createPurchaseitemCollection(data)
+        if(purchaseitem.data != null) {
+            console.log(purchaseitem.data._id)
+        }
+        else{
+            console.log("error occured in creating purchaseitemCollection");
+            setError(true)
+        }
+
+        const purchaseorder = await mainservice.createPurchaseorderCollection(data)
+        if(purchaseorder.data != null) {
+            console.log(purchaseorder.data._id)
+        }
+        else{
+            console.log("error occured in creating purchaseorderCollection");
+            setError(true)
+        }
+
+        const RFQ = await mainservice.createRFQCollection(data)
+        if(RFQ.data != null) {
+            console.log(RFQ.data._id)
+        }
+        else{
+            console.log("error occured in creating RFQCollection");
+            setError(true)
+        }
+
+        // Sales
+
+        const invoice = await mainservice.createInvoiceCollection(data)
+        if(invoice.data != null) {
+            console.log(invoice.data._id)
+        }
+        else{
+            console.log("error occured in creating invoiceCollection");
+            setError(true)
+        }
+
+        const sales = await mainservice.createSalesCollection(data)
+        if(sales.data != null) {
+            console.log(sales.data._id)
+        }
+        else{
+            console.log("error occured in creating salesCollection");
+            setError(true)
+        }
 
         if(error == false){
             const index ={
                 CompanyID : id,
-                CrmID: customer.data._id
+                CrmID : customer.data._id,
+                EmployeeID : employee.data._id,
+                Inventory : inventory.data._id,
+                PRJ : PRJ.data._id,
+                ProductID : product.data._id,
+                PurchaseID : purchase.data._id,
+                PurchaseorderID : purchaseorder.data._id,
+                PurchaseitemID : purchaseitem.data._id,
+                RFQID : RFQ.data._id,
+                InvoiceID : invoice.data._id,
+                SalesID :sales.data._id
             }
 
             PostIndex(index)
