@@ -46,6 +46,11 @@ async function InitializeCompany(id, data) {
 
 //////////////////////////////////////{CRM-Account}////////////////////////////////////
 
+async function createAccountCollection(data) {
+    const response = await apicall.apicall("post",5001,"accountRoute/createAccountCollection",data)
+    return response
+}
+
 async function createAccount(data) {
     const response = await apicall.apicall("post", 5001, "accountRoute/createAccount", data)
     return response
@@ -57,6 +62,11 @@ async function accountDetails(data) {
 
 }
 /////////////////////////////////////////{CRM-Appointment}//////////////////////////////
+
+async function createAppointmentCollection(data) {
+    const response = await apicall.apicall("post",5001,"appointmentRoute/createAppointmentCollection",data)
+    return response
+}
 
 async function createAppointment(data) {
     const response = await apicall.apicall("post", 5001, "appointmentRoute/appointment", data)
@@ -85,6 +95,11 @@ async function customerDetails(data) {
     return response
 }
 //////////////////////////////////////{CRM-Opportunity}////////////////////////////////////////
+
+async function createOpportunityCollection(data) {
+    const response = await apicall.apicall("post",5001,"opportunityRoute/createOpportunityCollection",data)
+    return response
+}
 
 async function createOpportunity(data) {
     const response = await apicall.apicall("post", 5001, "opportunityRoute/createOpportunity", data)
@@ -303,5 +318,5 @@ async function OffersInHome() {
     createAccount,createAppointment,createCustomerCollection,createCustomer,createOpportunity,AddEmployee,addInventorymanagementDetails,addPrjmanagerDetails,addProductDetails,purchase,purchaseitem,purchaseorder,rfq,invoice,sales,
     accountDetails,appointmentDetails,customerDetails,opportunityDetails,employeeDetails,getInventorymanagementDetails,getPrjmanagerDetails,getProductDetails,purchasedetails,purchaseitemdetails,purchaseorderdetails,
     rfqdetails,invoicedetails,salesdetails,createEmployeeCollection,createInventorymanagementCollection,createPrjmanagerCollection,createProductCollection,createPurchaseCollection,createPurchaseitemCollection,createPurchaseorderCollection,
-    createRfqCollection,createInvoiceCollection,createSalesCollection};
+    createRfqCollection,createInvoiceCollection,createSalesCollection,createAccountCollection,createAppointmentCollection,createOpportunityCollection};
     
