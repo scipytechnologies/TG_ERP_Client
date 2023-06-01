@@ -89,6 +89,33 @@ function CompanyRegistraton() {
             console.log("error occured in creating customerCollection");
             setError(true)
         }
+
+        const account = await mainservice.createAccountCollection(data)
+        if (account.data != null) {
+            console.log(account.data._id)
+        }
+        else {
+            console.log("error occured in creating accountCollection");
+            setError(true)
+        }
+
+        const appointment = await mainservice.createAppointmentCollection(data)
+        if (appointment.data != null) {
+            console.log(appointment.data._id)
+        }
+        else {
+            console.log("error occured in creating appointmentCollection");
+            setError(true)
+        }
+
+        const opportunity = await mainservice.createOpportunityCollection(data)
+        if (opportunity.data != null) {
+            console.log(opportunity.data._id)
+        }
+        else {
+            console.log("error occured in creating opportunityCollection");
+            setError(true)
+        }
         
         // EMPLOYEE
 
@@ -198,6 +225,9 @@ function CompanyRegistraton() {
             const index ={
                 CompanyID : id,
                 CrmID : customer.data._id,
+                AccountID : account.data._id,
+                AppointmentID : appointment.data._id,
+                OpportunityID : opportunity.data._id,
                 EmployeeID : employee.data._id,
                 Inventory : inventory.data._id,
                 PRJ : PRJ.data._id,
