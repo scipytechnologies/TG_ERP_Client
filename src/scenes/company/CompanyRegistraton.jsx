@@ -165,7 +165,7 @@ function CompanyRegistraton() {
             setError(true)
         }
 
-        const RFQ = await mainservice.createRFQCollection(data)
+        const RFQ = await mainservice.createRfqCollection(data)
         if(RFQ.data != null) {
             console.log(RFQ.data._id)
         }
