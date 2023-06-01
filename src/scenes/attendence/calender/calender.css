@@ -1,0 +1,23 @@
+
+
+
+.calendar-day .absent {
+    background-color: #d34848;
+    color: white;
+  }
+  
+  .calendar-day .present {
+    background-color: #579d57;
+    color: white;
+  }
+
+  .calendar-day .wfh {
+    background-color: #48c0d3;
+    color: white;
+  }
+  
+  .calendar-day .halfDay {
+    background-color: #4aaf83;
+    color: white;
+  }
+  
