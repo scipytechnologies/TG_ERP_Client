@@ -29,7 +29,7 @@ function CompanyRegistraton() {
     // dynamic tabs state
     const [activeTab, setActiveTab] = useState('1')
     const [form, setForm] = useState({});
-    const [error,setError] =useState(false)
+    const [error, setError] = useState(false)
 
 
     const loginuser = useSelector((state) => state.loginedUser.id)
@@ -52,17 +52,17 @@ function CompanyRegistraton() {
         if (res.data != null) {
             console.log("Company Registered");
             const data = { Companyid: res.data._id, userid: loginuser }
-            const res2 = await mainservice.InitializeCompany(loginuser, data)     
-                if (res2.data != null) {
-                    const token = res2.data
-                    console.log("Company Registration in profile also updated");
-                    localStorage.setItem("user-token", JSON.stringify(token));
-                    // window.location.reload(false);
-                    dashboardSetup(res.data._id)
-                }
-                else{
-                    console.log(res2.message);
-                }  
+            const res2 = await mainservice.InitializeCompany(loginuser, data)
+            if (res2.data != null) {
+                const token = res2.data
+                console.log("Company Registration in profile also updated");
+                localStorage.setItem("user-token", JSON.stringify(token));
+                // window.location.reload(false);
+                dashboardSetup(res.data._id)
+            }
+            else {
+                console.log(res2.message);
+            }
         }
         else {
             console.log(res.message);
@@ -74,34 +74,44 @@ function CompanyRegistraton() {
         RegsiterCompany(form);
     }
 
-    const dashboardSetup = async (id) =>{
-        const data= {
-            companyId : id
+    const dashboardSetup = async (id) => {
+        const data = {
+            companyId: id
         }
         const customer = await mainservice.createCustomerCollection(data)
-        if(customer.data != null) {
+        if (customer.data != null) {
             console.log(customer.data._id)
         }
-        else{
+        else {
             console.log("error occured in creating customerCollection");
             setError(true)
         }
-        
 
-        if(error == false){
-            const index ={
-                CompanyID : id,
+        if (error == false) {
+            const index = {
+                CompanyID: id,
                 CrmID: customer.data._id
             }
 
-            PostIndex(index)
+            PostIndex(index, id)
         }
     }
 
-    const PostIndex = async (data) =>{
+    const PostIndex = async (data, id) => {
         const res = await mainservice.Index(data)
-        if(res.data != null) {
-            console.log("index created",res.data);
+        if (res.data != null) {
+            const index = {
+                IndexId: res.data._id
+            }
+            const res2 = await mainservice.AddIndex(id,index)
+            if (res2.data != null) {
+                console.log("index added to company profile");
+            } else {
+                console.log(res2.message);
+            }
+            console.log("index created", res.data);
+
+       window.location.reload(false);
 
         }
     }

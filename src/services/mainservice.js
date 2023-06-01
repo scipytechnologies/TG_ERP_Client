@@ -27,6 +27,11 @@ async function Index(data) {
     return response;
 }
 
+async function AddIndex(id,data) {
+    const response = await apicall.apicall("put",5000,`companyRoute/editCompany/${id}`,data)
+    return response
+}  
+
 
 ///////////////////////////////////////////////{Company Api}/////////////////////////////////////////////
 
@@ -245,7 +250,7 @@ async function OffersInHome() {
     return response;
 }
 
-    export default {Auth,SignUp,Login,Index,RegisterCompany,InitializeCompany,MainProductsInHome,CategoriesInHome,LatestProductsInHome,RandomProductsInHome,CategoriesWithProductsForHome,TopSellingProductsInHome,OffersInHome,
+    export default {Auth,SignUp,Login,Index,AddIndex,RegisterCompany,InitializeCompany,MainProductsInHome,CategoriesInHome,LatestProductsInHome,RandomProductsInHome,CategoriesWithProductsForHome,TopSellingProductsInHome,OffersInHome,
     createAccount,createAppointment,createCustomerCollection,createCustomer,createOpportunity,AddEmployee,addInventorymanagementDetails,addPrjmanagerDetails,addProductDetails,purchase,purchaseitem,purchaseorder,rfq,invoice,sales,
     accountDetails,appointmentDetails,customerDetails,opportunityDetails,employeeDetails,getInventorymanagementDetails,getPrjmanagerDetails,getProductDetails,purchasedetails,purchaseitemdetails,purchaseorderdetails,
     rfqdetails,invoicedetails,salesdetails};
