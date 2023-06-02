@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react';
 import HeaderMobile from "../../layouts/HeaderMobile"
 import { Col, Row, Form, Nav, Card, Button, Table } from "react-bootstrap";
@@ -90,13 +88,40 @@ function CompanyRegistraton() {
             setError(true)
         }
 
+        const account = await mainservice.createAccountCollection(data)
+        if (account.data != null) {
+            console.log(account.data._id)
+        }
+        else {
+            console.log("error occured in creating accountCollection");
+            setError(true)
+        }
+
+        const appointment = await mainservice.createAppointmentCollection(data)
+        if (appointment.data != null) {
+            console.log(appointment.data._id)
+        }
+        else {
+            console.log("error occured in creating appointmentCollection");
+            setError(true)
+        }
+
+        const opportunity = await mainservice.createOpportunityCollection(data)
+        if (opportunity.data != null) {
+            console.log(opportunity.data._id)
+        }
+        else {
+            console.log("error occured in creating opportunityCollection");
+            setError(true)
+        }
+        
         // EMPLOYEE
 
         const employee = await mainservice.createEmployeeCollection(data)
-        if (employee.data != null) {
+        if(employee.data != null) {
             console.log(employee.data._id)
         }
-        else {
+        else{
             console.log("error occured in creating employeeCollection");
             setError(true)
         }
@@ -104,10 +129,10 @@ function CompanyRegistraton() {
         // Inventory
 
         const inventory = await mainservice.createInventorymanagementCollection(data)
-        if (inventory.data != null) {
+        if(inventory.data != null) {
             console.log(inventory.data._id)
         }
-        else {
+        else{
             console.log("error occured in creating inventoryCollection");
             setError(true)
         }
@@ -115,10 +140,10 @@ function CompanyRegistraton() {
         // PRJ
 
         const PRJ = await mainservice.createPrjmanagerCollection(data)
-        if (PRJ.data != null) {
+        if(PRJ.data != null) {
             console.log(PRJ.data._id)
         }
-        else {
+        else{
             console.log("error occured in creating PRJCollection");
             setError(true)
         }
@@ -126,10 +151,10 @@ function CompanyRegistraton() {
         // Product
 
         const product = await mainservice.createProductCollection(data)
-        if (product.data != null) {
+        if(product.data != null) {
             console.log(product.data._id)
         }
-        else {
+        else{
             console.log("error occured in creating productCollection");
             setError(true)
         }
@@ -137,10 +162,10 @@ function CompanyRegistraton() {
         // Purchase
 
         const purchase = await mainservice.createPurchaseCollection(data)
-        if (purchase.data != null) {
+        if(purchase.data != null) {
             console.log(purchase.data._id)
         }
-        else {
+        else{
             console.log("error occured in creating purchaseCollection");
             setError(true)
         }
@@ -148,28 +173,28 @@ function CompanyRegistraton() {
         // RFQ
 
         const purchaseitem = await mainservice.createPurchaseitemCollection(data)
-        if (purchaseitem.data != null) {
+        if(purchaseitem.data != null) {
             console.log(purchaseitem.data._id)
         }
-        else {
+        else{
             console.log("error occured in creating purchaseitemCollection");
             setError(true)
         }
 
         const purchaseorder = await mainservice.createPurchaseorderCollection(data)
-        if (purchaseorder.data != null) {
+        if(purchaseorder.data != null) {
             console.log(purchaseorder.data._id)
         }
-        else {
+        else{
             console.log("error occured in creating purchaseorderCollection");
             setError(true)
         }
 
         const RFQ = await mainservice.createRfqCollection(data)
-        if (RFQ.data != null) {
+        if(RFQ.data != null) {
             console.log(RFQ.data._id)
         }
-        else {
+        else{
             console.log("error occured in creating RFQCollection");
             setError(true)
         }
@@ -177,37 +202,40 @@ function CompanyRegistraton() {
         // Sales
 
         const invoice = await mainservice.createInvoiceCollection(data)
-        if (invoice.data != null) {
+        if(invoice.data != null) {
             console.log(invoice.data._id)
         }
-        else {
+        else{
             console.log("error occured in creating invoiceCollection");
             setError(true)
         }
 
         const sales = await mainservice.createSalesCollection(data)
-        if (sales.data != null) {
+        if(sales.data != null) {
             console.log(sales.data._id)
         }
-        else {
+        else{
             console.log("error occured in creating salesCollection");
             setError(true)
         }
 
-        if (error == false) {
-            const index = {
-                CompanyID: id,
-                CrmID: customer.data._id,
-                EmployeeID: employee.data._id,
-                Inventory: inventory.data._id,
-                PRJ: PRJ.data._id,
-                ProductID: product.data._id,
-                PurchaseID: purchase.data._id,
-                PurchaseorderID: purchaseorder.data._id,
-                PurchaseitemID: purchaseitem.data._id,
-                RFQID: RFQ.data._id,
-                InvoiceID: invoice.data._id,
-                SalesID: sales.data._id
+        if(error == false){
+            const index ={
+                CompanyID : id,
+                CrmID : customer.data._id,
+                AccountID : account.data._id,
+                AppointmentID : appointment.data._id,
+                OpportunityID : opportunity.data._id,
+                EmployeeID : employee.data._id,
+                Inventory : inventory.data._id,
+                PRJ : PRJ.data._id,
+                ProductID : product.data._id,
+                PurchaseID : purchase.data._id,
+                PurchaseorderID : purchaseorder.data._id,
+                PurchaseitemID : purchaseitem.data._id,
+                RFQID : RFQ.data._id,
+                InvoiceID : invoice.data._id,
+                SalesID :sales.data._id
             }
 
             PostIndex(index, id)
@@ -220,7 +248,7 @@ function CompanyRegistraton() {
             const index = {
                 IndexId: res.data._id
             }
-            const res2 = await mainservice.AddIndex(id, index)
+            const res2 = await mainservice.AddIndex(id,index)
             if (res2.data != null) {
                 console.log("index added to company profile");
             } else {
@@ -228,7 +256,7 @@ function CompanyRegistraton() {
             }
             console.log("index created", res.data);
 
-            window.location.reload(false);
+       window.location.reload(false);
 
         }
     }
