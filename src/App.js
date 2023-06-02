@@ -16,10 +16,13 @@ import LandingPage from "./pages/LandingPage";
 import mainservice from "./services/mainservice";
 import { useSelector, useDispatch } from 'react-redux'
 import { isConnected, loggeduser, setRole, setUserProfile } from './store/loginedUser';
+import {setCompanyProfile } from './store/company';
+
 import Redirect from './routeProtection/ForceRedirect';
 import ProtectedRoute from './routeProtection/ProtectedRoute';
 import CompanyRegistraton from './scenes/company/CompanyRegistraton';
 import Signup2 from "./pages/Signup2";
+import { setindex } from './store';
 
 
 // set skin on load
@@ -36,6 +39,8 @@ export default function App() {
   const dispatch = useDispatch()
   const active = useSelector((state) => state.loginedUser.isConnected)
   const user = useSelector((state) => state.loginedUser)
+  const companyProfile = useSelector((state) => state.company)
+  const indexData = useSelector((state) => state.index)
 
 
   async function Auth() {
@@ -66,13 +71,15 @@ export default function App() {
   const fetchData = async(id) => {
     console.log("fetch data initiated");
     console.log(user);
+
       const userData = await mainservice.GetUserById(id)
       if(userData.data != null ){
         console.log(userData.data,"userData");
         const newUser = {
           firstName: userData.data.firstName,
           lastName: userData.data.lastName,
-          CompanyID: userData.data.Company
+          CompanyID: userData.data.Company,
+          email : userData.data.email
         }
         dispatch(setUserProfile(newUser))
         console.log(user,"state");
@@ -80,8 +87,41 @@ export default function App() {
       else {
         console.log("user data not found");
       }
-  }
 
+      const company = await mainservice.GetCompanyById(userData.data.Company)
+      if(company.data != null) {
+        console.log('companyData',company.data);
+        const newCompany = {
+          CompanyName: company.data.CompanyName,
+          Email: company.data.Email,
+          PhoneNo: company.data.PhoneNo,
+          TagLine : company.data.TagLine,
+          CompanyDescription: company.data.CompanyDescription,
+          Address: company.data.Address,
+          Industry: company.data.Industry,
+          NoOFEmployee : company.NoOFEmployee,
+          EntityType : company.EntityType
+        }
+        dispatch(setCompanyProfile(newCompany))
+        console.log(companyProfile," Companystate");
+      }
+      else{
+        console.log("company feching errror");
+      }
+
+      const index = await mainservice.GetIndexbyId(company.data.IndexId)
+      if (index.data != null) {
+        console.log(index.data,"index");
+        const newIndex = {
+          CrmID : index.data.CrmID
+        }
+        dispatch(setindex(newIndex))
+        console.log(indexData,"index from state");
+      }
+      else {
+        console.log("something wrong with index fetching");
+      }
+  }
 
   useEffect(() => {
     Auth(active)

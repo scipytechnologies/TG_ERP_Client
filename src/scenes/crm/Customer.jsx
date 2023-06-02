@@ -8,19 +8,23 @@ import { Grid } from "gridjs-react";
 import mainservice from '../../services/mainservice';
 import { _ } from "gridjs-react";
 import Avatar from "../../components/Avatar";
+import { useSelector } from 'react-redux';
 
 function Customer() {
     // to maintain dark and light mode
     const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
+    const index = useSelector((state) => state.index)
+   
 
     // axios get interceptor for table data
     const [data, setData] = useState([])
     async function customerDetails() {
-        const res = await mainservice.customerDetails();
-        console.log('Customer Details ' + JSON.stringify(res))
-        setData(res.data)
+        const res = await mainservice.customerList(index.CrmID);
+        console.log(res.data.customers);
+        // console.log('Customer Details ' + JSON.stringify(res))
+        setData(res.data.customers)
     }
     useEffect(() => {
         customerDetails()

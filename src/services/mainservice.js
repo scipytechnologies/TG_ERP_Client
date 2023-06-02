@@ -1,10 +1,5 @@
 
-
-
 import apicall from "./interceptor";
-
-
-
 
 ////////////////////////////////////////////{User Api}////////////////////////////////////////////////////
 async function Login(data) {
@@ -32,6 +27,11 @@ async function AddIndex(id,data) {
     return response
 }
 
+async function GetIndexbyId(id){
+    const response = await apicall.apicall("get",5000,`index/getindexbyid/${id}`)
+    return response
+}
+
 async function GetUserById(id){
     const response = await apicall.apicall("get",5000,`getuser/${id}`)
     return response
@@ -50,6 +50,7 @@ async function InitializeCompany(id, data) {
 }
 async function GetCompanyById(id){
     const response = await apicall.apicall("get",5000,`companyRoute/getidCompany/${id}`)
+    return response
 }
 
 //////////////////////////////////////{CRM-Account}////////////////////////////////////
@@ -93,15 +94,17 @@ async function createCustomerCollection(data) {
     return response
 }
 
-async function createCustomer(data) {
-    const response = await apicall.apicall("post", 5001, "customer/customer", data)
+async function createCustomer(data,id) {
+    const response = await apicall.apicall("post", 5001, `customer/customer/${id}`, data)
     return response
 
 }
-async function customerDetails(data) {
-    const response = await apicall.apicall("get", 5001, "customer/customerdetails", data)
+async function customerList(id) {
+    const response = await apicall.apicall("get", 5001, `customer/getCustomer/${id}`)
     return response
 }
+
+
 //////////////////////////////////////{CRM-Opportunity}////////////////////////////////////////
 
 async function createOpportunityCollection(data) {
@@ -322,9 +325,9 @@ async function OffersInHome() {
     return response;
 }
 
-    export default {Auth,SignUp,Login,GetUserById,Index,AddIndex,RegisterCompany,GetCompanyById,InitializeCompany,MainProductsInHome,CategoriesInHome,LatestProductsInHome,RandomProductsInHome,CategoriesWithProductsForHome,TopSellingProductsInHome,OffersInHome,
+    export default {Auth,SignUp,Login,GetUserById,Index,AddIndex,GetIndexbyId,RegisterCompany,GetCompanyById,InitializeCompany,MainProductsInHome,CategoriesInHome,LatestProductsInHome,RandomProductsInHome,CategoriesWithProductsForHome,TopSellingProductsInHome,OffersInHome,
     createAccount,createAppointment,createCustomerCollection,createCustomer,createOpportunity,AddEmployee,addInventorymanagementDetails,addPrjmanagerDetails,addProductDetails,purchase,purchaseitem,purchaseorder,rfq,invoice,sales,
-    accountDetails,appointmentDetails,customerDetails,opportunityDetails,employeeDetails,getInventorymanagementDetails,getPrjmanagerDetails,getProductDetails,purchasedetails,purchaseitemdetails,purchaseorderdetails,
+    accountDetails,appointmentDetails,customerList,opportunityDetails,employeeDetails,getInventorymanagementDetails,getPrjmanagerDetails,getProductDetails,purchasedetails,purchaseitemdetails,purchaseorderdetails,
     rfqdetails,invoicedetails,salesdetails,createEmployeeCollection,createInventorymanagementCollection,createPrjmanagerCollection,createProductCollection,createPurchaseCollection,createPurchaseitemCollection,createPurchaseorderCollection,
     createRfqCollection,createInvoiceCollection,createSalesCollection,createAccountCollection,createAppointmentCollection,createOpportunityCollection};
     

@@ -5,8 +5,12 @@ import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom';
 import mainservice from '../../services/mainservice';
+import { useSelector } from 'react-redux';
 
 function AddCrm() {
+  const index = useSelector((state) => state.index)
+  
+  
   // to maintain dark and light mode
   const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
   const [skin, setSkin] = useState(currentSkin);
@@ -25,7 +29,7 @@ function AddCrm() {
 }
 
 async function createAccount(form) {
-  const res = await mainservice.createAccount(form);
+  const res = await mainservice.createCustomer(form,index.CrmID);
   if(res.data != null) {
     console.log ("Account Added");
   }
