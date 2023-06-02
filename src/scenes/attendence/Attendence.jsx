@@ -19,7 +19,7 @@ function Attendence() {
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
 
-    // data
+    // attendence demo   data for june
     const data = [
         { status: "present", date: "2023-06-01" },
         { status: "present", date: "2023-06-02" },
@@ -52,18 +52,12 @@ function Attendence() {
         { status: "present", date: "2023-06-29" },
         { status: "present", date: "2023-06-30" },
     ];
-
-    // additional
-    const [isSidebarShow, setSidebarShow] = useState(false);
-
     return (
         <>
             <Header onSkin={setSkin} />
-
             <div className="main main-app p-3 p-lg-4">
                 <Row className='g-3'>
-                    <Col xs="12" lg="12">
-
+                    <Col xs="12">
                         <div className="d-md-flex align-items-center justify-content-between mb-4">
                             <div>
                                 <ol className="breadcrumb fs-sm mb-1">
@@ -72,9 +66,7 @@ function Attendence() {
                                 </ol>
                                 <h4 className="main-title mb-0">Attendence</h4>
                             </div>
-
                         </div>
-
                     </Col>
                 </Row>
                 <Row className='g-3'>
@@ -82,7 +74,7 @@ function Attendence() {
                         <Card>
                             <Card.Body>
                                 <Row>
-                                    <Col lg={6}>
+                                    <Col xs={6}>
                                         <div className="w-100 d-flex align-items-center jusify-content-between">
                                             <Avatar size="xl" img="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg" />
                                             <div className='ms-3'>
@@ -92,10 +84,10 @@ function Attendence() {
                                             </div>
                                         </div>
                                     </Col>
-                                    <Col lg={6}>
+                                    <Col xs={6}>
                                         <div className='w-50 d-flex g-2 w-100 justify-content-end'>
                                             <div className='me-2'><i className='ri-time-line'></i></div>
-                                            <p className='me-2'>Working time</p>
+                                            <p className='me-2 d-none d-md-block'>Working time</p>
                                             <p className='me-2 text-primary'>9am - 6pm (8hrs)</p>
                                         </div>
                                     </Col>
@@ -104,23 +96,19 @@ function Attendence() {
                         </Card>
                     </Col>
                     <Col xs="12" md="8" >
-
                         <Card>
                             <Card.Body>
                                 {/* calender stucture */}
                                 <Calender data={data} />
                             </Card.Body>
                         </Card>
-
                     </Col>
 
                     <Col xs="12" md="4" >
                         <Card>
                             <Card.Body className="p-3">
                                 <h2 className="performance-value mb-0">9.8 <small className="text-success d-flex align-items-center"><i className="ri-arrow-up-line"></i> 2.8%</small></h2>
-
                                 <label className="card-title fs-sm fw-medium">Attendance Perfomance</label>
-
                                 <ProgressBar className="progress-one ht-8 mt-2 mb-4">
                                     <ProgressBar now={70} variant="success" />
                                     <ProgressBar now={5} variant="orange" />
@@ -162,13 +150,9 @@ function Attendence() {
                                         ))}
                                     </tbody>
                                 </Table>
-
                             </Card.Body>
                         </Card>
-
                     </Col>
-
-
                 </Row>
             </div >
         </>
