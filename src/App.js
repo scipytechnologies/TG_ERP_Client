@@ -15,7 +15,7 @@ import "./scss/style.scss";
 import LandingPage from "./pages/LandingPage";
 import mainservice from "./services/mainservice";
 import { useSelector, useDispatch } from 'react-redux'
-import { isConnected, loggeduser, setRole } from './store/loginedUser';
+import { isConnected, loggeduser, setRole, setUserProfile } from './store/loginedUser';
 import Redirect from './routeProtection/ForceRedirect';
 import ProtectedRoute from './routeProtection/ProtectedRoute';
 import CompanyRegistraton from './scenes/company/CompanyRegistraton';
@@ -32,15 +32,10 @@ window.addEventListener("load", function () {
   }
 });
 
-
-
-
-
-
 export default function App() {
   const dispatch = useDispatch()
   const active = useSelector((state) => state.loginedUser.isConnected)
-  console.log(active);
+  const user = useSelector((state) => state.loginedUser)
 
 
   async function Auth() {
@@ -54,6 +49,7 @@ export default function App() {
           dispatch(loggeduser(res.data._id))
           dispatch(isConnected())
           dispatch(setRole(res.data.role))
+          fetchData(res.data._id)
         }
         else {
           console.log("error");
@@ -66,6 +62,27 @@ export default function App() {
       }
     }
   }
+
+  const fetchData = async(id) => {
+    console.log("fetch data initiated");
+    console.log(user);
+      const userData = await mainservice.GetUserById(id)
+      if(userData.data != null ){
+        console.log(userData.data,"userData");
+        const newUser = {
+          firstName: userData.data.firstName,
+          lastName: userData.data.lastName,
+          CompanyID: userData.data.Company
+        }
+        dispatch(setUserProfile(newUser))
+        console.log(user,"state");
+      }
+      else {
+        console.log("user data not found");
+      }
+  }
+
+
   useEffect(() => {
     Auth(active)
     // console.log(id);

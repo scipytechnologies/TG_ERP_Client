@@ -30,7 +30,12 @@ async function Index(data) {
 async function AddIndex(id,data) {
     const response = await apicall.apicall("put",5000,`companyRoute/editCompany/${id}`,data)
     return response
-}  
+}
+
+async function GetUserById(id){
+    const response = await apicall.apicall("get",5000,`getuser/${id}`)
+    return response
+}
 
 
 ///////////////////////////////////////////////{Company Api}/////////////////////////////////////////////
@@ -42,6 +47,9 @@ async function RegisterCompany(data) {
 async function InitializeCompany(id, data) {
     const response = await apicall.apicall("put", 5000, `initializeCompany/${id}`, data)
     return response;
+}
+async function GetCompanyById(id){
+    const response = await apicall.apicall("get",5000,`companyRoute/getidCompany/${id}`)
 }
 
 //////////////////////////////////////{CRM-Account}////////////////////////////////////
@@ -314,7 +322,7 @@ async function OffersInHome() {
     return response;
 }
 
-    export default {Auth,SignUp,Login,Index,AddIndex,RegisterCompany,InitializeCompany,MainProductsInHome,CategoriesInHome,LatestProductsInHome,RandomProductsInHome,CategoriesWithProductsForHome,TopSellingProductsInHome,OffersInHome,
+    export default {Auth,SignUp,Login,GetUserById,Index,AddIndex,RegisterCompany,GetCompanyById,InitializeCompany,MainProductsInHome,CategoriesInHome,LatestProductsInHome,RandomProductsInHome,CategoriesWithProductsForHome,TopSellingProductsInHome,OffersInHome,
     createAccount,createAppointment,createCustomerCollection,createCustomer,createOpportunity,AddEmployee,addInventorymanagementDetails,addPrjmanagerDetails,addProductDetails,purchase,purchaseitem,purchaseorder,rfq,invoice,sales,
     accountDetails,appointmentDetails,customerDetails,opportunityDetails,employeeDetails,getInventorymanagementDetails,getPrjmanagerDetails,getProductDetails,purchasedetails,purchaseitemdetails,purchaseorderdetails,
     rfqdetails,invoicedetails,salesdetails,createEmployeeCollection,createInventorymanagementCollection,createPrjmanagerCollection,createProductCollection,createPurchaseCollection,createPurchaseitemCollection,createPurchaseorderCollection,
