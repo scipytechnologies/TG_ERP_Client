@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from 'react';
 import HeaderMobile from "../../layouts/HeaderMobile"
 import { Col, Row, Form, Nav, Card, Button, Table } from "react-bootstrap";

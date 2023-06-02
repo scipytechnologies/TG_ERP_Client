@@ -1,23 +1,25 @@
-
+.calendar-day .empty{
+  background-color: rgb(238, 237, 236);
+}
 
 
 .calendar-day .absent {
-    background-color: #d34848;
+    background-color:  #d34848e3;
     color: white;
   }
   
   .calendar-day .present {
-    background-color: #579d57;
+    background-color:  #579d57b3;
     color: white;
   }
 
   .calendar-day .wfh {
-    background-color: #48c0d3;
+    background-color:  #48c0d3b3;
     color: white;
   }
   
   .calendar-day .halfDay {
-    background-color: #4aaf83;
+    background-color:  #4aaf83c4;
     color: white;
   }
   

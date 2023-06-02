@@ -8,8 +8,9 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from '@fullcalendar/timegrid'
 import PerfectScrollbar from "react-perfect-scrollbar";
-import { Calendar } from '@fullcalendar/core';
 import Calender from './calender/Calender';
+
+// https://programmingwithmosh.com/react/build-a-react-calendar-component-from-scratch/
 
 function Attendence() {
     // to maintain dark and light mode
@@ -17,6 +18,39 @@ function Attendence() {
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
 
+    // data
+    const data = [
+        { status: "absent", date: "2023-06-01" },
+        { status: "halfDay", date: "2023-06-02" },
+        { status: "wfh", date: "2023-06-03" },
+        // { status: "present", date: "2023-06-04" },
+        { status: "halfDay", date: "2023-06-05" },
+        { status: "absent", date: "2023-06-06" },
+        { status: "absent", date: "2023-06-07" },
+        { status: "wfh", date: "2023-06-08" },
+        { status: "present", date: "2023-06-09" },
+        { status: "halfDay", date: "2023-06-10" },
+        // { status: "absent", date: "2023-06-11" },
+        { status: "halfDay", date: "2023-06-12" },
+        { status: "wfh", date: "2023-06-13" },
+        { status: "present", date: "2023-06-14" },
+        { status: "halfDay", date: "2023-06-15" },
+        { status: "absent", date: "2023-06-16" },
+        { status: "absent", date: "2023-06-17" },
+        // { status: "wfh", date: "2023-06-18" },
+        { status: "present", date: "2023-06-19" },
+        { status: "halfDay", date: "2023-06-20" },
+        { status: "absent", date: "2023-06-21" },
+        { status: "halfDay", date: "2023-06-22" },
+        { status: "wfh", date: "2023-06-23" },
+        { status: "present", date: "2023-06-24" },
+        // { status: "halfDay", date: "2023-06-25" },
+        { status: "absent", date: "2023-06-26" },
+        { status: "absent", date: "2023-06-27" },
+        { status: "wfh", date: "2023-06-28" },
+        { status: "present", date: "2023-06-29" },
+        { status: "halfDay", date: "2023-06-30" },
+    ];
 
     // additional
     const [isSidebarShow, setSidebarShow] = useState(false);
@@ -36,49 +70,15 @@ function Attendence() {
                                 </ol>
                                 <h4 className="main-title mb-0">Attendence</h4>
                             </div>
-                            {/* <div className="d-flex gap-2 mt-3 mt-md-6">
-                        <Button variant="primary" className="d-flex align-items-center gap-2" onClick={() => navigate('/dashboard/HRM/addHRM')}>
-                            <i className="ri-bar-chart-2-line fs-18 lh-1"></i>Add HRM<span className="d-none d-sm-inline"></span>
-                        </Button>
-                    </div> */}
+
                         </div>
 
                     </Col>
                     <Col xs="12" md="8" >
-                        {/* <FullCalendar
-                            plugins={[dayGridPlugin, timeGridPlugin]}
-                            initialView="dayGridMonth"
-                            events={[
-                                // event data...
-                                {
-                                    title: 'Absent',
-                                    start: '2023-05-01',
 
-                                    backgroundColor: 'red',
-                                    resourceEditable: false // resource not editable for this event
-                                },
-                                {
-                                    title: 'Present',
-                                    start: '2023-05-02',
-
-                                    backgroundColor: 'green',
-                                    resourceEditable: false // resource not editable for this event
-                                },
-                                {
-                                    title: 'HalfDay',
-                                    start: '2023-05-03',
-
-                                    backgroundColor: 'orange',
-                                    resourceEditable: false // resource not editable for this event
-                                }
-                            ]}
-                            eventRender={(event, element) => {
-                                element.style.backgroundColor = "red";
-                            }}
-                        /> */}
 
                         {/* calender stucture */}
-                        <Calender />
+                        <Calender data={data} />
                     </Col>
 
                     <Col xs="12" md="4" >

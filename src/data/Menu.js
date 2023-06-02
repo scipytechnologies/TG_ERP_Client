@@ -1,7 +1,7 @@
 const scenes = [
   {
-    "label": "Company Registration",
-    "link": "/dashboard/company-registration",
+    "label": "Dashboard",
+    "link": "/dashboard/home",
     "icon": "ri-building-4-line"
   },
   {
