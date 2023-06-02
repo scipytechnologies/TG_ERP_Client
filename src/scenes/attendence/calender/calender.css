@@ -4,22 +4,22 @@
 
 
 .calendar-day .absent {
-    background-color:  #d34848e3;
-    color: white;
+    background-color:  #DC3545;
+    color: #fff;
   }
   
   .calendar-day .present {
-    background-color:  #579d57b3;
-    color: white;
+    background-color:  #0CB785;
+    color: #fff;
   }
 
   .calendar-day .wfh {
-    background-color:  #48c0d3b3;
-    color: white;
+    background-color:  #506FD9;
+    color: #fff;
   }
   
   .calendar-day .halfDay {
-    background-color:  #4aaf83c4;
-    color: white;
+    background-color:  #EE7713;
+    color: #fff;
   }
   
