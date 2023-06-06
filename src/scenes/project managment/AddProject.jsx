@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
+import { useSelector } from 'react-redux';
 
 function PostProject() {
   // to maintain dark and light mode
@@ -12,6 +13,8 @@ function PostProject() {
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
   const [form, setform] = useState("")
+  const index = useSelector((state)=>state.index)
+  console.log(index.PRJID,"Project");
   const onChangeHandler = (event) => {
     setform({
       ...form,
@@ -20,7 +23,7 @@ function PostProject() {
   }
   async function addPrjmanagerDetails(form) {
     console.log(form);
-    const res = await mainservice.addPrjmanagerDetails(form);
+    const res = await mainservice.addPrjmanagerDetails(form,index.PRJID);
     if (res.data != null) {
       console.log("Project Added");
     }

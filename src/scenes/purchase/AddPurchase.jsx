@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom';
 import mainservice from '../../services/mainservice';
+import { useSelector } from 'react-redux';
 
 function AddProject() {
   // to maintain dark and light mode
@@ -12,6 +13,8 @@ function AddProject() {
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
   const [form, setform] = useState("")
+  const index = useSelector((state)=>state.index)
+  console.log(index.PurchaseID,"Purchase");
   const onChangeHandler = (event) => {
     setform({
       ...form,
@@ -26,7 +29,7 @@ function AddProject() {
 }
 
 async function purchase(form) {
-  const res = await mainservice.purchase(form);
+  const res = await mainservice.purchase(form,index.PurchaseID);
   if(res.data != null) {
     console.log ("Purchase Added");
   }

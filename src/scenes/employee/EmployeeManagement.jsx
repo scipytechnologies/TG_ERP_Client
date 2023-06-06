@@ -8,6 +8,7 @@ import { Grid } from "gridjs-react";
 import { _ } from "gridjs-react";
 import mainservice from '../../services/mainservice';
 import Avatar from '../../components/Avatar';
+import { useSelector } from 'react-redux';
 
 
 function EmployeeManagement() {
@@ -17,12 +18,15 @@ function EmployeeManagement() {
     const navigate = useNavigate()
     const [user, setUser] = useState("")
     const [data, setData] = useState([])
+    const index = useSelector((state)=>state.index)
+    console.log(index);
+
 
     async function employeeDetails() {
-        const res = await mainservice.employeeDetails();
-        console.log('employee Details ' + JSON.stringify(res))
-        console.log(res)
-        setData(res.data)
+        const res = await mainservice.employeeDetails(index.EmployeeID);
+        // console.log('employee Details ' + JSON.stringify(res))
+        console.log(res.data.employees)
+        setData(res.data.employees)
     }
     useEffect(() => {
         employeeDetails()
