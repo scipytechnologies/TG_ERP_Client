@@ -6,6 +6,7 @@ import { Button, Card, Col, Nav, ProgressBar, Row, Form, Dropdown, Offcanvas, Bu
 import { Link, useNavigate } from 'react-router-dom'
 import { Grid, _ } from "gridjs-react";
 import mainservice from '../../services/mainservice';
+import { useSelector } from 'react-redux';
 
 function Opportunity() {
     // to maintain dark and light mode
@@ -13,12 +14,13 @@ function Opportunity() {
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
     const [data, setData] = useState([])
+    const index = useSelector((state)=>state.index)
 
     async function opportunityDetails() {
-        const res = await mainservice.opportunityDetails();
-        console.log('Opportunity Details ' + JSON.stringify(res))
-        console.log(res)
-        setData(res.data)
+        const res = await mainservice.opportunityDetails(index.OpportunityID);
+        // console.log('Opportunity Details ' + JSON.stringify(res))
+        console.log(res.data.opportunitys)
+        setData(res.data.opportunitys)
     }
     useEffect(() => {
         opportunityDetails()

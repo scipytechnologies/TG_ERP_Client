@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
 import { Grid } from "gridjs-react";
 import { _ } from "gridjs-react";
+import { useSelector } from 'react-redux';
 
 
 function RfqList() {
@@ -19,12 +20,14 @@ function RfqList() {
 
   const [user, setUser] = useState("")
   const [data, setData] = useState([])
+  const index = useSelector((state)=>state.index)
+  console.log(index);
 
   async function rfqdetails() {
-    const res = await mainservice.rfqdetails();
-    console.log('RFQ Details ' + JSON.stringify(res))
-    console.log(res)
-    setData(res.data)
+    const res = await mainservice.rfqdetails(index.RFQID);
+    // console.log('RFQ Details ' + JSON.stringify(res))
+    console.log(res.data.rfqs)
+    setData(res.data.rfqs)
   }
   useEffect(() => {
     rfqdetails()

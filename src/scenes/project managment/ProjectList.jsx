@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
 import { _ } from "gridjs-react";
 import { Grid } from "gridjs-react"
+import { useSelector } from 'react-redux';
 
 function ProjectList() {
     // to maintain dark and light mode
@@ -15,14 +16,16 @@ function ProjectList() {
     const navigate = useNavigate()
     const [user, setUser] = useState("")
     const [data, setData] = useState([])
+    const index = useSelector((state)=>state.index)
+    console.log(index);
 
 
 
     async function getPrjmanagerDetails() {
-        const res = await mainservice.getPrjmanagerDetails();
-        console.log('Project Management Details ' + JSON.stringify(res))
-        console.log(res)
-        setData(res.data)
+        const res = await mainservice.getPrjmanagerDetails(index.PRJID);
+        // console.log('Project Management Details ' + JSON.stringify(res))
+        console.log(res.data.prjmanagers)
+        setData(res.data.prjmanagers)
     }
     useEffect(() => {
         getPrjmanagerDetails()

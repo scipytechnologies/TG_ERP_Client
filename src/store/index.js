@@ -2,7 +2,18 @@ import { createSlice } from '@reduxjs/toolkit'
 
 
 const initialState = {
-    CrmID:''
+    CrmID:'',
+    AppointmentID:'',
+    OpportunityID:'',
+    EmployeeID:'',
+    InventoryID:'',
+    InvoiceID:'',
+    PRJID:'',
+    RFQID:'',
+    PurchaseitemID:'',
+    PurchaseorderID:'',
+    PurchaseID:'',
+    SalesID:''
   }
 
   export const IndexSlice = createSlice({
@@ -10,9 +21,20 @@ const initialState = {
     initialState,
     reducers: {  
        setindex :(state,action) =>{
-        const {CrmID} = action.payload;
+        const {CrmID,AppointmentID,OpportunityID,EmployeeID,InventoryID,InvoiceID,PRJID,RFQID,PurchaseitemID,PurchaseorderID,PurchaseID,SalesID} = action.payload;
         state.CrmID= CrmID; 
-       } 
+        state.AppointmentID = AppointmentID;
+        state.OpportunityID = OpportunityID;
+        state.EmployeeID = EmployeeID;
+        state.InventoryID = InventoryID;
+        state.InvoiceID = InvoiceID;
+        state.PRJID = PRJID;
+        state.RFQID = RFQID;
+        state.PurchaseitemID = PurchaseitemID;
+        state.PurchaseorderID = PurchaseorderID;
+        state.PurchaseID = PurchaseID;
+        state.SalesID = SalesID;
+      } 
         
   }
   })

@@ -113,7 +113,18 @@ export default function App() {
       if (index.data != null) {
         console.log(index.data,"index");
         const newIndex = {
-          CrmID : index.data.CrmID
+          CrmID : index.data.CrmID,
+          AppointmentID : index.data.AppointmentID,
+          OpportunityID : index.data.OpportunityID,
+          EmployeeID : index.data.EmployeeID,
+          InventoryID : index.data.InventoryID,
+          InvoiceID : index.data.InvoiceID,
+          PRJID : index.data.PRJID,
+          RFQID : index.data.RFQID,
+          PurchaseitemID : index.data.PurchaseitemID,
+          PurchaseorderID : index.data.PurchaseorderID,
+          PurchaseID: index.data.PurchaseID,
+          SalesID : index.data.SalesID
         }
         dispatch(setindex(newIndex))
         console.log(indexData,"index from state");

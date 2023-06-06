@@ -8,12 +8,15 @@ import mainservice from '../../services/mainservice';
 import { h } from "gridjs";
 import { Grid } from "gridjs-react"
 import { _ } from "gridjs-react";
+import { useSelector } from 'react-redux';
 
 function Appoinment() {
     // to maintain dark and light mode
     const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
+    const index = useSelector((state)=>state.index)
+    console.log(index);
 
     // state for drop down of view more button
     const [showDropdown, setShowDropdown] = useState(false);
@@ -25,10 +28,10 @@ function Appoinment() {
     // axios get interceptor for table data
     const [data, setData] = useState([])
     async function appointmentDetails() {
-        const res = await mainservice.appointmentDetails();
-        console.log('Appointment Details ' + JSON.stringify(res))
-        console.log(res)
-        setData(res.data)
+        const res = await mainservice.appointmentDetails(index.AppointmentID);
+        // console.log('Appointment Details ' + JSON.stringify(res))
+        console.log(res.data.appointments)
+        setData(res.data.appointments)
     }
     useEffect(() => {
         appointmentDetails()

@@ -5,14 +5,16 @@ import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
+import { useSelector } from 'react-redux';
 
 function AddCrm() {
   // to maintain dark and light mode
   const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
-
-  const [form, setform] = useState({});
+  const [form, setform] = useState("");
+  const index = useSelector((state)=>state.index)
+  console.log(index.InvoiceID,"Invoice");
   const onChangeHandler = (event) => {
     setform({
       ...form,
@@ -23,7 +25,7 @@ function AddCrm() {
 
     async function PostInvoice(form) {
     console.log(form);
-    const res = await mainservice.invoice(form);
+    const res = await mainservice.invoice(form,index.InvoiceID);
     if (res.data != null) {
       console.log("Invoice Added");
     }

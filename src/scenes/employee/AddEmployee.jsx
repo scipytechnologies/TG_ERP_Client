@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
+import { useSelector } from 'react-redux';
 
 
 
@@ -14,6 +15,8 @@ function PostEmployee() {
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
   const [form, setform] = useState("")
+  const index = useSelector((state)=>state.index)
+  console.log(index.EmployeeID,"EmployeeID");
   const onChangeHandler = (event) => {
     setform({
       ...form,
@@ -23,7 +26,7 @@ function PostEmployee() {
   
   async function AddEmployee(form) {
     console.log(form);
-    const res = await mainservice.AddEmployee(form);
+    const res = await mainservice.addEmployee(form,index.EmployeeID);
     if (res.data != null) {
       console.log("Employee Added");
     }

@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Grid } from "gridjs-react";
 import { _ } from "gridjs-react";
 import mainservice from '../../services/mainservice';
+import { useSelector } from 'react-redux';
 
 function RfqPurchaseOrder() {
   // to maintain dark and light mode
@@ -18,12 +19,15 @@ function RfqPurchaseOrder() {
 
   const [user, setUser] = useState("")
   const [data, setData] = useState([])
+  const index = useSelector((state)=>state.index)
+  console.log(index);
+
 
   async function purchaseorderdetails() {
-    const res = await mainservice.purchaseorderdetails();
-    console.log('RFQ Purchase Order Details ' + JSON.stringify(res))
-    console.log(res)
-    setData(res.data)
+    const res = await mainservice.purchaseorderdetails(index.PurchaseorderID);
+    // console.log('RFQ Purchase Order Details ' + JSON.stringify(res))
+    console.log(res.data.purchaseorders)
+    setData(res.data.purchaseorders)
   }
   useEffect(() => {
     purchaseorderdetails()

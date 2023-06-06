@@ -5,14 +5,16 @@ import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom';
 import mainservice from '../../services/mainservice';
+import { useSelector } from 'react-redux';
 
 function AddProduct() {
   // to maintain dark and light mode
   const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
-
   const [form, setform] = useState("")
+  const index = useSelector((state)=>state.index)
+  console.log(index.InventoryID,"Inventory");
   const onChangeHandler = (event) => {
     setform({
       ...form,
@@ -26,7 +28,8 @@ function AddProduct() {
   }
 
   async function addInventorymanagement(form) {
-    const res = await mainservice.addInventorymanagementDetails(form);
+    console.log(form);
+    const res = await mainservice.addInventorymanagementDetails(form,index.InventoryID);
     if (res.data != null) {
       console.log("Product Added");
     }
