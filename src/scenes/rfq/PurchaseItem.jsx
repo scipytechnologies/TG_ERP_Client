@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
+import { useSelector } from 'react-redux';
 
 
 function PurchaseItem() {
@@ -13,7 +14,9 @@ function PurchaseItem() {
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
 
-  const [form, setform] = useState({});
+  const [form, setform] = useState("");
+  const index = useSelector((state)=>state.index)
+  console.log(index.PurchaseitemID,"Purchaseitem");
   const onChangeHandler = (event) => {
     setform({
       ...form,
@@ -24,7 +27,7 @@ function PurchaseItem() {
 
   async function PostPurchaseItem(form) {
     console.log(form);
-    const res = await mainservice.purchaseitem(form);
+    const res = await mainservice.purchaseitem(form,index.PurchaseitemID);
     if (res.data != null) {
       console.log("PurchaseItem Added");
     }

@@ -7,21 +7,23 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Grid } from "gridjs-react"
 import mainservice from '../../services/mainservice';
 import { _ } from "gridjs-react";
+import { useSelector } from 'react-redux';
 
 function ProductManagement() {
   // to maintain dark and light mode
   const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
-
-  // get
-
+  const [user, setUser] = useState("")
   const [data, setData] = useState([])
+  const index = useSelector((state)=>state.index)
+  console.log(index);
+
   async function getInventorymanagementDetails() {
-    const res = await mainservice.getInventorymanagementDetails();
-    console.log('Inventory Details ' + JSON.stringify(res))
-    console.log(res)
-    setData(res.data)
+    const res = await mainservice.getInventorymanagementDetails(index.InventoryID);
+    // console.log('Inventory Details ' + JSON.stringify(res))
+    console.log(res.data.inventorymanagements)
+    setData(res.data.inventorymanagements)
   }
   useEffect(() => {
     getInventorymanagementDetails()

@@ -25,10 +25,10 @@ function AddCrm() {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    createAccount(form);
+    createCustomer(form);
 }
 
-async function createAccount(form) {
+async function createCustomer(form) {
   const res = await mainservice.createCustomer(form,index.CrmID);
   if(res.data != null) {
     console.log ("Account Added");
@@ -37,8 +37,6 @@ async function createAccount(form) {
     console.log(res.message);
   }
 }
-
-
   return (
     <>
     <form onSubmit={onSubmitHandler} >

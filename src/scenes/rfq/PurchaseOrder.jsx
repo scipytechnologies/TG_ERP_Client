@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
-
+import { useSelector } from 'react-redux';
 
 function PurchaseOrder() {
   // to maintain dark and light mode
@@ -13,7 +13,9 @@ function PurchaseOrder() {
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
 
-  const [form, setform] = useState({});
+  const [form, setform] = useState("");
+  const index = useSelector((state)=>state.index)
+  console.log(index.PurchaseorderID,"Purchaseorder");
   const onChangeHandler = (event) => {
     setform({
       ...form,
@@ -24,7 +26,7 @@ function PurchaseOrder() {
 
   async function PostPurchaseOrder(form) {
     console.log(form);
-    const res = await mainservice.purchaseorder(form);
+    const res = await mainservice.purchaseorder(form,index.PurchaseorderID);
     if (res.data != null) {
       console.log("PurchaseOrder Added");
     }

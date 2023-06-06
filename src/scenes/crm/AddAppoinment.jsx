@@ -5,12 +5,15 @@ import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
+import { useSelector } from 'react-redux';
 
 function AddAppointment() {
   // to maintain dark and light mode
   const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
+  const index = useSelector((state)=>state.index)
+  console.log(index.AppointmentID,"appointmentID");
 
   const [form, setform] = useState({});
   const onChangeHandler = (event) => {
@@ -23,12 +26,12 @@ function AddAppointment() {
 
   async function PostAppointment(form) {
     console.log(form);
-    const res = await mainservice.createAppointment(form);
+    const res = await mainservice.createAppointment(form,index.AppointmentID);
     if (res.data != null) {
       console.log("Appointment Added");
     }
     else {
-      console.log(res);
+      console.log(res.message);
     }
   }
 

@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
 import { Grid } from "gridjs-react"
 import { _ } from "gridjs-react";
+import { useSelector } from 'react-redux';
 
 
 function PurchaseList() {
@@ -19,12 +20,15 @@ function PurchaseList() {
 
     const [user, setUser] = useState("")
     const [data, setData] = useState([])
+    const index = useSelector((state)=>state.index)
+    console.log(index);
+
 
     async function purchasedetails() {
-        const res = await mainservice.purchasedetails();
-        console.log('Purchase Details ' + JSON.stringify(res))
-        console.log(res)
-        setData(res.data)
+        const res = await mainservice.purchasedetails(index.PurchaseID);
+        // console.log('Purchase Details ' + JSON.stringify(res))
+        console.log(res.data.purchases)
+        setData(res.data.purchases)
     }
     useEffect(() => {
         purchasedetails()
