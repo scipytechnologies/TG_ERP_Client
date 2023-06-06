@@ -58,6 +58,10 @@ function Customer() {
                         </ol>
                         <h4 className="main-title mb-0">Customer List</h4>
                     </div>
+
+                    <Button variant="primary" className="d-flex align-items-center gap-2" onClick={() => navigate('/dashboard/crm/addCrm')}>
+                        <i className="ri-bar-chart-2-line fs-18 lh-1"></i>Add Customer<span className="d-none d-sm-inline"></span>
+                    </Button>
                 </div>
 
                 <Card>

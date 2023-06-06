@@ -14,7 +14,7 @@ function Opportunity() {
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
     const [data, setData] = useState([])
-    const index = useSelector((state)=>state.index)
+    const index = useSelector((state) => state.index)
 
     async function opportunityDetails() {
         const res = await mainservice.opportunityDetails(index.OpportunityID);
@@ -50,6 +50,10 @@ function Opportunity() {
                             </ol>
                             <h4 className="main-title mb-0">Opportunity List</h4>
                         </div>
+
+                        <Button variant="primary" className="d-flex align-items-center gap-2" onClick={() => navigate('/dashboard/crm/addOpportunity')}>
+              <i className="ri-bar-chart-2-line fs-18 lh-1"></i>Add Opportunity<span className="d-none d-sm-inline"></span>
+            </Button>
                     </div>
 
 

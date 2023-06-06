@@ -28,67 +28,55 @@ function CRM() {
             </ol>
             <h4 className="main-title mb-0">Customer Management</h4>
           </div>
-          <div className="d-flex gap-2 mt-3 mt-md-6">
-            <Button variant="primary" className="d-flex align-items-center gap-2" onClick={() => navigate('/dashboard/crm/addCrm')}>
-              <i className="ri-bar-chart-2-line fs-18 lh-1"></i>Add Customer<span className="d-none d-sm-inline"></span>
-            </Button>
-            <Button variant="primary" className="d-flex align-items-center gap-2" onClick={() => navigate('/dashboard/crm/addOpportunity')}>
-              <i className="ri-bar-chart-2-line fs-18 lh-1"></i>Add Opportunity<span className="d-none d-sm-inline"></span>
-            </Button>
-            <Button variant="primary" className="d-flex align-items-center gap-2" onClick={() => navigate('/dashboard/crm/addAppoinment')}>
-              <i className="ri-bar-chart-2-line fs-18 lh-1"></i>Add Appoinment<span className="d-none d-sm-inline"></span>
-            </Button>
-
-          </div>
         </div>
 
         {/* analatics cards */}
         <Row className="g-3">
 
-          <Col xs="12" md="4" lg="2">
+          <Col xs="12" md="4">
             <Card className='card-one p-2'>
-              <div className="d-flex align-items-center">
-                <div className="card-icon bg-primary"><i className="ri-team-fill"></i></div>
-                <div className="ms-2">
-                  <h4 className="card-value mb-1">{customerCount}</h4>
-                  <span className="d-block fs-sm fw-medium">Customers</span>
+              <div className="d-flex align-items-center justify-content-between">
+                <div className="d-flex align-items-center">
+                  <div className="card-icon bg-primary"><i className="ri-team-fill"></i></div>
+                  <div className="ms-2">
+                    {/* <h4 className="card-value mb-1">{customerCount}</h4> */}
+                    <span className="d-block fs-lg fw-medium">Customers</span>
+                  </div>
                 </div>
+                <h2 className="performance-value mb-0">{customerCount} <small className="text-success d-flex align-items-center"><i className="ri-arrow-up-line"></i> 2.8%</small></h2>
               </div>
             </Card>
           </Col>
 
-          <Col xs="12" md="4" lg="2">
+          <Col xs="12" md="4">
             <Card className='card-one p-2'>
-              <div className="d-flex align-items-center">
-                <div className="card-icon bg-ui-02"><i className="ri-line-chart-fill"></i></div>
-                <div className="ms-2">
-                  <h4 className="card-value mb-1">200</h4>
-                  <span className="d-block fs-sm fw-medium">Opportunites</span>
+              <div className="d-flex align-items-center justify-content-between">
+                <div className="d-flex align-items-center">
+                  <div className="card-icon bg-ui-02"><i className="ri-line-chart-fill"></i></div>
+                  <div className="ms-2">
+                    {/* <h4 className="card-value mb-1">200</h4> */}
+                    <span className="d-block fs-lg fw-medium">Opportunites</span>
+                  </div>
                 </div>
+                <h2 className="performance-value mb-0">50 <small className="text-success d-flex align-items-center"><i className="ri-arrow-up-line"></i> 2.8%</small></h2>
               </div>
             </Card>
           </Col>
 
-          <Col xs="12" md="4" lg="2">
+          <Col xs="12" md="4">
             <Card className='card-one p-2'>
-              <div className="d-flex align-items-center">
-                <div className="card-icon bg-ui-03"><i className="ri-exchange-funds-line"></i></div>
-                <div className="ms-2">
-                  <h4 className="card-value mb-1">150</h4>
-                  <span className="d-block fs-sm fw-medium">Leads</span>
+              <div className="d-flex align-items-center justify-content-between">
+                <div className='d-flex align-items-center'>
+                  <div className="card-icon bg-ui-03"><i className="ri-exchange-funds-line"></i></div>
+                  <div className="ms-2">
+                    {/* <h4 className="card-value mb-1">150</h4> */}
+                    <span className="d-block fs-lg fw-medium">Leads</span>
+                  </div>
                 </div>
+                <h2 className="performance-value mb-0">100<small className="text-success d-flex align-items-center"><i className="ri-arrow-up-line"></i> 2.8%</small></h2>
               </div>
             </Card>
           </Col>
-
-          <Col lg="6">
-            <Card className="card-one">
-              <Card.Body className="overflow-hidden">
-                <h6 className="text-dark fw-semibold mb-1">New Tasks</h6>
-              </Card.Body>
-            </Card>
-          </Col>
-
 
 
           <Col xl="6">
