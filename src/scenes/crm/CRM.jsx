@@ -32,7 +32,6 @@ function CRM() {
 
         {/* analatics cards */}
         <Row className="g-3">
-
           <Col xs="12" md="4">
             <Card className='card-one p-2'>
               <div className="d-flex align-items-center justify-content-between">
