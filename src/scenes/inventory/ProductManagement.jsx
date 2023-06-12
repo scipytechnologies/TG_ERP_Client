@@ -16,7 +16,7 @@ function ProductManagement() {
   const navigate = useNavigate()
   const [user, setUser] = useState("")
   const [data, setData] = useState([])
-  const index = useSelector((state)=>state.index)
+  const index = useSelector((state) => state.index)
   console.log(index);
 
   async function getInventorymanagementDetails() {
@@ -52,6 +52,11 @@ function ProductManagement() {
             </ol>
             <h4 className="main-title mb-0">Product List</h4>
           </div>
+
+
+          <Button variant="primary" className="d-flex align-items-center gap-2" onClick={() => navigate('/dashboard/inventory/AddProduct')}>
+            <i className="ri-bar-chart-2-line fs-18 lh-1"></i>Add Product<span className="d-none d-sm-inline"></span>
+          </Button>
 
         </div>
 

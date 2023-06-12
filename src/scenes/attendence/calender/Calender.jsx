@@ -12,7 +12,6 @@ const Calendar = ({ data }) => {
     const allmonths = moment.months();
     const [selectedDay, setSelectedDay] = useState(null);
 
-
     const daysInMonth = () => {
         return dateObject.daysInMonth();
     };
@@ -26,9 +25,7 @@ const Calendar = ({ data }) => {
     };
 
     const firstDayOfMonth = () => {
-        let firstDay = moment(dateObject)
-            .startOf("month")
-            .format("d"); // Day of week 0...1..5...6
+        let firstDay = moment(dateObject).startOf("month").format("d"); // Day of week 0...1..5...6
         return firstDay;
     };
 
@@ -66,6 +63,7 @@ const Calendar = ({ data }) => {
                 </td>
             );
         });
+
         let rows = [];
         let cells = [];
 
@@ -79,6 +77,7 @@ const Calendar = ({ data }) => {
             }
         });
         rows.push(cells);
+
         let monthlist = rows.map((d, i) => {
             return <tr key={i}>{d}</tr>;
         });
@@ -102,23 +101,13 @@ const Calendar = ({ data }) => {
     };
 
     const onPrev = () => {
-        let curr = "";
-        if (showYearTable === true) {
-            curr = "year";
-        } else {
-            curr = "month";
-        }
-        setDateObject(dateObject.subtract(1, curr));
+        let curr = showYearTable ? "year" : "month";
+        setDateObject(moment(dateObject).subtract(1, curr));
     };
 
     const onNext = () => {
-        let curr = "";
-        if (showYearTable === true) {
-            curr = "year";
-        } else {
-            curr = "month";
-        }
-        setDateObject(dateObject.add(1, curr));
+        let curr = showYearTable ? "year" : "month";
+        setDateObject(moment(dateObject).add(1, curr));
     };
 
     const setYear = (year) => {
@@ -147,11 +136,7 @@ const Calendar = ({ data }) => {
 
     const YearTable = (props) => {
         let months = [];
-        let nextten = moment()
-            .set("year", props)
-            .add("year", 12)
-            .format("Y");
-
+        let nextten = moment().set("year", props).add("year", 12).format("Y");
         let tenyear = getDates(props, nextten);
 
         tenyear.map((data, index) => {
@@ -167,6 +152,7 @@ const Calendar = ({ data }) => {
                 </td>
             );
         });
+
         let rows = [];
         let cells = [];
 
@@ -180,6 +166,7 @@ const Calendar = ({ data }) => {
             }
         });
         rows.push(cells);
+
         let yearlist = rows.map((d, i) => {
             return <tr key={i}>{d}</tr>;
         });
@@ -207,12 +194,11 @@ const Calendar = ({ data }) => {
 
     let blanks = [];
     for (let i = 0; i < firstDayOfMonth(); i++) {
-        blanks.push(<td key={i} className="calendar-day empty">{""}</td>);
+        blanks.push(<td key={-i} className="calendar-day empty">{""}</td>);
     }
 
     let daysInMonthArray = [];
     for (let d = 1; d <= daysInMonth(); d++) {
-        let currentDayClass = d === parseInt(currentDay()) ? "today" : "";
         const dayData = data.find((item) =>
             moment(item.date).isSame(moment(dateObject).date(d), 'day')
         );
@@ -225,7 +211,7 @@ const Calendar = ({ data }) => {
         daysInMonthArray.push(
             <td
                 key={d}
-                className={`calendar-day ${currentDayClass}  ${absent} ${present}  ${wfh}  ${halfDay}`}
+                className={`calendar-day ${absent} ${present} ${wfh} ${halfDay}`}
                 onClick={(e) => {
                     onDayClick(e, d);
                 }}
@@ -235,65 +221,47 @@ const Calendar = ({ data }) => {
         );
     }
 
-    var totalSlots = [...blanks, ...daysInMonthArray];
+    let totalSlots = [...blanks, ...daysInMonthArray];
     let rows = [];
     let cells = [];
 
-    totalSlots.forEach((row, i) => {
-        if (i % 7 !== 0) {
-            cells.push(row);
-        } else {
-            rows.push(cells);
+    totalSlots.forEach((slot, i) => {
+        if (i % 7 === 0 && cells.length > 0) {
+            rows.push(<tr key={rows.length}>{cells}</tr>);
             cells = [];
-            cells.push(row);
         }
-        if (i === totalSlots.length - 1) {
-            rows.push(cells);
-        }
+        cells.push(slot);
     });
 
-    let daysinmonth = rows.map((d, i) => {
-        console.log(d)
-        return <tr key={i}>{d}</tr>;
-    });
+    rows.push(<tr key={rows.length}>{cells}</tr>);
+
+    let daysinmonth = rows.map((row) => row);
 
     return (
         <div>
             <div>
-                {/* <Button
+                <Button
                     onClick={(e) => {
                         onPrev();
                     }}
                     className="rounded"
                 >
                     &lt;
-
-                </Button> */}
+                </Button>
                 <div className="d-flex align-items-center justify-content-between">
-
-
                     {!showMonthTable && (
-                        <p
-                            onClick={(e) => {
-                                showMonth();
-                            }}
-
-                        >
-                            {month()}
-                        </p>
+                        <p onClick={(e) => showMonth()}>{month()}</p>
                     )}
-                    <p onClick={(e) => toggleYearTable()}>
-                        {year()}
-                    </p>
+                    <p onClick={(e) => toggleYearTable()}>{year()}</p>
                 </div>
-                {/* <Button
+                <Button
                     onClick={(e) => {
                         onNext();
                     }}
                     className="rounded"
                 >
                     &gt;
-                </Button> */}
+                </Button>
             </div>
 
             <div>
@@ -305,7 +273,7 @@ const Calendar = ({ data }) => {
                 <div>
                     <Table bordered className="calendar-day">
                         <thead>
-                            <tr >{weekdayshortname}</tr>
+                            <tr>{weekdayshortname}</tr>
                         </thead>
                         <tbody>{daysinmonth}</tbody>
                     </Table>
