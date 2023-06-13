@@ -50,7 +50,18 @@ const Calendar = ({ data }) => {
 
     const MonthList = (props) => {
         let months = [];
-        props.data.map((data, index) => {
+        const currentYear = moment().year();
+        const currentMonth = moment().month();
+
+        props.data.forEach((data, index) => {
+            // Check if the current year is selected
+            if (dateObject.year() === currentYear) {
+                // Check if the month is beyond the current month
+                if (index > currentMonth) {
+                    return; // Skip rendering if it's beyond the current month
+                }
+            }
+
             months.push(
                 <td
                     key={index}
@@ -79,7 +90,7 @@ const Calendar = ({ data }) => {
         rows.push(cells);
 
         let monthlist = rows.map((d, i) => {
-            return <tr key={i}>{d}</tr>;
+            return <tr key={i} style={{ cursor: 'pointer' }}>{d}</tr>;
         });
 
         return (
@@ -94,21 +105,66 @@ const Calendar = ({ data }) => {
         );
     };
 
+
     const toggleYearTable = (e) => {
         setShowYearTable(true);
         setShowDateTable(false);
         setShowMonthTable(false);
     };
 
-    const onPrev = () => {
-        let curr = showYearTable ? "year" : "month";
-        setDateObject(moment(dateObject).subtract(1, curr));
-    };
-
     const onNext = () => {
         let curr = showYearTable ? "year" : "month";
-        setDateObject(moment(dateObject).add(1, curr));
+        let newDateObject;
+
+        if (curr === "month") {
+            // Get the current month and year
+            const currentMonth = dateObject.month();
+            const currentYear = dateObject.year();
+
+            // Check if it is the current month
+            if (currentMonth === moment().month() && currentYear === moment().year()) {
+                // If it is, set the new date object to the current date
+                newDateObject = moment();
+            } else {
+                // Otherwise, increment the month
+                newDateObject = moment(dateObject).add(1, "month");
+            }
+        } else {
+            // Increment the year
+            newDateObject = moment(dateObject).add(1, "year");
+        }
+
+        setDateObject(newDateObject);
     };
+
+
+
+
+    const onPrev = () => {
+        let curr = showYearTable ? "year" : "month";
+        let newDateObject;
+
+        if (curr === "month") {
+            newDateObject = moment(dateObject).subtract(1, "month");
+
+            // Limit the previous month to the lowest year in the year table
+            const lowestYear = moment().year() - 12;
+            if (newDateObject.year() < lowestYear) {
+                newDateObject = moment().year(lowestYear).startOf("year");
+            }
+        } else {
+            newDateObject = moment(dateObject).subtract(1, "year");
+
+            // Limit the previous year to the lowest year in the year table
+            const lowestYear = moment().year() - 12;
+            if (newDateObject.year() < lowestYear) {
+                newDateObject = moment().year(lowestYear);
+            }
+        }
+        setDateObject(newDateObject);
+    };
+
+
 
     const setYear = (year) => {
         let newDateObject = moment(dateObject).set("year", year);
@@ -134,30 +190,38 @@ const Calendar = ({ data }) => {
         return dateArray;
     };
 
-    const YearTable = (props) => {
-        let months = [];
-        let nextten = moment().set("year", props).add("year", 12).format("Y");
-        let tenyear = getDates(props, nextten);
+    const YearTable = () => {
+        const currentYear = moment().year();
+        const startYear = currentYear - 12;
+        const endYear = currentYear;
 
-        tenyear.map((data, index) => {
-            months.push(
+        const setYear = (year) => {
+            let newDateObject = moment(dateObject).year(year);
+            setDateObject(newDateObject);
+            setShowYearTable(false);
+            setShowMonthTable(true);
+        };
+
+        const years = [];
+        for (let year = startYear; year <= endYear; year++) {
+            years.push(
                 <td
-                    key={index}
+                    key={year}
                     className="calendar-month"
-                    onClick={(e) => {
-                        setYear(data);
-                    }}
+                
+                    onClick={() => setYear(year)}
+                    style={{ cursor: 'pointer' }}
                 >
-                    <span>{data}</span>
+                    <span>{year}</span>
                 </td>
             );
-        });
+        }
 
-        let rows = [];
+        const rows = [];
         let cells = [];
 
-        months.forEach((row, i) => {
-            if (i % 3 !== 0 || i === 0) {
+        years.forEach((row, index) => {
+            if (index % 3 !== 0 || index === 0) {
                 cells.push(row);
             } else {
                 rows.push(cells);
@@ -167,21 +231,20 @@ const Calendar = ({ data }) => {
         });
         rows.push(cells);
 
-        let yearlist = rows.map((d, i) => {
-            return <tr key={i}>{d}</tr>;
-        });
+        const yearList = rows.map((row, index) => <tr key={index}>{row}</tr>);
 
         return (
-            <Table bordered className="calendar-month">
+            <Table bordered>
                 <thead>
                     <tr>
                         <th colSpan="4">Select a Year</th>
                     </tr>
                 </thead>
-                <tbody>{yearlist}</tbody>
+                <tbody>{yearList}</tbody>
             </Table>
         );
     };
+
 
     const onDayClick = (e, d) => {
         setSelectedDay(d);
@@ -232,39 +295,54 @@ const Calendar = ({ data }) => {
         }
         cells.push(slot);
     });
+    // Add empty cells after the last day of the month
+    while (cells.length < 7) {
+        cells.push(<td key={`empty-${cells.length}`} className="calendar-day empty">{""}</td>);
+    }
 
     rows.push(<tr key={rows.length}>{cells}</tr>);
-
     let daysinmonth = rows.map((row) => row);
 
     return (
         <div>
-            <div>
-                <Button
-                    onClick={(e) => {
-                        onPrev();
-                    }}
-                    className="rounded"
-                >
-                    &lt;
-                </Button>
-                <div className="d-flex align-items-center justify-content-between">
+            <div className="d-flex align-items-start justify-content-between">
+                {
+                    !showMonthTable && !showYearTable ? (
+                        <button
+                            onClick={(e) => {
+                                onPrev();
+                            }}
+                            className="custom-calender-btn"
+                        >
+                            <i class="ri-arrow-left-s-line"></i>
+                        </button>
+                    ) :
+                        <div></div>
+                }
+
+                <div className="d-flex align-items-center justify-content-center" style={{ cursor: 'pointer' }}>
                     {!showMonthTable && (
-                        <p onClick={(e) => showMonth()}>{month()}</p>
+                        <p className="me-2" onClick={(e) => showMonth()}>{month()}</p>
                     )}
                     <p onClick={(e) => toggleYearTable()}>{year()}</p>
                 </div>
-                <Button
-                    onClick={(e) => {
-                        onNext();
-                    }}
-                    className="rounded"
-                >
-                    &gt;
-                </Button>
+                {
+                    !showMonthTable && !showYearTable ? (
+                        <button
+                            onClick={(e) => {
+                                onNext();
+                            }}
+                            className="custom-calender-btn"
+                        >
+                            <i class="ri-arrow-right-s-line"></i>
+                        </button>
+                    ) :
+                        <div></div>
+                }
+
             </div>
 
-            <div>
+            <div >
                 {showYearTable && <YearTable props={year()} />}
                 {showMonthTable && <MonthList data={moment.months()} />}
             </div>
