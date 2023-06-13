@@ -11,7 +11,7 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import Calender from './calender/Calender';
 import Avatar from "../../components/Avatar"
 
-// https://programmingwithmosh.com/react/build-a-react-calendar-component-from-scratch/
+
 
 function Attendence() {
     // to maintain dark and light mode
