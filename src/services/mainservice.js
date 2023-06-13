@@ -257,6 +257,22 @@ async function rfqdetails(id){
     return response
 
 }
+/////////////////////////////////////{RFQ-Vendor}/////////////////////////////////////////
+
+async function createVendorCollection(data) {
+    const response = await apicall.apicall("post",5007,"vendorRoute/createVendorCollection",data)
+    return response
+}
+async function vendor(data,id) {
+    const response = await apicall.apicall("post", 5007, `vendorRoute/vendor/${id}`, data)
+    return response
+
+}
+async function vendordetails(id){
+    const response = await apicall.apicall("get",5007,`vendorRoute/getvendor/${id}`)
+    return response
+
+}
 /////////////////////////////////{Sales-invoice}//////////////////////////////////
 
 async function createInvoiceCollection(data) {
@@ -329,5 +345,5 @@ async function OffersInHome() {
     createAccount,createAppointment,createCustomerCollection,createCustomer,createOpportunity,addEmployee,addInventorymanagementDetails,addPrjmanagerDetails,addProductDetails,purchase,purchaseitem,purchaseorder,rfq,invoice,sales,
     accountDetails,appointmentDetails,customerList,opportunityDetails,employeeDetails,getInventorymanagementDetails,getPrjmanagerDetails,getProductDetails,purchasedetails,purchaseitemdetails,purchaseorderdetails,
     rfqdetails,invoicedetails,salesdetails,createEmployeeCollection,createInventorymanagementCollection,createPrjmanagerCollection,createProductCollection,createPurchaseCollection,createPurchaseitemCollection,createPurchaseorderCollection,
-    createRfqCollection,createInvoiceCollection,createSalesCollection,createAccountCollection,createAppointmentCollection,createOpportunityCollection};
+    createRfqCollection,createInvoiceCollection,createSalesCollection,createAccountCollection,createAppointmentCollection,createOpportunityCollection,createVendorCollection,vendor,vendordetails};
     

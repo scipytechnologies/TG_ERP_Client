@@ -13,7 +13,8 @@ const initialState = {
     PurchaseitemID:'',
     PurchaseorderID:'',
     PurchaseID:'',
-    SalesID:''
+    SalesID:'',
+    VendorID:'',
   }
 
   export const IndexSlice = createSlice({
@@ -21,7 +22,7 @@ const initialState = {
     initialState,
     reducers: {  
        setindex :(state,action) =>{
-        const {CrmID,AppointmentID,OpportunityID,EmployeeID,InventoryID,InvoiceID,PRJID,RFQID,PurchaseitemID,PurchaseorderID,PurchaseID,SalesID} = action.payload;
+        const {CrmID,AppointmentID,OpportunityID,EmployeeID,InventoryID,InvoiceID,PRJID,RFQID,PurchaseitemID,PurchaseorderID,PurchaseID,SalesID,VendorID} = action.payload;
         state.CrmID= CrmID; 
         state.AppointmentID = AppointmentID;
         state.OpportunityID = OpportunityID;
@@ -34,6 +35,7 @@ const initialState = {
         state.PurchaseorderID = PurchaseorderID;
         state.PurchaseID = PurchaseID;
         state.SalesID = SalesID;
+        state.VendorID = VendorID;
       } 
         
   }
