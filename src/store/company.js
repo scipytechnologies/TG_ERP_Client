@@ -22,7 +22,7 @@ const initialState = {
         Email ,
         PhoneNo ,
         TagLine,
-        CompanyDescription ,
+        CompanyDescription,
         Address ,
         NoOFEmployee ,
         Industry ,
@@ -37,8 +37,7 @@ const initialState = {
         state.Industry = Industry;
         state.NoOFEmployee = NoOFEmployee;
         state.EntityType = EntityType;
-       } 
-        
+       }    
   }
   })
   
