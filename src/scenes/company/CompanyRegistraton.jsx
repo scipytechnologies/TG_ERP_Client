@@ -230,6 +230,16 @@ function CompanyRegistraton() {
             setError(true)
         }
 
+        // notification
+        const notification = await mainservice.createNotificationCollection(data)
+        if (notification.data != null) {
+            console.log(notification.data._id)
+        }
+        else {
+            console.log("error occured in creating NotificationCollection");
+            setError(true)
+        }
+
         if (error == false) {
             const index = {
                 CompanyID: id,
@@ -247,7 +257,8 @@ function CompanyRegistraton() {
                 RFQID: RFQ.data._id,
                 InvoiceID: invoice.data._id,
                 SalesID: sales.data._id,
-                VendorID: Vendor.data._id
+                VendorID: Vendor.data._id,
+                NotificationID: notification.data._id
             }
 
             PostIndex(index, id);
