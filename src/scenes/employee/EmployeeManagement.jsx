@@ -18,7 +18,7 @@ function EmployeeManagement() {
     const navigate = useNavigate()
     const [user, setUser] = useState("")
     const [data, setData] = useState([])
-    const index = useSelector((state)=>state.index)
+    const index = useSelector((state) => state.index)
     console.log(index);
 
 
@@ -55,6 +55,10 @@ function EmployeeManagement() {
                         </ol>
                         <h4 className="main-title mt-2 mb-0">Employees</h4>
                     </div>
+
+                    <Button variant="primary" className="d-flex align-items-center gap-2" onClick={() => navigate('/dashboard/Employee/addEmployee')}>
+                        <i className="ri-bar-chart-2-line fs-18 lh-1"></i>Add Employee<span className="d-none d-sm-inline"></span>
+                    </Button>
                 </div>
 
                 <Card>

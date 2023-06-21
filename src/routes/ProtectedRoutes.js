@@ -114,7 +114,6 @@ import RfqPurchaseList from "../scenes/rfq/RfqPurchaseList"
 import RfqList from "../scenes/rfq/RfqList"
 import RfqPurchaseOrder from "../scenes/rfq/RfqPurchaseOrder"
 
-
 import Vendor from "../scenes/vendor/Vendor"
 import AddVendor from "../scenes/vendor/AddVendor"
 
@@ -135,6 +134,7 @@ import AddProject from "../scenes/project managment/AddProject";
 import POS from "../scenes/pos/POS"
 
 import Attendence from "../scenes/attendence/Attendence"
+import VendorList from "../scenes/vendor/VendorList";
 
 const protectedRoutes = [
   { path: "dashboard/home", element: <Home /> },
@@ -175,6 +175,7 @@ const protectedRoutes = [
 
   { path: "dashboard/vendor/Vendor", element: <Vendor /> },
   { path: "dashboard/vendor/AddVendor", element: <AddVendor /> },
+  { path: "dashboard/vendor/vendorList", element: <VendorList/>},
 
 
   { path: "dashboard/purchase", element: <Purchase /> },

@@ -107,7 +107,7 @@ function Attendence() {
                     <Col xs="12" md="4" >
                         <Card>
                             <Card.Body className="p-3">
-                                <h2 className="performance-value mb-0">9.8 <small className="text-success d-flex align-items-center"><i className="ri-arrow-up-line"></i> 2.8%</small></h2>
+                                    
                                 <label className="card-title fs-sm fw-medium">Attendance Perfomance</label>
                                 <ProgressBar className="progress-one ht-8 mt-2 mb-4">
                                     <ProgressBar now={70} variant="success" />
