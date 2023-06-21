@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: erp-client
+spec:
+  selector:
+    matchLabels:
+      app: erp-client
+  template:
+    metadata:
+      labels:
+        app: erp-client
+    spec:
+      containers:
+      - name: erp-client
+        image: sooraj2022/erp-client
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000

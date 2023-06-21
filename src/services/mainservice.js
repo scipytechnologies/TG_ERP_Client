@@ -56,51 +56,51 @@ async function GetCompanyById(id){
 //////////////////////////////////////{CRM-Account}////////////////////////////////////
 
 async function createAccountCollection(data) {
-    const response = await apicall.apicall("post",5001,"accountRoute/createAccountCollection",data)
+    const response = await apicall.apicall("post",5001,"crm/accountRoute/createAccountCollection",data)
     return response
 }
 
 async function createAccount(data,id) {
-    const response = await apicall.apicall("post", 5001, `accountRoute/createAccount/${id}`, data)
+    const response = await apicall.apicall("post", 5001, `crm/accountRoute/createAccount/${id}`, data)
     return response
 
 }
 async function accountDetails(id) {
-    const response = await apicall.apicall("get", 5001, `accountRoute/getEmployee/${id}`)
+    const response = await apicall.apicall("get", 5001, `crm/accountRoute/getEmployee/${id}`)
     return response
 
 }
 /////////////////////////////////////////{CRM-Appointment}//////////////////////////////
 
 async function createAppointmentCollection(data) {
-    const response = await apicall.apicall("post",5001,"appointmentRoute/createAppointmentCollection",data)
+    const response = await apicall.apicall("post",5001,"crm/appointmentRoute/createAppointmentCollection",data)
     return response
 }
 
 async function createAppointment(data,id) {
-    const response = await apicall.apicall("post", 5001, `appointmentRoute/appointment/${id}`, data)
+    const response = await apicall.apicall("post", 5001, `crm/appointmentRoute/appointment/${id}`, data)
     return response
 
 }
 async function appointmentDetails(id) {
-    const response = await apicall.apicall("get", 5001, `appointmentRoute/getAppointment/${id}`)
+    const response = await apicall.apicall("get", 5001, `crm/appointmentRoute/getAppointment/${id}`)
     return response
 
 }
 ////////////////////////////////{CRM-Customer}////////////////////////////////////
 
 async function createCustomerCollection(data) {
-    const response = await apicall.apicall("post",5001,"customer/addCustomerCollection",data)
+    const response = await apicall.apicall("post",5001,"crm/customer/addCustomerCollection",data)
     return response
 }
 
 async function createCustomer(data,id) {
-    const response = await apicall.apicall("post", 5001, `customer/customer/${id}`, data)
+    const response = await apicall.apicall("post", 5001, `crm/customer/customer/${id}`, data)
     return response
 
 }
 async function customerList(id) {
-    const response = await apicall.apicall("get", 5001, `customer/getCustomer/${id}`)
+    const response = await apicall.apicall("get", 5001, `crm/customer/getCustomer/${id}`)
     return response
 }
 
@@ -108,34 +108,34 @@ async function customerList(id) {
 //////////////////////////////////////{CRM-Opportunity}////////////////////////////////////////
 
 async function createOpportunityCollection(data) {
-    const response = await apicall.apicall("post",5001,"opportunityRoute/createOpportunityCollection",data)
+    const response = await apicall.apicall("post",5001,"crm/opportunity/createOpportunityCollection",data)
     return response
 }
 
 async function createOpportunity(data,id) {
-    const response = await apicall.apicall("post", 5001, `opportunityRoute/createOpportunity/${id}`, data)
+    const response = await apicall.apicall("post", 5001, `crm/opportunity/createOpportunity/${id}`, data)
     return response
 
 }
 async function opportunityDetails(id) {
-    const response = await apicall.apicall("get", 5001, `opportunityRoute/getOpportunity/${id}`)
+    const response = await apicall.apicall("get", 5001, `crm/opportunity/getOpportunity/${id}`)
     return response
 
 }
 //////////////////////////////////////{Employee}/////////////////////////////////////////////
 
 async function createEmployeeCollection(data) {
-    const response = await apicall.apicall("post",5002,"employeeRoute/createEmployeeCollection",data)
+    const response = await apicall.apicall("post",5002,"hrm/employee/createEmployeeCollection",data)
     return response
 }
 
 async function addEmployee(data,id) {
-    const response = await apicall.apicall("post", 5002, `employeeRoute/addEmployee/${id}`, data)
+    const response = await apicall.apicall("post", 5002, `hrm/employee/addEmployee/${id}`, data)
     return response
 
 }
 async function employeeDetails(id){
-    const response = await apicall.apicall("get",5002,`employeeRoute/getEmployee/${id}`)
+    const response = await apicall.apicall("get",5002,`hrm/employee/getEmployee/${id}`)
     return response
 
 }
