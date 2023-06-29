@@ -22,7 +22,7 @@ export default class Sidebar extends Component {
         return (
             <div className="sidebar">
                 <div className="sidebar-header">
-                    <Link to="/" className="sidebar-logo">TGrade ERP</Link>
+                    <Link to="/" className="sidebar-logo">TGrade ERP <small> alpha v1</small></Link>
                 </div>
                 <PerfectScrollbar className="sidebar-body" ref={ref => this._scrollBarRef = ref}>
                     <SidebarMenu onUpdateSize={() => this._scrollBarRef.updateScroll()} />
@@ -74,7 +74,7 @@ class SidebarMenu extends Component {
                     {(!sm) ? (
                         <NavLink to={m.link} className="nav-link"><i className={m.icon}></i> <span>{m.label}</span></NavLink>
                     ) : (
-                        <div onClick={this.toggleSubMenu} className="nav-link has-sub"><i className={m.icon}></i> <span>{m.label}</span></div>
+                        <div onClick={this.toggleSubMenu} className="nav-link has-sub"><NavLink to={m.link} style={{color:"#41505f"}}><i className={m.icon}></i> <span>{m.label}</span></NavLink></div>
                     )}
                     {m.submenu && <nav className="nav nav-sub">{sm}</nav>}
                 </li>
@@ -120,7 +120,7 @@ class SidebarMenu extends Component {
         return (
             <React.Fragment>
                  <div className="nav-group show">
-                    <div className="nav-label" onClick={this.toggleMenu}>Scenes</div>
+                    <div className="nav-label" onClick={this.toggleMenu}>Owner</div>
                     {this.populateMenu(scenes)}
                 </div>
                 <div className="nav-group show">

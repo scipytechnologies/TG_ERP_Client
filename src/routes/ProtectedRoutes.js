@@ -198,7 +198,7 @@ const protectedRoutes = [
   // default components and apps
   { path: "dashboard/finance", element: <FinanceMonitoring /> },
   { path: "dashboard/events", element: <EventManagement /> },
-  { path: "dashboard/sales", element: <SalesMonitoring /> },
+  { path: "dashboard/salesq", element: <SalesMonitoring /> },
   { path: "dashboard/analytics", element: <WebsiteAnalytics /> },
   { path: "dashboard/crypto", element: <Cryptocurrency /> },
   { path: "dashboard/helpdesk", element: <HelpdeskService /> },

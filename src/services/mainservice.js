@@ -149,34 +149,34 @@ async function addEmployee(data, id) {
         ////////////////////////////////////////{Inventory management}//////////////////////////////////
 
         async function createInventorymanagementCollection(data) {
-            const response = await apicall.apicall("post", 5003, "inventorymanagementRoute/createInventorymanagementCollection", data)
+            const response = await apicall.apicall("post", 5003, "inventory/inventorymanagementRoute/createInventorymanagementCollection", data)
             return response
         }
 
         async function addInventorymanagementDetails(data, id) {
-            const response = await apicall.apicall("post", 5003, `inventorymanagementRoute/addInventorymanagementDetails/${id}`, data)
+            const response = await apicall.apicall("post", 5003, `inventory/inventorymanagementRoute/addInventorymanagementDetails/${id}`, data)
             return response
 
         }
         async function getInventorymanagementDetails(id) {
-            const response = await apicall.apicall("get", 5003, `inventorymanagementRoute/getidInventorymanagementDetails/${id}`)
+            const response = await apicall.apicall("get", 5003, `inventory/inventorymanagementRoute/getidInventorymanagementDetails/${id}`)
             return response
 
         }
         //////////////////////////////////////////{PRJ management}///////////////////////////////////////
 
         async function createPrjmanagerCollection(data) {
-            const response = await apicall.apicall("post", 5004, "prjmanagerRoute/createPrjmanagerCollection", data)
+            const response = await apicall.apicall("post", 5004, "project/prjmanagerRoute/createPrjmanagerCollection", data)
             return response
         }
 
         async function addPrjmanagerDetails(data, id) {
-            const response = await apicall.apicall("post", 5004, `prjmanagerRoute/addPrjmanagerDetails/${id}`, data)
+            const response = await apicall.apicall("post", 5004, `project/prjmanagerRoute/addPrjmanagerDetails/${id}`, data)
             return response
 
         }
         async function getPrjmanagerDetails(id) {
-            const response = await apicall.apicall("get", 5004, `prjmanagerRoute/getidPrjmanagerDetails/${id}`)
+            const response = await apicall.apicall("get", 5004, `project/prjmanagerRoute/getidPrjmanagerDetails/${id}`)
             return response
 
         }

@@ -3,6 +3,7 @@
         "Accept": "application/json",
         "Content-Type": "application/json"
     },
-
-    "API_BASE_URL": "http://k8s-default-authserv-92f8b47d13-212892674.ap-south-1.elb.amazonaws.com/"
+    "API_BASE_URL": "http://localhost:"
+    
 }
+

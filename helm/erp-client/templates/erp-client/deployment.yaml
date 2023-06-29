@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: erp-client
-        image: sooraj2022/erp-client
+        image: sooraj2022/erp-client:alpha
         resources:
           limits:
             memory: "128Mi"

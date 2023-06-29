@@ -3,9 +3,9 @@ kind: Service
 metadata:
   name: erp-client
 spec:
-  type : LoadBalancer
   selector:
     app: erp-client
   ports:
-  - port: 3030
+  - port: 3000
+    protocol: TCP
     targetPort: 3000
