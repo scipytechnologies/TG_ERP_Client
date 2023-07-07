@@ -50,7 +50,24 @@ const putInstance = async (ApiUrl,port, url, body,id, ENV, AppId) => {
     return axios.put(apiUrl, body);
 };
 
-const apicall = async (method,port, routename,body) => {
+const deleteInstance = async (ApiUrl,port,url) => {
+    // const apiUrl = ApiUrl+url;
+    const apiUrl = ApiUrl+port+"/"+url;
+
+    // var token = localStorage.getItem("Inits");
+    var headers = Config.API_HEADERS;
+    // headers.Authorization = `Basic ` + token;
+    let config = {
+        headers: headers,
+    };
+
+    return axios.delete(apiUrl, config);
+};
+
+
+
+
+const apicall = async (method,port,routename,body,companyID,id) => {
     if (method === "get") {
         const response = await getInstance(Config.API_BASE_URL,port,routename) || {};
         return response;
@@ -60,6 +77,10 @@ const apicall = async (method,port, routename,body) => {
     }
  else if (method === "put") {
         const response = await putInstance(Config.API_BASE_URL,port,routename,body) || {};
+        return response;
+    }
+    else if (method === "delete") {
+        const response = await deleteInstance(Config.API_BASE_URL,port,routename) || {};
         return response;
     }
 };
