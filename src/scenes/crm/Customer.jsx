@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState, useRef } from 'react';
-import { Button, Card, Col, Row, Dropdown, Offcanvas, ButtonGroup, Table, Badge, Alert } from "react-bootstrap";
+import { Button, Card, Col, Row, Dropdown, Offcanvas, ButtonGroup, Table, Badge, Form, Placeholder, Modal } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import { Grid } from "gridjs-react";
 import mainservice from '../../services/mainservice';
@@ -23,6 +23,10 @@ function Customer() {
 
     // axios get interceptor for table data
     const [data, setData] = useState([])
+    const [leadModal, setleadModal] = useState(false)
+    const [meetModal, setMeetModal] = useState(false)
+
+
     async function customerDetails() {
         const res = await mainservice.customerList(index.CrmID);
         console.log(res.data.customers);
@@ -31,8 +35,70 @@ function Customer() {
         dispatch(setCustomerCount(res.data.customers.length))
     }
     useEffect(() => {
+        // Simulating an API call or data fetch     
         customerDetails()
     }, []);
+
+
+
+    const handleleadModalClose = () => {
+        setleadModal(false)
+    }
+    const handleleadModalOpen = () => {
+        setleadModal(true)
+    }
+    const handleMeetModalClose = () => {
+        setMeetModal(false)
+    }
+    const handleMeetModalOpen = () => {
+        setMeetModal(true)
+    }
+
+
+    const [form, setform] = useState({});
+    const onChangeHandler = (event) => {
+      setform({
+        ...form,
+        [event.target.name]: event.target.value
+      });
+      console.log(form);
+    };
+
+    async function PostOpportunity(form) {
+        const res = await mainservice.createOpportunity(form,index.OpportunityID);
+        if (res.data != null) {
+          console.log("lead Added");
+        }
+        else {
+          console.log(res.message);
+        }
+      }
+      
+      const onSubmitHandler = async (x,y,z) => {
+       
+        const name = y+" "+z
+       const customer = {CustomerId :x, CustomerName: name}
+       const data = {...form,...customer}
+        console.log(form,"submit");
+      await PostOpportunity(data);
+      }
+  
+      async function deletecustomer(id) {
+        const res = await mainservice.deletecustomer(index.CrmID,id);
+        if (res.data != null) {
+          console.log("deleted");
+          customerDetails()
+        }
+        else {
+          console.log(res.message);
+        }
+      }
+
+      const onDeleteHandler = (item) => {
+        console.log(item._id);
+        deletecustomer(item._id);
+      }
+
 
     // Grid js each row clicking funciton
     const [offCanvas, setOffCanvas] = useState(false)
@@ -49,7 +115,7 @@ function Customer() {
 
 
     // demo profile image link
-    const imageLink = 'https://api.tgraderp.com/crm/customer/image/customer/8170dcba-23ad-4dca-af96-a7801a8c12f4-pro-avatar.png' 
+    const imageLink = 'https://api.tgraderp.com/crm/customer/image/customer/8170dcba-23ad-4dca-af96-a7801a8c12f4-pro-avatar.png'
     return (
         <>
 
@@ -72,14 +138,21 @@ function Customer() {
                     </Button>
                 </div>
 
-                <Card >
+                <Card>
                     <Card.Body>
                         <Grid
-                            data={data !== undefined ? data.map((item) => [
-                                data.indexOf(item) + 1,
-                                item.FirstName,
-                                item.LastName,
-                                item.Title,
+                            data={data !== undefined ? data.toReversed().map((item) => [
+                                data.toReversed().indexOf(item) + 1,
+                                _(
+
+                                    <Avatar img={`https://api.tgraderp.com/crm/customer/image/${item.Image}`} size="sm" status="online" />
+
+                                ),
+                                _(<td>{item.FirstName + " " + item.LastName} <Badge style={{ width: "auto", height: "auto", fontSize: "8px" }} bg="info">New</Badge> </td>),
+                                item.PhoneMobile,
+                                item.Email,
+                                _(<p style={{ color: "#065bc9" }}>30 min ago</p>),
+                                _(<p style={{ color: "#065bc9" }}>Not Initalized</p>),
                                 _(
                                     <>
                                         <ButtonGroup>
@@ -93,9 +166,9 @@ function Customer() {
                                                     </Dropdown.Toggle>
 
                                                     <Dropdown.Menu>
-                                                        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                                                        <Dropdown.Item >Action</Dropdown.Item>
                                                         <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                                        <Dropdown.Item  style={{color:'red'}} onClick={()=>onDeleteHandler(item)}>Delete</Dropdown.Item>
                                                     </Dropdown.Menu>
                                                 </Dropdown>
                                             </Button>
@@ -110,24 +183,36 @@ function Customer() {
                             columns={[
                                 {
                                     name: "Sl no",
-                                    width: '9%'
+                                    sortable: true
                                 },
                                 {
-                                    name: "First Name",
-                                    width: '20%'
-                                }, {
-                                    name: "Last Name",
-                                    width: '20%'
+                                    name: "Image",
                                 },
                                 {
-                                    name: "Title",
-                                    width: '20%'
+                                    name: "Full Name",
+
+                                },
+                                {
+                                    name: "Phone",
+
+                                },
+                                {
+                                    name: "Email"
+                                },
+                                {
+                                    name: "Recent Activity"
+                                },
+                                {
+                                    name: "Status"
                                 },
                                 'Action']}
                             search={true}
-                            pagination={true}
-                            sort={true}
+                            pagination={{
+                                limit: 25,
+                                summary: true
+                            }}
                             resizable={true}
+                            autoWidth={true}
                             className={{
                                 table: 'table table-bordered mb-0',
                             }}
@@ -135,6 +220,60 @@ function Customer() {
 
                     </Card.Body>
                 </Card >
+
+
+
+                <Modal show={leadModal} onHide={handleleadModalClose} centered>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Create New Lead </Modal.Title>    
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Card style={{ marginBottom:'20px'}}> <Card.Body> Customer Name: {canvasData.FirstName + " " + canvasData.LastName}</Card.Body></Card>
+                        <div className="mb-3">
+                            <Form.Label htmlFor="leadName">Lead Name</Form.Label>
+                            <Form.Control name="OpportunityName" type="text" id="leadName" placeholder="" onChange={onChangeHandler} />
+                        </div>
+                        <div className="mb-3">
+                            <Form.Label htmlFor="Amount">Target Amount</Form.Label>
+                            <Form.Control name="Amount" type="text" id="Amount" placeholder=""  onChange={onChangeHandler}/>
+                        </div>
+                        <div>
+                            <Form.Label htmlFor="Description">Description</Form.Label>
+                            <Form.Control name='Description' as="textarea" id="Description" rows="3" placeholder="" onChange={onChangeHandler}/>
+                        </div>
+
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleleadModalClose}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={() =>{onSubmitHandler(canvasData._id,canvasData.FirstName,canvasData.LastName)}} >
+                            Save Changes
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+
+                <Modal show={meetModal} onHide={handleMeetModalClose} centered>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Create New Appointment</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleMeetModalClose}>
+                            Close
+                        </Button>
+                        <Button variant="primary" onClick={handleMeetModalClose}>
+                            Save Changes
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
+
+
+
+
+
+
+
                 {/* sidebar offcanvars */}
                 <Offcanvas className="bg-light" show={offCanvas} onHide={handleCloseCanvas} placement="end" style={{ width: '600px' }}>
                     {/* <Offcanvas.Header closeButton>
@@ -158,14 +297,14 @@ function Customer() {
                                                             <Avatar img={`https://api.tgraderp.com/crm/customer/image/${canvasData.Image}`} size="xl" status="online" />
                                                             <div className='ms-2 mt-2'>
                                                                 <div className='d-flex align-items-center justify-content-between w-85'>
-                                                                    <p className='fw-bolder mb-1'>Jorem Berline</p>
+                                                                    <p className='fw-bolder mb-1'>{canvasData.FirstName + " " + canvasData.LastName}</p>
                                                                     <Badge bg="primary">New Customer</Badge>
                                                                 </div>
 
 
                                                                 <div className="d-flex mt-1">
-                                                                    <p className='me-1  mb-0 fs_1'><span><i className='ri-message-3-line me-1' style={{ fontSize: '14px' }}></i></span>jorem@gmail.com</p>
-                                                                    <p className='ms-4 mb-0 fs_1'><span><i className='ri-phone-line me-1' style={{ fontSize: '14px' }}></i></span>+91 8181237262</p>
+                                                                    <p className='me-1  mb-0 fs_1'><span><i className='ri-message-3-line me-1' style={{ fontSize: '14px' }}></i></span>{canvasData.Email}</p>
+                                                                    <p className='ms-4 mb-0 fs_1'><span><i className='ri-phone-line me-1' style={{ fontSize: '14px' }}></i></span>{canvasData.PhoneMobile}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -221,15 +360,40 @@ function Customer() {
                                 </Table>
                             </div>
 
+                            {/* <div>
+                                <ButtonGroup aria-label="Basic example" style={{width:"100%"}}>
+                                    <Button variant="btn btn-outline-primary">Left</Button>
+                                    <Button variant="btn btn-outline-primary">Middle</Button>
+                                    <Button variant="btn btn-outline-primary">Right</Button>
+                                </ButtonGroup>
+                            </div> */}
+
 
                             {/* upcoming activites */}
                             <div className='mt-4 bg-white mb-2'>
                                 <Table className='p-1' bordered>
                                     <tbody>
                                         <tr>
-                                            <td colSpan={3}>
-                                                <p className='fs-5 mb-0'>Upcoming Activity </p>
+                                            <td colSpan={3} >
+                                                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                                    <p className='fs-5 mb-0' >Upcoming Activity </p>
+                                                    <div style={{ display: 'flex' }}>
+                                                        <div style={{ paddingLeft: "5px" }}>
+                                                            <Button variant="outline-primary" onClick={handleleadModalOpen} size="sm">Create lead</Button>
+                                                        </div>
+                                                        <div style={{ paddingLeft: "5px" }}>
+                                                            <Button variant="outline-primary" onClick={handleMeetModalOpen} size="sm">Create Appointment</Button></div>
+                                                    </div>
+
+
+                                                </div>
+
+
+
+
                                             </td>
+
+
                                         </tr>
                                         <tr>
                                             <td colSpan={3}>

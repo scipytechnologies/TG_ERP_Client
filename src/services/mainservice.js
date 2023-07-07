@@ -106,7 +106,10 @@ async function customerList(id) {
     const response = await apicall.apicall("get", 5001, `crm/customer/getCustomer/${id}`)
     return response
 }
-
+async function deletecustomer(companyID,id) {
+    const response = await apicall.apicall("delete", 5001, `crm/customer/deleteCustomer/${companyID}/${id}`)
+    return response
+}
 
 //////////////////////////////////////{CRM-Opportunity}////////////////////////////////////////
 
@@ -124,7 +127,10 @@ async function createOpportunity(data, id) {
 async function opportunityDetails(id) {
     const response = await apicall.apicall("get", 5001, `crm/opportunity/getOpportunity/${id}`)
     return response
-
+}
+async function deleteopportunity(companyID,id) {
+    const response = await apicall.apicall("delete", 5001, `crm/opportunity/deleteOpportunity/${companyID}/${id}`)
+    return response
 }
 //////////////////////////////////////{Employee}/////////////////////////////////////////////
 
@@ -136,237 +142,238 @@ async function createEmployeeCollection(data) {
 
 async function addEmployee(data, id) {
     const response = await apicall.apicall("post", 5002, `hrm/employee/addEmployee/${id}`, data)
-   
-        return response
 
-    }
-    async function employeeDetails(id) {
-        const response = await apicall.apicall("get", 5002, `hrm/employee/getEmployee/${id}`)
-     
-            return response
+    return response
 
-        }
-        ////////////////////////////////////////{Inventory management}//////////////////////////////////
+}
+async function employeeDetails(id) {
+    const response = await apicall.apicall("get", 5002, `hrm/employee/getEmployee/${id}`)
 
-        async function createInventorymanagementCollection(data) {
-            const response = await apicall.apicall("post", 5003, "inventory/inventorymanagementRoute/createInventorymanagementCollection", data)
-            return response
-        }
+    return response
 
-        async function addInventorymanagementDetails(data, id) {
-            const response = await apicall.apicall("post", 5003, `inventory/inventorymanagementRoute/addInventorymanagementDetails/${id}`, data)
-            return response
+}
+////////////////////////////////////////{Inventory management}//////////////////////////////////
 
-        }
-        async function getInventorymanagementDetails(id) {
-            const response = await apicall.apicall("get", 5003, `inventory/inventorymanagementRoute/getidInventorymanagementDetails/${id}`)
-            return response
+async function createInventorymanagementCollection(data) {
+    const response = await apicall.apicall("post", 5003, "inventory/inventorymanagementRoute/createInventorymanagementCollection", data)
+    return response
+}
 
-        }
-        //////////////////////////////////////////{PRJ management}///////////////////////////////////////
+async function addInventorymanagementDetails(data, id) {
+    const response = await apicall.apicall("post", 5003, `inventory/inventorymanagementRoute/addInventorymanagementDetails/${id}`, data)
+    return response
 
-        async function createPrjmanagerCollection(data) {
-            const response = await apicall.apicall("post", 5004, "project/prjmanagerRoute/createPrjmanagerCollection", data)
-            return response
-        }
+}
+async function getInventorymanagementDetails(id) {
+    const response = await apicall.apicall("get", 5003, `inventory/inventorymanagementRoute/getidInventorymanagementDetails/${id}`)
+    return response
 
-        async function addPrjmanagerDetails(data, id) {
-            const response = await apicall.apicall("post", 5004, `project/prjmanagerRoute/addPrjmanagerDetails/${id}`, data)
-            return response
+}
+//////////////////////////////////////////{PRJ management}///////////////////////////////////////
 
-        }
-        async function getPrjmanagerDetails(id) {
-            const response = await apicall.apicall("get", 5004, `project/prjmanagerRoute/getidPrjmanagerDetails/${id}`)
-            return response
+async function createPrjmanagerCollection(data) {
+    const response = await apicall.apicall("post", 5004, "project/prjmanagerRoute/createPrjmanagerCollection", data)
+    return response
+}
 
-        }
-        //////////////////////////////////{Product}//////////////////////////////////////////
+async function addPrjmanagerDetails(data, id) {
+    const response = await apicall.apicall("post", 5004, `project/prjmanagerRoute/addPrjmanagerDetails/${id}`, data)
+    return response
 
-        async function createProductCollection(data) {
-            const response = await apicall.apicall("post", 5005, "productRoute/createProductCollection", data)
-            return response
-        }
+}
+async function getPrjmanagerDetails(id) {
+    const response = await apicall.apicall("get", 5004, `project/prjmanagerRoute/getidPrjmanagerDetails/${id}`)
+    return response
 
-        async function addProductDetails(data, id) {
-            const response = await apicall.apicall("post", 5005, `productRoute/addProductDetails/${id}`, data)
-            return response
+}
+//////////////////////////////////{Product}//////////////////////////////////////////
 
-        }
-        async function getProductDetails(id) {
-            const response = await apicall.apicall("get", 5005, `productRoute/getidProductDetails/${id}`)
-            return response
+async function createProductCollection(data) {
+    const response = await apicall.apicall("post", 5005, "productRoute/createProductCollection", data)
+    return response
+}
 
-        }
-        //////////////////////////////////////{Purchase Module}////////////////////////////////////////////
+async function addProductDetails(data, id) {
+    const response = await apicall.apicall("post", 5005, `productRoute/addProductDetails/${id}`, data)
+    return response
 
-        async function createPurchaseCollection(data) {
-            const response = await apicall.apicall("post", 5006, "purchaseRoute/createPurchaseCollection", data)
-            return response
-        }
+}
+async function getProductDetails(id) {
+    const response = await apicall.apicall("get", 5005, `productRoute/getidProductDetails/${id}`)
+    return response
 
-        async function purchase(data, id) {
-            const response = await apicall.apicall("post", 5006, `purchaseRoute/purchase/${id}`, data)
-            return response
+}
+//////////////////////////////////////{Purchase Module}////////////////////////////////////////////
 
-        }
-        async function purchasedetails(id) {
-            const response = await apicall.apicall("get", 5006, `purchaseRoute/getPurchase/${id}`)
-            return response
+async function createPurchaseCollection(data) {
+    const response = await apicall.apicall("post", 5006, "purchaseRoute/createPurchaseCollection", data)
+    return response
+}
 
-        }
-        /////////////////////////////////////{RFQ-purchaseitem}////////////////////////////////////////////////
+async function purchase(data, id) {
+    const response = await apicall.apicall("post", 5006, `purchaseRoute/purchase/${id}`, data)
+    return response
 
-        async function createPurchaseitemCollection(data) {
-            const response = await apicall.apicall("post", 5007, "purchaseitemRoute/createPurchaseitemCollection", data)
-            return response
-        }
+}
+async function purchasedetails(id) {
+    const response = await apicall.apicall("get", 5006, `purchaseRoute/getPurchase/${id}`)
+    return response
 
-        async function purchaseitem(data, id) {
-            const response = await apicall.apicall("post", 5007, `purchaseitemRoute/purchaseitem/${id}`, data)
-            return response
+}
+/////////////////////////////////////{RFQ-purchaseitem}////////////////////////////////////////////////
 
-        }
-        async function purchaseitemdetails(id) {
-            const response = await apicall.apicall("get", 5007, `purchaseitemRoute/getPurchaseitem/${id}`)
-            return response
+async function createPurchaseitemCollection(data) {
+    const response = await apicall.apicall("post", 5007, "purchaseitemRoute/createPurchaseitemCollection", data)
+    return response
+}
 
-        }
-        //////////////////////////////////{RFQ-purchaseorder}////////////////////////////////////
+async function purchaseitem(data, id) {
+    const response = await apicall.apicall("post", 5007, `purchaseitemRoute/purchaseitem/${id}`, data)
+    return response
 
-        async function createPurchaseorderCollection(data) {
-            const response = await apicall.apicall("post", 5007, "purchaseorderRoute/createPurchaseorderCollection", data)
-            return response
-        }
+}
+async function purchaseitemdetails(id) {
+    const response = await apicall.apicall("get", 5007, `purchaseitemRoute/getPurchaseitem/${id}`)
+    return response
 
-        async function purchaseorder(data, id) {
-            const response = await apicall.apicall("post", 5007, `purchaseorderRoute/purchaseorder/${id}`, data)
-            return response
+}
+//////////////////////////////////{RFQ-purchaseorder}////////////////////////////////////
 
-        }
-        async function purchaseorderdetails(id) {
-            const response = await apicall.apicall("get", 5007, `purchaseorderRoute/getPurchaseorder/${id}`)
-            return response
+async function createPurchaseorderCollection(data) {
+    const response = await apicall.apicall("post", 5007, "purchaseorderRoute/createPurchaseorderCollection", data)
+    return response
+}
 
-        }
-        /////////////////////////////////{RFQ}//////////////////////////////////////
+async function purchaseorder(data, id) {
+    const response = await apicall.apicall("post", 5007, `purchaseorderRoute/purchaseorder/${id}`, data)
+    return response
 
-        async function createRfqCollection(data) {
-            const response = await apicall.apicall("post", 5007, "rfqRoute/createRfqCollection", data)
-            return response
-        }
-        async function rfq(data, id) {
-            const response = await apicall.apicall("post", 5007, `rfqRoute/rfq/${id}`, data)
-            return response
+}
+async function purchaseorderdetails(id) {
+    const response = await apicall.apicall("get", 5007, `purchaseorderRoute/getPurchaseorder/${id}`)
+    return response
 
-        }
-        async function rfqdetails(id) {
-            const response = await apicall.apicall("get", 5007, `rfqRoute/getrfq/${id}`)
-            return response
+}
+/////////////////////////////////{RFQ}//////////////////////////////////////
 
-        }
-        /////////////////////////////////////{RFQ-Vendor}/////////////////////////////////////////
+async function createRfqCollection(data) {
+    const response = await apicall.apicall("post", 5007, "rfqRoute/createRfqCollection", data)
+    return response
+}
+async function rfq(data, id) {
+    const response = await apicall.apicall("post", 5007, `rfqRoute/rfq/${id}`, data)
+    return response
 
-        async function createVendorCollection(data) {
-            const response = await apicall.apicall("post", 5007, "vendorRoute/createVendorCollection", data)
-            return response
-        }
-        async function vendor(data, id) {
-            const response = await apicall.apicall("post", 5007, `vendorRoute/vendor/${id}`, data)
-            return response
+}
+async function rfqdetails(id) {
+    const response = await apicall.apicall("get", 5007, `rfqRoute/getrfq/${id}`)
+    return response
 
-        }
-        async function vendordetails(id) {
-            const response = await apicall.apicall("get", 5007, `vendorRoute/getvendor/${id}`)
-            return response
+}
+/////////////////////////////////////{RFQ-Vendor}/////////////////////////////////////////
 
-        }
-        /////////////////////////////////{Sales-invoice}//////////////////////////////////
+async function createVendorCollection(data) {
+    const response = await apicall.apicall("post", 5007, "vendorRoute/createVendorCollection", data)
+    return response
+}
+async function vendor(data, id) {
+    const response = await apicall.apicall("post", 5007, `vendorRoute/vendor/${id}`, data)
+    return response
 
-        async function createInvoiceCollection(data) {
-            const response = await apicall.apicall("post", 5008, "invoiceRoute/createInvoiceCollection", data)
-            return response
-        }
+}
+async function vendordetails(id) {
+    const response = await apicall.apicall("get", 5007, `vendorRoute/getvendor/${id}`)
+    return response
 
-        async function invoice(data, id) {
-            const response = await apicall.apicall("post", 5008, `invoiceRoute/invoice/${id}`, data)
-            return response
+}
+/////////////////////////////////{Sales-invoice}//////////////////////////////////
 
-        }
-        async function invoicedetails(id) {
-            const response = await apicall.apicall("get", 5008, `invoiceRoute/getInvoice/${id}`)
-            return response
+async function createInvoiceCollection(data) {
+    const response = await apicall.apicall("post", 5008, "invoiceRoute/createInvoiceCollection", data)
+    return response
+}
 
-        }
-        ///////////////////////////////{Sales-sales}/////////////////////////////////////
+async function invoice(data, id) {
+    const response = await apicall.apicall("post", 5008, `invoiceRoute/invoice/${id}`, data)
+    return response
 
-        async function createSalesCollection(data) {
-            const response = await apicall.apicall("post", 5008, "salesRoute/createSalesCollection", data)
-            return response
-        }
+}
+async function invoicedetails(id) {
+    const response = await apicall.apicall("get", 5008, `invoiceRoute/getInvoice/${id}`)
+    return response
 
-        async function sales(data, id) {
-            const response = await apicall.apicall("post", 5008, `salesRoute/sales/${id}`, data)
-            return response
+}
+///////////////////////////////{Sales-sales}/////////////////////////////////////
 
-        }
-        async function salesdetails(id) {
-            const response = await apicall.apicall("get", 5008, `salesRoute/getSales/${id}`)
-            return response
+async function createSalesCollection(data) {
+    const response = await apicall.apicall("post", 5008, "salesRoute/createSalesCollection", data)
+    return response
+}
 
-        }
+async function sales(data, id) {
+    const response = await apicall.apicall("post", 5008, `salesRoute/sales/${id}`, data)
+    return response
 
-        ///////////////////////////////{Notification}/////////////////////////////////////
-        async function createNotificationCollection(data) {
-            const response = await apicall.apicall("post", 5009, "notification/addNotificationCollection", data)
-            return response
-        }
+}
+async function salesdetails(id) {
+    const response = await apicall.apicall("get", 5008, `salesRoute/getSales/${id}`)
+    return response
 
-        async function postNotification(data, id) {
-            const response = await apicall.apicall("post", 5009, `notification/postNotification/${id}`, data)
-            return response
+}
 
-        }
-        async function getNotification(id) {
-            const response = await apicall.apicall("get", 5009, `notification/getNotification/${id}`)
-            return response
+///////////////////////////////{Notification}/////////////////////////////////////
+async function createNotificationCollection(data) {
+    const response = await apicall.apicall("post", 5009, "notification/addNotificationCollection", data)
+    return response
+}
 
-        }
+async function postNotification(data, id) {
+    const response = await apicall.apicall("post", 5009, `notification/postNotification/${id}`, data)
+    return response
+
+}
+async function getNotification(id) {
+    const response = await apicall.apicall("get", 5009, `notification/getNotification/${id}`)
+    return response
+
+}
 
 
-        async function CategoriesInHome() {
-            const response = await apicall.apicall("get", "CategoriesInHome", "");
-            return response;
-        }
-        async function MainProductsInHome() {
-            const response = await apicall.apicall("get", "MainProductsInHome", "");
-            return response;
-        }
-        async function LatestProductsInHome() {
-            const response = await apicall.apicall("get", "LatestProductsInHome", "");
-            return response;
-        }
-        async function RandomProductsInHome() {
-            const response = await apicall.apicall("get", "RandomProductsInHome", "");
-            return response;
-        }
-        async function CategoriesWithProductsForHome() {
-            const response = await apicall.apicall("get", "CategoriesWithProductsForHome", "");
-            return response;
-        }
-        async function TopSellingProductsInHome() {
-            const response = await apicall.apicall("get", "TopSellingProductsInHome", "");
-            return response;
-        }
-        async function OffersInHome() {
-            const response = await apicall.apicall("get", "OffersInHome", "");
-            return response;
-        }
+async function CategoriesInHome() {
+    const response = await apicall.apicall("get", "CategoriesInHome", "");
+    return response;
+}
+async function MainProductsInHome() {
+    const response = await apicall.apicall("get", "MainProductsInHome", "");
+    return response;
+}
+async function LatestProductsInHome() {
+    const response = await apicall.apicall("get", "LatestProductsInHome", "");
+    return response;
+}
+async function RandomProductsInHome() {
+    const response = await apicall.apicall("get", "RandomProductsInHome", "");
+    return response;
+}
+async function CategoriesWithProductsForHome() {
+    const response = await apicall.apicall("get", "CategoriesWithProductsForHome", "");
+    return response;
+}
+async function TopSellingProductsInHome() {
+    const response = await apicall.apicall("get", "TopSellingProductsInHome", "");
+    return response;
+}
+async function OffersInHome() {
+    const response = await apicall.apicall("get", "OffersInHome", "");
+    return response;
+}
 
-        export default {
-            Auth, SignUp, Login, GetUserById, Index, AddIndex, GetIndexbyId, RegisterCompany, GetCompanyById, InitializeCompany, MainProductsInHome, CategoriesInHome, LatestProductsInHome, RandomProductsInHome, CategoriesWithProductsForHome, TopSellingProductsInHome, OffersInHome,
-            createAccount, createAppointment, createCustomerCollection, createCustomer, createOpportunity, addEmployee, addInventorymanagementDetails, addPrjmanagerDetails, addProductDetails, purchase, purchaseitem, purchaseorder, rfq, invoice, sales,
-            accountDetails, appointmentDetails, customerList, opportunityDetails, employeeDetails, getInventorymanagementDetails, getPrjmanagerDetails, getProductDetails, purchasedetails, purchaseitemdetails, purchaseorderdetails,
-            rfqdetails, invoicedetails, salesdetails, createEmployeeCollection, createInventorymanagementCollection, createPrjmanagerCollection, createProductCollection, createPurchaseCollection, createPurchaseitemCollection, createPurchaseorderCollection,
-            createRfqCollection, createInvoiceCollection, createSalesCollection, createAccountCollection, createAppointmentCollection, createOpportunityCollection, createVendorCollection, vendor, vendordetails, createNotificationCollection, postNotification, getNotification
-        };
+export default {
+    Auth, SignUp, Login, GetUserById, Index, AddIndex, GetIndexbyId, RegisterCompany, GetCompanyById, InitializeCompany, MainProductsInHome, CategoriesInHome, LatestProductsInHome, RandomProductsInHome, CategoriesWithProductsForHome, TopSellingProductsInHome, OffersInHome,
+    createAccount, createAppointment, createCustomerCollection, createCustomer, createOpportunity, addEmployee, addInventorymanagementDetails, addPrjmanagerDetails, addProductDetails, purchase, purchaseitem, purchaseorder, rfq, invoice, sales,
+    accountDetails, appointmentDetails, customerList, opportunityDetails, employeeDetails, getInventorymanagementDetails, getPrjmanagerDetails, getProductDetails, purchasedetails, purchaseitemdetails, purchaseorderdetails,
+    rfqdetails, invoicedetails, salesdetails, createEmployeeCollection, createInventorymanagementCollection, createPrjmanagerCollection, createProductCollection, createPurchaseCollection, createPurchaseitemCollection, createPurchaseorderCollection,
+    createRfqCollection, createInvoiceCollection, createSalesCollection, createAccountCollection, createAppointmentCollection, createOpportunityCollection, createVendorCollection, vendor, vendordetails, createNotificationCollection, postNotification, getNotification
+    ,deletecustomer,deleteopportunity
+};
 
