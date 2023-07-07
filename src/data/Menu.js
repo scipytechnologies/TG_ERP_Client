@@ -1,20 +1,16 @@
 const scenes = [
   {
-    "label": "Dashboard",
+    "label": "Home",
     "link": "/dashboard/home",
     "icon": "ri-building-4-line"
   },
   {
-    "label": "CRM",
-    // "link": "/dashboard/crm",
+    "label": "Customer",
+    "link": "/dashboard/crm",
     "icon": "ri-team-fill",
     "submenu": [
       {
-        "label": "CRM",
-        "link": "/dashboard/crm"
-      },
-      {
-        "label": "Customers",
+        "label": "Contact",
         "link": "/dashboard/crm/customer"
       },
       {
@@ -191,7 +187,7 @@ const dashboardMenu = [
   },
   {
     "label": "Sales Monitoring",
-    "link": "/dashboard/sales",
+    "link": "/dashboard/salesq",
     "icon": "ri-shopping-bag-3-line"
   },
   {

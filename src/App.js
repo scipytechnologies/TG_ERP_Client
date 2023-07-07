@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound";
 
 import publicRoutes from "./routes/PublicRoutes";
 import protectedRoutes from "./routes/ProtectedRoutes";
+import { MutatingDots} from  'react-loader-spinner'
 
 
 // import css
@@ -141,38 +142,62 @@ export default function App() {
     // console.log(id);
   }, []);
 
+  const [loading, setLoading] = useState(true);
+  setTimeout(() => {
+    setLoading(false);
+  }, 3000);
   return (
-    <React.Fragment>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route element={<Main />}>
-            {protectedRoutes.map((route, index) => {
+
+    <>
+   {loading ? (
+    <div style={{display:'flex', justifyContent:'center',alignItems:'center',height:'100vh'}}> 
+    <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}> 
+    <MutatingDots
+    height={100}
+    width={100}
+    color="#506fd9"
+    secondaryColor="#506fd9"
+    radius={12.5}
+    ariaLabel="mutating-dots-loading"
+    wrapperStyle={{}}
+    wrapperClass=""
+    visible={true} />
+    </div>
+    </div>
+     ) : 
+      
+      <React.Fragment>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route element={<Main />}>
+              {protectedRoutes.map((route, index) => {
+                return (
+                  <Route
+                    path={route.path}
+                    element={<ProtectedRoute user={active}>{route.element}</ProtectedRoute>}
+                    key={index} />
+                );
+              })}
+            </Route>
+            {publicRoutes.map((route, index) => {
               return (
                 <Route
                   path={route.path}
-                  element={<ProtectedRoute user={active}>{route.element}</ProtectedRoute>}
-                  key={index}
-                />
-              )
+                  element={<Redirect user={active}> {route.element} </Redirect>}
+                  key={index} />
+              );
             })}
-          </Route>
-          {publicRoutes.map((route, index) => {
-            return (
-              <Route
-                path={route.path}
-                element={<Redirect user={active}> {route.element} </Redirect>}
-                key={index}
-              />
-            )
-          })}
 
-          <Route path='/registerCompany' element={<CompanyRegistraton />}></Route>
-          <Route path='/pages/signup2' element={<Signup2 />}></Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </React.Fragment>
+            <Route path='/registerCompany' element={<CompanyRegistraton />}></Route>
+            <Route path='/pages/signup2' element={<Signup2 />}></Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </React.Fragment>
+}
+      
+      </>
 
   );
 }

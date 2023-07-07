@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState, useRef } from 'react';
-import { Button, Card, Col, Nav, ProgressBar, Row, Dropdown, Offcanvas, ButtonGroup } from "react-bootstrap";
+import { Button, Card, Col, Row, Dropdown, Offcanvas, ButtonGroup, Table, Badge, Alert } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import { Grid } from "gridjs-react";
 import mainservice from '../../services/mainservice';
@@ -10,6 +10,7 @@ import { _ } from "gridjs-react";
 import Avatar from "../../components/Avatar";
 import { useSelector, useDispatch } from 'react-redux';
 import { setCustomerCount } from '../../store/crm';
+
 
 function Customer() {
     // to maintain dark and light mode
@@ -45,18 +46,25 @@ function Customer() {
         setOffCanvas(false)
         setCanvasData('')
     }
+
+
+    // demo profile image link
+    const imageLink = 'https://api.tgraderp.com/crm/customer/image/customer/8170dcba-23ad-4dca-af96-a7801a8c12f4-pro-avatar.png' 
     return (
         <>
+
+
             <Header onSkin={setSkin} />
             <div className="main main-app p-3 p-lg-4">
-                <div className="d-md-flex align-items-center justify-content-between mb-4">
+                <div className="d-md-flex align-items-center justify-content-between ">
                     <div>
                         <ol className="breadcrumb fs-sm mb-1">
                             <li className="breadcrumb-item"><Link to="/dashboard/home">Dashboard</Link></li>
-                            <li className="breadcrumb-item"><Link to="/dashboard/crm">CRM</Link></li>
-                            <li className="breadcrumb-item active" aria-current="page">Customer List</li>
+                            <li className="breadcrumb-item"><Link to="/dashboard/crm">Customer</Link></li>
+                            <li className="breadcrumb-item active" aria-current="page">Contacts</li>
                         </ol>
-                        <h4 className="main-title mb-0">Customer List</h4>
+                        <h4 className="main-title mb-0">Customers</h4>
+                        <p className="w-100 fs-sm text-secondary " >Manage all your customer's details</p>
                     </div>
 
                     <Button variant="primary" className="d-flex align-items-center gap-2" onClick={() => navigate('/dashboard/crm/addCrm')}>
@@ -64,7 +72,7 @@ function Customer() {
                     </Button>
                 </div>
 
-                <Card>
+                <Card >
                     <Card.Body>
                         <Grid
                             data={data !== undefined ? data.map((item) => [
@@ -126,110 +134,309 @@ function Customer() {
                         />
 
                     </Card.Body>
-                    {/* sidebar offcanvars */}
-                    <Offcanvas show={offCanvas} onHide={handleCloseCanvas} placement="end">
-                        <Offcanvas.Header closeButton>
-                            <Offcanvas.Title>
-                                <p>Customer Details</p>
-                            </Offcanvas.Title>
-                        </Offcanvas.Header>
-                        <Offcanvas.Body>
+                </Card >
+                {/* sidebar offcanvars */}
+                <Offcanvas className="bg-light" show={offCanvas} onHide={handleCloseCanvas} placement="end" style={{ width: '600px' }}>
+                    {/* <Offcanvas.Header closeButton>
+                        <Offcanvas.Title>
+                            <p className='mb-0'>Customer Details</p>
+                        </Offcanvas.Title>
+                    </Offcanvas.Header> */}
+                    <Offcanvas.Body>
 
-                            {/* canvas body */}
-                            <div className="w-100">
-                                <Card>
-                                    <Card.Body>
-                                        <div className="d-flex mb-0 align-item-center justify-content-between w-100">
-                                            <div className="d-flex mb-0">
-                                                <div className="me-3">
-                                                    <Avatar img="data:image/jpeg;base64,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" size="xl" status="online" />
+                        {/* canvas body */}
+                        <div className="w-100 overflow-hidden">
+                            {/* customer profile details */}
+                            <div className='bg-white mb-2'>
+                                <Table bordered style={{ overflow: 'hidden' }}>
+                                    <tbody>
+                                        <tr>
+                                            <td colSpan={4}>
+                                                <Row>
+                                                    <Col xs="10">
+                                                        <div className='d-flex align-items-start'>
+                                                            <Avatar img={`https://api.tgraderp.com/crm/customer/image/${canvasData.Image}`} size="xl" status="online" />
+                                                            <div className='ms-2 mt-2'>
+                                                                <div className='d-flex align-items-center justify-content-between w-85'>
+                                                                    <p className='fw-bolder mb-1'>Jorem Berline</p>
+                                                                    <Badge bg="primary">New Customer</Badge>
+                                                                </div>
+
+
+                                                                <div className="d-flex mt-1">
+                                                                    <p className='me-1  mb-0 fs_1'><span><i className='ri-message-3-line me-1' style={{ fontSize: '14px' }}></i></span>jorem@gmail.com</p>
+                                                                    <p className='ms-4 mb-0 fs_1'><span><i className='ri-phone-line me-1' style={{ fontSize: '14px' }}></i></span>+91 8181237262</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </Col>
+
+                                                    <Col xs="2">
+                                                        <ButtonGroup size="sm">
+                                                            <Button variant='light'><i className='ri-message-3-line'></i>
+                                                            </Button>
+                                                            <Button variant='light'><i className='ri-phone-line'></i>
+                                                            </Button>
+                                                        </ButtonGroup>
+                                                    </Col>
+                                                </Row>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td className='w-10'>
+                                                <p className='mb-0 fs_2'>Lead owner</p>
+                                                <p className='fw-bolder'>Esther Howard</p>
+                                            </td>
+                                            <td className='w-10'>
+                                                <p className='mb-0 fs_2'>Company</p>
+                                                <p className='fw-bolder'>Google</p>
+                                            </td>
+                                            <td className='w-10'>
+                                                <p className='mb-0 fs_2'>Job Title</p>
+                                                <p className='fw-bolder'>Content Writter</p>
+                                            </td>
+                                            <td className='w-10'>
+                                                <p className='mb-0 fs_2'>Annual Revenuew</p>
+                                                <p className='fw-bolder'>&#8377; 50000</p>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colSpan={2}>
+                                                <div className="d-flex">
+                                                    <p className='fs_1 mb-0'>Lead source</p>
+                                                    <p className='fw-bolder fs_1 mb-0  ms-2'>Online Store</p>
                                                 </div>
-                                                <div className=''>
-                                                    <p className="mb-0 fs-5">{canvasData?.FirstName}</p>
-                                                    <p className="fw-bold fw-normal mb-0">{canvasData?.Title}</p>
-                                                    <p className="fw-normal ">+91 {canvasData?.PhoneWork}</p>
+                                            </td>
+
+                                            <td colSpan={2}>
+                                                <div className="d-flex mb-0">
+                                                    <p className='fs_1 mb-0'>Lead activity</p>
+                                                    <p className='fw-bolder fs_1 mb-0 ms-2'>2 Jan 2020 at 10:00 AM</p>
                                                 </div>
-                                            </div>
-
-                                            <Link><i className='ri-pencil-line'></i></Link>
-                                        </div>
-
-                                        <div className='d-flex align-item-center justify-content-between'>
-                                            <p className="fw-normal  mb-0">email@gmail.com</p>
-                                            <p className="fw-normal">{canvasData?.Website}</p>
-                                        </div>
-                                        <Button className="btn btn-sm w-100">Message</Button>
-
-
-
-                                        <div className="divider"><span>Personal Details</span></div>
-                                        <div className="d-flex align-item-center justify-content-between me-2 mb-3">
-                                            <div>
-                                                <p className='mb-0 fw-lighter'>Phone Home</p>
-                                                <p className='mb-0 fw-lighter'>Phone Other</p>
-                                                <p className='mb-0 fw-lighter'>Website</p>
-                                                <p className='mb-0 fw-lighter'>Primary City</p>
-                                                <p className='mb-0 fw-lighter'>Primary State</p>
-                                                <p className='mb-0 fw-lighter'>Primary Country</p>
-                                                <p className='mb-0 fw-lighter'>Primary Postal</p>
-                                                <p className='mb-0 fw-lighter'>Secondary City</p>
-                                                <p className='mb-0 fw-lighter'>Secondary State</p>
-                                                <p className='mb-0 fw-lighter'>Secondary Country</p>
-                                                <p className='mb-0 fw-lighter'>Secondary Postal</p>
-                                            </div>
-
-                                            <div>
-                                                <p className='mb-0'>{canvasData?.PhoneWork ? canvasData?.PhoneWork : <>&nbsp;</>}</p>
-                                                <p className='mb-0'>{canvasData?.PhoneOther ? canvasData?.PhoneOther : <>&nbsp;</>}</p>
-                                                <p className='mb-0'>{canvasData?.Website ? canvasData?.Website : <>&nbsp;</>}</p>
-                                                <p className='mb-0'>{canvasData?.PrimaryCity ? canvasData?.PrimaryCity : <>&nbsp;</>}</p>
-                                                <p className='mb-0'>{canvasData?.PrimaryState ? canvasData?.PrimaryState : <>&nbsp;</>}</p>
-                                                <p className='mb-0'>{canvasData?.PrimaryCountry ? canvasData?.PrimaryCountry : <>&nbsp;</>}</p>
-                                                <p className='mb-0'>{canvasData?.PrimaryPostal ? canvasData?.PrimaryPostal : <>&nbsp;</>}</p>
-                                                <p className='mb-0'>{canvasData?.SecondaryCity ? canvasData?.SecondaryCity : <>&nbsp;</>}</p>
-                                                <p className='mb-0'>{canvasData?.SecondaryState ? canvasData?.SecondaryState : <>&nbsp;</>}</p>
-                                                <p className='mb-0'>{canvasData?.SecondaryCountry ? canvasData?.SecondaryCountry : <>&nbsp;</>}</p>
-                                                <p className='mb-0'>{canvasData?.SecondaryPostal ? canvasData?.SecondaryPostal : <>&nbsp;</>}</p>
-                                            </div>
-                                        </div>
-
-
-                                        {/* professional details */}
-                                        <div className="divider"><span>Professional Details</span></div>
-                                        <div className="d-flex align-item-center justify-content-between me-2">
-                                            <div>
-                                                <p className='mb-0 fw-lighter'>Title</p>
-                                                <p className='mb-0 fw-lighter'>Phone Work</p>
-                                                <p className='mb-0 fw-lighter'>Assigned</p>
-                                                <p className='mb-0 fw-lighter'>Teams</p>
-                                                <p className='mb-0 fw-lighter'>Partner</p>
-                                                <p className='mb-0 fw-lighter'>Category</p>
-                                                <p className='mb-0 fw-lighter'>Department</p>
-                                                <p className='mb-0 fw-lighter'>Business Role</p>
-                                                <p className='mb-0 fw-lighter'>Reports</p>
-                                                <p className='mb-0 fw-lighter'>Assistant Ph</p>
-                                            </div>
-
-                                            <div>
-                                                <p className='mb-0'>{canvasData?.Title ? canvasData?.Title : <>&nbsp;</>}</p>
-                                                <p className='mb-0'>{canvasData?.PhoneWork ? canvasData?.PhoneWork : <>&nbsp;</>}</p>
-                                                <p className='mb-0'>{canvasData?.Assigned ? canvasData?.Assigned : <>&nbsp;</>}</p>
-                                                <p className='mb-0'>{canvasData?.Teams ? canvasData?.Teams : <>&nbsp;</>}</p>
-                                                <p className='mb-0'>{canvasData?.Partner ? canvasData?.Partner : <>&nbsp;</>}</p>
-                                                <p className='mb-0'>{canvasData?.Category ? canvasData?.Category : <>&nbsp;</>}</p>
-                                                <p className='mb-0'>{canvasData?.Department ? canvasData?.Department : <>&nbsp;</>}</p>
-                                                <p className='mb-0'>{canvasData?.BusinessRole ? canvasData?.BusinessRole : <>&nbsp;</>}</p>
-                                                <p className='mb-0'>{canvasData?.Reports ? canvasData?.Reports : <>&nbsp;</>}</p>
-                                                <p className='mb-0'>{canvasData?.AssistantPh ? canvasData?.AssistantPh : <>&nbsp;</>}</p>
-
-                                            </div>
-                                        </div>
-                                    </Card.Body>
-                                </Card>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </Table>
                             </div>
-                        </Offcanvas.Body>
-                    </Offcanvas>
-                </Card>
+
+
+                            {/* upcoming activites */}
+                            <div className='mt-4 bg-white mb-2'>
+                                <Table className='p-1' bordered>
+                                    <tbody>
+                                        <tr>
+                                            <td colSpan={3}>
+                                                <p className='fs-5 mb-0'>Upcoming Activity </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colSpan={3}>
+                                                <p className='fs_1 fw-bolder'>Prepare quote for Jerome Bell</p>
+                                                <div className="w-70">
+                                                    <p className='fs_1'>She intreseted on our new product line and wants our very best price Please include a deatiled breakdown of costs</p>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td className='w-20'>
+                                                <p className='mb-0 fs_2'>Reminder</p>
+                                                <p className='fw-bolder mb-0'>No reminder</p>
+                                            </td>
+                                            <td className='w-20'>
+                                                <p className='mb-0 fs_2'>Task Prority</p>
+                                                <p className='fw-bolder mb-0'>High</p>
+                                            </td>
+                                            <td className='w-20'>
+                                                <p className='mb-0 fs_2'>Assigned to</p>
+                                                <p className='fw-bolder mb-0'>Esther Howard</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </Table>
+                            </div>
+
+                            {/* previous activities */}
+                            <div className='mt-4 bg-white mb-2'>
+                                <Table bordered>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <p className='fs-5 mb-0'>Previous Activities</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div className='hide_scrollbar' style={{ maxHeight: '50vh', overflow: 'scroll' }}>
+                                                    <ul className="events-list p-2">
+                                                        {[
+                                                            {
+                                                                "active": true,
+                                                                "date": {
+                                                                    "day": "Sat",
+                                                                    "num": "12"
+                                                                },
+                                                                "events": [
+                                                                    {
+                                                                        "time": "08:00am - 10:30am",
+                                                                        "title": "Web Design Workshop",
+                                                                        "text": "Duis aute irure dolor in repre hen derit in volup tate velit esse cillum."
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+
+                                                                "date": {
+                                                                    "day": "Sat",
+                                                                    "num": "11"
+                                                                },
+                                                                "events": [
+                                                                    {
+                                                                        "time": "08:00am - 10:30am",
+                                                                        "title": "Golden Autumn Festival",
+                                                                        "text": "Duis aute irure dolor in repre hen derit in volup tate velit esse cillum."
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+
+                                                                "date": {
+                                                                    "day": "Sat",
+                                                                    "num": "10"
+                                                                },
+                                                                "events": [
+                                                                    {
+                                                                        "time": "08:00am - 10:30am",
+                                                                        "title": "Front-End Devs Meetup",
+                                                                        "text": "Duis aute irure dolor in repre hen derit in volup tate velit esse cillum."
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "active": true,
+                                                                "date": {
+                                                                    "day": "Sat",
+                                                                    "num": "09"
+                                                                },
+                                                                "events": [
+                                                                    {
+                                                                        "time": "08:00am - 10:30am",
+                                                                        "title": "Web Design Workshop",
+                                                                        "text": "Duis aute irure dolor in repre hen derit in volup tate velit esse cillum."
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+
+                                                                "date": {
+                                                                    "day": "Sat",
+                                                                    "num": "07"
+                                                                },
+                                                                "events": [
+                                                                    {
+                                                                        "time": "08:00am - 10:30am",
+                                                                        "title": "5th Religious Conference",
+                                                                        "text": "Duis aute irure dolor in repre hen derit in volup tate velit esse cillum."
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+
+                                                                "date": {
+                                                                    "day": "Sat",
+                                                                    "num": "04"
+                                                                },
+                                                                "events": [
+                                                                    {
+                                                                        "time": "08:00am - 10:30am",
+                                                                        "title": "Web Design Workshop",
+                                                                        "text": "Duis aute irure dolor in repre hen derit in volup tate velit esse cillum."
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "active": true,
+                                                                "date": {
+                                                                    "day": "Sat",
+                                                                    "num": "03"
+                                                                },
+                                                                "events": [
+                                                                    {
+                                                                        "time": "08:00am - 10:30am",
+                                                                        "title": "Golden Autumn Festival",
+                                                                        "text": "Duis aute irure dolor in repre hen derit in volup tate velit esse cillum."
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "date": {
+                                                                    "day": "Wed",
+                                                                    "num": "02"
+                                                                },
+                                                                "events": [
+                                                                    {
+                                                                        "time": "08:00am - 11:30am",
+                                                                        "title": "5th Religious Conference",
+                                                                        "text": "Excep teur sint occae cat cupi datat non proident sunt in culpa qui."
+                                                                    }, {
+                                                                        "time": "1:30pm - 5:30pm",
+                                                                        "title": "Church Workshop Events",
+                                                                        "text": "Datat non proident sunt in culpa qui."
+                                                                    }
+                                                                ]
+                                                            }, {
+                                                                "date": {
+                                                                    "day": "Thu",
+                                                                    "num": "08"
+                                                                },
+                                                                "events": [
+                                                                    {
+                                                                        "time": "08:30am - 03:30pm",
+                                                                        "title": "Front-End Devs Meetup",
+                                                                        "text": "Sed ut perspi ciatis unde omnis iste natus error sit volup tatem."
+                                                                    }
+                                                                ]
+                                                            }, {
+                                                                "date": {
+                                                                    "day": "Mon",
+                                                                    "num": "23"
+                                                                },
+                                                                "events": [
+                                                                    {
+                                                                        "time": "09:00am - 05:30pm",
+                                                                        "title": "Golden Autumn Festival"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ].map((item, index) => (
+                                                            <li key={index} className={item.active ? "active" : ""}>
+                                                                <div className="event-date">
+                                                                    <small>{item.date.day}</small>
+                                                                    <h5>{item.date.num}</h5>
+                                                                </div>
+                                                                <div className="events-body">
+                                                                    {item.events.map((event, ind) => (
+                                                                        <div key={ind} className="ev-item">
+                                                                            <small>{event.time}</small>
+                                                                            <p className='fs_2 text-primary fw-bolder'>{event.title}</p>
+                                                                            {event.text && <p>{event.text}</p>}
+                                                                        </div>
+                                                                    ))}
+                                                                </div>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </Table>
+                            </div>
+                        </div>
+                    </Offcanvas.Body>
+                </Offcanvas>
                 <Footer />
             </div >
         </>

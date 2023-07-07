@@ -1,8 +1,9 @@
-
+// "API_BASE_URL": "https://api.tgraderp.com/"
 import axios from "axios";
 import Config from "./config.json";
 
 const getInstance = async (ApiUrl,port, url) => {
+    // const apiUrl = ApiUrl+url;
     const apiUrl = ApiUrl+port+"/"+url;
 
     // var token = localStorage.getItem("Inits");
@@ -15,6 +16,7 @@ const getInstance = async (ApiUrl,port, url) => {
     return axios.get(apiUrl, config);
 };
 const postInstance = async (ApiUrl,port, url, body, ENV, AppId) => {
+    // const apiUrl = ApiUrl+url;
     const apiUrl = ApiUrl+port+"/"+url;
     console.log(apiUrl);
 
@@ -32,7 +34,7 @@ const postInstance = async (ApiUrl,port, url, body, ENV, AppId) => {
 };
 
 const putInstance = async (ApiUrl,port, url, body,id, ENV, AppId) => {
-    const apiUrl = ApiUrl+port+"/"+url;
+    const apiUrl = ApiUrl+url;
     console.log(apiUrl);
 
     // var token = localStorage.getItem("Inits");

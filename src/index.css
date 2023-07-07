@@ -1,0 +1,11 @@
+.fs_1 {
+    font-size: 11px;
+}
+
+.fs_2 {
+    font-size: 12px;
+}
+
+.hide_scrollbar::-webkit-scrollbar{
+    display: none;
+}
