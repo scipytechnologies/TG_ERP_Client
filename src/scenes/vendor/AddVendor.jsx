@@ -27,7 +27,8 @@ function AddVendor() {
 
   async function PostVendor(form) {
     console.log(form);
-    const res = await mainservice.vendor(form, index.VendorID);
+    const res = await mainservice.vendor(form,index.VendorID);
+    
     if (res.data != null) {
       console.log("Vendor Added");
     }
