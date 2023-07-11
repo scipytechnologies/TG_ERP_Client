@@ -3,13 +3,16 @@ import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate,useSearchParams } from 'react-router-dom';
 import mainservice from '../../services/mainservice';
 import { useSelector } from 'react-redux';
 
 function AddCrm() {
   const index = useSelector((state) => state.index)
-
+  let [searchParams, setSearchParams] = useSearchParams();
+  const id = searchParams.get("id")
+  
+  console.log(id,"searchParams");
 
   // to maintain dark and light mode
   const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';

@@ -113,6 +113,11 @@ function Customer() {
         setCanvasData('')
     }
 
+    // const NavigateHandler =() =>{
+    //     // navigate(`/dashboard/crm/addCrm/?id=${item._id}`)
+    //     console.log("hello");
+    // }
+
 
     // demo profile image link
     const imageLink = 'https://api.tgraderp.com/crm/customer/image/customer/8170dcba-23ad-4dca-af96-a7801a8c12f4-pro-avatar.png'
@@ -167,7 +172,7 @@ function Customer() {
 
                                                     <Dropdown.Menu>
                                                         <Dropdown.Item >Action</Dropdown.Item>
-                                                        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                                                        <Dropdown.Item onClick={() => navigate(`/dashboard/crm/addCrm/?id=${item._id}`)}>Edit</Dropdown.Item>
                                                         <Dropdown.Item  style={{color:'red'}} onClick={()=>onDeleteHandler(item)}>Delete</Dropdown.Item>
                                                     </Dropdown.Menu>
                                                 </Dropdown>
