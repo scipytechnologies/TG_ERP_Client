@@ -33,6 +33,24 @@ function RfqPurchaseOrder() {
     purchaseorderdetails()
   }, []);
 
+
+  async function deletePurchaseorder(id) {
+    const res = await mainservice.deletePurchaseorder(index.PurchaseorderID, id);
+    if (res.data != null) {
+        console.log("deleted");
+        purchaseorderdetails()
+    }
+    else {
+        console.log(res.message);
+    }
+}
+
+const onDeleteHandler = (item) => {
+    console.log(item._id);
+    deletePurchaseorder(item._id);
+}
+
+
   // Grid js each row clicking funciton
   const [offCanvas, setOffCanvas] = useState(false)
   const handleCanvas = (row) => {
@@ -81,7 +99,7 @@ function RfqPurchaseOrder() {
                           <Dropdown.Menu>
                             <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                             <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                            <Dropdown.Item  style={{color:'red'}} onClick={()=>onDeleteHandler(item)}>Delete</Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>
                       </Button>

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import mainservice from "../services/mainservice";
 
 import bg1 from "../assets/img/bg1.jpg";

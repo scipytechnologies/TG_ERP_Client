@@ -33,8 +33,8 @@ const postInstance = async (ApiUrl,port, url, body, ENV, AppId) => {
     return axios.post(apiUrl, body);
 };
 
-const putInstance = async (ApiUrl,port, url, body,id, ENV, AppId) => {
-    const apiUrl = ApiUrl+url;
+const putInstance = async (ApiUrl,port, url, body, ENV, AppId) => {
+    const apiUrl = ApiUrl+port+"/"+url;
     console.log(apiUrl);
 
     // var token = localStorage.getItem("Inits");

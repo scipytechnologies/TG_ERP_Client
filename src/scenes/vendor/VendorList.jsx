@@ -33,6 +33,22 @@ function VendorList() {
         vendordetails()
     }, []);
 
+    async function deletevendor(id) {
+        const res = await mainservice.deletevendor(index.VendorID, id);
+        if (res.data != null) {
+            console.log("deleted");
+            vendordetails()
+        }
+        else {
+            console.log(res.message);
+        }
+    }
+    
+    const onDeleteHandler = (item) => {
+        console.log(item._id);
+        deletevendor(item._id);
+    }
+
     // Grid js each row clicking funciton
     const [offCanvas, setOffCanvas] = useState(false)
     const handleCanvas = (row) => {
@@ -80,7 +96,7 @@ function VendorList() {
                                                     <Dropdown.Menu>
                                                         <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                                                         <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                                        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                                        <Dropdown.Item  style={{color:'red'}} onClick={()=>onDeleteHandler(item)}>Delete</Dropdown.Item>
                                                     </Dropdown.Menu>
                                                 </Dropdown>
                                             </Button>
@@ -172,5 +188,4 @@ function VendorList() {
         </>
     )
 }
-
 export default VendorList

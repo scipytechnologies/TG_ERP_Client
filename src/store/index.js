@@ -15,7 +15,7 @@ const initialState = {
   PurchaseID: '',
   SalesID: '',
   VendorID: '',
-  NotificationID: '',
+  NotificationID: ''
 }
 
 export const IndexSlice = createSlice({

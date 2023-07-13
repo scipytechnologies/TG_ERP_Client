@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
+import './timeline.css'
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState } from 'react';
-import { Button, Card, Col, Nav, ProgressBar, Row, Form, Dropdown, Modal, ButtonGroup } from "react-bootstrap";
+import { Button, Card, Col, Nav, ListGroup, Row, Form, Dropdown, Modal, ButtonGroup, Badge } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import { Grid, _ } from "gridjs-react";
 import mainservice from '../../services/mainservice';
@@ -167,7 +168,7 @@ function Opportunity() {
                         </Card.Body>
                         <Modal show={offCanvas} onHide={handleClose} fullscreen={true}>
                             <Modal.Header closeButton>
-                                <Modal.Title>Modal heading</Modal.Title>
+                                <Modal.Title>Lead Manager</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
                                 <div className=" p-4 p-lg-5">
@@ -176,16 +177,101 @@ function Opportunity() {
                                             <Card>
                                                 <Card.Body>
                                                     <div className=" mb-5" >
-                                                        <div >
-                                                            <img src={img1} fluid={true} alt="..." className="rounded-circle mx-auto d-block w-40" />
+                                                        <div style={{
+                                                            position: 'relative',
+                                                            backgroundColor: '#506fd9',
+                                                            backgroundSize: 'cover',
+                                                            height: '130px',
+                                                            borderRadius: '5px 5px 0 0'
+                                                        }}>
+                                                            <img style={{
+                                                                position: 'absolute',
+                                                                bottom: '-50px',
+                                                                left: '50%',
+                                                                transform: 'translateX(-50%)',
+                                                                background: 'white',
+                                                                padding: '5px'
+                                                            }} src={img1} fluid={true} alt="..." className="rounded-circle mx-auto d-block w-40" />
                                                         </div>
-                                                        <div className="">
+                                                        <div className="mt-5">
                                                             <h5 className=" text-center pt-2 mb-0">Shaira Diaz</h5>
-                                                            <h6 className=" text-center pt-2 mb-0"> manager</h6>
+                                                            <h6 className=" text-center pt-0 mt-0"> manager</h6>
                                                         </div>
-                                                        <Card>
-                                                            <Card.Body></Card.Body>
+
+
+                                                        <Card className='mb-2'>
+                                                            <Card.Body>
+                                                                <div className='d-flex gap-2 justify-content-center'>
+                                                                    <Button variant="primary" className="btn-icon"><i class="ri-phone-fill"></i></Button>
+                                                                    <Button variant="primary" className="btn-icon"><i class="ri-message-fill"></i></Button>
+                                                                    <Button variant="primary" className="btn-icon"><i class="ri-edit-fill"></i></Button>
+                                                                </div>
+                                                            </Card.Body>
                                                         </Card>
+                                                        <ListGroup>
+                                                            <ListGroup.Item>
+                                                                <div className='d-flex'>
+                                                                    <div className='w-50'>
+                                                                        Phone
+                                                                    </div>
+                                                                    <div className='w-50'>
+                                                                        : +91 8855885588
+                                                                    </div>
+                                                                </div>
+                                                            </ListGroup.Item>
+                                                            <ListGroup.Item>
+                                                                <div className='d-flex'>
+                                                                    <div className='w-50'>
+                                                                        Email
+                                                                    </div>
+                                                                    <div className='w-50'>
+                                                                        : email@gmail.com
+                                                                    </div>
+                                                                </div>
+                                                            </ListGroup.Item>
+                                                            <ListGroup.Item>
+                                                                <div className='d-flex'>
+                                                                    <div className='w-50'>
+                                                                        Address
+                                                                    </div>
+                                                                    <div className='w-50'>
+                                                                        : Tc 68/3344 House Number,Place
+                                                                    </div>
+                                                                </div>
+                                                            </ListGroup.Item>
+                                                            <ListGroup.Item>
+                                                                <div className='d-flex'>
+                                                                    <div className='w-50'>
+                                                                        Place
+                                                                    </div>
+                                                                    <div className='w-50'>
+                                                                        : Palayam
+                                                                    </div>
+                                                                </div>
+                                                            </ListGroup.Item>
+
+                                                            <ListGroup.Item>
+                                                                <div className='d-flex'>
+                                                                    <div className='w-50'>
+                                                                        City
+                                                                    </div>
+                                                                    <div className='w-50'>
+                                                                        : Thiruvananthapuram
+                                                                    </div>
+                                                                </div>
+                                                            </ListGroup.Item>
+                                                            <ListGroup.Item>
+                                                                <div className='d-flex'>
+                                                                    <div className='w-50'>
+                                                                        pinCode
+                                                                    </div>
+                                                                    <div className='w-50'>
+                                                                        : 692157
+                                                                    </div>
+                                                                </div>
+                                                            </ListGroup.Item>
+
+                                                        </ListGroup>
 
 
                                                     </div>
@@ -194,12 +280,9 @@ function Opportunity() {
                                         </Col>
                                         <Col xl>
                                             <div className="media-profile mb-5">
-                                                <div className="media-img mb-3 mb-sm-0">
-                                                    <img src={img1} className="img-fluid" alt="..." />
-                                                </div>
                                                 <div className="media-body">
-                                                    <h5 className="media-name">Shaira Diaz</h5>
-                                                    <p className="d-flex gap-2 mb-4"><i className="ri-map-pin-line"></i> San Francisco, California</p>
+                                                    <h5 className="media-name">Lead Name</h5>
+                                                    <p className="d-flex gap-2 mb-4">Created Date : 8-july-2023 05:00 pm</p>
                                                     <p className="mb-0">Redhead, Innovator, Saviour of Mankind, Hopeless Romantic, Attractive 20-something Yogurt Enthusiast. You can replace this with any content and adjust it as needed... <Link to="">Read more</Link></p>
                                                 </div>
                                             </div>
@@ -207,157 +290,171 @@ function Opportunity() {
                                             <Row className="row-cols-sm-auto g-4 g-md-5 g-xl-4 g-xxl-5">
                                                 {[
                                                     {
-                                                        "icon": "ri-medal-2-line",
-                                                        "text": "5 Certificates",
-                                                        "label": "Achievements"
+                                                        "icon": "ri-bar-chart-box-fill",
+                                                        "text": "Initialized",
+                                                        "label": "Status"
                                                     }, {
-                                                        "icon": "ri-suitcase-line",
-                                                        "text": "10+ Years",
-                                                        "label": "Experience"
+                                                        "icon": "ri-suitcase-fill",
+                                                        "text": "Marketing Campagin",
+                                                        "label": "Lead Source"
                                                     }, {
-                                                        "icon": "ri-team-line",
-                                                        "text": "356",
-                                                        "label": "Following"
+                                                        "icon": "ri-user-3-fill",
+                                                        "text": "Sooraj",
+                                                        "label": "Created By"
                                                     }, {
-                                                        "icon": "ri-team-line",
-                                                        "text": "1,056",
-                                                        "label": "Followers"
+                                                        "icon": "ri-team-fill",
+                                                        "text": "Manu ML",
+                                                        "label": "Assigned to"
                                                     }
                                                 ].map((profileItem, index) => (
                                                     <Col key={index}>
                                                         <div className="profile-item">
                                                             <i className={profileItem.icon}></i>
                                                             <div className="profile-item-body">
-                                                                <p>{profileItem.text}</p>
-                                                                <span>{profileItem.label}</span>
+                                                                <span>{profileItem.label}</span> <p>{profileItem.text}</p>
+
                                                             </div>
                                                         </div>
                                                     </Col>
                                                 ))}
                                             </Row>
 
-                                            <Nav className="nav-line mt-5">
-                                                <Nav.Link href="" className="active">Post &amp; Activity</Nav.Link>
-                                                <Nav.Link href="">Personal Information</Nav.Link>
-                                                <Nav.Link href="">Connections</Nav.Link>
-                                                <Nav.Link href="">Profile Settings</Nav.Link>
-                                            </Nav>
+                                            <div className='d-flex gap-2 justify-content-end mt-5'>
+                                                {/* <div>
+                                                    <Button variant="secondary" onClick={handleClose}>
+                                                        Close
+                                                    </Button>
+                                                </div> */}
+                                                <div>
+                                                    <Button variant="primary" onClick={handleClose}>
+                                                        Create Appointment
+                                                    </Button>
+                                                </div>
+                                                <div>
 
-                                            <div className="post-bar mt-4">
-                                                <div className="post-bar-item gap-2">
-                                                    <i className="ri-edit-2-line"></i>
-                                                    <Link to="">Share an update</Link>
-                                                </div>
-                                                <div className="post-bar-item">
-                                                    <Link to=""><i className="ri-image-line"></i></Link>
-                                                </div>
-                                                <div className="post-bar-item">
-                                                    <Link to=""><i className="ri-vidicon-line"></i></Link>
-                                                </div>
-                                                <div className="post-bar-item">
-                                                    <Link to=""><i className="ri-article-line"></i></Link>
-                                                </div>
+                                                    <Button variant="primary" onClick={handleClose}>
+                                                        Create Invoice
+                                                    </Button>  </div>
                                             </div>
 
-                                            <Card className="card-post mt-4">
+                                            <Card className='mt-3'>
                                                 <Card.Header>
-                                                    <Card.Title>Recent Activity</Card.Title>
-                                                    <Link to="" className="link-more"><i className="ri-more-2-fill"></i></Link>
+                                                    <Card.Title>
+                                                      Add Follow Up
+                                                    </Card.Title>
                                                 </Card.Header>
-                                                <Card.Body>
-                                                    <div className="post-header mb-3">
-                                                        <Link to=""><Avatar initial="s" status="online" /></Link>
-                                                        <div className="post-content">
-                                                            <h6>Bethany Hartsfield</h6>
-                                                            <span>Cigarette Butt Collector</span>
-                                                        </div>
-                                                        <span className="post-date">3 days ago</span>
-                                                    </div>
-                                                    <p className="post-text">Our team is expanding again. We are looking for a Product Manager and Software Engineer to drive our new aspects of our capital projects. If you're interested, please drop a comment here or simply message me. <Link to="">#softwareengineer</Link> <Link to="">#engineering</Link></p>
 
-                                                    <div className="post-preview">
-                                                        <Row className="g-3">
-                                                            <Col sm="4">
-                                                                <img src={img5} className="img-fluid" alt="" />
-                                                            </Col>
-                                                            <Col sm>
-                                                                <h5>We're hiring of Product Manager</h5>
-                                                                <p>Full-time, $60,000 - $80,000 annual</p>
-                                                                <span>Bay Area, San Francisco, California</span>
-                                                            </Col>
-                                                        </Row>
+                                                <Card.Body className='d-flex-wrap gap-2 d-flex align-items-end'>
+                                                    <div className="mt-1 w-25">
+                                                        <Form.Label htmlFor="followuptitle">Follow up titile</Form.Label>
+                                                        <Form.Control type="text" name="LastName" id="followuptitle" placeholder="eg: Scheduled a Meeting" />
                                                     </div>
+                                                    <div className="mt-1 w-50">
+                                                        <Form.Label htmlFor="followupmessage">Message</Form.Label>
+                                                        <Form.Control type="textarea" name="LastName" id="followupmessage" placeholder="eg: Client meeting scheduled at DD/MM/YYYY at HH:MM " />
+                                                    </div>
+                                                    <Dropdown>
+
+                                                        <Dropdown.Toggle variant="light" id="dropdown-basic">
+                                                            Status
+                                                        </Dropdown.Toggle>
+
+                                                        <Dropdown.Menu>
+                                                            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                                                            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                                                            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                                        </Dropdown.Menu>
+                                                    </Dropdown>
+                                                    <Dropdown>
+
+                                                        <Dropdown.Toggle variant="light" id="dropdown-basic">
+                                                            Assigned to
+                                                        </Dropdown.Toggle>
+
+                                                        <Dropdown.Menu>
+                                                            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                                                            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                                                            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                                                        </Dropdown.Menu>
+                                                    </Dropdown>
+                                                    <div>
+
+                                                        <Button variant="primary" onClick={handleClose}>
+                                                            Close
+                                                        </Button>  </div>
                                                 </Card.Body>
-                                                <Card.Footer>
-                                                    <Nav>
-                                                        <Nav.Link href=""><i className="ri-thumb-up-line"></i> Like</Nav.Link>
-                                                        <Nav.Link href=""><i className="ri-chat-1-line"></i> Comment</Nav.Link>
-                                                        <Nav.Link href=""><i className="ri-share-forward-line"></i> Share</Nav.Link>
-                                                    </Nav>
-                                                </Card.Footer>
                                             </Card>
 
-                                            <Card className="card-post mt-4">
-                                                <Card.Header>
-                                                    <Card.Title>Work Experience</Card.Title>
-                                                    <Link to="" className="link-more"><i className="ri-more-2-fill"></i></Link>
-                                                </Card.Header>
+
+
+
+
+
+
+
+
+                                            <Card className="card-post mt-1">
+
                                                 <Card.Body>
-                                                    <div className="experience-item">
-                                                        <div className="experience-icon"><i className="ri-suitcase-line"></i></div>
-                                                        <div className="experience-body">
-                                                            <h5>Front-End Developer</h5>
-                                                            <p>Themepixels, Inc.</p>
-                                                            <p>December 2020 - Present</p>
-                                                            <ul className="mt-3">
-                                                                <li>Leading on the architecture and approach on the ongoing and new Angular applications in the company;</li>
-                                                                <li>Setting up expectations for the developers</li>
-                                                                <li>Review other Angular developers' code in terms of following the standards, best practices, and expectations.</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </Card.Body>
-                                                <Card.Footer>
-                                                    <Nav>
-                                                        <Nav.Link href="">Show more experiences (4) <i className="ri-arrow-down-s-line"></i></Nav.Link>
+                                                    <Nav className="nav-line mt-1">
+                                                        <Nav.Link href="" className="active">Recent Activity</Nav.Link>
+                                                        {/* <Nav.Link href="">Personal Information</Nav.Link>
+                                                <Nav.Link href="">Connections</Nav.Link>
+                                                <Nav.Link href="">Profile Settings</Nav.Link> */}
                                                     </Nav>
-                                                </Card.Footer>
+                                                    <Row className="justify-content-center mt-1 mb-1">
+                                                        <Col md={11}>
+                                                            <Card className="mb-1 mt-2 card border-0">
+                                                                <Card.Body>
+                                                                    <div className="vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
+                                                                        <div className="vertical-timeline-item vertical-timeline-element">
+                                                                            <div>
+                                                                                <span className="vertical-timeline-element-icon bounce-in">
+                                                                                    <Badge bg="warning">&nbsp;</Badge>
+                                                                                </span>
+                                                                                <div className="vertical-timeline-element-content bounce-in">
+                                                                                    <h4 className="timeline-title">Meeting with client</h4>
+                                                                                    <p>
+                                                                                        Meeting with USA Client, today at{' '}
+                                                                                        <a href="javascript:void(0);" data-abc="true">
+                                                                                            12:00 PM
+                                                                                        </a>
+                                                                                    </p>
+                                                                                    <p>Assigned to : Manu ML</p>
+                                                                                    <span className="vertical-timeline-element-date">20-jun-23</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="vertical-timeline-item vertical-timeline-element">
+                                                                            <div>
+                                                                                <span className="vertical-timeline-element-icon bounce-in">
+                                                                                    <Badge bg="info">&nbsp;</Badge>
+                                                                                </span>
+                                                                                <div className="vertical-timeline-element-content bounce-in">
+                                                                                    <h4 className="timeline-title">Lead Generated by Sooraj</h4>
+                                                                                    <p>
+                                                                                        Meeting with USA Client, today at{' '}
+                                                                                        <a href="javascript:void(0);" data-abc="true">
+                                                                                            12:00 PM
+                                                                                        </a>
+                                                                                    </p>
+                                                                                    <p>Assigned to : Manu ML</p>
+                                                                                    <span className="vertical-timeline-element-date">9:30 AM</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </Card.Body>
+                                                            </Card>
+                                                        </Col>
+                                                    </Row>
+
+                                                </Card.Body>
+
                                             </Card>
 
-                                            <Card className="card-post mt-4">
-                                                <Card.Header>
-                                                    <Card.Title>Interests</Card.Title>
-                                                    <Link to="" className="link-more"><i className="ri-more-2-fill"></i></Link>
-                                                </Card.Header>
-                                                <Card.Body>
-                                                    <div className="interest-item">
-                                                        <div className="interest-icon bg-dark"><i className="ri-github-fill"></i></div>
-                                                        <div className="interest-body">
-                                                            <h6>Github, Inc.</h6>
-                                                            <p>A provider of Internet hosting for software development and version control using Git. <Link to="">Learn more</Link></p>
-                                                        </div>
-                                                    </div>
-                                                    <div className="interest-item">
-                                                        <div className="interest-icon bg-twitter"><i className="ri-twitter-fill"></i></div>
-                                                        <div className="interest-body">
-                                                            <h6>Twitter, Inc.</h6>
-                                                            <p>An American communications company that operates the microblogging and social networking service. <Link to="">Learn more</Link></p>
-                                                        </div>
-                                                    </div>
-                                                    <div className="interest-item">
-                                                        <div className="interest-icon bg-amazon"><i className="ri-amazon-fill"></i></div>
-                                                        <div className="interest-body">
-                                                            <h6>Amazon.com, Inc.</h6>
-                                                            <p>An American multinational technology company which focuses on e-commerce, artificial intelligence and more. <Link to="">Learn more</Link></p>
-                                                        </div>
-                                                    </div>
-                                                </Card.Body>
-                                                <Card.Footer>
-                                                    <Nav>
-                                                        <Nav.Link href="">Show more interests (1) <i className="ri-arrow-down-s-line"></i></Nav.Link>
-                                                    </Nav>
-                                                </Card.Footer>
-                                            </Card>
+
                                         </Col>
 
                                     </Row>
@@ -365,9 +462,7 @@ function Opportunity() {
                                 </div>
                             </Modal.Body>
                             <Modal.Footer>
-                                <Button variant="secondary" onClick={handleClose}>
-                                    Close
-                                </Button>
+
                                 <Button variant="primary" onClick={handleClose}>
                                     Save Changes
                                 </Button>
@@ -377,7 +472,7 @@ function Opportunity() {
                     <Footer />
                 </div >
             </>
-        </div>
+        </div >
     )
 }
 
