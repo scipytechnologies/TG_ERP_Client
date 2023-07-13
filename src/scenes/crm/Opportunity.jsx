@@ -43,7 +43,7 @@ function Opportunity() {
     // Grid js each row clicking funciton
     const [offCanvas, setOffCanvas] = useState(false)
     const handleCanvas = (row) => {
-        console.log(row);
+        GetProfile(row.CustomerId);
         setOffCanvas(true)
     };
     const handleClose = () => {
@@ -65,6 +65,13 @@ function Opportunity() {
         console.log(item._id);
         deleteopportunity(item._id);
     }
+ 
+    const [profile,setProfile] = useState({})
+    const GetProfile = async (id) => {
+          const res = await mainservice.customerById(index.CrmID, id);
+          setProfile(res.data)
+          console.log(profile);
+      }
 
     return (
         <div>
@@ -132,7 +139,7 @@ function Opportunity() {
                                     _(
                                         <>
                                             <ButtonGroup>
-                                                <Button size="sm" variant='white' onClick={() => handleCanvas()}><i className='ri-eye-line'></i></Button>
+                                                <Button size="sm" variant='white' onClick={() => handleCanvas(item)}><i className='ri-eye-line'></i></Button>
                                                 <Button className='p-0' variant="white">
 
 
@@ -194,8 +201,8 @@ function Opportunity() {
                                                             }} src={img1} fluid={true} alt="..." className="rounded-circle mx-auto d-block w-40" />
                                                         </div>
                                                         <div className="mt-5">
-                                                            <h5 className=" text-center pt-2 mb-0">Shaira Diaz</h5>
-                                                            <h6 className=" text-center pt-0 mt-0"> manager</h6>
+                                                            <h5 className=" text-center pt-2 mb-0">{profile.FirstName + " " + profile.LastName}</h5>
+                                                            <h6 className=" text-center pt-0 mt-0"> {profile.BusinessRole}</h6>
                                                         </div>
 
 
