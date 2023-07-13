@@ -1,3 +1,4 @@
+import { data } from "jquery";
 import apicall from "./interceptor";
 
 ////////////////////////////////////////////{User Api}////////////////////////////////////////////////////
@@ -98,7 +99,6 @@ async function createCustomerCollection(data) {
 
 async function createCustomer(data, id) {
     const response = await apicall.apicall("post", 5001, `crm/customer/customer/${id}`, data)
-
     return response
 
 }
@@ -106,11 +106,21 @@ async function customerList(id) {
     const response = await apicall.apicall("get", 5001, `crm/customer/getCustomer/${id}`)
     return response
 }
+async function updateCustomer(companyID,id,data) {
+    const response = await apicall.apicall("put", 5001, `crm/customer/updateCustomer/${companyID}/${id}`,data)
+    return response
+}
+
+
 async function deletecustomer(companyID,id) {
     const response = await apicall.apicall("delete", 5001, `crm/customer/deleteCustomer/${companyID}/${id}`)
     return response
 }
 
+async function customerById(companyID,id) {
+    const response = await apicall.apicall("get", 5001, `crm/customer/getCoustomerbyid/${companyID}/${id}`)
+    return response
+}
 //////////////////////////////////////{CRM-Opportunity}////////////////////////////////////////
 
 async function createOpportunityCollection(data) {
@@ -412,8 +422,9 @@ async function OffersInHome() {
 }
 
 export default {
-    Auth, SignUp, Login, GetUserById, Index, AddIndex, GetIndexbyId, RegisterCompany, GetCompanyById, InitializeCompany, MainProductsInHome, CategoriesInHome, LatestProductsInHome, RandomProductsInHome, CategoriesWithProductsForHome, TopSellingProductsInHome, OffersInHome,
-    createAccount, createAppointment, createCustomerCollection, createCustomer, createOpportunity, addEmployee, addInventorymanagementDetails, addPrjmanagerDetails, addProductDetails, purchase, purchaseitem, purchaseorder, rfq, invoice, sales,
+    Auth, SignUp, Login, GetUserById, Index, AddIndex, GetIndexbyId,
+     RegisterCompany, GetCompanyById, InitializeCompany, MainProductsInHome, CategoriesInHome, LatestProductsInHome, RandomProductsInHome, CategoriesWithProductsForHome, TopSellingProductsInHome, OffersInHome,
+    createAccount, createAppointment, createCustomerCollection, createCustomer,customerById ,updateCustomer, createOpportunity, addEmployee, addInventorymanagementDetails, addPrjmanagerDetails, addProductDetails, purchase, purchaseitem, purchaseorder, rfq, invoice, sales,
     accountDetails, appointmentDetails, customerList, opportunityDetails, employeeDetails, getInventorymanagementDetails, getPrjmanagerDetails, getProductDetails, purchasedetails, purchaseitemdetails, purchaseorderdetails,
     rfqdetails, invoicedetails, salesdetails, createEmployeeCollection, createInventorymanagementCollection, createPrjmanagerCollection, createProductCollection, createPurchaseCollection, createPurchaseitemCollection, createPurchaseorderCollection,
     createRfqCollection, createInvoiceCollection, createSalesCollection, createAccountCollection, createAppointmentCollection, createOpportunityCollection, createVendorCollection, vendor, vendordetails, createNotificationCollection, postNotification, getNotification

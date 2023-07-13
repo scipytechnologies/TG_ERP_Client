@@ -12,6 +12,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setCustomerCount } from '../../store/crm';
 
 
+
 function Customer() {
     // to maintain dark and light mode
     const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
@@ -57,56 +58,59 @@ function Customer() {
 
     const [form, setform] = useState({});
     const onChangeHandler = (event) => {
-      setform({
-        ...form,
-        [event.target.name]: event.target.value
-      });
-      console.log(form);
+        setform({
+            ...form,
+            [event.target.name]: event.target.value
+        });
+        console.log(form);
     };
 
     async function PostOpportunity(form) {
-        const res = await mainservice.createOpportunity(form,index.OpportunityID);
+        const res = await mainservice.createOpportunity(form, index.OpportunityID);
         if (res.data != null) {
-          console.log("lead Added");
+            console.log("lead Added");
         }
         else {
-          console.log(res.message);
+            console.log(res.message);
         }
-      }
-      
-      const onSubmitHandler = async (x,y,z) => {
-       
-        const name = y+" "+z
-       const customer = {CustomerId :x, CustomerName: name}
-       const data = {...form,...customer}
-        console.log(form,"submit");
-      await PostOpportunity(data);
-      }
-  
-      async function deletecustomer(id) {
-        const res = await mainservice.deletecustomer(index.CrmID,id);
-        if (res.data != null) {
-          console.log("deleted");
-          customerDetails()
-        }
-        else {
-          console.log(res.message);
-        }
-      }
+    }
 
-      const onDeleteHandler = (item) => {
+    const onSubmitHandler = async (x, y, z) => {
+
+        const name = y + " " + z
+        const customer = { CustomerId: x, CustomerName: name }
+        const data = { ...form, ...customer }
+        console.log(form, "submit");
+        await PostOpportunity(data);
+    }
+
+    async function deletecustomer(id) {
+        const res = await mainservice.deletecustomer(index.CrmID, id);
+        if (res.data != null) {
+            console.log("deleted");
+            customerDetails()
+        }
+        else {
+            console.log(res.message);
+        }
+    }
+
+    const onDeleteHandler = (item) => {
         console.log(item._id);
         deletecustomer(item._id);
-      }
+    }
 
 
     // Grid js each row clicking funciton
     const [offCanvas, setOffCanvas] = useState(false)
     const [canvasData, setCanvasData] = useState([])
+    const [dp, setDp] = useState("")
     const handleCanvas = (item) => {
         console.log(item);
         setOffCanvas(true)
         setCanvasData(item)
+
+        setDp(item.FirstName.charAt(0)) 
     };
     const handleCloseCanvas = () => {
         setOffCanvas(false)
@@ -150,6 +154,7 @@ function Customer() {
                                 data.toReversed().indexOf(item) + 1,
                                 _(
 
+                                    // <Avatar initial={item.FirstName.charAt(0)} />
                                     <Avatar img={`https://api.tgraderp.com/crm/customer/image/${item.Image}`} size="sm" status="online" />
 
                                 ),
@@ -173,7 +178,7 @@ function Customer() {
                                                     <Dropdown.Menu>
                                                         <Dropdown.Item >Action</Dropdown.Item>
                                                         <Dropdown.Item onClick={() => navigate(`/dashboard/crm/addCrm/?id=${item._id}`)}>Edit</Dropdown.Item>
-                                                        <Dropdown.Item  style={{color:'red'}} onClick={()=>onDeleteHandler(item)}>Delete</Dropdown.Item>
+                                                        <Dropdown.Item style={{ color: 'red' }} onClick={() => onDeleteHandler(item)}>Delete</Dropdown.Item>
                                                     </Dropdown.Menu>
                                                 </Dropdown>
                                             </Button>
@@ -230,21 +235,21 @@ function Customer() {
 
                 <Modal show={leadModal} onHide={handleleadModalClose} centered>
                     <Modal.Header closeButton>
-                        <Modal.Title>Create New Lead </Modal.Title>    
+                        <Modal.Title>Create New Lead </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Card style={{ marginBottom:'20px'}}> <Card.Body> Customer Name: {canvasData.FirstName + " " + canvasData.LastName}</Card.Body></Card>
+                        <Card style={{ marginBottom: '20px' }}> <Card.Body> Customer Name: {canvasData.FirstName + " " + canvasData.LastName}</Card.Body></Card>
                         <div className="mb-3">
                             <Form.Label htmlFor="leadName">Lead Name</Form.Label>
                             <Form.Control name="OpportunityName" type="text" id="leadName" placeholder="" onChange={onChangeHandler} />
                         </div>
                         <div className="mb-3">
                             <Form.Label htmlFor="Amount">Target Amount</Form.Label>
-                            <Form.Control name="Amount" type="text" id="Amount" placeholder=""  onChange={onChangeHandler}/>
+                            <Form.Control name="Amount" type="text" id="Amount" placeholder="" onChange={onChangeHandler} />
                         </div>
                         <div>
                             <Form.Label htmlFor="Description">Description</Form.Label>
-                            <Form.Control name='Description' as="textarea" id="Description" rows="3" placeholder="" onChange={onChangeHandler}/>
+                            <Form.Control name='Description' as="textarea" id="Description" rows="3" placeholder="" onChange={onChangeHandler} />
                         </div>
 
                     </Modal.Body>
@@ -252,7 +257,7 @@ function Customer() {
                         <Button variant="secondary" onClick={handleleadModalClose}>
                             Close
                         </Button>
-                        <Button variant="primary" onClick={() =>{onSubmitHandler(canvasData._id,canvasData.FirstName,canvasData.LastName)}} >
+                        <Button variant="primary" onClick={() => { onSubmitHandler(canvasData._id, canvasData.FirstName, canvasData.LastName) }} >
                             Save Changes
                         </Button>
                     </Modal.Footer>
@@ -299,7 +304,11 @@ function Customer() {
                                                 <Row>
                                                     <Col xs="10">
                                                         <div className='d-flex align-items-start'>
-                                                            <Avatar img={`https://api.tgraderp.com/crm/customer/image/${canvasData.Image}`} size="xl" status="online" />
+                                                              
+                                                            <Avatar initial={dp} />
+
+                                                        
+                                                            {/* <Avatar img={`https://api.tgraderp.com/crm/customer/image/${canvasData.Image}`} size="xl" status="online" /> */}
                                                             <div className='ms-2 mt-2'>
                                                                 <div className='d-flex align-items-center justify-content-between w-85'>
                                                                     <p className='fw-bolder mb-1'>{canvasData.FirstName + " " + canvasData.LastName}</p>
