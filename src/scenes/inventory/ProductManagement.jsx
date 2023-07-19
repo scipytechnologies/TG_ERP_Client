@@ -98,7 +98,7 @@ function ProductManagement() {
 
                           <Dropdown.Menu>
                             <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>navigate(`/dashboard/inventory/addproduct/?id=${item._id}`)}>Edit</Dropdown.Item>
                             <Dropdown.Item  style={{color:'red'}} onClick={()=>onDeleteHandler(item)}>Delete</Dropdown.Item>
                           </Dropdown.Menu>
                         </Dropdown>

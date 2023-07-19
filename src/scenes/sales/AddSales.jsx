@@ -3,9 +3,10 @@ import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 function AddSales() {
   // to maintain dark and light mode
@@ -16,12 +17,13 @@ function AddSales() {
   const index = useSelector((state)=>state.index)
   console.log(index.SalesID,"Sales");
   const onChangeHandler = (event) => {
-    setform({
-      ...form,
+    const { name, value } = event.target;
+    setUform({
+      ...uform,
       [event.target.name]: event.target.value
     });
-    console.log(form);
-  };
+    console.log(uform);
+  }
 
   async function PostSales(form) {
     console.log(form);
@@ -38,6 +40,38 @@ function AddSales() {
     event.preventDefault();
     PostSales(form);
   }
+
+  const onUpdateHandler = (event) => {
+    event.preventDefault();
+    console.log(uform);
+    updateSales(uform);
+  };
+  async function updateSales(uform){
+    const res = await mainservice.updateSales(index.SalesID,id,uform);
+    if(res.data!= null){
+      console.log(res.data, "Sales Details updated");
+    }
+    else{
+      console.log(res);
+    }
+  }
+
+  let [searchParams, setSearchParams] = useSearchParams();
+  const [uform, setUform] = useState([]);
+  const [editMode, setEditMode] = useState(false);
+  const id = searchParams.get("id");
+  const CheckEdit = async() => {
+    if(id){
+      setEditMode(true)
+      const res = await mainservice.getSalesById(index.SalesID,id);
+      setUform(res.data)
+      console.log(res.data,"this");
+    }
+  }
+  useEffect(() => {
+    CheckEdit() 
+  },[]);
+
 
   return (
     <>
@@ -62,59 +96,62 @@ function AddSales() {
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="OrderNumber">Order Number</Form.Label>
-                    <Form.Control type="Number" id="OrderNumber" name="OrderNumber" placeholder="Order Number" onChange={onChangeHandler} />
+                    <Form.Control type="Number" id="OrderNumber" name="OrderNumber" value={uform.OrderNumber} placeholder="Order Number" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Product">Product</Form.Label>
-                    <Form.Control type="text" id="Product" name='Product' placeholder="Product" onChange={onChangeHandler} />
+                    <Form.Control type="text" id="Product" name='Product' value={uform.Product} placeholder="Product" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Day">Day</Form.Label>
-                    <Form.Control type="Number" id="Day" name='Day' placeholder="Day" onChange={onChangeHandler} />
+                    <Form.Control type="Number" id="Day" name='Day' value={uform.Day} placeholder="Day" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Month">Month</Form.Label>
-                    <Form.Control type="text" id="Month" name='Month' placeholder="Month" onChange={onChangeHandler} />
+                    <Form.Control type="text" id="Month" name='Month' value={uform.Month} placeholder="Month" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Year">Year</Form.Label>
-                    <Form.Control type="Number" id="Year" name='Year' placeholder="Year" onChange={onChangeHandler} />
+                    <Form.Control type="Number" id="Year" name='Year' value={uform.Year} placeholder="Year" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Status">Status</Form.Label>
-                    <Form.Control type="text" id="Status" name='Status' placeholder="Status" onChange={onChangeHandler} />
+                    <Form.Control type="text" id="Status" name='Status' value={uform.Status} placeholder="Status" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="TotalAmount">Total Amount</Form.Label>
-                    <Form.Control type="Number" id="TotalAmount" name='TotalAmount' placeholder="Total Amount" onChange={onChangeHandler} />
+                    <Form.Control type="Number" id="TotalAmount" name='TotalAmount' value={uform.TotalAmount} placeholder="Total Amount" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col xs="12">
-                  <Button onClick={onSubmitHandler} type='submit'>Submit</Button>
+                {editMode?
+                  <div className="mt-1" style={{display:'flex',justifyContent:'flex-end'}}>
+                    <Button onClick={onUpdateHandler} type="submit">Update</Button>
+                  </div>:
+                  <div className="mt-1" style={{display:'flex',justifyContent:'flex-end'}}>
+                    <Button onClick={onSubmitHandler} type="submit">Submit</Button>
+                  </div>}
                 </Col>
               </Row>
-
-
-
             </Card.Body>
           </Card>
 
