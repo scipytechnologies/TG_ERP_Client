@@ -17,6 +17,11 @@ function AddVendor() {
   const index = useSelector((state)=>state.index)
   console.log(index.VendorID, "VendorID");
   const onChangeHandler = (event) => {
+    const { name, value } = event.target;
+    setform({
+      ...form,
+      [event.target.name] : event.target.value
+    })
     setUform({
       ...uform,
       [event.target.name]: event.target.value

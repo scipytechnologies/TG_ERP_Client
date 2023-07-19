@@ -19,6 +19,10 @@ function PurchaseItem() {
   console.log(index.PurchaseitemID, "Purchaseitem");
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
+    setform({
+      ...form,
+      [event.target.name] : event.target.value
+    })
     setUform({
       ...uform,
       [event.target.name]: event.target.value

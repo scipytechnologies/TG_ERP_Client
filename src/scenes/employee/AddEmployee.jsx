@@ -21,6 +21,10 @@ function PostEmployee() {
   console.log(index.EmployeeID, "EmployeeID");
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
+    setform({
+      ...form,
+      [event.target.name] : event.target.value
+    })
     setUform({
       ...uform,
       [event.target.name]: event.target.value

@@ -17,6 +17,11 @@ function AddProduct() {
   const index = useSelector((state)=>state.index)
   console.log(index.InventoryID,"Inventory");
   const onChangeHandler = (event) => {
+    const { name, value } = event.target;
+    setform({
+      ...form,
+      [event.target.name] : event.target.value
+    })
     setUform({
       ...uform,
       [event.target.name]: event.target.value
