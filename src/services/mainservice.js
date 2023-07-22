@@ -171,6 +171,14 @@ async function deleteEmployee(companyID,id) {
     const response = await apicall.apicall("delete", 5002, `hrm/employee/deleteEmployee/${companyID}/${id}`)
     return response
 }
+async function getEmployee(companyID,id) {
+    const response = await apicall.apicall("get", 5002, `hrm/employee/getEmployeeById/${companyID}/${id}`)
+    return response
+}
+async function editEmployee(companyID,id,data) {
+    const response = await apicall.apicall("put", 5002, `hrm/employee/editEmployee/${companyID}/${id}`,data)
+    return response
+}
 ////////////////////////////////////////{Inventory management}//////////////////////////////////
 
 async function createInventorymanagementCollection(data) {
@@ -192,6 +200,14 @@ async function deleteInventorymanagementDetails(companyID,id) {
     const response = await apicall.apicall("delete", 5003, `inventory/inventorymanagementRoute/deleteInventorymanagementDetails/${companyID}/${id}`)
     return response
 }
+async function getidInventorymanagementDetails(companyID,id) {
+    const response = await apicall.apicall("get", 5003, `inventory/inventorymanagementRoute/getInventorymanagementDetailsById/${companyID}/${id}`)
+    return response
+}
+async function editInventorymanagementDetails(companyID,id,data) {
+    const response = await apicall.apicall("put", 5003, `inventory/inventorymanagementRoute/editInventorymanagementDetails/${companyID}/${id}`,data)
+    return response
+}
 //////////////////////////////////////////{PRJ management}///////////////////////////////////////
 
 async function createPrjmanagerCollection(data) {
@@ -211,6 +227,14 @@ async function getPrjmanagerDetails(id) {
 }
 async function deletePrjmanagerDetails(companyID,id) {
     const response = await apicall.apicall("delete", 5004, `project/prjmanagerRoute/deletePrjmanagerDetails/${companyID}/${id}`)
+    return response
+}
+async function getPrjmanagerDetailsById(companyID,id) {
+    const response = await apicall.apicall("get", 5004, `project/prjmanagerRoute/getidPrjmanagerDetailsById/${companyID}/${id}`)
+    return response
+}
+async function editPrjmanagerDetails(companyID,id,data) {
+    const response = await apicall.apicall("put", 5004, `project/prjmanagerRoute/editPrjmanagerDetails/${companyID}/${id}`,data)
     return response
 }
 //////////////////////////////////{Product}//////////////////////////////////////////
@@ -255,6 +279,14 @@ async function deletePurchase(companyID,id) {
     const response = await apicall.apicall("delete", 5006, `purchase/purchaseRoute/deletePurchase/${companyID}/${id}`)
     return response
 }
+async function getPurchaseById(companyID,id) {
+    const response = await apicall.apicall("get", 5006, `purchase/purchaseRoute/getPurchaseById/${companyID}/${id}`)
+    return response
+}
+async function updatePurchase(companyID,id,data) {
+    const response = await apicall.apicall("put", 5006, `purchase/purchaseRoute/updatePurchase/${companyID}/${id}`,data)
+    return response
+}
 /////////////////////////////////////{RFQ-purchaseitem}////////////////////////////////////////////////
 
 async function createPurchaseitemCollection(data) {
@@ -274,6 +306,14 @@ async function purchaseitemdetails(id) {
 }
 async function deletePurchaseitem(companyID,id) {
     const response = await apicall.apicall("delete", 5007, `purchaseitemRoute/deletePurchaseitem/${companyID}/${id}`)
+    return response
+}
+async function getPurchaseitemById(companyID,id) {
+    const response = await apicall.apicall("get", 5007, `purchaseitemRoute/getPurchaseitemById/${companyID}/${id}`)
+    return response
+}
+async function updatePurchaseitem(companyID,id,data) {
+    const response = await apicall.apicall("put", 5007, `purchaseitemRoute/updatePurchaseitem/${companyID}/${id}`,data)
     return response
 }
 //////////////////////////////////{RFQ-purchaseorder}////////////////////////////////////
@@ -297,6 +337,14 @@ async function deletePurchaseorder(companyID,id) {
     const response = await apicall.apicall("delete", 5007, `purchaseorderRoute/deletePurchaseorder/${companyID}/${id}`)
     return response
 }
+async function getPurchaseorderid(companyID,id) {
+    const response = await apicall.apicall("get", 5007, `purchaseorderRoute/getPurchaseorderById/${companyID}/${id}`)
+    return response
+}
+async function updatePurchaseorder(companyID,id,data) {
+    const response = await apicall.apicall("put", 5007, `purchaseorderRoute/updatePurchaseorder/${companyID}/${id}`,data)
+    return response
+}
 /////////////////////////////////{RFQ}//////////////////////////////////////
 
 async function createRfqCollection(data) {
@@ -317,6 +365,14 @@ async function deleterfq(companyID,id) {
     const response = await apicall.apicall("delete", 5007, `rfqRoute/deleterfq/${companyID}/${id}`)
     return response
 }
+async function getRFQ(companyID,id) {
+    const response = await apicall.apicall("get", 5007, `rfqRoute/getrfqById/${companyID}/${id}`)
+    return response
+}
+async function updaterfq(companyID,id,data) {
+    const response = await apicall.apicall("put", 5007, `rfqRoute/updaterfq/${companyID}/${id}`,data)
+    return response
+}
 /////////////////////////////////////{RFQ-Vendor}/////////////////////////////////////////
 
 async function createVendorCollection(data) {
@@ -335,6 +391,14 @@ async function vendordetails(id) {
 }
 async function deletevendor(companyID,id) {
     const response = await apicall.apicall("delete", 5007, `vendorRoute/deletevendor/${companyID}/${id}`)
+    return response
+}
+async function getvendorById(companyID,id) {
+    const response = await apicall.apicall("get", 5007, `vendorRoute/getvendorById/${companyID}/${id}`)
+    return response
+}
+async function updatevendor(companyID,id,data) {
+    const response = await apicall.apicall("put", 5007, `vendorRoute/updatevendor/${companyID}/${id}`,data)
     return response
 }
 /////////////////////////////////{Sales-invoice}//////////////////////////////////
@@ -358,6 +422,14 @@ async function deleteInvoice(companyID,id) {
     const response = await apicall.apicall("delete", 5008, `invoiceRoute/deleteInvoice/${companyID}/${id}`)
     return response
 }
+async function getInvoiceById(companyID,id) {
+    const response = await apicall.apicall("get", 5008, `invoiceRoute/getInvoiceById/${companyID}/${id}`)
+    return response
+}
+async function updateInvoice(companyID,id,data) {
+    const response = await apicall.apicall("put", 5008, `invoiceRoute/updateInvoice/${companyID}/${id}`,data)
+    return response
+}
 ///////////////////////////////{Sales-sales}/////////////////////////////////////
 
 async function createSalesCollection(data) {
@@ -377,6 +449,14 @@ async function salesdetails(id) {
 }
 async function deleteSales(companyID,id) {
     const response = await apicall.apicall("delete", 5008, `salesRoute/deleteSales/${companyID}/${id}`)
+    return response
+}
+async function getSalesById(companyID,id) {
+    const response = await apicall.apicall("get", 5008, `salesRoute/getSalesById/${companyID}/${id}`)
+    return response
+}
+async function updateSales(companyID,id,data) {
+    const response = await apicall.apicall("put", 5008, `salesRoute/updateSales/${companyID}/${id}`,data)
     return response
 }
 ///////////////////////////////{Notification}/////////////////////////////////////
@@ -433,6 +513,7 @@ export default {
     accountDetails, appointmentDetails, customerList, opportunityDetails ,followup, employeeDetails, getInventorymanagementDetails, getPrjmanagerDetails, getProductDetails, purchasedetails, purchaseitemdetails, purchaseorderdetails,
     rfqdetails, invoicedetails, salesdetails, createEmployeeCollection, createInventorymanagementCollection, createPrjmanagerCollection, createProductCollection, createPurchaseCollection, createPurchaseitemCollection, createPurchaseorderCollection,
     createRfqCollection, createInvoiceCollection, createSalesCollection, createAccountCollection, createAppointmentCollection, createOpportunityCollection, createVendorCollection, vendor, vendordetails, createNotificationCollection, postNotification, getNotification
-    ,deletecustomer,deleteopportunity,deleteEmployee,deleteInventorymanagementDetails,deletePrjmanagerDetails,deleteProductDetails,deletePurchase,deletePurchaseitem,deletePurchaseorder,deleterfq,deletevendor,deleteInvoice,deleteSales
+    ,deletecustomer,deleteopportunity,deleteEmployee,deleteInventorymanagementDetails,deletePrjmanagerDetails,deleteProductDetails,deletePurchase,deletePurchaseitem,deletePurchaseorder,deleterfq,deletevendor,deleteInvoice,deleteSales,getEmployee,editEmployee,editInventorymanagementDetails,getidInventorymanagementDetails,
+    getInvoiceById,updateInvoice,getRFQ,updaterfq,getPurchaseitemById,updatePurchaseitem,getPurchaseorderid,updatePurchaseorder,getvendorById,updatevendor,getPrjmanagerDetailsById,editPrjmanagerDetails,getSalesById,updateSales,getPurchaseById,updatePurchase
 };
 

@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import mainservice from '../../services/mainservice';
 import { useSelector } from 'react-redux';
+import { event } from 'jquery';
 
 function AddProduct() {
   // to maintain dark and light mode
@@ -16,16 +17,55 @@ function AddProduct() {
   const index = useSelector((state)=>state.index)
   console.log(index.InventoryID,"Inventory");
   const onChangeHandler = (event) => {
+    const { name, value } = event.target;
     setform({
       ...form,
-      [event.target.name]: event.target.value
+      [event.target.name] : event.target.value
     })
+    setUform({
+      ...uform,
+      [event.target.name]: event.target.value
+    });
+    console.log(uform);
   }
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
     addInventorymanagement(form);
   }
+
+  const onUpdateHandler = (event) => {
+    event.preventDefault();
+    console.log(uform);
+    editInventorymanagementDetails(uform);
+  };
+
+
+  async function editInventorymanagementDetails(uform){
+    const res = await mainservice.editInventorymanagementDetails(index.InventoryID,id,uform);
+    if(res.data!= null){
+      console.log(res.data, "Inventory Details updated");
+    }
+    else{
+      console.log(res);
+    }
+  }
+
+  let [searchParams, setSearchParams] = useSearchParams();
+  const[uform, setUform] = useState([]);
+  const[editMode, setEditMode] = useState(false);
+  const id = searchParams.get("id");
+  const CheckEdit = async() => {
+    if(id){
+      setEditMode(true)
+      const res = await mainservice.getidInventorymanagementDetails(index.InventoryID,id);
+      setUform(res.data)
+      console.log(res.data,"this");
+    }
+  }
+  useEffect(() => {
+    CheckEdit()
+  },[]);
 
   async function addInventorymanagement(form) {
     console.log(form);
@@ -61,57 +101,62 @@ function AddProduct() {
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="exampleFormControlInput1">SKU No</Form.Label>
-                    <Form.Control type="number" name="SKUNo" id="exampleFormControlInput1" placeholder="SKU No" onChange={onChangeHandler} />
+                    <Form.Control type="number" name="SKUNo" id="exampleFormControlInput1" value={uform.SKUNo} placeholder="SKU No" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="exampleFormControlInput1">Item Name</Form.Label>
-                    <Form.Control type="text" name="ItemName" id="exampleFormControlInput1" placeholder="Item Name" onChange={onChangeHandler} />
+                    <Form.Control type="text" name="ItemName" id="exampleFormControlInput1" value={uform.ItemName} placeholder="Item Name" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="exampleFormControlInput1">Unit Of Measurement</Form.Label>
-                    <Form.Control type="text" name="UnitOFMeasurement" id="exampleFormControlInput1" placeholder="Unit Of Measurement" onChange={onChangeHandler} />
+                    <Form.Control type="text" name="UnitOFMeasurement" id="exampleFormControlInput1" value={uform.UnitOFMeasurement} placeholder="Unit Of Measurement" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="exampleFormControlInput1">Item Category</Form.Label>
-                    <Form.Control type="text" name="ItemCategory" id="exampleFormControlInput1" placeholder="Item Category" onChange={onChangeHandler} />
+                    <Form.Control type="text" name="ItemCategory" id="exampleFormControlInput1" value={uform.ItemCategory} placeholder="Item Category" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="exampleFormControlInput1">Current Stock</Form.Label>
-                    <Form.Control type="text" name="CurrentStock" id="exampleFormControlInput1" placeholder="Current Stock" onChange={onChangeHandler} />
+                    <Form.Control type="text" name="CurrentStock" id="exampleFormControlInput1" value={uform.CurrentStock} placeholder="Current Stock" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="exampleFormControlInput1">Price</Form.Label>
-                    <Form.Control type="number" name="Price" id="exampleFormControlInput1" placeholder="Price" onChange={onChangeHandler} />
+                    <Form.Control type="number" name="Price" id="exampleFormControlInput1" value={uform.Price} placeholder="Price" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="3" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="exampleFormControlInput1">Tax</Form.Label>
-                    <Form.Control type="number" name="Tax" id="exampleFormControlInput1" placeholder="Tax" onChange={onChangeHandler} />
+                    <Form.Control type="number" name="Tax" id="exampleFormControlInput1" value={uform.Tax} placeholder="Tax" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
-                <Col xs="12">
-                  <div className="mt-3">
-                    <Button onClick={onSubmitHandler} type="submit">Submit</Button>
-                  </div>
-                </Col>
+               <Col xs="12">
+                {editMode?
+                <div className="mt-1" style={{display:'flex',justifyContent:'flex-end'}}>
+                  <Button onClick={onUpdateHandler} type='submit'>Update</Button>
+                </div>:
+                <div className="mt-1" style={{display:'flex',justifyContent:'flex-end'}}>
+                  <Button onClick={onSubmitHandler} type='submit'>Submit</Button>
+                </div>
+                }
+               </Col>
               </Row>
             </Card.Body>
           </Card>

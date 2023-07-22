@@ -3,9 +3,10 @@ import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 function PostProject() {
   // to maintain dark and light mode
@@ -16,10 +17,16 @@ function PostProject() {
   const index = useSelector((state)=>state.index)
   console.log(index.PRJID,"Project");
   const onChangeHandler = (event) => {
+    const { name, value } = event.target;
     setform({
       ...form,
+      [event.target.name] : event.target.value
+    })
+    setUform({
+      ...uform,
       [event.target.name]: event.target.value
     })
+    console.log(uform);
   }
   async function addPrjmanagerDetails(form) {
     console.log(form);
@@ -36,6 +43,38 @@ function PostProject() {
     event.preventDefault();
     addPrjmanagerDetails(form);
   }
+
+  const onUpdateHandler = (event) => {
+    event.preventDefault();
+    console.log(uform)
+    editPrjmanagerDetails(uform);
+  }
+
+  async function editPrjmanagerDetails(uform){
+    const res = await mainservice.editPrjmanagerDetails(index.PRJID,id,uform);
+    if(res.data!= null){
+      console.log(res.data,"Project Details updated");
+    }
+    else{
+      console.log(res);
+    }
+  }
+
+  let [searchParams, setSearchParams] = useSearchParams();
+  const [uform, setUform] = useState([]);
+  const [editMode, setEditMode] = useState(false);
+  const id = searchParams.get("id");
+  const CheckEdit = async() => {
+    if(id){
+      setEditMode(true)
+      const res = await mainservice.getPrjmanagerDetailsById(index.PRJID,id)
+      setUform(res.data)
+      console.log(res.data,"this")
+    }
+  }
+  useEffect(() =>{
+    CheckEdit()
+  },[]);
 
 
   return (
@@ -61,96 +100,102 @@ function PostProject() {
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="PrjName">Project Name</Form.Label>
-                    <Form.Control type="text" id="PrjName" name="PrjName" placeholder="Project Name" onChange={onChangeHandler} />
+                    <Form.Control type="text" id="PrjName" name="PrjName" value={uform.PrjName} placeholder="Project Name" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Type">Type</Form.Label>
-                    <Form.Control type="text" id="Type" name="Type" placeholder="Type" onChange={onChangeHandler} />
+                    <Form.Control type="text" id="Type" name="Type" value={uform.Type} placeholder="Type" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Account">Account</Form.Label>
-                    <Form.Control type="text" id="Account" name="Account" placeholder="Account" onChange={onChangeHandler} />
+                    <Form.Control type="text" id="Account" name="Account" value={uform.Account} placeholder="Account" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="AssignedTo">Assigned To</Form.Label>
-                    <Form.Control type="text" id="AssignedTo" name="AssignedTo" placeholder="Assigned To" onChange={onChangeHandler} />
+                    <Form.Control type="text" id="AssignedTo" name="AssignedTo" value={uform.AssignedTo} placeholder="Assigned To" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Teams">Teams</Form.Label>
-                    <Form.Control type="text" id="Teams" name="Teams" placeholder="Teams" onChange={onChangeHandler} />
+                    <Form.Control type="text" id="Teams" name="Teams" value={uform.Teams} placeholder="Teams" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Status">Status</Form.Label>
-                    <Form.Control type="text" id="Status" name="Status" placeholder="Status" onChange={onChangeHandler} />
+                    <Form.Control type="text" id="Status" name="Status" value={uform.Status} placeholder="Status" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="StartDate">Start Date</Form.Label>
-                    <Form.Control type="Date" id="StartDate" name="StartDate" placeholder="Start Date" onChange={onChangeHandler} />
+                    <Form.Control type="Date" id="StartDate" name="StartDate" value={uform.StartDate} placeholder="Start Date" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="EndDate">End Date</Form.Label>
-                    <Form.Control type="Date" id="EndDate" name="EndDate" placeholder="End Date" onChange={onChangeHandler} />
+                    <Form.Control type="Date" id="EndDate" name="EndDate" value={uform.EndDate} placeholder="End Date" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="UseTimesheet">Use Time sheet</Form.Label>
-                    <Form.Control type="text" id="UseTimesheet" name="UseTimesheet" placeholder="Use Time sheet" onChange={onChangeHandler} />
+                    <Form.Control type="text" id="UseTimesheet" name="UseTimesheet" value={uform.UseTimesheet} placeholder="Use Time sheet" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Amount">Amount</Form.Label>
-                    <Form.Control type="Number" id="Amount" name="Amount" placeholder="Amount" onChange={onChangeHandler} />
+                    <Form.Control type="Number" id="Amount" name="Amount" value={uform.Amount} placeholder="Amount" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="LeadSource">Lead Source</Form.Label>
-                    <Form.Control type="text" id="LeadSource" name="LeadSource" placeholder="Lead Source" onChange={onChangeHandler} />
+                    <Form.Control type="text" id="LeadSource" name="LeadSource" value={uform.LeadSource} placeholder="Lead Source" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Progress">Progress</Form.Label>
-                    <Form.Control type="text" id="Progress" name="Progress" placeholder="Progress" onChange={onChangeHandler} />
+                    <Form.Control type="text" id="Progress" name="Progress" value={uform.Progress} placeholder="Progress" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Description">Description</Form.Label>
-                    <Form.Control as="textarea" id="Description" name="Description" rows="4" placeholder="Description" onChange={onChangeHandler} />
+                    <Form.Control as="textarea" id="Description" name="Description" value={uform.Description} rows="4" placeholder="Description" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col md="12">
-                  <Button onClick={onSubmitHandler} type="submit">Submit</Button>
+                  {editMode?
+                  <div className='mt-1' style={{display:'flex', justifyContent:'flex-end'}}>
+                    <Button onClick={onUpdateHandler} type="submit">Update</Button>
+                  </div>:
+                  <div className='mt-1' style={{display:'flex', justifyContent:'flex-end'}}>
+                    <Button onClick={onSubmitHandler} type="submit">Submit</Button>
+                  </div>}
                 </Col>
               </Row>
             </Card.Body>
