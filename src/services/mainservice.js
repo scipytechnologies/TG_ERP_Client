@@ -142,6 +142,11 @@ async function deleteopportunity(companyID,id) {
     const response = await apicall.apicall("delete", 5001, `crm/opportunity/deleteOpportunity/${companyID}/${id}`)
     return response
 }
+async function followup(companyID,id,data) {
+    const response = await apicall.apicall("put", 5001, `crm/opportunity/followup/${companyID}/${id}`,data)
+    return response
+}
+
 //////////////////////////////////////{Employee}/////////////////////////////////////////////
 
 async function createEmployeeCollection(data) {
@@ -425,7 +430,7 @@ export default {
     Auth, SignUp, Login, GetUserById, Index, AddIndex, GetIndexbyId,
      RegisterCompany, GetCompanyById, InitializeCompany, MainProductsInHome, CategoriesInHome, LatestProductsInHome, RandomProductsInHome, CategoriesWithProductsForHome, TopSellingProductsInHome, OffersInHome,
     createAccount, createAppointment, createCustomerCollection, createCustomer,customerById ,updateCustomer, createOpportunity, addEmployee, addInventorymanagementDetails, addPrjmanagerDetails, addProductDetails, purchase, purchaseitem, purchaseorder, rfq, invoice, sales,
-    accountDetails, appointmentDetails, customerList, opportunityDetails, employeeDetails, getInventorymanagementDetails, getPrjmanagerDetails, getProductDetails, purchasedetails, purchaseitemdetails, purchaseorderdetails,
+    accountDetails, appointmentDetails, customerList, opportunityDetails ,followup, employeeDetails, getInventorymanagementDetails, getPrjmanagerDetails, getProductDetails, purchasedetails, purchaseitemdetails, purchaseorderdetails,
     rfqdetails, invoicedetails, salesdetails, createEmployeeCollection, createInventorymanagementCollection, createPrjmanagerCollection, createProductCollection, createPurchaseCollection, createPurchaseitemCollection, createPurchaseorderCollection,
     createRfqCollection, createInvoiceCollection, createSalesCollection, createAccountCollection, createAppointmentCollection, createOpportunityCollection, createVendorCollection, vendor, vendordetails, createNotificationCollection, postNotification, getNotification
     ,deletecustomer,deleteopportunity,deleteEmployee,deleteInventorymanagementDetails,deletePrjmanagerDetails,deleteProductDetails,deletePurchase,deletePurchaseitem,deletePurchaseorder,deleterfq,deletevendor,deleteInvoice,deleteSales

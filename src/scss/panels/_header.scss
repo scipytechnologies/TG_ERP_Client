@@ -46,16 +46,16 @@
   &:hover,
   &:focus { color: $dark; }
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 3.5px;
-    right: -8px;
-    width: 6px;
-    height: 6px;
-    border-radius: 100%;
-    background-color: $primary;
-  }
+  // &::after {
+  //   content: '';
+  //   position: absolute;
+  //   bottom: 3.5px;
+  //   right: -8px;
+  //   width: 6px;
+  //   height: 6px;
+  //   border-radius: 100%;
+  //   background-color: $primary;
+  // }
 }
 
 .header-main {

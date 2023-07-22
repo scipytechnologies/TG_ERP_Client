@@ -10,6 +10,7 @@ import { _ } from "gridjs-react";
 import Avatar from "../../components/Avatar";
 import { useSelector, useDispatch } from 'react-redux';
 import { setCustomerCount } from '../../store/crm';
+import Select from 'react-select';
 
 
 
@@ -20,6 +21,9 @@ function Customer() {
     const navigate = useNavigate()
     const index = useSelector((state) => state.index)
     const dispatch = useDispatch()
+    const user = useSelector((state) => state.loginedUser)
+    console.log(user);
+ 
 
 
     // axios get interceptor for table data
@@ -57,15 +61,40 @@ function Customer() {
 
 
     const [form, setform] = useState({});
-    const onChangeHandler = (event) => {
-        setform({
-            ...form,
-            [event.target.name]: event.target.value
-        });
+    // const onChangeHandler = (event) => {
+    //     setform({
+    //         ...form,
+    //         [event.target.name]: event.target.value
+    //     });
+    //     console.log(form);
+    // };
+
+
+    const onChangeHandler = (event, field) => {
+        if ( field === 'AssignedTo') {
+            setform((prevState) => ({
+                ...prevState,
+                [field]: event.value,
+            }));
+        } else {
+            setform({
+                ...form,
+                [event.target.name]: event.target.value
+            });
+        }
         console.log(form);
     };
 
+
+
+
+
+
+
+
     async function PostOpportunity(form) {
+       
+
         const res = await mainservice.createOpportunity(form, index.OpportunityID);
         if (res.data != null) {
             console.log("lead Added");
@@ -78,9 +107,9 @@ function Customer() {
     const onSubmitHandler = async (x, y, z) => {
 
         const name = y + " " + z
-        const customer = { CustomerId: x, CustomerName: name }
+        const customer = { CustomerId: x, CustomerName: name , CreatedBy:`${user.firstName} ${user.lastName}`, FollowUp : [{Title : "Lead is Created",Message :`Contragulation, You have a new Lead`,Status :"initialized"}]}
         const data = { ...form, ...customer }
-        console.log(form, "submit");
+        console.log(data, "submit");
         await PostOpportunity(data);
     }
 
@@ -121,7 +150,11 @@ function Customer() {
     //     // navigate(`/dashboard/crm/addCrm/?id=${item._id}`)
     //     console.log("hello");
     // }
-
+    const EmployeeOptions = [
+        { value: 'chocolate', label: 'Chocolate' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' },
+      ];
 
     // demo profile image link
     const imageLink = 'https://api.tgraderp.com/crm/customer/image/customer/8170dcba-23ad-4dca-af96-a7801a8c12f4-pro-avatar.png'
@@ -243,14 +276,19 @@ function Customer() {
                             <Form.Label htmlFor="leadName">Lead Name</Form.Label>
                             <Form.Control name="OpportunityName" type="text" id="leadName" placeholder="" onChange={onChangeHandler} />
                         </div>
-                        <div className="mb-3">
-                            <Form.Label htmlFor="Amount">Target Amount</Form.Label>
-                            <Form.Control name="Amount" type="text" id="Amount" placeholder="" onChange={onChangeHandler} />
-                        </div>
                         <div>
                             <Form.Label htmlFor="Description">Description</Form.Label>
                             <Form.Control name='Description' as="textarea" id="Description" rows="3" placeholder="" onChange={onChangeHandler} />
                         </div>
+                        <div className="mb-3">
+                            <Form.Label htmlFor="LeadSource">Lead Source</Form.Label>
+                            <Form.Control name="LeadSource" type="text" id="LeadSource" placeholder="" onChange={onChangeHandler} />
+                        </div>
+                        <div className="mb-3">
+                            <Form.Label htmlFor="LeadSource">Assigned To</Form.Label>
+                            <Select options={EmployeeOptions} isSearchable={true} onChange={(selectAssignedTo) => onChangeHandler(selectAssignedTo, 'AssignedTo')} />
+                        </div>
+                       
 
                     </Modal.Body>
                     <Modal.Footer>

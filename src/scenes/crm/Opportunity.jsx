@@ -4,10 +4,14 @@ import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ListGroup, Row, Form, Dropdown, Modal, ButtonGroup, Badge } from "react-bootstrap";
+import Select from 'react-select';
 import { Link, useNavigate } from 'react-router-dom'
 import { Grid, _ } from "gridjs-react";
 import mainservice from '../../services/mainservice';
 import { useSelector } from 'react-redux';
+import { Timeline } from 'rsuite';
+import Moment from 'react-moment';
+
 
 import Avatar from "../../components/Avatar";
 
@@ -29,6 +33,7 @@ function Opportunity() {
     const navigate = useNavigate()
     const [data, setData] = useState([])
     const index = useSelector((state) => state.index)
+    const user = useSelector((state) => state.loginedUser)
 
     async function opportunityDetails() {
         const res = await mainservice.opportunityDetails(index.OpportunityID);
@@ -41,15 +46,22 @@ function Opportunity() {
     }, []);
 
     // Grid js each row clicking funciton
+    const [offCanvasData, setOffCanvasData] = useState({})
     const [offCanvas, setOffCanvas] = useState(false)
+    const [timeline, setTimeline] = useState([{Status:"none"}])
+    
+
+    
     const handleCanvas = (row) => {
+        console.log(row,"rowwwwwwwwwwwww");
         GetProfile(row.CustomerId);
+        setOffCanvasData(row)
+        setTimeline(row.FollowUp.reverse())
         setOffCanvas(true)
     };
     const handleClose = () => {
         setOffCanvas(false)
     }
-
     async function deleteopportunity(id) {
         const res = await mainservice.deleteopportunity(index.OpportunityID, id);
         if (res.data != null) {
@@ -65,13 +77,55 @@ function Opportunity() {
         console.log(item._id);
         deleteopportunity(item._id);
     }
- 
-    const [profile,setProfile] = useState({})
+
+    const [profile, setProfile] = useState({})
     const GetProfile = async (id) => {
-          const res = await mainservice.customerById(index.CrmID, id);
-          setProfile(res.data)
-          console.log(profile);
-      }
+        const res = await mainservice.customerById(index.CrmID, id);
+        setProfile(res.data)
+        console.log(profile);
+    }
+    const [followUp, setFollowUp] = useState({})
+    const CreateFollowUp = async (data) => {
+        const res = await mainservice.followup(index.OpportunityID, offCanvasData._id, data)
+        setOffCanvasData(res.data)
+        setTimeline(res.data.FollowUp.reverse())
+    }
+    const onfollowUpChangeHandler = (event, field) => {
+        if (field === 'Status') {
+            setFollowUp((prevFollowUp) => ({
+                ...prevFollowUp,
+                [field]: event.value,
+            }));
+        } else {
+            setFollowUp({
+                ...followUp,
+                [event.target.name]: event.target.value
+            });
+        }
+    };
+
+    const onfollowUpSubmitHandler = (event) => {
+        event.preventDefault();
+        const addon = { CreatedBy:`${user.firstName} ${user.lastName}`}
+        const data = { ...followUp, ...addon }
+        console.log(data);
+        CreateFollowUp(data);
+    };
+
+    const selectStatus = [
+        { value: 'chocolate', label: 'Chocolate' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' }
+    ]
+    const selectAssigned = [
+        { value: 'chocolate', label: 'Chocolate' },
+        { value: 'strawberry', label: 'Strawberry' },
+        { value: 'vanilla', label: 'Vanilla' }
+    ]
+    //  const timeline = offCanvasData.FollowUp
+    
+
+    
 
     return (
         <div>
@@ -178,12 +232,12 @@ function Opportunity() {
                                 <Modal.Title>Lead Manager</Modal.Title>
                             </Modal.Header>
                             <Modal.Body>
-                                <div className=" p-4 p-lg-5">
+                                <div className=" p-4 p-lg-5 " >
                                     <Row className="g-5">
-                                        <Col xl="4" xxl="3" className="d-none d-xl-block">
-                                            <Card>
-                                                <Card.Body>
-                                                    <div className=" mb-5" >
+                                        <Col xl="4" xxl="3" className="d-none d-xl-block" >
+                                            <Card >
+                                                <Card.Body >
+                                                    <div className=" mb-5"  >
                                                         <div style={{
                                                             position: 'relative',
                                                             backgroundColor: '#506fd9',
@@ -222,7 +276,7 @@ function Opportunity() {
                                                                         Phone
                                                                     </div>
                                                                     <div className='w-50'>
-                                                                        : +91 8855885588
+                                                                        : {profile.PhoneMobile}
                                                                     </div>
                                                                 </div>
                                                             </ListGroup.Item>
@@ -232,7 +286,7 @@ function Opportunity() {
                                                                         Email
                                                                     </div>
                                                                     <div className='w-50'>
-                                                                        : email@gmail.com
+                                                                        : {profile.Email}
                                                                     </div>
                                                                 </div>
                                                             </ListGroup.Item>
@@ -242,7 +296,7 @@ function Opportunity() {
                                                                         Address
                                                                     </div>
                                                                     <div className='w-50'>
-                                                                        : Tc 68/3344 House Number,Place
+                                                                        : {profile.Address}
                                                                     </div>
                                                                 </div>
                                                             </ListGroup.Item>
@@ -252,7 +306,7 @@ function Opportunity() {
                                                                         Place
                                                                     </div>
                                                                     <div className='w-50'>
-                                                                        : Palayam
+                                                                        : {profile.Place}
                                                                     </div>
                                                                 </div>
                                                             </ListGroup.Item>
@@ -263,7 +317,7 @@ function Opportunity() {
                                                                         City
                                                                     </div>
                                                                     <div className='w-50'>
-                                                                        : Thiruvananthapuram
+                                                                        : {profile.PrimaryCity}
                                                                     </div>
                                                                 </div>
                                                             </ListGroup.Item>
@@ -273,7 +327,8 @@ function Opportunity() {
                                                                         pinCode
                                                                     </div>
                                                                     <div className='w-50'>
-                                                                        : 692157
+                                                                        : {profile.PrimaryPostal}
+
                                                                     </div>
                                                                 </div>
                                                             </ListGroup.Item>
@@ -288,29 +343,31 @@ function Opportunity() {
                                         <Col xl>
                                             <div className="media-profile mb-5">
                                                 <div className="media-body">
-                                                    <h5 className="media-name">Lead Name</h5>
-                                                    <p className="d-flex gap-2 mb-4">Created Date : 8-july-2023 05:00 pm</p>
-                                                    <p className="mb-0">Redhead, Innovator, Saviour of Mankind, Hopeless Romantic, Attractive 20-something Yogurt Enthusiast. You can replace this with any content and adjust it as needed... <Link to="">Read more</Link></p>
+                                                    <h5 className="media-name">{offCanvasData.OpportunityName}</h5>
+                                                    <p className="d-flex gap-2 mb-4">Created Date :  <Moment format="DD-MM-YYYY">
+                                                    {offCanvasData.createdAt}
+                                                    </Moment></p>
+                                                    <p className="mb-0">{offCanvasData.Description}</p>
                                                 </div>
                                             </div>
-
+                                         { offCanvasData ?
                                             <Row className="row-cols-sm-auto g-4 g-md-5 g-xl-4 g-xxl-5">
                                                 {[
                                                     {
                                                         "icon": "ri-bar-chart-box-fill",
-                                                        "text": "Initialized",
+                                                        "text": timeline[0].Status,
                                                         "label": "Status"
                                                     }, {
                                                         "icon": "ri-suitcase-fill",
-                                                        "text": "Marketing Campagin",
+                                                        "text": offCanvasData.LeadSource,
                                                         "label": "Lead Source"
                                                     }, {
                                                         "icon": "ri-user-3-fill",
-                                                        "text": "Sooraj",
+                                                        "text": offCanvasData.CreatedBy,
                                                         "label": "Created By"
                                                     }, {
                                                         "icon": "ri-team-fill",
-                                                        "text": "Manu ML",
+                                                        "text": offCanvasData.AssignedTo,
                                                         "label": "Assigned to"
                                                     }
                                                 ].map((profileItem, index) => (
@@ -324,7 +381,7 @@ function Opportunity() {
                                                         </div>
                                                     </Col>
                                                 ))}
-                                            </Row>
+                                            </Row> : [] }
 
                                             <div className='d-flex gap-2 justify-content-end mt-5'>
                                                 {/* <div>
@@ -344,50 +401,34 @@ function Opportunity() {
                                                     </Button>  </div>
                                             </div>
 
-                                            <Card className='mt-3'>
+                                            <Card className='mt-3 '>
                                                 <Card.Header>
                                                     <Card.Title>
-                                                      Add Follow Up
+                                                        Add Follow Up
                                                     </Card.Title>
                                                 </Card.Header>
 
                                                 <Card.Body className='d-flex-wrap gap-2 d-flex align-items-end'>
                                                     <div className="mt-1 w-25">
                                                         <Form.Label htmlFor="followuptitle">Follow up titile</Form.Label>
-                                                        <Form.Control type="text" name="LastName" id="followuptitle" placeholder="eg: Scheduled a Meeting" />
+                                                        <Form.Control type="text" name="Title" id="followuptitle" onChange={onfollowUpChangeHandler} placeholder="eg: Scheduled a Meeting" />
                                                     </div>
                                                     <div className="mt-1 w-50">
                                                         <Form.Label htmlFor="followupmessage">Message</Form.Label>
-                                                        <Form.Control type="textarea" name="LastName" id="followupmessage" placeholder="eg: Client meeting scheduled at DD/MM/YYYY at HH:MM " />
+                                                        <Form.Control type="text" name="Message" id="followupmessage" onChange={onfollowUpChangeHandler} placeholder="eg: Client meeting scheduled at DD/MM/YYYY at HH:MM " />
                                                     </div>
-                                                    <Dropdown>
-
-                                                        <Dropdown.Toggle variant="light" id="dropdown-basic">
-                                                            Status
-                                                        </Dropdown.Toggle>
-
-                                                        <Dropdown.Menu>
-                                                            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                                            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                                            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                                                        </Dropdown.Menu>
-                                                    </Dropdown>
-                                                    <Dropdown>
-
-                                                        <Dropdown.Toggle variant="light" id="dropdown-basic">
-                                                            Assigned to
-                                                        </Dropdown.Toggle>
-
-                                                        <Dropdown.Menu>
-                                                            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                                            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                                                            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                                                        </Dropdown.Menu>
-                                                    </Dropdown>
+                                                    <div className="mt-1 w-20">
+                                                        <Form.Label htmlFor="followupmessage">Status</Form.Label>
+                                                        <Select name='Status' options={selectStatus} isSearchable={false} onChange={(selectStatus) => onfollowUpChangeHandler(selectStatus, 'Status')} />
+                                                    </div>
+                                                    {/* <div className="mt-1 w-20">
+                                                        <Form.Label htmlFor="followupmessage">Assigned to</Form.Label>
+                                                        <Select name='AssignedTo' options={selectAssigned} isSearchable={false} onChange={(selectAssigned) => onfollowUpChangeHandler(selectAssigned, 'AssignedTo')} />
+                                                    </div> */}
                                                     <div>
 
-                                                        <Button variant="primary" onClick={handleClose}>
-                                                            Close
+                                                        <Button variant="primary" onClick={onfollowUpSubmitHandler}>
+                                                            Submit
                                                         </Button>  </div>
                                                 </Card.Body>
                                             </Card>
@@ -409,51 +450,29 @@ function Opportunity() {
                                                 <Nav.Link href="">Connections</Nav.Link>
                                                 <Nav.Link href="">Profile Settings</Nav.Link> */}
                                                     </Nav>
-                                                    <Row className="justify-content-center mt-1 mb-1">
-                                                        <Col md={11}>
-                                                            <Card className="mb-1 mt-2 card border-0">
-                                                                <Card.Body>
-                                                                    <div className="vertical-timeline vertical-timeline--animate vertical-timeline--one-column">
-                                                                        <div className="vertical-timeline-item vertical-timeline-element">
-                                                                            <div>
-                                                                                <span className="vertical-timeline-element-icon bounce-in">
-                                                                                    <Badge bg="warning">&nbsp;</Badge>
-                                                                                </span>
-                                                                                <div className="vertical-timeline-element-content bounce-in">
-                                                                                    <h4 className="timeline-title">Meeting with client</h4>
-                                                                                    <p>
-                                                                                        Meeting with USA Client, today at{' '}
-                                                                                        <a href="javascript:void(0);" data-abc="true">
-                                                                                            12:00 PM
-                                                                                        </a>
-                                                                                    </p>
-                                                                                    <p>Assigned to : Manu ML</p>
-                                                                                    <span className="vertical-timeline-element-date">20-jun-23</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="vertical-timeline-item vertical-timeline-element">
-                                                                            <div>
-                                                                                <span className="vertical-timeline-element-icon bounce-in">
-                                                                                    <Badge bg="info">&nbsp;</Badge>
-                                                                                </span>
-                                                                                <div className="vertical-timeline-element-content bounce-in">
-                                                                                    <h4 className="timeline-title">Lead Generated by Sooraj</h4>
-                                                                                    <p>
-                                                                                        Meeting with USA Client, today at{' '}
-                                                                                        <a href="javascript:void(0);" data-abc="true">
-                                                                                            12:00 PM
-                                                                                        </a>
-                                                                                    </p>
-                                                                                    <p>Assigned to : Manu ML</p>
-                                                                                    <span className="vertical-timeline-element-date">9:30 AM</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
+                                                    <Row className="justify-content-center mt-4 mb-1 ">
+                                                        <Col md={11} >
 
+                                                            {timeline !== undefined ? timeline.map((item, index) => (
+                                                                <div className="news-item" key={index}>
+                                                                    <div className="news-img w-2">
+                                                                        {/* <img src={item.img} className="img-fluid" alt="" /> */}
+                                                                        {/* <div> {moment(item.createdAt).fromNow()} {item.createdAt}</div> */}
+                                                                        <Moment toNow>{item.createdAt}</Moment> ago
                                                                     </div>
-                                                                </Card.Body>
-                                                            </Card>
+                                                                    <div className="news-body border border-primary border-top-0 border-end-0 border-bottom-0 border-5" style={{ paddingLeft: '10px', }} >
+                                                                       { item.CreatedBy? <label className="d-block mb-1 fs-sm text-primary">CreatedBy : {item.CreatedBy}</label> :[]} 
+                                                                        <h6 className="news-title fw-semibold">
+                                                                            <Link to="" className="text-dark">{item.Title} </Link>
+                                                                            <Badge bg="primary">{item.Status}</Badge>
+                                                                        </h6>
+                                                                        <p className="news-text mb-0">{item.Message}</p>
+                                                                    </div>
+                                                                </div>
+                                                            )) : []}
+
+
+
                                                         </Col>
                                                     </Row>
 
@@ -468,6 +487,7 @@ function Opportunity() {
                                     <Footer />
                                 </div>
                             </Modal.Body>
+
                             <Modal.Footer>
 
                                 <Button variant="primary" onClick={handleClose}>
@@ -477,6 +497,7 @@ function Opportunity() {
                         </Modal>
                     </Card>
                     <Footer />
+
                 </div >
             </>
         </div >

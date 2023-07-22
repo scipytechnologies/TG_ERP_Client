@@ -16,7 +16,7 @@ function AddCrm() {
   const [form, setForm] = useState(new FormData());
   const [uform, setUform] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
-  const [editMode,setEditMode] = useState(false)
+  const [editMode, setEditMode] = useState(false)
 
 
   const id = searchParams.get("id")
@@ -61,7 +61,7 @@ function AddCrm() {
     createCustomer(form);
   };
 
-  
+
   const onUpdateHandler = (event) => {
     event.preventDefault();
     // if (selectedFile) {
@@ -75,9 +75,9 @@ function AddCrm() {
     setSelectedFile(event.target.files[0]);
   };
   async function updateCustomer(uform) {
-    const res = await mainservice.updateCustomer(index.CrmID,id,uform);
+    const res = await mainservice.updateCustomer(index.CrmID, id, uform);
     if (res.data != null) {
-      console.log(res.data,"Customer Details updated");
+      console.log(res.data, "Customer Details updated");
     }
     else {
       console.log(res);
@@ -110,9 +110,11 @@ function AddCrm() {
               <ol className="breadcrumb fs-sm mb-1">
                 <li className="breadcrumb-item"><Link to="/dashboard/home">Dashboard</Link></li>
                 <li className="breadcrumb-item"><Link to="/dashboard/crm">CRM</Link></li>
-                <li className="breadcrumb-item active" aria-current="page">Add Customer</li>
+                {editMode ? <li className="breadcrumb-item active" aria-current="page">Edit Customer</li> : <li className="breadcrumb-item active" aria-current="page">Add Customer</li>}
+
               </ol>
-              <h4 className="main-title mb-0">Create New Customer</h4>
+              {editMode? <h4 className="main-title mb-0">Edit Customer</h4>: <h4 className="main-title mb-0">Create New Customer</h4>}
+              
             </div>
           </div>
 
@@ -331,14 +333,14 @@ function AddCrm() {
                 </Col>
 
                 <Col xs="12">
-                  { editMode ?
-                  <div className="mt-1" style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <Button onClick={onUpdateHandler} type="submit">Update</Button>
-                  </div> :
-                  <div className="mt-1" style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <Button onClick={onSubmitHandler} type="submit">Submit</Button>
-                  </div>}
-                  
+                  {editMode ?
+                    <div className="mt-1" style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                      <Button onClick={onUpdateHandler} type="submit">Update</Button>
+                    </div> :
+                    <div className="mt-1" style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                      <Button onClick={onSubmitHandler} type="submit">Submit</Button>
+                    </div>}
+
                 </Col>
               </Row>
             </Card.Body>
