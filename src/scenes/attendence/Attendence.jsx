@@ -1,13 +1,8 @@
 import React from 'react'
 import Header from "../../layouts/Header";
-import Footer from "../../layouts/Footer";
 import { useState } from 'react';
-import { Button, Card, Col, Nav, ProgressBar, Row, Table } from "react-bootstrap";
+import {Card, Col, Nav, ProgressBar, Row, Table } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from '@fullcalendar/timegrid'
-import PerfectScrollbar from "react-perfect-scrollbar";
 import Calender from './calender/Calender';
 import Avatar from "../../components/Avatar"
 

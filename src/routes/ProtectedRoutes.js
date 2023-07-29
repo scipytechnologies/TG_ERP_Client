@@ -98,6 +98,8 @@ import AddHrm from "../scenes/hrm/AddHrm"
 import Employee from "../scenes/employee/Employee"
 import EmployeeManagement from "../scenes/employee/EmployeeManagement"
 import AddEmployee from "../scenes/employee/AddEmployee"
+import EmployeeProfile from "../scenes/employee/EmployeeProfile";
+
 import ProductList from "../scenes/inventory/ProductManagement"
 import Inventory from "../scenes/inventory/Inventory"
 import AddProduct from "../scenes/inventory/AddProduct"
@@ -156,6 +158,8 @@ const protectedRoutes = [
   { path: "dashboard/employee", element: <Employee /> },
   { path: "dashboard/employee/employeeManagement", element: <EmployeeManagement /> },
   { path: "dashboard/employee/AddEmployee", element: <AddEmployee /> },
+  { path: "dashboard/employee/EmployeeProfile", element: <EmployeeProfile /> },
+
   { path: "dashboard/inventory", element: <Inventory /> },
   { path: "dashboard/inventory/ProductManagement", element: <ProductManagement /> },
   { path: "dashboard/inventory/AddProduct", element: <AddProduct /> },

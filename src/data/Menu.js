@@ -48,8 +48,12 @@ const scenes = [
         "link": "dashboard/employee"
       },
       {
-        "label": "Manage Employee",
+        "label": "Manage Employees",
         "link": "dashboard/employee/EmployeeManagement"
+      },
+      {
+        "label": "Profile",
+        "link": "dashboard/employee/EmployeeProfile"
       }
     ]
   },
