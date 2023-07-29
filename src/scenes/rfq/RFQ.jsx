@@ -46,6 +46,10 @@ function RFQ() {
             <Button variant="primary" className="d-flex align-items-center gap-2" onClick={() => navigate('/dashboard/vendor/AddVendor')}>
               <i className="ri-bar-chart-2-line fs-18 lh-1"></i>Add Vendor<span className="d-none d-sm-inline"></span>
             </Button>
+
+            <Button variant="primary" className="d-flex align-items-center gap-2" onClick={() => navigate('/dashboard/rfq/PurchaseRequisition')}>
+              <i className="ri-bar-chart-2-line fs-18 lh-1"></i>Add Purchase Requisition<span className="d-none d-sm-inline"></span>
+            </Button>
           </div>
         </div>
 

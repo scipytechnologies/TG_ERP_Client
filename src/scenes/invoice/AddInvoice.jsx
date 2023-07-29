@@ -7,19 +7,19 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
 import { useSelector } from 'react-redux';
 
-function AddCrm() {
+function AddInvoice() {
   // to maintain dark and light mode
   const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
   const [form, setform] = useState("");
-  const index = useSelector((state)=>state.index)
-  console.log(index.InvoiceID,"Invoice");
+  const index = useSelector((state) => state.index)
+  console.log(index.InvoiceID, "Invoice");
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     setform({
       ...form,
-      [event.target.name] : event.target.value
+      [event.target.name]: event.target.value
     })
     setUform({
       ...uform,
@@ -29,9 +29,9 @@ function AddCrm() {
   };
 
 
-    async function PostInvoice(form) {
+  async function PostInvoice(form) {
     console.log(form);
-    const res = await mainservice.invoice(form,index.InvoiceID);
+    const res = await mainservice.invoice(form, index.InvoiceID);
     if (res.data != null) {
       console.log("Invoice Added");
     }
@@ -51,12 +51,12 @@ function AddCrm() {
     updateInvoice(uform);
   };
 
-  async function updateInvoice(uform){
-    const res = await mainservice.updateInvoice(index.InvoiceID,id,uform);
-    if(res.data!= null){
+  async function updateInvoice(uform) {
+    const res = await mainservice.updateInvoice(index.InvoiceID, id, uform);
+    if (res.data != null) {
       console.log(res.data, "Invoice Details updated");
     }
-    else{
+    else {
       console.log(res);
     }
   }
@@ -64,17 +64,43 @@ function AddCrm() {
   const [uform, setUform] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const id = searchParams.get("id");
-  const CheckEdit = async() => {
-    if(id){
+  const CheckEdit = async () => {
+    if (id) {
       setEditMode(true)
-      const res = await mainservice.getInvoiceById(index.InvoiceID,id);
+      const res = await mainservice.getInvoiceById(index.InvoiceID, id);
       setUform(res.data)
-      console.log(res.data,"this");
+      console.log(res.data, "this");
     }
   }
   useEffect(() => {
     CheckEdit()
-  },[]);
+  }, []);
+
+
+  const [fields, setFields] = useState([{ name: '', product: '' }]);
+
+  const handleAddField = () => {
+    const newFields = [...fields, { name: '', product: '' }];
+    setFields(newFields);
+  };
+
+  const handleRemoveField = (index) => {
+    const newFields = [...fields];
+    newFields.splice(index, 1);
+    setFields(newFields);
+  };
+  const handleChangeField = (index, field, value) => {
+    const updatedFields = [...fields];
+    updatedFields[index][field] = value;
+    setFields(updatedFields);
+  };
+
+
+  // const handleChange = (index, event) => {
+  //   const newFields = [...fields];
+  //   newFields[index].value = event.target.value;
+  //   setFields(newFields);
+  // };
 
 
   return (
@@ -181,15 +207,73 @@ function AddCrm() {
                   </div>
                 </Col>
 
+
+                {fields.map((field, index) => {
+
+                  return (
+                    <>
+                      <Row>
+                        <Col lg="4" md="6" xs="12">
+                          <div className="mt-3">
+                            <div key={index}>
+                              <Form.Label htmlFor="ItemNo">Item No</Form.Label>
+                              <Form.Control type="Number" id="ItemNo" name='ItemNo' value={fields.ItemNo} placeholder="Item No" onChange={(event) => handleChangeField(index, event)} />
+                            </div>
+                          </div>
+                        </Col>
+                        <Col lg="4" md="6" xs="12">
+                          <div className="mt-3">
+                            <div key={index}>
+                              <Form.Label htmlFor="ItemName">Item Name</Form.Label>
+                              <Form.Control type="text" id="ItemName" name='ItemName' value={fields.ItemName} placeholder="Item Name" onChange={(event) => handleChangeField(index, event)} />
+                            </div>
+                          </div>
+                        </Col>
+                        <Col lg="4" md="6" xs="12">
+                          <div className="mt-3">
+                            <div key={index}>
+                              <Form.Label htmlFor="Quantity">Quantity</Form.Label>
+                              <Form.Control type="Number" id="Quantity" name='Quantity' value={fields.Quantity} placeholder="Quantity" onChange={(event) => handleChangeField(index, event)} />
+                            </div>
+                          </div>
+                        </Col>
+                        <Col lg="4" md="6" xs="12">
+                          <div className="mt-3">
+                            <div key={index}>
+                              <Form.Label htmlFor="Price">Price</Form.Label>
+                              <Form.Control type="Number" id="Price" name='Price' value={fields.Price} placeholder="Price" onChange={(event) => handleChangeField(index, event)} />
+                            </div>
+                          </div>
+                        </Col>
+                        <Col lg="4" md="6" xs="12">
+                          <div className="mt-3">
+                            <Form.Label htmlFor="TotalPrice">Total Price</Form.Label>
+                            <div className="input-group mb-3" key={index}>
+
+                              <Form.Control type="Number" id="TotalPrice" name='TotalPrice' value={fields.TotalPrice} placeholder="Total Price" onChange={(event) => handleChangeField(index, event)} />
+                              <Button onClick={() => handleRemoveField(index)}>x</Button>
+                            </div>
+                          </div>
+                        </Col>
+                      </Row>
+                    </>
+                  )
+
+                })}
+                <div className="mt-3">
+                  <Button onClick={handleAddField}>+</Button>
+                </div>
+
+
                 <Col xs="12">
-                 {editMode?
-                 <div className='mt-1' style={{display:'flex', justifyContent:'flex-end'}}>
-                  <Button onClick={onUpdateHandler} type="submit">Update</Button>
-                 </div>:
-                 <div className='mt-1' style={{display:'flex', justifyContent:'flex-end'}}>
-                  <Button onClick={onSubmitHandler} type="submit">Submit</Button>
-                 </div>
-                 }
+                  {editMode ?
+                    <div className='mt-1' style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                      <Button onClick={onUpdateHandler} type="submit">Update</Button>
+                    </div> :
+                    <div className='mt-1' style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                      <Button onClick={onSubmitHandler} type="submit">Submit</Button>
+                    </div>
+                  }
                 </Col>
               </Row>
 
@@ -201,10 +285,11 @@ function AddCrm() {
           <Footer />
 
         </div >
-      </form>
+      </form >
 
     </>
   )
 }
 
-export default AddCrm
+
+export default AddInvoice

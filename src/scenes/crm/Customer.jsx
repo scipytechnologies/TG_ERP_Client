@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
-import { useState, useRef } from 'react';
-import { Button, Card, Col, Row, Dropdown, Offcanvas, ButtonGroup, Table, Badge, Form, Placeholder, Modal } from "react-bootstrap";
+import { useState} from 'react';
+import { Button, Card, Col, Row, Dropdown, Offcanvas, ButtonGroup, Table, Badge, Form, Modal } from "react-bootstrap";
 import { Link, useNavigate } from 'react-router-dom'
 import { Grid } from "gridjs-react";
 import mainservice from '../../services/mainservice';
