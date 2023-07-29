@@ -99,214 +99,213 @@ function PurchaseOrder() {
         <Card>
           <Card.Body>
             <Row className="g-4">
-              <Col lg="4" md="6" xs="12">
+            <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">REQ No</Form.Label>
-                  <Form.Control type="number" name="REQNo" value={uform.REQNo} id="exampleFormControlInput1" placeholder="REQ No" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="OrderCode">Order Code</Form.Label>
+                  <Form.Control type="text" name="OrderCode" value={uform.OrderCode} id="OrderCode" placeholder="Order Code" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Requisition Date</Form.Label>
-                  <Form.Control type="date" name="RequisitionDate" value={uform.RequisitionDate} id="exampleFormControlInput1" placeholder="Requisition Date" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="Item">Item</Form.Label>
+                  <Form.Control type="text" name="Item" value={uform.Item} id="Item" placeholder="Item" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Supplier</Form.Label>
-                  <Form.Control type="text" name="Supplier" value={uform.Supplier} id="exampleFormControlInput1" placeholder="Supplier" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="Qty">Quantity</Form.Label>
+                  <Form.Control type="text" name="Qty" value={uform.Qty} id="Qty" placeholder="Qty" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Fed ID</Form.Label>
-                  <Form.Control type="text" name="FedID" value={uform.FedID} id="exampleFormControlInput1" placeholder="Fed ID" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="Units">Units</Form.Label>
+                  <Form.Control type="text" name="Units" value={uform.Units} id="Units" placeholder="Units" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Phone</Form.Label>
-                  <Form.Control type="number" name="Phone" value={uform.Phone} id="exampleFormControlInput1" placeholder="Phone Number" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="UnitPrice">Unit Price</Form.Label>
+                  <Form.Control type="text" name="UnitPrice" value={uform.UnitPrice} id="UnitPrice" placeholder="Unit Price" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Email</Form.Label>
-                  <Form.Control type="email" name="Email" value={uform.Email} id="exampleFormControlInput1" placeholder="name@example.com" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="TotalPrice">Total Price</Form.Label>
+                  <Form.Control type="text" name="TotalPrice" value={uform.TotalPrice} id="TotalPrice" placeholder="Total Price" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Organization Name</Form.Label>
-                  <Form.Control type="text" name="OrganizationName" value={uform.OrganizationName} id="exampleFormControlInput1" placeholder="OrganizationName" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="VendorName">Vendor Name</Form.Label>
+                  <Form.Control type="text" name="VendorName" value={uform.VendorName} id="VendorName" placeholder="Vendor Name" onChange={onChangeHandler} />
+                </div>
+              </Col>  
+
+              <Col lg="4" md="6" xs="12">
+                <div className="mt-3">
+                  <Form.Label htmlFor="VendorCity">Vendor City</Form.Label>
+                  <Form.Control type="text" name="VendorCity" value={uform.VendorCity} id="VendorCity" placeholder="Vendor City" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Building</Form.Label>
-                  <Form.Control type="text" name="Building" value={uform.Building} id="exampleFormControlInput1" placeholder="Building" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="VendorState">Vendor State</Form.Label>
+                  <Form.Control type="text" name="VendorState" value={uform.VendorState} id="VendorState" placeholder="Vendor State" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Room Number</Form.Label>
-                  <Form.Control type="number" name="RoomNumber" value={uform.RoomNumber} id="exampleFormControlInput1" placeholder="Room Number" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="VendorPinCode">Vendor PinCode</Form.Label>
+                  <Form.Control type="Number" name="VendorPinCode" value={uform.VendorPinCode} id="VendorPinCode" placeholder="Vendor PinCode" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Need by Date</Form.Label>
-                  <Form.Control type="date" name="NeedbyDate" value={uform.NeedbyDate} id="exampleFormControlInput1" placeholder="Need by Date" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="VendorCountry">Vendor Country</Form.Label>
+                  <Form.Control type="text" name="VendorCountry" value={uform.VendorCountry} id="VendorCountry" placeholder="Vendor Country" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Due</Form.Label>
-                  <Form.Control type="number" name="Due" value={uform.Due} id="exampleFormControlInput1" placeholder="Due Amount" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="VendorContact">Vendor Contact</Form.Label>
+                  <Form.Control type="Number" name="VendorContact" value={uform.VendorContact} id="VendorContact" placeholder="Vendor Contact" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Paid</Form.Label>
-                  <Form.Control type="number" name="Paid" value={uform.Paid} id="exampleFormControlInput1" placeholder="Paid Amount" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="DeliverToName">Deliver To Name</Form.Label>
+                  <Form.Control type="text" name="DeliverToName" value={uform.DeliverToName} id="DeliverToName" placeholder="Deliver To Name" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Carrier</Form.Label>
-                  <Form.Control type="text" name="Carrier" value={uform.Carrier} id="exampleFormControlInput1" placeholder="Carrier" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="DeliverCity">Deliver City</Form.Label>
+                  <Form.Control type="text" name="DeliverCity" value={uform.DeliverCity} id="DeliverCity" placeholder="Deliver City" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">FOB</Form.Label>
-                  <Form.Control type="text" name="FOB" value={uform.FOB} id="exampleFormControlInput1" placeholder="FOB" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="DeliverState">Deliver State</Form.Label>
+                  <Form.Control type="text" name="DeliverState" value={uform.DeliverState} id="DeliverState" placeholder="Deliver State" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Destination</Form.Label>
-                  <Form.Control type="text" name="Destination" value={uform.Destination} id="exampleFormControlInput1" placeholder="Destination" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="DeliverPinCode">Deliver PinCode</Form.Label>
+                  <Form.Control type="Number" name="DeliverPinCode" value={uform.DeliverPinCode} id="DeliverPinCode" placeholder="Deliver PinCode" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">FCA</Form.Label>
-                  <Form.Control type="text" name="FCA" value={uform.FCA} id="exampleFormControlInput1" placeholder="FCA" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="DeliverCountry">Deliver Country</Form.Label>
+                  <Form.Control type="text" name="DeliverCountry" value={uform.DeliverCountry} id="DeliverCountry" placeholder="DeliverCountry" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Orgin</Form.Label>
-                  <Form.Control type="text" name="Orgin" value={uform.Orgin} id="exampleFormControlInput1" placeholder="Orgin" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="DeliverContact">Deliver Contact</Form.Label>
+                  <Form.Control type="Number" name="DeliverContact" value={uform.DeliverContact} id="DeliverContact" placeholder="Deliver Contact" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Confirmation</Form.Label>
-                  <Form.Control type="text" name="Confirmation" value={uform.Confirmation} id="exampleFormControlInput1" placeholder="Confirmation" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="PurchaseOrder">Purchase Order</Form.Label>
+                  <Form.Control type="text" name="PurchaseOrder" value={uform.PurchaseOrder} id="PurchaseOrder" placeholder="Purchase Order" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Task</Form.Label>
-                  <Form.Control type="text" name="Task" value={uform.Task} id="exampleFormControlInput1" placeholder="Task" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="Date">Date</Form.Label>
+                  <Form.Control type="Date" name="Date" value={uform.Date} id="Date" placeholder="Date" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Award</Form.Label>
-                  <Form.Control type="text" name="Award" value={uform.Award} id="exampleFormControlInput1" placeholder="Award" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="CreditTerms">Credit Terms</Form.Label>
+                  <Form.Control type="text" name="CreditTerms" value={uform.CreditTerms} id="CreditTerms" placeholder="Credit Terms" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Expendure Type</Form.Label>
-                  <Form.Control type="text" name="ExpendureType" value={uform.ExpendureType} id="exampleFormControlInput1" placeholder="Expendure Type" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="Comments">Comments</Form.Label>
+                  <Form.Control type="text" name="Comments" value={uform.Comments} id="Comments" placeholder="Comments" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Organization Name</Form.Label>
-                  <Form.Control type="text" name="OrganizationName" value={uform.OrganizationName} id="exampleFormControlInput1" placeholder="Organization Name" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="TermsAndConditions">Terms And Conditions</Form.Label>
+                  <Form.Control type="text" name="TermsAndConditions" value={uform.TermsAndConditions} id="TermsAndConditions" placeholder="Terms And Conditions" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Requistioner</Form.Label>
-                  <Form.Control type="text" name="Requistioner" value={uform.Requistioner} id="exampleFormControlInput1" placeholder="Requistioner" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="SubTotal">Sub Total</Form.Label>
+                  <Form.Control type="text" name="SubTotal" value={uform.SubTotal} id="SubTotal" placeholder="Sub Total" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Phone</Form.Label>
-                  <Form.Control type="number" name="Phone" value={uform.Phone} id="exampleFormControlInput1" placeholder="Phone" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="Tax">Tax</Form.Label>
+                  <Form.Control type="text" name="Tax" value={uform.Tax} id="Tax" placeholder="Tax" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Date</Form.Label>
-                  <Form.Control type="date" name="Date" value={uform.Date} id="exampleFormControlInput1" placeholder="Date" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="Freight">Freight</Form.Label>
+                  <Form.Control type="text" name="Freight" value={uform.Freight} id="Freight" placeholder="Freight" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">City</Form.Label>
-                  <Form.Control type="text" name="City" value={uform.City} id="exampleFormControlInput1" placeholder="City" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="Paid">Paid</Form.Label>
+                  <Form.Control type="text" name="Paid" value={uform.Paid} id="Paid" placeholder="Paid" onChange={onChangeHandler} />
                 </div>
               </Col>
 
               <Col lg="4" md="6" xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">State</Form.Label>
-                  <Form.Control type="text" name="State" value={uform.State} id="exampleFormControlInput1" placeholder="State" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="Balance">Balance </Form.Label>
+                  <Form.Control type="text" name="Balance" value={uform.Balance} id="Balance" placeholder="Balance" onChange={onChangeHandler} />
                 </div>
               </Col>
 
-              <Col lg="4" md="6" xs="12">
+              <Col xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Zipcode</Form.Label>
-                  <Form.Control type="text" name="Zipcode" value={uform.Zipcode} id="exampleFormControlInput1" placeholder="Zipcode" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="VendorStreetAdress">Vendor Street Adress</Form.Label>
+                  <Form.Control as="textarea" name="VendorStreetAdress" value={uform.VendorStreetAdress} id="VendorStreetAdress" rows="4" placeholder="Vendor Street Adress" onChange={onChangeHandler} />
                 </div>
               </Col>
 
-
-              <Col md="12" xs="12">
+              <Col xs="12">
                 <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Address</Form.Label>
-                  <Form.Control as="textarea" rows= "4" name="Address" value={uform.Address} id="exampleFormControlInput1" placeholder="Address" onChange={onChangeHandler} />
-                </div>
-              </Col>
-
-              <Col md="12" xs="12">
-                <div className="mt-3">
-                  <Form.Label htmlFor="exampleFormControlInput1">Supplier Note</Form.Label>
-                  <Form.Control as="textarea" rows= "4" name="SupplierNote" value={uform.SupplierNote} id="exampleFormControlInput1" placeholder="Supplier Note" onChange={onChangeHandler} />
+                  <Form.Label htmlFor="DeliverStreetAdress">Deliver Street Adress</Form.Label>
+                  <Form.Control as="textarea" name="DeliverStreetAdress" value={uform.DeliverStreetAdress} id="DeliverStreetAdress" rows="4" placeholder="Deliver Street Adress" onChange={onChangeHandler} />
                 </div>
               </Col>
 

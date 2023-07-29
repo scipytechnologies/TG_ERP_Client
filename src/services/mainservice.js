@@ -373,6 +373,35 @@ async function updaterfq(companyID,id,data) {
     const response = await apicall.apicall("put", 5007, `rfqRoute/updaterfq/${companyID}/${id}`,data)
     return response
 }
+
+//////////////////////////////////////{PurchaseRequisition}//////////////////////////////
+
+async function createpurchaseRequisitionCollection(data) {
+    const response = await apicall.apicall("post", 5007, "purchaseRequisitionRoute/createRequisitionCollection", data)
+    return response
+}
+async function purchaseRequisition(data, id) {
+    const response = await apicall.apicall("post", 5007, `purchaseRequisitionRoute/purchaseRequisition/${id}`, data)
+    return response
+
+}
+async function purchaseRequisitiondetails(id) {
+    const response = await apicall.apicall("get", 5007, `purchaseRequisitionRoute/purchaseRequisitiondetails/${id}`)
+    return response
+
+}
+async function deletepurchaseRequisition(companyID,id) {
+    const response = await apicall.apicall("delete", 5007, `purchaseRequisitionRoute/deletepurchaseRequisition/${companyID}/${id}`)
+    return response
+}
+async function getpurchaseRequisitionById(companyID,id) {
+    const response = await apicall.apicall("get", 5007, `purchaseRequisitionRoute/getpurchaseRequisitionById/${companyID}/${id}`)
+    return response
+}
+async function updatepurchaseRequisition(companyID,id,data) {
+    const response = await apicall.apicall("put", 5007, `purchaseRequisitionRoute/updatepurchaseRequisition/${companyID}/${id}`,data)
+    return response
+}
 /////////////////////////////////////{RFQ-Vendor}/////////////////////////////////////////
 
 async function createVendorCollection(data) {
@@ -514,6 +543,7 @@ export default {
     rfqdetails, invoicedetails, salesdetails, createEmployeeCollection, createInventorymanagementCollection, createPrjmanagerCollection, createProductCollection, createPurchaseCollection, createPurchaseitemCollection, createPurchaseorderCollection,
     createRfqCollection, createInvoiceCollection, createSalesCollection, createAccountCollection, createAppointmentCollection, createOpportunityCollection, createVendorCollection, vendor, vendordetails, createNotificationCollection, postNotification, getNotification
     ,deletecustomer,deleteopportunity,deleteEmployee,deleteInventorymanagementDetails,deletePrjmanagerDetails,deleteProductDetails,deletePurchase,deletePurchaseitem,deletePurchaseorder,deleterfq,deletevendor,deleteInvoice,deleteSales,getEmployee,editEmployee,editInventorymanagementDetails,getidInventorymanagementDetails,
-    getInvoiceById,updateInvoice,getRFQ,updaterfq,getPurchaseitemById,updatePurchaseitem,getPurchaseorderid,updatePurchaseorder,getvendorById,updatevendor,getPrjmanagerDetailsById,editPrjmanagerDetails,getSalesById,updateSales,getPurchaseById,updatePurchase
+    getInvoiceById,updateInvoice,getRFQ,updaterfq,getPurchaseitemById,updatePurchaseitem,getPurchaseorderid,updatePurchaseorder,getvendorById,updatevendor,getPrjmanagerDetailsById,editPrjmanagerDetails,getSalesById,updateSales,getPurchaseById,updatePurchase,createpurchaseRequisitionCollection,purchaseRequisition,
+    purchaseRequisitiondetails,deletepurchaseRequisition,getpurchaseRequisitionById,updatepurchaseRequisition,
 };
 

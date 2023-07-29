@@ -127,7 +127,8 @@ export default function App() {
         PurchaseID: index.data.PurchaseID,
         SalesID: index.data.SalesID,
         VendorID: index.data.VendorID,
-        NotificationID: index.data.NotificationID
+        NotificationID: index.data.NotificationID,
+        PurchaseRequisitionID:index.data.PurchaseRequisitionID
       }
       dispatch(setindex(newIndex))
       console.log(indexData, "index from state");

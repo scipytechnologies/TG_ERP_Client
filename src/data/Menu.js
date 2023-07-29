@@ -107,6 +107,10 @@ const scenes = [
         "label": "Vendor List",
         "link": "/dashboard/vendor/vendorList",
       },
+      {
+        "label": "Requisition",
+        "link": "/dashboard/rfq/Requisition",
+      },
     ]
   },
   {

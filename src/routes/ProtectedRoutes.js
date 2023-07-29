@@ -113,6 +113,8 @@ import PurchaseItem from "../scenes/rfq/PurchaseItem"
 import RfqPurchaseList from "../scenes/rfq/RfqPurchaseList"
 import RfqList from "../scenes/rfq/RfqList"
 import RfqPurchaseOrder from "../scenes/rfq/RfqPurchaseOrder"
+import PurchaseRequisition from "../scenes/rfq/PurchaseRequisition";
+import Requisition from "../scenes/rfq/Requisition";
 
 import Vendor from "../scenes/vendor/Vendor"
 import AddVendor from "../scenes/vendor/AddVendor"
@@ -171,6 +173,8 @@ const protectedRoutes = [
   { path: "dashboard/rfq/rfqList", element: <RfqList /> },
   { path: "dashboard/rfq/rfqPurchaseList", element: <RfqPurchaseList /> },
   { path: "dashboard/rfq/rfqPurchaseOrder", element: <RfqPurchaseOrder /> },
+  {path: "dashboard/rfq/PurchaseRequisition", element: <PurchaseRequisition/> },
+  {path: "dashboard/rfq/Requisition", element: <Requisition/>},
 
 
   { path: "dashboard/vendor/Vendor", element: <Vendor /> },

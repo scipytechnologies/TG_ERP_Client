@@ -97,10 +97,59 @@ function AddRFQ() {
           <Card>
             <Card.Body>
               <Row className="g-4">
+              <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="SerialNo">Serial No</Form.Label>
+                    <Form.Control type="Number" id="SerialNo" name="SerialNo" value={uform.SerialNo} placeholder="Serial No" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
-                    <Form.Label htmlFor="RequisitionDate">Requisition Date</Form.Label>
-                    <Form.Control type="Date" id="RequisitionDate" name="RequisitionDate" value={uform.RequisitionDate} placeholder="Requisition Date" onChange={onChangeHandler} />
+                    <Form.Label htmlFor="ItemNumber">Item Number</Form.Label>
+                    <Form.Control type="Number" id="ItemNumber" name="ItemNumber" value={uform.ItemNumber} placeholder="Item Number" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="Qty">Quantity</Form.Label>
+                    <Form.Control type="text" id="Qty" name="Qty" value={uform.Qty} placeholder="Quantity" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="Unit">Unit</Form.Label>
+                    <Form.Control type="text" id="Unit" name="Unit" value={uform.Unit} placeholder="Unit" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="CapExOrOpEx">CapExOrOpEx</Form.Label>
+                    <Form.Control type="text" id="CapExOrOpEx" name="CapExOrOpEx" value={uform.CapExOrOpEx} placeholder="CapExOrOpEx" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="Day">Day</Form.Label>
+                    <Form.Control type="text" id="Day" name="Day" value={uform.Day} placeholder="Day" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="Month">Month</Form.Label>
+                    <Form.Control type="text" id="Month" name="Month" value={uform.Month} placeholder="Month" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="Year">Year</Form.Label>
+                    <Form.Control type="text" id="Year" name="Year" value={uform.Year} placeholder="Year" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
@@ -120,8 +169,8 @@ function AddRFQ() {
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
-                    <Form.Label htmlFor="JDERequisition">JDE Requisition</Form.Label>
-                    <Form.Control type="text" id="JDERequisition" name="JDERequisition" value={uform.JDERequisition} placeholder="JDE Requisition" onChange={onChangeHandler} />
+                    <Form.Label htmlFor="JDERequisition">JDERequisition</Form.Label>
+                    <Form.Control type="text" id="JDERequisition" name="JDERequisition" value={uform.JDERequisition} placeholder="JDERequisition" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
@@ -141,8 +190,8 @@ function AddRFQ() {
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
-                    <Form.Label htmlFor="RequisitorsName">Requisitors Name</Form.Label>
-                    <Form.Control type="text" id="RequisitorsName" name="RequisitorsName" value={uform.RequisitorsName} placeholder="Requisitors Name" onChange={onChangeHandler} />
+                    <Form.Label htmlFor="RequestorsName">Requestors Name</Form.Label>
+                    <Form.Control type="text" id="RequestorsName" name="RequestorsName" value={uform.RequestorsName} placeholder="Requestors Name" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
@@ -191,37 +240,74 @@ function AddRFQ() {
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="PointofDelivery">Point of Delivery</Form.Label>
-                    <Form.Control type="Date" id="PointofDelivery" name="PointofDelivery" value={uform.PointofDelivery} placeholder="Point of Delivery" onChange={onChangeHandler} />
+                    <Form.Control type="text" id="PointofDelivery" name="PointofDelivery" value={uform.PointofDelivery} placeholder="Point of Delivery" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
-                    <Form.Label htmlFor="Receivedby">Received by</Form.Label>
-                    <Form.Control type="text" id="Receivedby" name="Receivedby" value={uform.Receivedby} placeholder="Received by" onChange={onChangeHandler} />
+                    <Form.Label htmlFor="Receivedby">Receivedby</Form.Label>
+                    <Form.Control type="text" id="Receivedby" name="Receivedby" value={uform.Receivedby} placeholder="Receivedby" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
-                    <Form.Label htmlFor="Contactdetails">Contact details</Form.Label>
-                    <Form.Control type="text" id="Contactdetails" name="Contactdetails" value={uform.Contactdetails} placeholder="Contact details" onChange={onChangeHandler} />
+                    <Form.Label htmlFor="Position">Position</Form.Label>
+                    <Form.Control type="text" id="Position" name="Position" value={uform.Position} placeholder="Position" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                
+
+
+
+
+
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="TelephoneNo">Telephone Number</Form.Label>
+                    <Form.Control type="Number" id="TelephoneNo" name="TelephoneNo" value={uform.TelephoneNo} placeholder="Telephone Number" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
-                    <Form.Label htmlFor="Product">Product</Form.Label>
-                    <Form.Control type="text" id="Product" name="Product" value={uform.Product} placeholder="Product" onChange={onChangeHandler} />
+                    <Form.Label htmlFor="Email">Email</Form.Label>
+                    <Form.Control type="text" id="Email" name="Email" value={uform.Email} placeholder="Email" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
-                    <Form.Label htmlFor="Specialinstruction">Special instruction</Form.Label>
-                    <Form.Control type="text" id="Specialinstruction" name="Specialinstruction" value={uform.Specialinstruction} placeholder="Special instruction" onChange={onChangeHandler} />
+                    <Form.Label htmlFor="SpecialInstructions">Special Instructions</Form.Label>
+                    <Form.Control type="text" id="SpecialInstructions" name="SpecialInstructions" value={uform.SpecialInstructions} placeholder="Special Instructions" onChange={onChangeHandler} />
                   </div>
                 </Col>
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="Attachments">Attachments</Form.Label>
+                    <Form.Control type="text" id="Attachments" name="Attachments" value={uform.Attachments} placeholder="Attachments" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="Authorization">Authorization</Form.Label>
+                    <Form.Control type="text" id="Authorization" name="Authorization" value={uform.Authorization} placeholder="Authorization" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="Description">Description</Form.Label>
+                    <Form.Control as="textarea" id="Description" name="Description" value={uform.Description} rows="4" placeholder="Description" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                
 
                 <Col xs="12">
                   {editMode ?
