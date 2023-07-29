@@ -49,6 +49,7 @@
     "react-select": "^5.7.4",
     "react-slick": "^0.29.0",
     "react-spinners": "^0.13.8",
+    "react-to-print": "^2.14.13",
     "rsuite": "^5.37.0",
     "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"

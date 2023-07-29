@@ -80,6 +80,10 @@ const scenes = [
       {
         "label": "Invoice List",
         "link": "/dashboard/invoice/InvoiceList"
+      },
+      {
+        "label": "Opportunity Invoice",
+        "link": "/dashboard/invoice/OpportunityInvoice"
       }
     ]
   },

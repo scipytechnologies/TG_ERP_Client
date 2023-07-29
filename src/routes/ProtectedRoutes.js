@@ -104,7 +104,8 @@ import AddProduct from "../scenes/inventory/AddProduct"
 import ProductManagement from "../scenes/inventory/ProductManagement"
 import Invoice from "../scenes/invoice/Invoice"
 import AddInvoice from "../scenes/invoice/AddInvoice"
-import PrintInvoice from "../scenes/invoice/PrintInvoice"
+import OpportunityInvoice from "../scenes/invoice/Generate Invoice/Opportunity Invoice/OpportunityInvoice";
+
 import InvoiceList from "../scenes/invoice/InvoiceList"
 import RFQ from "../scenes/rfq/RFQ"
 import AddRfq from "../scenes/rfq/AddRfq"
@@ -161,7 +162,7 @@ const protectedRoutes = [
   { path: "dashboard/invoice", element: <Invoice /> },
   { path: "dashboard/invoice/InvoiceList", element: <InvoiceList /> },
   { path: "dashboard/invoice/AddInvoice", element: <AddInvoice /> },
-  { path: "dashboard/invoice/PrintInvoice", element: <PrintInvoice /> },
+  { path: "dashboard/invoice/OpportunityInvoice", element: <OpportunityInvoice /> },
 
 
   { path: "dashboard/rfq", element: <RFQ /> },
