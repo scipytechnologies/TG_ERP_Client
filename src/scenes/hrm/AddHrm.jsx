@@ -37,7 +37,7 @@ export default function AddHrm() {
     setUser({
       ...user,
       [event.target.name]: event.target.value,
-    });
+    });   
     console.log(user);
   };
 
