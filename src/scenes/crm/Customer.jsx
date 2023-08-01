@@ -22,9 +22,6 @@ function Customer() {
     const index = useSelector((state) => state.index)
     const dispatch = useDispatch()
     const user = useSelector((state) => state.loginedUser)
-    console.log(user);
- 
-
 
     // axios get interceptor for table data
     const [data, setData] = useState([])

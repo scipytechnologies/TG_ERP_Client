@@ -48,8 +48,12 @@ const scenes = [
         "link": "dashboard/employee"
       },
       {
-        "label": "Manage Employee",
+        "label": "Manage Employees",
         "link": "dashboard/employee/EmployeeManagement"
+      },
+      {
+        "label": "Profile",
+        "link": "dashboard/employee/EmployeeProfile"
       }
     ]
   },
@@ -80,6 +84,10 @@ const scenes = [
       {
         "label": "Invoice List",
         "link": "/dashboard/invoice/InvoiceList"
+      },
+      {
+        "label": "Opportunity Invoice",
+        "link": "/dashboard/invoice/OpportunityInvoice"
       }
     ]
   },

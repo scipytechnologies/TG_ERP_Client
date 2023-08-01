@@ -1,0 +1,40 @@
+.calendar-day .empty {
+  background-color: rgb(245, 242, 240);
+}
+
+
+.calendar-day .absent {
+  background-color: #DC3545;
+  color: #fff;
+}
+
+.calendar-day .present {
+  background-color: #0CB785;
+  color: #fff;
+}
+
+.calendar-day .wfh {
+  background-color: #506FD9;
+  color: #fff;
+}
+
+.calendar-day .halfDay {
+  background-color: #EE7713;
+  color: #fff;
+}
+
+.custom-calender-btn {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+}
+
+.calendar-month:hover {
+  background-color: #5070d91b !important;
+}

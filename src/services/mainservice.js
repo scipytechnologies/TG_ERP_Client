@@ -179,6 +179,11 @@ async function editEmployee(companyID,id,data) {
     const response = await apicall.apicall("put", 5002, `hrm/employee/editEmployee/${companyID}/${id}`,data)
     return response
 }
+
+async function getEmployeeByUserID(companyID,id){
+    const res = await apicall.apicall("get",5002,`hrm/employee/getEmployeeByUserId/${companyID}/${id}`)
+    return res
+}
 ////////////////////////////////////////{Inventory management}//////////////////////////////////
 
 async function createInventorymanagementCollection(data) {
@@ -538,8 +543,8 @@ async function OffersInHome() {
 export default {
     Auth, SignUp, Login, GetUserById, Index, AddIndex, GetIndexbyId,
      RegisterCompany, GetCompanyById, InitializeCompany, MainProductsInHome, CategoriesInHome, LatestProductsInHome, RandomProductsInHome, CategoriesWithProductsForHome, TopSellingProductsInHome, OffersInHome,
-    createAccount, createAppointment, createCustomerCollection, createCustomer,customerById ,updateCustomer, createOpportunity, addEmployee, addInventorymanagementDetails, addPrjmanagerDetails, addProductDetails, purchase, purchaseitem, purchaseorder, rfq, invoice, sales,
-    accountDetails, appointmentDetails, customerList, opportunityDetails ,followup, employeeDetails, getInventorymanagementDetails, getPrjmanagerDetails, getProductDetails, purchasedetails, purchaseitemdetails, getpurchaseorderdetails,
+    createAccount, createAppointment, createCustomerCollection, createCustomer,customerById ,updateCustomer, createOpportunity, addEmployee,getEmployeeByUserID, addInventorymanagementDetails, addPrjmanagerDetails, addProductDetails, purchase, purchaseitem, purchaseorder, rfq, invoice, sales,
+    accountDetails, appointmentDetails, customerList, opportunityDetails ,followup, employeeDetails, getInventorymanagementDetails, getPrjmanagerDetails, getProductDetails, purchasedetails, purchaseitemdetails, purchaseorderdetails,
     rfqdetails, invoicedetails, salesdetails, createEmployeeCollection, createInventorymanagementCollection, createPrjmanagerCollection, createProductCollection, createPurchaseCollection, createPurchaseitemCollection, createPurchaseorderCollection,
     createRfqCollection, createInvoiceCollection, createSalesCollection, createAccountCollection, createAppointmentCollection, createOpportunityCollection, createVendorCollection, vendor, vendordetails, createNotificationCollection, postNotification, getNotification
     ,deletecustomer,deleteopportunity,deleteEmployee,deleteInventorymanagementDetails,deletePrjmanagerDetails,deleteProductDetails,deletePurchase,deletePurchaseitem,deletePurchaseorder,deleterfq,deletevendor,deleteInvoice,deleteSales,getEmployee,editEmployee,editInventorymanagementDetails,getidInventorymanagementDetails,

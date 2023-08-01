@@ -1,5 +1,5 @@
 import React from "react"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Dropdown from 'react-bootstrap/Dropdown';
 import userAvatar from "../assets/img/img1.jpg";
 import notification from "../data/Notification";
@@ -136,6 +136,14 @@ export default function Header({ onSkin }) {
     }
   };
 
+  const navigate = useNavigate()
+  const Logout = () => {
+    if (localStorage.getItem("user-token")) {
+      localStorage.clear();
+    } 
+    window.top.location = window.top.location
+  };
+
   return (
     <div className="header-main px-3 px-lg-4">
       <Link onClick={toggleSidebar} className="menu-link me-3 me-lg-4"><i className="ri-menu-2-fill"></i></Link>
@@ -214,7 +222,7 @@ export default function Header({ onSkin }) {
               <Link to=""><i className="ri-question-line"></i> Help Center</Link>
               <Link to=""><i className="ri-lock-line"></i> Privacy Settings</Link>
               <Link to=""><i className="ri-user-settings-line"></i> Account Settings</Link>
-              <Link to="/pages/signin"><i className="ri-logout-box-r-line"></i> Log Out</Link>
+              <Link onClick={Logout}><i className="ri-logout-box-r-line"></i> Log Out</Link>
             </nav>
           </div>
         </Dropdown.Menu>
