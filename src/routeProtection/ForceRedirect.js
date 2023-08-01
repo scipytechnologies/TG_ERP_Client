@@ -12,8 +12,8 @@ const ForceRedirect = ({ user, children }) => {
       return <Navigate to="/dashboard/home" replace />;
       case 'user': 
       return <Navigate to="/registerCompany" replace />;
-      case 'teacher' :
-      return <Navigate to="/teacher/home" replace />;
+      case 'employee' :
+      return <Navigate to="/dashboard/home" replace />;
       case '' :
         return <Navigate to="/" replace />;
     }

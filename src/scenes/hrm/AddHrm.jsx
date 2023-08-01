@@ -16,6 +16,7 @@ export default function AddHrm() {
   const [skin, setSkin] = useState(currentSkin);
   const index = useSelector((state) => state.index);
   console.log(index);
+  const userdata = useSelector((state) => state.loginedUser)
 
   const [activeTab, setActiveTab] = useState("1");
   function handleTabs(no) {
@@ -43,7 +44,9 @@ export default function AddHrm() {
 
   async function SignUp(data) {
     console.log(data);
-    const res = await mainservice.SignUp(data);
+    const CData = {Company: userdata.CompanyID}
+    const sentData ={...CData,...data}
+    const res = await mainservice.SignUp(sentData);
     if (res.data != null) {
       console.log(res.data.id);
       const addon ={UserId: res.data.id,EmpCode:"696969",firstName :res.data.firstName,lastName : res.data.lastName,Email: res.data.email}
