@@ -15,6 +15,7 @@ import {
   Modal,
   ButtonGroup,
   Badge,
+  ListGroupItem,
 } from "react-bootstrap";
 import Select from "react-select";
 import { Link, useNavigate } from "react-router-dom";
@@ -39,7 +40,7 @@ import img11 from "../../assets/img/img11.jpg";
 import img12 from "../../assets/img/img12.jpg";
 
 function Opportunity() {
-    Moment.globalTimezone = 'Asia/Mumbai';
+  Moment.globalTimezone = 'Asia/Mumbai';
   // to maintain dark and light mode
   const currentSkin = localStorage.getItem("skin-mode") ? "dark" : "";
   const [skin, setSkin] = useState(currentSkin);
@@ -92,7 +93,7 @@ function Opportunity() {
   const GetProfile = async (id) => {
     const res = await mainservice.customerById(index.CrmID, id);
     setProfile(res.data);
-    console.log(profile);
+    console.log("this", res);
   };
   const [followUp, setFollowUp] = useState({});
   const CreateFollowUp = async (data) => {
@@ -175,54 +176,54 @@ function Opportunity() {
                 data={
                   data !== undefined
                     ? data.map((item) => [
-                        _(<td>{item.CustomerName}</td>),
-                        item.OpportunityName,
-                        item.LeadSource,
-                        _(item.FollowUp[item.FollowUp.length - 1].Status),
-                        item.AssignedTo,
-                        _(
-                          <>
-                            <ButtonGroup>
-                              <Button
-                                size="sm"
-                                variant="white"
-                                onClick={() => handleCanvas(item)}
-                              >
-                                <i className="ri-eye-line"></i>
-                              </Button>
-                              <Button className="p-0" variant="white">
-                                <Dropdown drop="end">
-                                  <Dropdown.Toggle
-                                    variant="white"
-                                    size="sm"
-                                    className="btn-no-outline"
-                                  >
-                                    <i
-                                      className="ri-more-2-fill"
-                                      color="primary"
-                                    ></i>
-                                  </Dropdown.Toggle>
+                      _(<td>{item.CustomerName}</td>),
+                      item.OpportunityName,
+                      item.LeadSource,
+                      _(item.FollowUp[item.FollowUp.length - 1].Status),
+                      item.AssignedTo,
+                      _(
+                        <>
+                          <ButtonGroup>
+                            <Button
+                              size="sm"
+                              variant="white"
+                              onClick={() => handleCanvas(item)}
+                            >
+                              <i className="ri-eye-line"></i>
+                            </Button>
+                            <Button className="p-0" variant="white">
+                              <Dropdown drop="end">
+                                <Dropdown.Toggle
+                                  variant="white"
+                                  size="sm"
+                                  className="btn-no-outline"
+                                >
+                                  <i
+                                    className="ri-more-2-fill"
+                                    color="primary"
+                                  ></i>
+                                </Dropdown.Toggle>
 
-                                  <Dropdown.Menu>
-                                    <Dropdown.Item href="#/action-1">
-                                      Action
-                                    </Dropdown.Item>
-                                    <Dropdown.Item href="#/action-2">
-                                      Another action
-                                    </Dropdown.Item>
-                                    <Dropdown.Item
-                                      style={{ color: "red" }}
-                                      onClick={() => onDeleteHandler(item)}
-                                    >
-                                      Delete
-                                    </Dropdown.Item>
-                                  </Dropdown.Menu>
-                                </Dropdown>
-                              </Button>
-                            </ButtonGroup>
-                          </>
-                        ),
-                      ])
+                                <Dropdown.Menu>
+                                  <Dropdown.Item href="#/action-1">
+                                    Action
+                                  </Dropdown.Item>
+                                  <Dropdown.Item href="#/action-2">
+                                    Another action
+                                  </Dropdown.Item>
+                                  <Dropdown.Item
+                                    style={{ color: "red" }}
+                                    onClick={() => onDeleteHandler(item)}
+                                  >
+                                    Delete
+                                  </Dropdown.Item>
+                                </Dropdown.Menu>
+                              </Dropdown>
+                            </Button>
+                          </ButtonGroup>
+                        </>
+                      ),
+                    ])
                     : []
                 }
                 columns={[
@@ -314,49 +315,177 @@ function Opportunity() {
                             <ListGroup>
                               <ListGroup.Item>
                                 <div className="d-flex">
-                                  <div className="w-50">Phone</div>
+                                  <div className="w-40">First Name</div>
+                                  <div className="w-50">
+                                    : {profile.FirstName}
+                                  </div>
+                                </div>
+                              </ListGroup.Item>
+                              <ListGroup.Item>
+                                <div className="d-flex">
+                                  <div className="w-40">Last Name</div>
+                                  <div className="w-50">
+                                    : {profile.LastName}
+                                  </div>
+                                </div>
+                              </ListGroup.Item>
+                              <ListGroup.Item>
+                                <div className="d-flex">
+                                  <div className="w-40">Business Role</div>
+                                  <div className="w-50">
+                                    : {profile.BusinessRole}
+                                  </div>
+                                </div>
+                              </ListGroup.Item>
+                              <ListGroupItem>
+                              <div className="d-flex">
+                                  <div className="w-40">Email</div>
+                                  <div className="w-50">
+                                    : {profile.Email}
+                                  </div>
+                                </div>
+                              </ListGroupItem>
+                              <ListGroup.Item>
+                                <div className="d-flex">
+                                  <div className="w-40">Phone Mobile</div>
                                   <div className="w-50">
                                     : {profile.PhoneMobile}
                                   </div>
                                 </div>
                               </ListGroup.Item>
+                            </ListGroup>
+
+                            <ListGroup>
                               <ListGroup.Item>
                                 <div className="d-flex">
-                                  <div className="w-50">Email</div>
-                                  <div className="w-50">: {profile.Email}</div>
-                                </div>
-                              </ListGroup.Item>
-                              <ListGroup.Item>
-                                <div className="d-flex">
-                                  <div className="w-50">Address</div>
+                                  <div className="w-40">Phone Work</div>
                                   <div className="w-50">
-                                    : {profile.Address}
+                                    : {profile.PhoneWork}
                                   </div>
                                 </div>
                               </ListGroup.Item>
                               <ListGroup.Item>
                                 <div className="d-flex">
-                                  <div className="w-50">Place</div>
-                                  <div className="w-50">: {profile.Place}</div>
+                                  <div className="w-40">Phone Home</div>
+                                  <div className="w-50">
+                                    : {profile.PhoneHome}
+                                  </div>
+                                </div>
+                              </ListGroup.Item>
+                              <ListGroup.Item>
+                                <div className="d-flex">
+                                  <div className="w-40">Website</div>
+                                  <div className="w-50">
+                                    : {profile.Website}
+                                  </div>
+                                </div>
+                              </ListGroup.Item>
+                              <ListGroup.Item>
+                                <div className="d-flex">
+                                  <div className="w-40">Category</div>
+                                  <div className="w-50">
+                                    : {profile.Category}
+                                  </div>
+                                </div>
+                              </ListGroup.Item>
+                            </ListGroup>
+                            <ListGroup>
+                              <ListGroup.Item>
+                                <div className="d-flex">
+                                  <div className="w-40">Primary City</div>
+                                  <div className="w-50">: {profile.PrimaryCity}</div>
+                                </div>
+                              </ListGroup.Item>
+                              <ListGroup.Item>
+                                <div className="d-flex">
+                                  <div className="w-40">Primary State</div>
+                                  <div className="w-50">
+                                    : {profile.PrimaryState}
+                                  </div>
+                                </div>
+                              </ListGroup.Item>
+                              <ListGroup.Item>
+                                <div className="d-flex">
+                                  <div className="w-40">Primary Country</div>
+                                  <div className="w-50">: {profile.PrimaryCountry}</div>
                                 </div>
                               </ListGroup.Item>
 
                               <ListGroup.Item>
                                 <div className="d-flex">
-                                  <div className="w-50">City</div>
-                                  <div className="w-50">
-                                    : {profile.PrimaryCity}
-                                  </div>
-                                </div>
-                              </ListGroup.Item>
-                              <ListGroup.Item>
-                                <div className="d-flex">
-                                  <div className="w-50">pinCode</div>
+                                  <div className="w-40">Primary Postal</div>
                                   <div className="w-50">
                                     : {profile.PrimaryPostal}
                                   </div>
                                 </div>
                               </ListGroup.Item>
+                              <ListGroup.Item>
+                                <div className="d-flex">
+                                  <div className="w-40">Secondary City</div>
+                                  <div className="w-50">
+                                    : {profile.SecondaryCity}
+                                  </div>
+                                </div>
+                              </ListGroup.Item>
+                              <ListGroup.Item>
+                                <div className="d-flex">
+                                  <div className="w-40">Secondary State</div>
+                                  <div className="w-50">
+                                    : {profile.SecondaryState}
+                                  </div>
+                                </div>
+                              </ListGroup.Item>
+                              <ListGroup.Item>
+                                <div className="d-flex">
+                                  <div className="w-40">Secondary Country</div>
+                                  <div className="w-50">
+                                    : {profile.SecondaryCountry}
+                                  </div>
+                                </div>
+                              </ListGroup.Item>
+                              <ListGroup.Item>
+                                <div className="d-flex">
+                                  <div className="w-40">Secondary Postal</div>
+                                  <div className="w-50">
+                                    : {profile.SecondaryPostal}
+                                  </div>
+                                </div>
+                              </ListGroup.Item>
+                              <ListGroup.Item>
+                                <div className="d-flex">
+                                  <div className="w-40">Address</div>
+                                  <div className="w-50">
+                                    : {profile.Address}
+                                  </div>
+                                </div>
+                              </ListGroup.Item>
+                            </ListGroup>
+                    
+                            <ListGroup>
+                              <ListGroupItem>
+                              <div className="d-flex">
+                                  <div className="w-40">Bussiness Name</div>
+                                  <div className="w-50">
+                                    : {profile.BussinessName}
+                                  </div>
+                                </div>
+                              </ListGroupItem>
+                              <ListGroupItem>
+                              <div className="d-flex">
+                                  <div className="w-40">Bussiness Contact</div>
+                                  <div className="w-50">
+                                    : {profile.BussinessContact}
+                                  </div>
+                                </div>
+                              </ListGroupItem>
+                              <ListGroupItem>
+                              <div className="d-flex">
+                                  <div className="w-40">Description</div>
+                                  <div className="w-50">
+                                    : {profile.Description}
+                                  </div>
+                                </div>
+                              </ListGroupItem>
                             </ListGroup>
                           </div>
                         </Card.Body>
@@ -377,18 +506,18 @@ function Opportunity() {
                           <p className="mb-0">{offCanvasData.Description}</p>
                         </div>
                         <div className="media-body">
-                        <div className="d-flex gap-2 justify-content-end  align-items-start">
-                        <div>
-                          <Button variant="primary" onClick={handleClose}>
-                            Create Appointment
-                          </Button>
-                        </div>
-                        <div>
-                          <Button variant="primary" onClick={handleClose}>
-                            Create Invoice
-                          </Button>{" "}
-                        </div>
-                      </div>
+                          <div className="d-flex gap-2 justify-content-end  align-items-start">
+                            <div>
+                              <Button variant="primary" onClick={handleClose}>
+                                Create Appointment
+                              </Button>
+                            </div>
+                            <div>
+                              <Button variant="primary" onClick={handleClose}>
+                                Create Invoice
+                              </Button>{" "}
+                            </div>
+                          </div>
                         </div>
                       </div>
                       {offCanvasData ? (
@@ -525,31 +654,31 @@ function Opportunity() {
                           <Row className="g-5 mt-2">
                             <Col xl="9">
                               <ul className="activity-group mb-5">
-                              {timeline !== undefined ? timeline.map((item, index) => (
-                                <><li className="activity-date">
-                                      <Moment parse="YYYY-MM-DDTHH:mm:ssZ" format="DD MMMM YYYY h:mm a" tz="Asia/Kolkata">{item.createdAt}</Moment>
+                                {timeline !== undefined ? timeline.map((item, index) => (
+                                  <><li className="activity-date">
+                                    <Moment parse="YYYY-MM-DDTHH:mm:ssZ" format="DD MMMM YYYY h:mm a" tz="Asia/Kolkata">{item.createdAt}</Moment>
 
                                   </li><li className="activity-item comment">
-                                          <p className="d-sm-flex align-items-center mb-2">
-                                              {/* <Link to="" className="avatar avatar-xs me-2 d-none d-sm-inline"><img src={img1} alt="" /></Link> */}
-                                              { item.CreatedBy?  <span className="fs-sm">
-                                                  <strong>{item.CreatedBy}</strong> created a new
-                                                  <strong> followup</strong> <Badge bg="info">{item.Status}</Badge>
-                                              </span> :[]} 
-                                              <span className="text-secondary fs-xs ms-auto">
-                                              <Moment fromNow>{item.createdAt}</Moment>
-                                              </span>
-                                          </p>
-                                          <Card className="card-comment">
-                                           <Card.Header className="bg-secondary bg-gradient bg-opacity-12"><Card.Title style={{color:'white'}}>{item.Title}</Card.Title></Card.Header>   
-                                              <Card.Body>
-                                              
-                                              {item.Message}
-                                             
-                                              </Card.Body>
-                                          </Card>
-                                      </li></>
-    )) : []}
+                                      <p className="d-sm-flex align-items-center mb-2">
+                                        {/* <Link to="" className="avatar avatar-xs me-2 d-none d-sm-inline"><img src={img1} alt="" /></Link> */}
+                                        {item.CreatedBy ? <span className="fs-sm">
+                                          <strong>{item.CreatedBy}</strong> created a new
+                                          <strong> followup</strong> <Badge bg="info">{item.Status}</Badge>
+                                        </span> : []}
+                                        <span className="text-secondary fs-xs ms-auto">
+                                          <Moment fromNow>{item.createdAt}</Moment>
+                                        </span>
+                                      </p>
+                                      <Card className="card-comment">
+                                        <Card.Header className="bg-secondary bg-gradient bg-opacity-12"><Card.Title style={{ color: 'white' }}>{item.Title}</Card.Title></Card.Header>
+                                        <Card.Body>
+
+                                          {item.Message}
+
+                                        </Card.Body>
+                                      </Card>
+                                    </li></>
+                                )) : []}
                               </ul>
                             </Col>
                           </Row>

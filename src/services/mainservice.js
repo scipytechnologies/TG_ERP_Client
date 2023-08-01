@@ -328,7 +328,7 @@ async function purchaseorder(data, id) {
     return response
 
 }
-async function purchaseorderdetails(id) {
+async function getpurchaseorderdetails(id) {
     const response = await apicall.apicall("get", 5007, `purchaseorderRoute/getPurchaseorder/${id}`)
     return response
 
@@ -539,7 +539,7 @@ export default {
     Auth, SignUp, Login, GetUserById, Index, AddIndex, GetIndexbyId,
      RegisterCompany, GetCompanyById, InitializeCompany, MainProductsInHome, CategoriesInHome, LatestProductsInHome, RandomProductsInHome, CategoriesWithProductsForHome, TopSellingProductsInHome, OffersInHome,
     createAccount, createAppointment, createCustomerCollection, createCustomer,customerById ,updateCustomer, createOpportunity, addEmployee, addInventorymanagementDetails, addPrjmanagerDetails, addProductDetails, purchase, purchaseitem, purchaseorder, rfq, invoice, sales,
-    accountDetails, appointmentDetails, customerList, opportunityDetails ,followup, employeeDetails, getInventorymanagementDetails, getPrjmanagerDetails, getProductDetails, purchasedetails, purchaseitemdetails, purchaseorderdetails,
+    accountDetails, appointmentDetails, customerList, opportunityDetails ,followup, employeeDetails, getInventorymanagementDetails, getPrjmanagerDetails, getProductDetails, purchasedetails, purchaseitemdetails, getpurchaseorderdetails,
     rfqdetails, invoicedetails, salesdetails, createEmployeeCollection, createInventorymanagementCollection, createPrjmanagerCollection, createProductCollection, createPurchaseCollection, createPurchaseitemCollection, createPurchaseorderCollection,
     createRfqCollection, createInvoiceCollection, createSalesCollection, createAccountCollection, createAppointmentCollection, createOpportunityCollection, createVendorCollection, vendor, vendordetails, createNotificationCollection, postNotification, getNotification
     ,deletecustomer,deleteopportunity,deleteEmployee,deleteInventorymanagementDetails,deletePrjmanagerDetails,deleteProductDetails,deletePurchase,deletePurchaseitem,deletePurchaseorder,deleterfq,deletevendor,deleteInvoice,deleteSales,getEmployee,editEmployee,editInventorymanagementDetails,getidInventorymanagementDetails,
