@@ -115,7 +115,7 @@ function EmployeeProfile() {
 
             {activeTab === "2" && <Attendence />}
             {activeTab === "1" && (
-              <PerfectScrollbar className="mt-5" >
+              <PerfectScrollbar className="mt-5">
                 <Row>
                   <Col xs="1" className="text-end text-secondary">
                     Status

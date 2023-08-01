@@ -32,7 +32,7 @@ function Attendence() {
         { status: "present", date: "2023-06-14" },
         { status: "present", date: "2023-06-15" },
         { status: "absent", date: "2023-06-16" },
-        { status: "present", date: "2023-06-17" },
+        { status: "present", date: "2023-08-01" },
         // { status: "wfh", date: "2023-06-18" },
         { status: "present", date: "2023-06-19" },
         { status: "present", date: "2023-06-20" },
