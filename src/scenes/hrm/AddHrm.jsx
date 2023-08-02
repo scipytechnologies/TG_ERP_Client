@@ -49,7 +49,7 @@ export default function AddHrm() {
     const res = await mainservice.SignUp(sentData);
     if (res.data != null) {
       console.log(res.data.id);
-      const addon ={UserId: res.data.id,EmpCode:"696969",firstName :res.data.firstName,lastName : res.data.lastName,Email: res.data.email}
+      const addon ={UserId: res.data.id,firstName :res.data.firstName,lastName : res.data.lastName,Email: res.data.email}
       const postData = {...addon,...form}
       const emp = await mainservice.addEmployee(postData, index.EmployeeID);
       if (emp.data != null) {
