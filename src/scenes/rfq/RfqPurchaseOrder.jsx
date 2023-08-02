@@ -23,14 +23,14 @@ function RfqPurchaseOrder() {
   console.log(index);
 
 
-  async function purchaseorderdetails() {
-    const res = await mainservice.purchaseorderdetails(index.PurchaseorderID);
+  async function getpurchaseorderdetails() {
+    const res = await mainservice.getpurchaseorderdetails(index.PurchaseorderID);
     // console.log('RFQ Purchase Order Details ' + JSON.stringify(res))
     console.log(res.data.purchaseorders)
     setData(res.data.purchaseorders)
   }
   useEffect(() => {
-    purchaseorderdetails()
+    getpurchaseorderdetails()
   }, []);
 
 
@@ -38,7 +38,7 @@ function RfqPurchaseOrder() {
     const res = await mainservice.deletePurchaseorder(index.PurchaseorderID, id);
     if (res.data != null) {
         console.log("deleted");
-        purchaseorderdetails()
+        getpurchaseorderdetails()
     }
     else {
         console.log(res.message);
@@ -80,9 +80,9 @@ const onDeleteHandler = (item) => {
           <Card.Body>
             <Grid
               data={data !== undefined ? data.map((item) => [
-                item.REQNo,
-                item.RequisitionDate,
-                item.Supplier,
+                item.VendorName,
+                item.VendorCity,
+                item.VendorState,
 
                 _(
                   <>
@@ -111,7 +111,7 @@ const onDeleteHandler = (item) => {
               ])
                 : []
               }
-              columns={['REQNo', 'RequisitionDate', 'Supplier', 'Action']}
+              columns={['Vendor Name', 'Vendor City', 'Vendor State', 'Action']}
               search={true}
               pagination={true}
               sort={true}

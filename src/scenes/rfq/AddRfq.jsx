@@ -257,14 +257,7 @@ function AddRFQ() {
                     <Form.Control type="text" id="Position" name="Position" value={uform.Position} placeholder="Position" onChange={onChangeHandler} />
                   </div>
                 </Col>
-
                 
-
-
-
-
-
-
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="TelephoneNo">Telephone Number</Form.Label>

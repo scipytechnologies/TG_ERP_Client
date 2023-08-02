@@ -79,9 +79,9 @@ const onDeleteHandler = (item) => {
           <Card.Body>
             <Grid
               data={data !== undefined ? data.map((item) => [
-                item.RequisitionDate,
                 item.PurchaseRequisition,
                 item.TypeofRequisition,
+                item.JDERequisition,
                 _(
                   <>
                     <ButtonGroup>
@@ -109,7 +109,7 @@ const onDeleteHandler = (item) => {
               ])
                 : []
               }
-              columns={['Requisition Date', 'Purchase Requisition', 'Type of Requisition', 'Action']}
+              columns={['Purchase Requisition', 'Type of Requisition', 'JDERequisition' , 'Action']}
               search={true}
               pagination={true}
               sort={true}

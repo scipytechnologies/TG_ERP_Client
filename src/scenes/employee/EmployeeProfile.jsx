@@ -116,44 +116,95 @@ function EmployeeProfile() {
             {activeTab === "2" && <Attendence />}
             {activeTab === "1" && (
               <PerfectScrollbar className="mt-5">
-                <Row>
-                  <Col xs="1" className="text-end text-secondary">
-                    Status
-                  </Col>
-                  <Col>
-                    <strong className="fw-semibold">Do Not Disturb</strong> -
-                    Gambler, Tea Drinker, Ultimate Piggie, Replacement President
-                    of a Major Soft Drink Manufacturer. When I give out candies,
-                    I give people the flavour I don't like.
-                  </Col>
-                </Row>
-
-                <hr />
-
-                <Row>
-                  <Col xs="1" className="text-end text-secondary">
+                
+                <Row className="mt-2">
+                  <Col xs="2" className="text-end text-secondary">
                     Email
                   </Col>
                   <Col>
-                    abigaile@johnson.com
-                    <br />
-                    ajohnson@gmail.com
+                    {data.Email}
                   </Col>
                 </Row>
+
                 <Row className="mt-2">
-                  <Col xs="1" className="text-end text-secondary">
+                  <Col xs="2" className="text-end text-secondary">
                     Phone
                   </Col>
-                  <Col>234-5678-901</Col>
+                  <Col>{data.Phone}</Col>
                 </Row>
+
                 <Row className="mt-2">
-                  <Col xs="1" className="text-end text-secondary">
-                    Location
+                  <Col xs="2" className="text-end text-secondary">
+                    Primary Address
                   </Col>
-                  <Col>Bay Area, San Francisco, CA</Col>
+                  <Col>{data.PAddress}<br/>{data.PCity} {data.PPostalCode}<br/>
+                  {data.PState}<br/>
+                  {data.PCountry}</Col>
+                </Row>
+
+                <Row className="mt-2">
+                  <Col xs="2" className="text-end text-secondary">
+                    Temporary Address
+                  </Col>
+                  <Col>{data.TAddress}<br/>{data.TCity} {data.TPostalCode}<br/>
+                  {data.TState}<br/>
+                  {data.TCountry}</Col>
                 </Row>
 
                 <hr />
+
+                <Row className="mt-2">
+                  <Col xs="2" className="text-end text-secondary">
+                     ESI
+                  </Col>
+                  <Col>{data.ESI}</Col>
+                </Row>
+
+                <Row className="mt-2">
+                  <Col xs="2" className="text-end text-secondary">
+                    UAN
+                  </Col>
+                  <Col>{data.UAN}</Col>
+                </Row>
+
+                <Row className="mt-2">
+                  <Col xs="2" className="text-end text-secondary">
+                  PF No
+                  </Col>
+                  <Col>{data.PFNo}</Col>
+                </Row>
+
+                <hr/>
+
+                <Row className="mt-2">
+                  <Col xs="2" className="text-end text-secondary">
+                  Bank Account Name
+                  </Col>
+                  <Col>{data.BankAccName}</Col>
+                </Row>
+
+                <Row className="mt-2">
+                  <Col xs="2" className="text-end text-secondary">
+                  Bank Account Number
+                  </Col>
+                  <Col>{data.BankAccNo}</Col>
+                </Row>
+
+                <Row className="mt-2">
+                  <Col xs="2" className="text-end text-secondary">
+                  Bank Branch
+                  </Col>
+                  <Col>{data.BankBranch}</Col>
+                </Row>
+
+                <Row className="mt-2">
+                  <Col xs="2" className="text-end text-secondary">
+                  Bank IFSC Code
+                  </Col>
+                  <Col>{data.BankIFSCCode}</Col>
+                </Row>
+                
+                <hr/>
 
                 <Nav className="nav-sidebar">
                   <Nav.Link href="">
