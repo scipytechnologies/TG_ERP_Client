@@ -140,10 +140,45 @@ function AddProduct() {
                   </div>
                 </Col>
 
-                <Col lg="3" md="6" xs="12">
+                <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="exampleFormControlInput1">Tax</Form.Label>
                     <Form.Control type="number" name="Tax" id="exampleFormControlInput1" value={uform.Tax} placeholder="Tax" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="exampleFormControlInput1">Dimension</Form.Label>
+                    <Form.Control type="text" name="Dimension" id="exampleFormControlInput1" value={uform.Dimension} placeholder="Dimension" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="exampleFormControlInput1">Height</Form.Label>
+                    <Form.Control type="text" name="Height" id="exampleFormControlInput1" value={uform.Height} placeholder="Height" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="exampleFormControlInput1">Manufacturer</Form.Label>
+                    <Form.Control type="text" name="Manufacturer" id="exampleFormControlInput1" value={uform.Manufacturer} placeholder="Manufacturer" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="exampleFormControlInput1">Brand</Form.Label>
+                    <Form.Control type="text" name="Brand" id="exampleFormControlInput1" value={uform.Brand} placeholder="Brand" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="exampleFormControlInput1">ExpiryDate</Form.Label>
+                    <Form.Control type="Date" name="ExpiryDate" id="exampleFormControlInput1" value={uform.ExpiryDate} placeholder="Expiry Date" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
