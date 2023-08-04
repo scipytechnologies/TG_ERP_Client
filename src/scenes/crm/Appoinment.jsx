@@ -15,9 +15,10 @@ function Appoinment() {
     const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
     const [skin, setSkin] = useState(currentSkin);
     const navigate = useNavigate()
+    const [user, setUser] = useState("")
+    const [data, setData] = useState([])
     const index = useSelector((state) => state.index)
-    console.log(index);
-
+    
     // state for drop down of view more button
     const [showDropdown, setShowDropdown] = useState(false);
     const [dropdownItem, setDropdownItem] = useState(null);
@@ -26,7 +27,6 @@ function Appoinment() {
     };
 
     // axios get interceptor for table data
-    const [data, setData] = useState([])
     async function appointmentDetails() {
         const res = await mainservice.appointmentDetails(index.AppointmentID);
         // console.log('Appointment Details ' + JSON.stringify(res))
@@ -48,6 +48,7 @@ function Appoinment() {
     const handleCloseCanvas = () => {
         setOffCanvas(false)
     }
+
     return (
         <>
             <Header onSkin={setSkin} />
@@ -67,8 +68,6 @@ function Appoinment() {
                     </Button>
 
                 </div>
-
-
 
                 <Card>
                     <Card.Body>
@@ -90,7 +89,7 @@ function Appoinment() {
 
                                                     <Dropdown.Menu>
                                                         <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                                                        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                                                        <Dropdown.Item onClick={() => navigate(`/dashboard/crm/addAppoinment/?id=${item._id}`)}>Edit</Dropdown.Item>
                                                         <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
                                                     </Dropdown.Menu>
                                                 </Dropdown>

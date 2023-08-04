@@ -89,6 +89,17 @@ async function appointmentDetails(id) {
     return response
 
 }
+async function getAppointmentById(companyID,id) {
+    const response = await apicall.apicall("get", 5001, `crm/appointmentRoute/getAppointmentById/${companyID}/${id}`)
+    return response
+
+}
+async function editAppointment(companyID,id,data) {
+    const response = await apicall.apicall("put", 5001, `crm/appointmentRoute/updateAppointment/${companyID}/${id}`,data)
+    return response
+
+}
+
 ////////////////////////////////{CRM-Customer}////////////////////////////////////
 
 async function createCustomerCollection(data) {
@@ -144,6 +155,14 @@ async function deleteopportunity(companyID,id) {
 }
 async function followup(companyID,id,data) {
     const response = await apicall.apicall("put", 5001, `crm/opportunity/followup/${companyID}/${id}`,data)
+    return response
+}
+async function getOpportunity(companyID,id) {
+    const response = await apicall.apicall("get", 5001, `crm/opportunity/getOpportunityById/${companyID}/${id}`)
+    return response
+}
+async function editOpportunity(companyID,id,data) {
+    const response = await apicall.apicall("put", 5001, `crm/opportunity/updateOpportunity/${companyID}/${id}`,data)
     return response
 }
 
@@ -549,6 +568,6 @@ export default {
     createRfqCollection, createInvoiceCollection, createSalesCollection, createAccountCollection, createAppointmentCollection, createOpportunityCollection, createVendorCollection, vendor, vendordetails, createNotificationCollection, postNotification, getNotification
     ,deletecustomer,deleteopportunity,deleteEmployee,deleteInventorymanagementDetails,deletePrjmanagerDetails,deleteProductDetails,deletePurchase,deletePurchaseitem,deletePurchaseorder,deleterfq,deletevendor,deleteInvoice,deleteSales,getEmployee,editEmployee,editInventorymanagementDetails,getidInventorymanagementDetails,
     getInvoiceById,updateInvoice,getRFQ,updaterfq,getPurchaseitemById,updatePurchaseitem,getPurchaseorderid,updatePurchaseorder,getvendorById,updatevendor,getPrjmanagerDetailsById,editPrjmanagerDetails,getSalesById,updateSales,getPurchaseById,updatePurchase,createpurchaseRequisitionCollection,purchaseRequisition,
-    purchaseRequisitiondetails,deletepurchaseRequisition,getpurchaseRequisitionById,updatepurchaseRequisition,
+    purchaseRequisitiondetails,deletepurchaseRequisition,getpurchaseRequisitionById,updatepurchaseRequisition,getAppointmentById,editAppointment,getOpportunity,editOpportunity,
 };
 
