@@ -99,50 +99,43 @@ function AddSales() {
               <Row className="g-4">
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
+                    <Form.Label htmlFor="CustomerName">CustomerName</Form.Label>
+                    <Form.Control type="text" id="CustomerName" name="CustomerName" value={uform.CustomerName} placeholder="Customer Name" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="CustomerId">Customer Id</Form.Label>
+                    <Form.Control type="text" id="CustomerId" name='CustomerId' value={uform.CustomerId} placeholder="Customer Id" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="SalesPerson">Sales Person</Form.Label>
+                    <Form.Control type="text" id="SalesPerson" name='SalesPerson' value={uform.SalesPerson} placeholder="Sales Person" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="EmpId">Employee Id</Form.Label>
+                    <Form.Control type="text" id="EmpId" name='EmpId' value={uform.EmpId} placeholder="Employee Id" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="SalesDate">Sales Date</Form.Label>
+                    <Form.Control type="Date" id="SalesDate" name='SalesDate' value={uform.SalesDate} placeholder="Sales Date" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3">
                     <Form.Label htmlFor="OrderNumber">Order Number</Form.Label>
-                    <Form.Control type="Number" id="OrderNumber" name="OrderNumber" value={uform.OrderNumber} placeholder="Order Number" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="Product">Product</Form.Label>
-                    <Form.Control type="text" id="Product" name='Product' value={uform.Product} placeholder="Product" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="Day">Day</Form.Label>
-                    <Form.Control type="Number" id="Day" name='Day' value={uform.Day} placeholder="Day" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="Month">Month</Form.Label>
-                    <Form.Control type="text" id="Month" name='Month' value={uform.Month} placeholder="Month" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="Year">Year</Form.Label>
-                    <Form.Control type="Number" id="Year" name='Year' value={uform.Year} placeholder="Year" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="Status">Status</Form.Label>
-                    <Form.Control type="text" id="Status" name='Status' value={uform.Status} placeholder="Status" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="TotalAmount">Total Amount</Form.Label>
-                    <Form.Control type="Number" id="TotalAmount" name='TotalAmount' value={uform.TotalAmount} placeholder="Total Amount" onChange={onChangeHandler} />
+                    <Form.Control type="Number" id="OrderNumber" name='OrderNumber' value={uform.OrderNumber} placeholder="Order Number" onChange={onChangeHandler} />
                   </div>
                 </Col>
 

@@ -1,9 +1,9 @@
 import React from 'react'
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
 import { useSelector } from 'react-redux';
 
@@ -22,6 +22,11 @@ function AddAppointment() {
       [event.target.name]: event.target.value
     });
     console.log(form);
+    setUform({
+      ...uform,
+      [event.target.name]: event.target.value
+    });
+    console.log(uform);
   };
 
   async function PostAppointment(form) {
@@ -39,6 +44,39 @@ function AddAppointment() {
     event.preventDefault();
     PostAppointment(form);
   }
+
+  const onUpdateHandler = (event) => {
+    event.preventDefault();
+    console.log(uform);
+    editAppointment(uform);
+  };
+
+  async function editAppointment(uform){
+    const res = await mainservice.editAppointment(index.AppointmentID,id,uform);
+    if(res.data!= null){
+      console.log(res.data, "Appointment Details updated");
+    }
+    else{
+      console.log(res);
+    }
+  }
+
+  let[searchParams,setSearchParams] = useSearchParams();
+  const [uform, setUform] = useState([]);
+  const [editMode, setEditMode] = useState(false);
+  const id = searchParams.get("id");
+  const CheckEdit = async() => {
+    if(id){
+      setEditMode(true)
+      const res = await mainservice.getAppointmentById(index.AppointmentID,id);
+      setUform(res.data)
+      console.log(res.data,"this");
+    }
+  }
+  useEffect(() => {
+    CheckEdit() 
+  },[]);
+
 
   return (
     <>
@@ -63,40 +101,47 @@ function AddAppointment() {
                 <Col md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="ScheduleCall">Schedule Call</Form.Label>
-                    <Form.Control type="text" name='ScheduleCall' id="ScheduleCall" placeholder="Schedule Call" onChange={onChangeHandler} />
+                    <Form.Control type="text" name='ScheduleCall' id="ScheduleCall" value={uform.ScheduleCall} placeholder="Schedule Call" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="ScheduleMeeting">Schedule Meeting</Form.Label>
-                    <Form.Control type="text" id="ScheduleMeeting" name='ScheduleMeeting' placeholder="Schedule Meeting" onChange={onChangeHandler} />
+                    <Form.Control type="text" id="ScheduleMeeting" name='ScheduleMeeting' value={uform.ScheduleMeeting} placeholder="Schedule Meeting" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Subject">Subject</Form.Label>
-                    <Form.Control type="text" id="Subject" name='Subject' placeholder="Subject" onChange={onChangeHandler} />
+                    <Form.Control type="text" id="Subject" name='Subject' value={uform.Subject} placeholder="Subject" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="StartDate">Start Date</Form.Label>
-                    <Form.Control type="Date" id="StartDate" name='StartDate' placeholder="Start Date" onChange={onChangeHandler} />
+                    <Form.Control type="Date" id="StartDate" name='StartDate' value={uform.StartDate} placeholder="Start Date" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col md="12" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Description">Description</Form.Label>
-                    <Form.Control as="textarea" id="Description" name='Description' rows="4" placeholder="Description" onChange={onChangeHandler} />
+                    <Form.Control as="textarea" id="Description" name='Description' value={uform.Description} rows="4" placeholder="Description" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col xs="12">
-                  <Button onClick={onSubmitHandler} type='submit'>Submit</Button>
+                  {editMode?
+                  <div className="mt-1" style={{display:'flex',justifyContent:'flex-end'}}>
+                    <Button onClick={onUpdateHandler} type="submit">Update</Button>
+                  </div>:
+                  <div className="mt-1" style={{display:'flex',justifyContent:'flex-end'}}>
+                    <Button onClick={onSubmitHandler} type="submit">Submit</Button>
+                  </div>}
+
                 </Col>
               </Row>
 

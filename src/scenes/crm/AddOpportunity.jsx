@@ -3,9 +3,10 @@ import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
 import { useState } from 'react';
 import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import mainservice from '../../services/mainservice';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 function AddOpportunity() {
   // to maintain dark and light mode
@@ -13,6 +14,7 @@ function AddOpportunity() {
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate()
   const index = useSelector((state)=>state.index)
+  console.log(index.OpportunityID,"opportunityID");
 
   const [form, setform] = useState({});
   const onChangeHandler = (event) => {
@@ -21,6 +23,11 @@ function AddOpportunity() {
       [event.target.name]: event.target.value
     });
     console.log(form);
+    setUform({
+      ...uform,
+      [event.target.name]: event.target.value
+    });
+    console.log(uform);
   };
 
     async function PostOpportunity(form) {
@@ -38,6 +45,37 @@ function AddOpportunity() {
     event.preventDefault();
     PostOpportunity(form);
   }
+
+  const onUpdateHandler = (event) => {
+    event.preventDefault();
+    console.log(uform);
+    editOpportunity(uform);
+  };
+  async function editOpportunity(uform){
+    const res = await mainservice.editOpportunity(index.OpportunityID,id,uform);
+    if(res.data!= null){
+      console.log(res.data, "Opportunity Details updated");
+    }
+    else{
+      console.log(res);
+    }
+  }
+
+  let[searchParams,setSearchParams] = useSearchParams();
+  const [uform, setUform] = useState([]);
+  const [editMode, setEditMode] = useState(false);
+  const id = searchParams.get("id");
+  const CheckEdit = async() => {
+    if(id){
+      setEditMode(true)
+      const res = await mainservice.getOpportunity(index.OpportunityID,id);
+      setUform(res.data)
+      console.log(res.data,"this");
+    }
+  }
+  useEffect(() => {
+    CheckEdit() 
+  },[]);
 
   return (
     <>
@@ -61,42 +99,55 @@ function AddOpportunity() {
               <Row className="g-4">
                 <Col md="6" xs="12">
                   <div className="mt-3">
+                    <Form.Label htmlFor="CustomerName">Customer Name</Form.Label>
+                    <Form.Control type="text" id="CustomerName" name="CustomerName" value={uform.CustomerName} placeholder="Customer Name" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col md="6" xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="CustomerId">Customer Id</Form.Label>
+                    <Form.Control type="text" id="CustomerId" name="CustomerId" value={uform.CustomerId} placeholder="Customer Id" onChange={onChangeHandler} />
+                  </div>
+                </Col>
+
+                <Col md="6" xs="12">
+                  <div className="mt-3">
                     <Form.Label htmlFor="OpportunityName">Opportunity Name</Form.Label>
-                    <Form.Control type="text" id="OpportunityName" name="OpportunityName" placeholder="Opportunity Name" onChange={onChangeHandler} />
+                    <Form.Control type="text" id="OpportunityName" name="OpportunityName" value={uform.OpportunityName} placeholder="Opportunity Name" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col md="6" xs="12">
                   <div className="mt-3">
-                    <Form.Label htmlFor="SalesStage">Sales Stage</Form.Label>
-                    <Form.Control type="text" id="SalesStage" name="SalesStage" placeholder="Sales Stage" onChange={onChangeHandler} />
+                    <Form.Label htmlFor="AssignedTo">Assigned To</Form.Label>
+                    <Form.Control type="text" id="AssignedTo" name="AssignedTo" value={uform.AssignedTo} placeholder="Assigned To" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col md="6" xs="12">
                   <div className="mt-3">
-                    <Form.Label htmlFor="CloseDate">Close Date</Form.Label>
-                    <Form.Control type="Date" id="CloseDate" name="CloseDate" placeholder="Close Date" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="Amount">Amount</Form.Label>
-                    <Form.Control type="Number" id="Amount" name="Amount" placeholder="Amount" onChange={onChangeHandler} />
+                    <Form.Label htmlFor="LeadSource">Lead Source</Form.Label>
+                    <Form.Control type="text" id="LeadSource" name="LeadSource" value={uform.LeadSource} placeholder="Lead Source" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
                 <Col md="12" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Description">Description</Form.Label>
-                    <Form.Control as="textarea" id="Description" name="Description" rows="4" placeholder="Description" onChange={onChangeHandler} />
+                    <Form.Control as="textarea" id="Description" name="Description" rows="4" value={uform.Description} placeholder="Description" onChange={onChangeHandler} />
                   </div>
                 </Col>
 
 
-                <Col md="12">
-                  <Button onClick={onSubmitHandler} type="submit">Submit</Button>
+                <Col xs="12">
+                {editMode?
+                  <div className="mt-1" style={{display:'flex',justifyContent:'flex-end'}}>
+                    <Button onClick={onUpdateHandler} type="submit">Update</Button>
+                  </div>:
+                  <div className="mt-1" style={{display:'flex',justifyContent:'flex-end'}}>
+                    <Button onClick={onSubmitHandler} type="submit">Submit</Button>
+                  </div>}
                 </Col>
               </Row>
             </Card.Body>
