@@ -13,6 +13,9 @@ import {
   Offcanvas,
   ButtonGroup,
   Image,
+  ListGroup,
+  ListGroupItem,
+  Form,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { Grid } from "gridjs-react";
@@ -62,14 +65,14 @@ function ProductManagement() {
 
   // Grid js each row clicking funciton
   const [offCanvas, setOffCanvas] = useState(false);
-  const [canvasData, setCanvasData] = useState([])
+  const [canvasData, setCanvasData] = useState([]);
   const handleCanvas = (item) => {
     setOffCanvas(true);
-    setCanvasData(item)
+    setCanvasData(item);
   };
   const handleCloseCanvas = () => {
     setOffCanvas(false);
-    setCanvasData('')
+    setCanvasData("");
   };
 
   return (
@@ -133,7 +136,7 @@ function ProductManagement() {
                 success: false,
                 label: "Out of Stock",
                 // "avatar": [img15, img16, img17, img18],
-                agents: 'Ordered Stock : 20',
+                agents: "Ordered Stock : 20",
               },
               {
                 bg: "ui-03",
@@ -169,7 +172,9 @@ function ProductManagement() {
                         </label>
                         <div className="mutual-badge">
                           <ul>
-                            <li><i class="ri-arrow-right-fill"></i></li>
+                            <li>
+                              <i class="ri-arrow-right-fill"></i>
+                            </li>
                           </ul>
                           <label>{item.agents}</label>
                         </div>
@@ -269,48 +274,207 @@ function ProductManagement() {
             show={offCanvas}
             onHide={handleCloseCanvas}
             placement="end"
-            className='w-50'
+            className="w-50"
           >
             <Offcanvas.Body>
-            <Card className="card-one">
-              <Card.Header>
-                <Card.Title as="h6">Inventory Manager</Card.Title>
-                {/* <Nav className="nav-icon nav-icon-sm ms-auto">
+              <Card className="card-one">
+                <Card.Header>
+                  <Card.Title as="h6">Inventory Manager</Card.Title>
+                  {/* <Nav className="nav-icon nav-icon-sm ms-auto">
                   <Nav.Link href=""><i className="ri-refresh-line"></i></Nav.Link>
                   <Nav.Link href=""><i className="ri-more-2-fill"></i></Nav.Link>
                 </Nav> */}
-              </Card.Header>
-              <Card.Body className="p-3">
-                <Row className="g-3">
-                  <Col sm="5" md="4" xl="5" xxl="4">
-                    <div className="h-100 border rounded px-2 bg-white">
-                      {/* <img src={prod5} className="img-fluid" alt="" /> */}
-                    </div>
-                  </Col>
-                  <Col sm="7" md="8" xl="7" xxl className="d-flex flex-column">
-                    <h6 className="fs-15 fw-semibold text-dark mb-1">{canvasData.ItemName}</h6>
-                    <p className="text-secondary mb-3">Court Vision Low Next Nature Shoes</p>
-                    <ul className="list-unstyled">
-                      <li>- Best for lifestyle</li>
-                      <li>- Polyurethane upper</li>
-                      <li>- Vulcanized construction</li>
-                      <li>- Textile inner</li>
-                      <li>- <Link to="">See more</Link></li>
-                    </ul>
-                    <div className="d-flex align-items-center justify-content-between mt-auto">
-                      <h6 className="card-value fw-semibold fs-15 mb-0"><span>$</span>120.50</h6>
-                      <div className="d-flex gap-1 text-primary fs-14">
-                        <i className="ri-star-fill"></i>
-                        <i className="ri-star-fill"></i>
-                        <i className="ri-star-fill"></i>
-                        <i className="ri-star-fill"></i>
-                        <i className="ri-star-line"></i>
+                </Card.Header>
+                <Card.Body className="p-3">
+                  <Row className="g-3">
+                    <Col sm="5" md="4" xl="5" xxl="4">
+                      <div className="h-100 border rounded px-2 bg-white">
+                        {/* <img src={prod5} className="img-fluid" alt="" /> */}
                       </div>
-                    </div>
-                  </Col>
-                </Row>
-              </Card.Body>
-            </Card>
+                    </Col>
+                    <Col
+                      sm="7"
+                      md="8"
+                      xl="7"
+                      xxl
+                      className="d-flex flex-column"
+                    >
+                      <ListGroup>
+                        <ListGroup.Item>
+                          <div className="d-flex">
+                            <div className="w-40">First Name</div>
+                            <div className="w-50">: {canvasData.ItemName} </div>
+                          </div>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <div className="d-flex">
+                            <div className="w-40">Last Name</div>
+                            <div className="w-50">: </div>
+                          </div>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <div className="d-flex">
+                            <div className="w-40">Business Role</div>
+                            <div className="w-50">: </div>
+                          </div>
+                        </ListGroup.Item>
+                        <ListGroupItem>
+                          <div className="d-flex">
+                            <div className="w-40">Email</div>
+                            <div className="w-50">: </div>
+                          </div>
+                        </ListGroupItem>
+                        <ListGroup.Item>
+                          <div className="d-flex">
+                            <div className="w-40">Phone Mobile</div>
+                            <div className="w-50">: </div>
+                          </div>
+                        </ListGroup.Item>
+                      </ListGroup>
+                    </Col>
+                  </Row>
+                  <Row className="g-3 mt-3">
+                    <Col
+                      sm="7"
+                      md="8"
+                      xl="7"
+                      xxl
+                      className="d-flex flex-column"
+                    >
+                      <ListGroup>
+                        <ListGroup.Item>
+                          <div className="d-flex">
+                            <div className="w-40">First Name</div>
+                            <div className="w-50">: {canvasData.ItemName} </div>
+                          </div>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <div className="d-flex">
+                            <div className="w-40">Last Name</div>
+                            <div className="w-50">: </div>
+                          </div>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <div className="d-flex">
+                            <div className="w-40">Business Role</div>
+                            <div className="w-50">: </div>
+                          </div>
+                        </ListGroup.Item>
+                        <ListGroupItem>
+                          <div className="d-flex">
+                            <div className="w-40">Email</div>
+                            <div className="w-50">: </div>
+                          </div>
+                        </ListGroupItem>
+                        <ListGroup.Item>
+                          <div className="d-flex">
+                            <div className="w-40">Phone Mobile</div>
+                            <div className="w-50">: </div>
+                          </div>
+                        </ListGroup.Item>
+                      </ListGroup>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      {" "}
+                      <Card className="m-3">
+                        <Card.Header>
+                          <Card.Title as="h6">Manage Stocks</Card.Title>
+                        </Card.Header>
+                        <Card.Body>
+                          <div className="d-flex">
+                            <div className="mb-3 w-40 d-flex">
+                              <Form.Control
+                                type="email"
+                                id="exampleFormControlInput1"
+                                placeholder="name@example.com"
+                              />
+                            </div>
+                            <div>
+                              <i class="ri-arrow-left-right-fill"></i>
+                            </div>
+
+                            <div className="mb-3 w-40 d-flex">
+                              <Form.Control
+                                type="email"
+                                id="exampleFormControlInput1"
+                                placeholder="name@example.com"
+                              />
+                            </div>
+                            <div className="d-flex justify-content-end ">
+                              {" "}
+                              <Button variant="primary">Primary</Button>
+                            </div>
+                          </div>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <Card>
+                        <Card.Header>
+                          <Card.Title>History</Card.Title>
+                        </Card.Header>
+                        <Card.Body>
+                          <ul className="activity-group mb-5">
+                            <li className="activity-date"> 
+                              Today, Sep 13, 2023
+                            </li>
+                            <li className="activity-item comment"> 
+                            
+                              <p className="d-sm-flex align-items-center mb-2">
+                                <span className="fs-sm">
+                                  <strong>You</strong> mentioned{" "}
+                                  <strong>Mellisa Ricks</strong> in a comment.
+                                </span>
+                                <span className="text-secondary fs-xs ms-auto">
+                                  06:55pm
+                                </span>
+                              </p>
+                              <Card className="card-comment">
+                                <Card.Body>
+                                  There are many variations of passages of Lorem
+                                  Ipsum available, but the majority have
+                                  suffered alteration in some form, by injected
+                                  humour, or randomised words which don't look
+                                  even slightly believable.{" "}
+                                  <strong>@mellisaricks</strong>
+                                </Card.Body>
+                              </Card>
+                            </li>
+                            <li className="activity-date">
+                              Today, Sep 13, 2023
+                            </li>
+                            <li className="activity-item comment">
+                              <p className="d-sm-flex align-items-center mb-2">
+                                <span className="fs-sm">
+                                  <strong>You</strong> mentioned{" "}
+                                  <strong>Mellisa Ricks</strong> in a comment.
+                                </span>
+                                <span className="text-secondary fs-xs ms-auto">
+                                  06:55pm
+                                </span>
+                              </p>
+                              <Card className="card-comment">
+                                <Card.Body>
+                                  There are many variations of passages of Lorem
+                                  Ipsum available, but the majority have
+                                  suffered alteration in some form, by injected
+                                  humour, or randomised words which don't look
+                                  even slightly believable.{" "}
+                                  <strong>@mellisaricks</strong>
+                                </Card.Body>
+                              </Card>
+                            </li>
+                          </ul>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+                  </Row>
+                </Card.Body>
+              </Card>
             </Offcanvas.Body>
           </Offcanvas>
         </Card>
