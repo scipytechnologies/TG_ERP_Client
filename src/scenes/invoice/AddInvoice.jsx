@@ -93,6 +93,7 @@ function AddInvoice() {
     const updatedFields = [...fields];
     updatedFields[index][field] = value;
     setFields(updatedFields);
+    console.log(fields);
   };
 
 

@@ -175,6 +175,14 @@ const scenes = [
       {
         "label": 'Home',
         "link": "/dashboard/POS",
+      },
+      {
+        "label": 'Category',
+        "link": "/dashboard/POS/categories",
+      },
+      {
+        "label": 'Products',
+        "link": "/dashboard/POS/products",
       }
     ]
   },

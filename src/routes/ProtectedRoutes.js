@@ -140,6 +140,8 @@ import POS from "../scenes/pos/POS"
 
 import Attendence from "../scenes/attendence/Attendence"
 import VendorList from "../scenes/vendor/VendorList";
+import Poscategory from "../scenes/pos/Category";
+import PosProduct from "../scenes/pos/products";
 
 const protectedRoutes = [
   { path: "dashboard/home", element: <Home /> },
@@ -202,6 +204,9 @@ const protectedRoutes = [
   { path: "dashboard/project/ProjectList", element: <ProjectList /> },
 
   { path: "dashboard/POS", element: <POS /> },
+  { path: "dashboard/POS/categories", element: <Poscategory /> },
+  { path: "dashboard/POS/products", element: <PosProduct /> },
+
   { path: "dashboard/attendence", element: <Attendence /> },
 
   // default components and apps
