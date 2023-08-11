@@ -16,6 +16,8 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import mainservice from "../../services/mainservice";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
+import Select from "react-select";
+import { event } from "jquery";
 
 function AddSales() {
   // to maintain dark and light mode
@@ -23,23 +25,42 @@ function AddSales() {
   const [skin, setSkin] = useState(currentSkin);
   const navigate = useNavigate();
   const [form, setform] = useState("");
+  const [select, setSelect] = useState("");
+  const [salesIndex, setSalesIndex] = useState(0);
   const index = useSelector((state) => state.index);
-  const onChangeHandler = (event) => {
-    const { name, value } = event.target;
-    setform({
-      ...form,
-      [event.target.name]: event.target.value,
-    });
-    setUform({
-      ...uform,
-      [event.target.name]: event.target.value,
-    });
-    console.log(uform);
-  };
+  const user = useSelector((state) => state.loginedUser);
+  // const onChangeHandler = (event) => {
+  //   const { name, value } = event.target;
+  //   setform({
+  //     ...form,
+  //     [event.target.name]: event.target.value,
+  //   });
+  //   setUform({
+  //     ...uform,
+  //     [event.target.name]: event.target.value,
+  //   });
+  //   console.log(uform);
+  // };
+
+  async function GetIndex() {
+    const res = await mainservice.getSaleIndex(index.SalesID);   
+    if (res.data == null) {
+      console.log("No index Found");
+    } else {
+      setSalesIndex(res.data);
+      console.log(res.data + 1);
+    }
+  }
 
   async function PostSales(form) {
-    console.log(form);
-    const res = await mainservice.sales(form, index.SalesID);
+    const addon = { SalesItems: fields, OrderNumber: salesIndex + 1 };
+    const employee = {
+      EmpId: user.id,
+      SalesPerson: user.firstName + " " + user.lastName,
+    };
+    const postdata = { ...form, ...addon, ...employee };
+    console.log(postdata, "item to post");
+    const res = await mainservice.sales(postdata, index.SalesID);
     if (res.data != null) {
       console.log("Sales Added");
     } else {
@@ -49,7 +70,7 @@ function AddSales() {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    PostSales(form);
+    PostSales(select);
   };
 
   const onUpdateHandler = (event) => {
@@ -109,12 +130,45 @@ function AddSales() {
   };
 
   useEffect(() => {
+    GetIndex();
     CheckEdit();
+    customerDetails();
   }, []);
+
+  const [data, setData] = useState([]);
+  async function customerDetails() {
+    const res = await mainservice.customerList(index.CrmID);
+    console.log(res.data.customers);
+    // console.log('Customer Details ' + JSON.stringify(res))
+    setData(res.data.customers);
+  }
+
+  // const option = [
+  //   { value: data[0].customerName, label: data[0]._id },
+  //   { value: 'strawberry', label: 'Strawberry' },
+  //   { value: 'vanilla', label: 'Vanilla' },
+  // ];
+
+  const options = data.map((x) => {
+    return { label: x.FirstName + x.LastName, value: x._id };
+  });
+
+  const onSelectHandler = (event, field) => {
+    const temp = data.filter((x) => x._id === event.value);
+    console.log(temp);
+    setSelect((prev) => ({
+      ...prev,
+      [field]: event.value,
+      CustomerName: temp[0].FirstName + " " + temp[0].LastName,
+      Address: temp[0].Address,
+      Email: temp[0].Email,
+      Phone: temp[0].PhoneMobile,
+    }));
+  };
 
   return (
     <>
-      <form onSubmit={onSubmitHandler}>
+      <form>
         <Header onSkin={setSkin} />
         <div className="main main-app p-3 p-lg-4">
           <div className="d-md-flex align-items-center justify-content-between mb-4">
@@ -139,7 +193,7 @@ function AddSales() {
           <Card>
             <Card.Body>
               <Row className="g-4 justify-content-between">
-                <Col lg="4" md="6" xs="12">
+                {/* <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="CustomerName">CustomerName</Form.Label>
                     <Form.Control
@@ -151,7 +205,31 @@ function AddSales() {
                       onChange={onChangeHandler}
                     />
                   </div>
+                </Col> */}
+
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3 d-flex">
+                    {" "}
+                    <div>
+                      <Form.Label htmlFor="CustomerName">
+                        CustomerName
+                      </Form.Label>
+                    </div>
+                    <div className="w-100">
+                      <Select
+                        options={options}
+                        isSearchable={true}
+                        onChange={(x) => onSelectHandler(x, "CustomerId")}
+                      />
+                    </div>
+                  </div>
+                  <div className="m-2">
+                    <p>Address : {select.Address} </p>
+                    <p>Email : {select.Email}</p>
+                    <p>Phone Number : {select.Phone}</p>
+                  </div>
                 </Col>
+
                 <Col
                   className="d-flex justify-content-end"
                   lg="4"
@@ -160,7 +238,7 @@ function AddSales() {
                 >
                   <div>
                     <div>
-                      <h3> BID0045</h3>
+                      <h3>{salesIndex + 1}</h3>
                     </div>
                     <div>
                       <h5>20/03/2023</h5>
@@ -279,10 +357,12 @@ function AddSales() {
                                     handleChangeField(index, event)
                                   }
                                 />
-                                <Button className="ms-2" variant="danger"
+                                <Button
+                                  className="ms-2"
+                                  variant="danger"
                                   onClick={() => handleRemoveField(index)}
                                 >
-                                 <i class="ri-delete-bin-5-fill"></i>
+                                  <i class="ri-delete-bin-5-fill"></i>
                                 </Button>
                               </div>
                             </div>
@@ -292,7 +372,9 @@ function AddSales() {
                     })}
                   </tbody>
                   <div className="mt-3">
-                    <Button onClick={handleAddField}><i class="ri-add-circle-fill"></i> Add Item</Button>
+                    <Button onClick={handleAddField}>
+                      <i class="ri-add-circle-fill"></i> Add Item
+                    </Button>
                   </div>
                 </Table>
                 <Col xs="12">

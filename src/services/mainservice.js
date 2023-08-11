@@ -512,6 +512,10 @@ async function updateSales(companyID,id,data) {
     const response = await apicall.apicall("put", 5008, `salesRoute/updateSales/${companyID}/${id}`,data)
     return response
 }
+async function getSaleIndex(id){
+    const response = await apicall.apicall('get',5008,`salesRoute/getIndex/${id}`)
+    return response
+}
 ///////////////////////////////{Notification}/////////////////////////////////////
 async function createNotificationCollection(data) {
     const response = await apicall.apicall("post", 5009, "notification/addNotificationCollection", data)
@@ -568,6 +572,6 @@ export default {
     createRfqCollection, createInvoiceCollection, createSalesCollection, createAccountCollection, createAppointmentCollection, createOpportunityCollection, createVendorCollection, vendor, vendordetails, createNotificationCollection, postNotification, getNotification
     ,deletecustomer,deleteopportunity,deleteEmployee,deleteInventorymanagementDetails,deletePrjmanagerDetails,deleteProductDetails,deletePurchase,deletePurchaseitem,deletePurchaseorder,deleterfq,deletevendor,deleteInvoice,deleteSales,getEmployee,editEmployee,editInventorymanagementDetails,getidInventorymanagementDetails,
     getInvoiceById,updateInvoice,getRFQ,updaterfq,getPurchaseitemById,updatePurchaseitem,getPurchaseorderid,updatePurchaseorder,getvendorById,updatevendor,getPrjmanagerDetailsById,editPrjmanagerDetails,getSalesById,updateSales,getPurchaseById,updatePurchase,createpurchaseRequisitionCollection,purchaseRequisition,
-    purchaseRequisitiondetails,deletepurchaseRequisition,getpurchaseRequisitionById,updatepurchaseRequisition,getAppointmentById,editAppointment,getOpportunity,editOpportunity,
+    purchaseRequisitiondetails,deletepurchaseRequisition,getpurchaseRequisitionById,updatepurchaseRequisition,getAppointmentById,editAppointment,getOpportunity,editOpportunity,getSaleIndex
 };
 

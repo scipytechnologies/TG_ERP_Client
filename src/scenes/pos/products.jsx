@@ -83,9 +83,51 @@ export default function PosProduct() {
                   "position": "Engineering Manager",
                   "count": 13,
                   "mutual": [img1, img12]
+                },
+                {
+                  "img": img11,
+                  "name": "Maricel Villalon",
+                  "position": "Engineering Manager",
+                  "count": 13,
+                  "mutual": [img1, img12]
+                },
+                {
+                  "img": img11,
+                  "name": "Maricel Villalon",
+                  "position": "Engineering Manager",
+                  "count": 13,
+                  "mutual": [img1, img12]
+                },
+                {
+                  "img": img11,
+                  "name": "Maricel Villalon",
+                  "position": "Engineering Manager",
+                  "count": 13,
+                  "mutual": [img1, img12]
+                },
+                {
+                  "img": img11,
+                  "name": "Maricel Villalon",
+                  "position": "Engineering Manager",
+                  "count": 13,
+                  "mutual": [img1, img12]
+                },
+                {
+                  "img": img11,
+                  "name": "Maricel Villalon",
+                  "position": "Engineering Manager",
+                  "count": 13,
+                  "mutual": [img1, img12]
+                },
+                {
+                  "img": img11,
+                  "name": "Maricel Villalon",
+                  "position": "Engineering Manager",
+                  "count": 13,
+                  "mutual": [img1, img12]
                 }
               ].map((event, index) => (
-                <Col sm="6" md="3" key={index}>
+                <Col sm="6" md="2" key={index}>
                   <Card className="card-event">
                     <Link to="#"><img src={event.img} className="img.fluid w-100" alt="" /></Link>
                     <Card.Body>
@@ -100,140 +142,6 @@ export default function PosProduct() {
                 </Col>
               ))}
             </Row>
-
-            <div className="main-label-group mb-3">
-              <label>People From Your Current City</label>
-              <Link to="">See All</Link>
-            </div>
-
-            <Row className="g-2 g-xxl-3 mb-5">
-              {[
-                {
-                  "img": img6,
-                  "name": "Allan Rey Palban",
-                  "position": "Senior Business Analyst",
-                  "count": 5,
-                  "mutual": [img1, img12]
-                }, {
-                  "img": img7,
-                  "name": "Adrian Moniño",
-                  "position": "UI Developer",
-                  "count": 9,
-                  "mutual": [img10, img11]
-                }, {
-                  "img": img8,
-                  "name": "Rhea Castañares",
-                  "position": "Software Engineer",
-                  "count": 18,
-                  "mutual": [img6, img9]
-                }, {
-                  "img": img9,
-                  "name": "Lorlaine Relayosa",
-                  "position": "Software Engineer",
-                  "count": 4,
-                  "mutual": [img6, img7]
-                }, {
-                  "img": img10,
-                  "name": "Raffy Godinez",
-                  "position": "UI Designer",
-                  "count": 2,
-                  "mutual": [img11, img1]
-                }, {
-                  "img": img11,
-                  "name": "Maricel Villalon",
-                  "position": "Engineering Manager",
-                  "count": 13,
-                  "mutual": [img1, img12]
-                }
-              ].map((event, index) => (
-                <Col sm="6" md="3" key={index}>
-                  <Card className="card-event">
-                    <Link to="#"><img src={event.img} className="card-img-top" alt="" /></Link>
-                    <Card.Body>
-                      <h6><Link to="">{event.name}</Link></h6>
-                      <p className="mb-0">{event.date}</p>
-                      <p className="text-secondary fs-sm">{event.position}</p>
-                    </Card.Body>
-                    <Card.Footer>
-                      <Button variant="primary"><i className="ri-star-line"></i> Interested</Button>
-                      <Button variant="" className="btn-white"><i className="ri-share-box-line"></i> Share</Button>
-                    </Card.Footer>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-
-            <div className="main-label-group mb-3">
-              <label>People From Your Hometown</label>
-              <Link to="">See All</Link>
-            </div>
-
-            <Row className="g-2 g-xxl-3 mb-5">
-              {[
-                {
-                  "img": img6,
-                  "name": "Allan Rey Palban",
-                  "position": "Senior Business Analyst",
-                  "count": 5,
-                  "mutual": [img1, img12]
-                }, {
-                  "img": img7,
-                  "name": "Adrian Moniño",
-                  "position": "UI Developer",
-                  "count": 9,
-                  "mutual": [img10, img11]
-                }, {
-                  "img": img8,
-                  "name": "Rhea Castañares",
-                  "position": "Software Engineer",
-                  "count": 18,
-                  "mutual": [img6, img9]
-                }, {
-                  "img": img9,
-                  "name": "Lorlaine Relayosa",
-                  "position": "Software Engineer",
-                  "count": 4,
-                  "mutual": [img6, img7]
-                }, {
-                  "img": img10,
-                  "name": "Raffy Godinez",
-                  "position": "UI Designer",
-                  "count": 2,
-                  "mutual": [img11, img1]
-                }, {
-                  "img": img11,
-                  "name": "Maricel Villalon",
-                  "position": "Engineering Manager",
-                  "count": 13,
-                  "mutual": [img1, img12]
-                }
-              ].map((event, index) => (
-                <Col sm="6" md="3" key={index}>
-                  <Card className="card-event">
-                    <Link to="#"><img src={event.img} className="card-img-top" alt="" /></Link>
-                    <Card.Body>
-                      <h6><Link to="">{event.name}</Link></h6>
-                      <p className="mb-0">{event.date}</p>
-                      <p className="text-secondary fs-sm">{event.position}</p>
-                    </Card.Body>
-                    <Card.Footer>
-                      <Button variant="primary"><i className="ri-star-line"></i> Interested</Button>
-                
-                    </Card.Footer>
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-
-
-          </Col>
-          <Col xl="4" xxl="3" className="d-none d-xl-block">
-            <Card>
-              <Card.Header>
-                <Card.Title>Add New Product</Card.Title>
-              </Card.Header>
-              <Card.Body> hello</Card.Body>
-            </Card>
           </Col>
         </Row>
 
