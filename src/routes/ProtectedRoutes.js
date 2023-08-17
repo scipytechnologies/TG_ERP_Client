@@ -143,6 +143,8 @@ import VendorList from "../scenes/vendor/VendorList";
 import Poscategory from "../scenes/pos/Category";
 import PosProduct from "../scenes/pos/products";
 
+import CustomForm from "../scenes/custom form/CustomForm";
+
 const protectedRoutes = [
   { path: "dashboard/home", element: <Home /> },
   // { path: "/registerCompany", element: <CompanyRegistration /> },
@@ -208,6 +210,7 @@ const protectedRoutes = [
   { path: "dashboard/POS/products", element: <PosProduct /> },
 
   { path: "dashboard/attendence", element: <Attendence /> },
+  { path: "dashboard/customForm", element: <CustomForm /> },
 
   // default components and apps
   { path: "dashboard/finance", element: <FinanceMonitoring /> },
