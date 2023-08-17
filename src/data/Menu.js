@@ -152,7 +152,7 @@ const scenes = [
   },
   {
     "label": "Sales",
-    
+
     "icon": "ri-water-flash-line",
     "submenu": [
       {
@@ -169,7 +169,7 @@ const scenes = [
 
   {
     "label": "POS",
-    
+
     "icon": "ri-water-flash-line",
     "submenu": [
       {
@@ -191,6 +191,11 @@ const scenes = [
     "link": "/dashboard/attendence",
     "icon": "ri-water-flash-line"
   },
+  {
+    "label": "Custom Form",
+    "link": "/dashboard/customForm",
+    "icon": "ri-water-flash-line"
+  }
 ];
 
 

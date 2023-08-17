@@ -22,6 +22,7 @@ import { Grid } from "gridjs-react";
 import mainservice from "../../services/mainservice";
 import { _ } from "gridjs-react";
 import { useSelector } from "react-redux";
+import { canvas } from "leaflet";
 
 function ProductManagement() {
   // to maintain dark and light mode
@@ -69,6 +70,7 @@ function ProductManagement() {
   const handleCanvas = (item) => {
     setOffCanvas(true);
     setCanvasData(item);
+    console.log(setCanvasData)
   };
   const handleCloseCanvas = () => {
     setOffCanvas(false);
@@ -300,34 +302,70 @@ function ProductManagement() {
                       className="d-flex flex-column"
                     >
                       <ListGroup>
-                        <ListGroup.Item>
+                      <ListGroup.Item>
                           <div className="d-flex">
-                            <div className="w-40">First Name</div>
-                            <div className="w-50">: {canvasData.ItemName} </div>
+                            <div className="w-40">Brand</div>
+                            <div className="w-50">:{canvasData.Brand} </div>
                           </div>
                         </ListGroup.Item>
                         <ListGroup.Item>
                           <div className="d-flex">
-                            <div className="w-40">Last Name</div>
-                            <div className="w-50">: </div>
+                            <div className="w-40">Current Stock</div>
+                            <div className="w-50">: {canvasData.CurrentStock} </div>
                           </div>
                         </ListGroup.Item>
                         <ListGroup.Item>
                           <div className="d-flex">
-                            <div className="w-40">Business Role</div>
-                            <div className="w-50">: </div>
+                            <div className="w-40">Dimension</div>
+                            <div className="w-50">: {canvasData.Dimension} </div>
+                          </div>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <div className="d-flex">
+                            <div className="w-40">Expiry Date</div>
+                            <div className="w-50">: {canvasData.ExpiryDate} </div>
+                          </div>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <div className="d-flex">
+                            <div className="w-40">Height</div>
+                            <div className="w-50">: {canvasData.Height} </div>
+                          </div>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <div className="d-flex">
+                            <div className="w-40">Item Category</div>
+                            <div className="w-50">:{canvasData.ItemCategory} </div>
+                          </div>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <div className="d-flex">
+                            <div className="w-40">Item Name</div>
+                            <div className="w-50">:{canvasData.ItemName} </div>
+                          </div>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <div className="d-flex">
+                            <div className="w-40">Manufacturer</div>
+                            <div className="w-50">:{canvasData.Manufacturer} </div>
                           </div>
                         </ListGroup.Item>
                         <ListGroupItem>
                           <div className="d-flex">
-                            <div className="w-40">Email</div>
-                            <div className="w-50">: </div>
+                            <div className="w-40">Price</div>
+                            <div className="w-50">:{canvasData.Price} </div>
                           </div>
                         </ListGroupItem>
                         <ListGroup.Item>
                           <div className="d-flex">
-                            <div className="w-40">Phone Mobile</div>
-                            <div className="w-50">: </div>
+                            <div className="w-40">SKU Number</div>
+                            <div className="w-50">:{canvasData.SKUNo} </div>
+                          </div>
+                        </ListGroup.Item>
+                        <ListGroup.Item>
+                          <div className="d-flex">
+                            <div className="w-40">Unit OF Measurement</div>
+                            <div className="w-50">:{canvasData.UnitOFMeasurement} </div>
                           </div>
                         </ListGroup.Item>
                       </ListGroup>

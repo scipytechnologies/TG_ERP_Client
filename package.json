@@ -53,7 +53,9 @@
     "react-to-print": "^2.14.13",
     "rsuite": "^5.37.0",
     "slick-carousel": "^1.8.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "lodash": "^4.17.21",
+    "react-hot-toast": "^2.4.1"
   },
   "scripts": {
     "start": "react-scripts start",
