@@ -67,6 +67,7 @@ function SalesList() {
   const handleCloseCanvas = () => {
     setOffCanvas(false);
   };
+ 
 
   return (
     <>
@@ -93,10 +94,10 @@ function SalesList() {
             <Grid
               data={
                 data !== undefined
-                  ? data.map((item) => [
-                      item.OrderNumber,
-                      item.Product,
-                      item.Day,
+                  ? data.toReversed().map((item) => [
+                      item.OrderNumber.toString().padStart(6, '0'),
+                      item.CustomerName,
+                      item.createdAt,
 
                       _(
                         <>
@@ -149,7 +150,7 @@ function SalesList() {
                     ])
                   : []
               }
-              columns={["Order Number", "Product", "Day", "Action"]}
+              columns={["Order Number", "Customer", "Day", "Action"]}
               search={true}
               pagination={true}
               sort={true}

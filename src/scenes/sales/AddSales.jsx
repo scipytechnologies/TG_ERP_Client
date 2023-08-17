@@ -11,13 +11,15 @@ import {
   Row,
   Form,
   Table,
+  ListGroup,
+  ListGroupItem,
 } from "react-bootstrap";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import mainservice from "../../services/mainservice";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import Select from "react-select";
-import { event } from "jquery";
+import moment from "moment";
 
 function AddSales() {
   // to maintain dark and light mode
@@ -43,17 +45,17 @@ function AddSales() {
   // };
 
   async function GetIndex() {
-    const res = await mainservice.getSaleIndex(index.SalesID);   
+    const res = await mainservice.getSaleIndex(index.SalesID);
     if (res.data == null) {
       console.log("No index Found");
     } else {
-      setSalesIndex(res.data);
+      setSalesIndex(res.data + 1);
       console.log(res.data + 1);
     }
   }
 
   async function PostSales(form) {
-    const addon = { SalesItems: fields, OrderNumber: salesIndex + 1 };
+    const addon = { SalesItems: fields, OrderNumber: salesIndex };
     const employee = {
       EmpId: user.id,
       SalesPerson: user.firstName + " " + user.lastName,
@@ -100,7 +102,15 @@ function AddSales() {
     }
   };
 
-  const [fields, setFields] = useState([{ ItemNo: "", ItemName: "" }]);
+  const [fields, setFields] = useState([
+    {
+      ItemNo: "",
+      ItemName: "",
+      Quantity: 0,
+      Price: 0,
+      TotalPrice: 0,
+    },
+  ]);
 
   const handleAddField = () => {
     const newItem = {
@@ -111,28 +121,37 @@ function AddSales() {
       TotalPrice: 0,
     };
     setFields([...fields, newItem]);
+    calculateTotals();
   };
 
   const handleRemoveField = (index) => {
     const newFields = [...fields];
     newFields.splice(index, 1);
     setFields(newFields);
+    calculateTotals();
   };
+
   const handleChangeField = (index, event) => {
     const { name, value } = event.target;
-    const updatedFields = [...fields];
-    updatedFields[index] = {
-      ...updatedFields[index],
-      [name]: value,
-    };
-    setFields(updatedFields);
-    console.log(fields);
+    const newFields = [...fields];
+    newFields[index][name] = value;
+
+    // Calculate TotalPrice for the current row
+    if (name === "Quantity" || name === "Price") {
+      newFields[index].TotalPrice = (
+        newFields[index].Quantity * newFields[index].Price
+      ).toFixed(2);
+    }
+
+    setFields(newFields);
+    calculateTotals();
   };
 
   useEffect(() => {
     GetIndex();
     CheckEdit();
     customerDetails();
+    calculateTotals();
   }, []);
 
   const [data, setData] = useState([]);
@@ -164,6 +183,70 @@ function AddSales() {
       Email: temp[0].Email,
       Phone: temp[0].PhoneMobile,
     }));
+  };
+  const currentDate = new Date();
+  const formattedDate = moment(currentDate).format("ll");
+
+  const [grandTotal, setGrandTotal] = useState(0);
+  const [discount, setDiscount] = useState(0);
+  const [gst, setGST] = useState(0);
+  const [sgst, setSGST] = useState(0);
+  const [finalAmount, setFinalAmount] = useState(0);
+  const [discountAmount, setDiscountAmount] = useState(0);
+  const [discountPercentage, setDiscountPercentage] = useState(0);
+  const [Rounded, setRounded] = useState(0);
+
+  useEffect(() => {
+    calculateTotals();
+  }, [discountPercentage, fields]);
+
+  const calculateTotals = () => {
+    let total = 0;
+    let gstAmount = 0;
+    let sgstAmount = 0;
+
+    fields.forEach((field) => {
+      const totalPrice = field.Quantity * field.Price;
+      total += totalPrice;
+    });
+
+    setGrandTotal(total);
+    setGST(gstAmount);
+    setSGST(sgstAmount);
+
+    // Calculate discount and final amount
+    if (isNaN(discountPercentage)) {
+      setDiscountPercentage(0);
+    }
+    const discountValue = (total * discountPercentage) / 100;
+    setDiscountAmount(discountValue);
+    const amount = total - discountValue;
+    // Calculate GST and SGST amounts
+    const gstRate = 0.18; // Assuming 18% GST
+    gstAmount += (amount * gstRate) / 2;
+    sgstAmount += (amount * gstRate) / 2;
+    setGrandTotal(total);
+    setGST(gstAmount);
+    setSGST(sgstAmount);
+    const LastAmount = total - discountValue + gstAmount + sgstAmount;
+    setFinalAmount(
+      LastAmount % 1 >= 0.5 ? Math.ceil(LastAmount) : Math.floor(LastAmount)
+    );
+
+    setRounded(
+      (LastAmount % 1 >= 0.5 ? Math.ceil(LastAmount) : Math.floor(LastAmount)) -
+        LastAmount
+    );
+
+    // setFinalAmount(total - discountValue); // tax inclued in Total
+  };
+
+  const handleDiscountChange = (event) => {
+    const newDiscountPercentage = parseFloat(event.target.value);
+    setDiscountPercentage(newDiscountPercentage);
+
+    // Recalculate totals based on the new discount percentage
+    calculateTotals();
   };
 
   return (
@@ -206,28 +289,68 @@ function AddSales() {
                     />
                   </div>
                 </Col> */}
-
                 <Col lg="4" md="6" xs="12">
-                  <div className="mt-3 d-flex">
-                    {" "}
-                    <div>
-                      <Form.Label htmlFor="CustomerName">
-                        CustomerName
-                      </Form.Label>
-                    </div>
-                    <div className="w-100">
-                      <Select
-                        options={options}
-                        isSearchable={true}
-                        onChange={(x) => onSelectHandler(x, "CustomerId")}
-                      />
-                    </div>
-                  </div>
-                  <div className="m-2">
-                    <p>Address : {select.Address} </p>
-                    <p>Email : {select.Email}</p>
-                    <p>Phone Number : {select.Phone}</p>
-                  </div>
+                  <ListGroup>
+                    <h5 className="p-2">Customer Information</h5>
+                    <ListGroup.Item>
+                      <div className="d-flex align-items-center">
+                        <div className="w-30 ">
+                          <Form.Label htmlFor="CustomerName">
+                            CustomerName
+                          </Form.Label>
+                        </div>
+                        <div className="w-70">
+                          <Select
+                            styles={{
+                              control: (baseStyles) => ({
+                                ...baseStyles,
+                                border: 0,
+                              }),
+                            }}
+                            options={options}
+                            isSearchable={true}
+                            onChange={(x) => onSelectHandler(x, "CustomerId")}
+                          />
+                        </div>
+                        <div className="ps-2">
+                          <Button variant="primary" className="btn-icon">
+                            <i className="ri-add-circle-fill"></i>
+                          </Button>
+                        </div>
+                      </div>
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      {" "}
+                      <div className="d-flex">
+                        <div className="w-30">
+                          <Form.Label htmlFor="CustomerName">
+                            Address
+                          </Form.Label>
+                        </div>
+                        <div className="w-70"> {select.Address}</div>
+                      </div>{" "}
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      {" "}
+                      <div className="d-flex">
+                        <div className="w-30">
+                          <Form.Label htmlFor="CustomerName">Email</Form.Label>
+                        </div>
+                        <div className="w-70"> {select.Email}</div>
+                      </div>{" "}
+                    </ListGroup.Item>
+                    <ListGroup.Item>
+                      {" "}
+                      <div className="d-flex">
+                        <div className="w-30">
+                          <Form.Label htmlFor="CustomerName">
+                            Phone Number
+                          </Form.Label>
+                        </div>
+                        <div className="w-70"> {select.Phone}</div>
+                      </div>{" "}
+                    </ListGroup.Item>
+                  </ListGroup>
                 </Col>
 
                 <Col
@@ -236,14 +359,31 @@ function AddSales() {
                   md="6"
                   xs="12"
                 >
-                  <div>
-                    <div>
-                      <h3>{salesIndex + 1}</h3>
-                    </div>
-                    <div>
-                      <h5>20/03/2023</h5>
-                    </div>
-                  </div>
+                  <ListGroup className=" w-100">
+                    <h5 className="p-2">Billing Information</h5>
+                    <ListGroupItem>
+                      <div className="d-flex">
+                        <div className="w-30">
+                          <Form.Label htmlFor="CustomerName">
+                            Bill No
+                          </Form.Label>
+                        </div>
+                        <div className="w-70">
+                          <h3>{salesIndex.toString().padStart(6, "0")}</h3>
+                        </div>
+                      </div>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <div className="d-flex">
+                        <div className="w-30">
+                          <Form.Label htmlFor="CustomerName">
+                            Billed Date
+                          </Form.Label>
+                        </div>
+                        <div className="w-70"> {formattedDate}</div>
+                      </div>
+                    </ListGroupItem>
+                  </ListGroup>
                 </Col>
                 {/* <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
@@ -286,7 +426,7 @@ function AddSales() {
                                   type="Number"
                                   id="ItemNo"
                                   name="ItemNo"
-                                  value={fields.ItemNo}
+                                  value={field.ItemNo}
                                   placeholder="Item No"
                                   onChange={(event) =>
                                     handleChangeField(index, event)
@@ -302,7 +442,7 @@ function AddSales() {
                                   type="text"
                                   id="ItemName"
                                   name="ItemName"
-                                  value={fields.ItemName}
+                                  value={field.ItemName}
                                   placeholder="Item Name"
                                   onChange={(event) =>
                                     handleChangeField(index, event)
@@ -318,7 +458,7 @@ function AddSales() {
                                   type="Number"
                                   id="Quantity"
                                   name="Quantity"
-                                  value={fields.Quantity}
+                                  value={field.Quantity}
                                   placeholder="Quantity"
                                   onChange={(event) =>
                                     handleChangeField(index, event)
@@ -335,7 +475,7 @@ function AddSales() {
                                   type="Number"
                                   id="Price"
                                   name="Price"
-                                  value={fields.Price}
+                                  value={field.Price}
                                   placeholder="Price"
                                   onChange={(event) =>
                                     handleChangeField(index, event)
@@ -346,16 +486,17 @@ function AddSales() {
                           </td>
                           <td>
                             <div className="mt-2">
-                              <div className="input-group mb-3" key={index}>
+                              <div className="input-group mb-3">
                                 <Form.Control
                                   type="Number"
-                                  id="TotalPrice"
+                                  id={`TotalPrice`}
                                   name="TotalPrice"
-                                  value={fields.TotalPrice}
+                                  value={field.TotalPrice}
                                   placeholder="Total Price"
                                   onChange={(event) =>
                                     handleChangeField(index, event)
                                   }
+                                  readOnly
                                 />
                                 <Button
                                   className="ms-2"
@@ -377,6 +518,62 @@ function AddSales() {
                     </Button>
                   </div>
                 </Table>
+                <div className="d-flex justify-content-end pe-5">
+                  <div className="w-40">
+                    <Table>
+                      <tbody>
+                        <tr>
+                          <td colSpan="3"></td>
+                          <td>Sub Total :</td>
+                          <td>{grandTotal.toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                          <td colSpan="3"></td>
+                          <td>
+                            <Form.Group as={Row} className="mb-3">
+                              <Form.Label column sm="3">
+                                Discount (%):
+                              </Form.Label>
+                              <Col sm="6">
+                                <Form.Control
+                                  type="number"
+                                  value={discountPercentage}
+                                  onChange={handleDiscountChange}
+                                  min={0}
+                                  max={100}
+                                />
+                              </Col>
+                            </Form.Group>
+                          </td>
+                          <td>{discountAmount.toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                          <td colSpan="3"></td>
+                          <td>GST :</td>
+                          <td>{gst.toFixed(2)}</td>
+                        </tr>
+                        <tr>
+                          <td colSpan="3"></td>
+                          <td>SGST :</td>
+                          <td>{sgst.toFixed(2)}</td>
+                        </tr>
+
+                        <tr className="bg-primary">
+                          <td colSpan="3"></td>
+                          <td className="text-white"> <h5>Grand Total :</h5></td>
+                          <td className="text-white"> <h5>{finalAmount.toFixed(2)}</h5></td>
+                        </tr>
+                        { Rounded? <tr>
+                          <td colSpan="3"></td>
+                          <td>Round-off :</td>
+                          <td>{Rounded.toFixed(2)}</td>
+                        </tr>:[] }
+                      
+                      </tbody>
+                    </Table>
+                  </div>
+                </div>
+
                 <Col xs="12">
                   {editMode ? (
                     <div
