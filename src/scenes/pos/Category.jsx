@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, Col, Nav, Row, Form, Button } from "react-bootstrap";
+import { Card, Col, Nav, Row, Form, Button} from "react-bootstrap";
+import { useState } from 'react';
 import Footer from "../../layouts/Footer";
 import HeaderMobile from "../../layouts/HeaderMobile";
 import Avatar from "../../components/Avatar";
@@ -20,6 +21,9 @@ import img15 from "../../assets/img/img15.jpg";
 import img16 from "../../assets/img/img16.jpg";
 import img19 from "../../assets/img/img19.jpg";
 
+// const [form, setform] = useState("")
+
+
 export default function Poscategory() {
   // useEffect(() => {
   //   document.body.classList.add('app-music')
@@ -27,18 +31,50 @@ export default function Poscategory() {
   //     document.body.classList.remove('app-music')
   //   }
   // }, []);
+  // const onChangeHandler = (event) => {
+  //   const { name, value } = event.target;
+  //   setform({
+  //     ...form,
+  //     [event.target.name]: event.target.value
+  //   })
+  // }
+
+  // async function AddPos(form) {
+  //   console.log(form);
+  //   const res = await mainservice.category(form, index.EmployeeID);
+  //   if (res.data != null) {
+  //     console.log("Employee Added");
+  //   }
+  //   else {
+  //     console.log(res);
+  //   }
+  // }
+
+  // const onSubmitHandler = (event) => {
+  //   event.preventDefault();
+  //   AddEmployee(form);
+  // }
+  // useEffect(() => {
+  //   Poscategory()
+  // }, []);
+  
+
+
   return (
+    // <form onSubmit={onSubmitHandler}>
     <React.Fragment>
       <Header />
       <div className="main p-4 p-lg-5 mt-5 ">
         <Row className="g-5">
           <Col xl>
             <ol className="breadcrumb fs-sm mb-2">
-            <li className="breadcrumb-item"><Link to="#">Dashboard </Link></li>
+              <li className="breadcrumb-item"><Link to="#">Dashboard </Link></li>
               <li className="breadcrumb-item"><Link to="#"> Point on Sales</Link></li>
-              <li className="breadcrumb-item active"><Link to="#">Category</Link></li>   
+              <li className="breadcrumb-item active"><Link to="#">Category</Link></li>
             </ol>
             <h2 className="main-title">Category</h2>
+
+            
 
             <div className="main-label-group mb-3">
               <label>Active Category</label>
@@ -233,7 +269,24 @@ export default function Poscategory() {
               <Card.Header>
                 <Card.Title>Add New Category</Card.Title>
               </Card.Header>
-              <Card.Body> hello</Card.Body>
+              <Card.Body>
+                <Row className="g-4">
+                  <Col xs="12">
+                    <div className="mt-4">
+                      <Form.Label htmlFor="CategoryName">Category Name</Form.Label>
+                      <Form.Control type="text" id="CategoryName" name="CategoryName" placeholder="Category Name" />
+                    </div>
+                  </Col>
+
+                  <Col xs="12">
+                    <div className="mt-3">
+                      <Form.Label htmlFor="Description">Description</Form.Label>
+                      <Form.Control as="textarea" id="Description" name="Description" rows="4" placeholder="Description" />
+                    </div>
+                  </Col>
+                  <Button variant="primary">Submit</Button>
+                </Row>
+              </Card.Body>
             </Card>
           </Col>
         </Row>
@@ -241,5 +294,6 @@ export default function Poscategory() {
         <Footer />
       </div>
     </React.Fragment>
+    // </form>
   );
 }
