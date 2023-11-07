@@ -99,7 +99,27 @@ async function editAppointment(companyID,id,data) {
     return response
 
 }
+///////////////////////////{Admin}////////////////////////////////////////////
+async function users() {
+    const response = await apicall.apicall("get", 5000, 'getusers')
+    return response
 
+}
+async function createGstform() {
+    const response = await apicall.apicall("post", 5000, "addgst", data)
+    return response
+
+}
+async function editGST(companyID,id,data) {
+    const response = await apicall.apicall("put", 5000, "dashboard/admin",data)
+    return response
+
+}
+async function GstDetails() {
+    const response = await apicall.apicall("get", 5000, 'dashboard/admin/GstDetails')
+    return response
+
+}
 ////////////////////////////////{CRM-Customer}////////////////////////////////////
 
 async function createCustomerCollection(data) {
@@ -572,6 +592,6 @@ export default {
     createRfqCollection, createInvoiceCollection, createSalesCollection, createAccountCollection, createAppointmentCollection, createOpportunityCollection, createVendorCollection, vendor, vendordetails, createNotificationCollection, postNotification, getNotification
     ,deletecustomer,deleteopportunity,deleteEmployee,deleteInventorymanagementDetails,deletePrjmanagerDetails,deleteProductDetails,deletePurchase,deletePurchaseitem,deletePurchaseorder,deleterfq,deletevendor,deleteInvoice,deleteSales,getEmployee,editEmployee,editInventorymanagementDetails,getidInventorymanagementDetails,
     getInvoiceById,updateInvoice,getRFQ,updaterfq,getPurchaseitemById,updatePurchaseitem,getPurchaseorderid,updatePurchaseorder,getvendorById,updatevendor,getPrjmanagerDetailsById,editPrjmanagerDetails,getSalesById,updateSales,getPurchaseById,updatePurchase,createpurchaseRequisitionCollection,purchaseRequisition,
-    purchaseRequisitiondetails,deletepurchaseRequisition,getpurchaseRequisitionById,updatepurchaseRequisition,getAppointmentById,editAppointment,getOpportunity,editOpportunity,getSaleIndex
+    purchaseRequisitiondetails,deletepurchaseRequisition,getpurchaseRequisitionById,updatepurchaseRequisition,getAppointmentById,editAppointment,getOpportunity,editOpportunity,getSaleIndex,users,createGstform,editGST,GstDetails
 };
 

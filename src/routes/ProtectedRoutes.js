@@ -145,6 +145,11 @@ import PosProduct from "../scenes/pos/products";
 
 import CustomForm from "../scenes/custom form/CustomForm";
 
+import Admin from "../scenes/admin/Admin"
+import Customers from "../scenes/admin/Customers"
+import Gstform from "../scenes/admin/Gstform"
+import GstList from "../scenes/admin/GstList"
+
 const protectedRoutes = [
   { path: "dashboard/home", element: <Home /> },
   // { path: "/registerCompany", element: <CompanyRegistration /> },
@@ -212,6 +217,11 @@ const protectedRoutes = [
   { path: "dashboard/attendence", element: <Attendence /> },
   { path: "dashboard/customForm", element: <CustomForm /> },
 
+  { path: "dashboard/admin", element: <Admin />},
+  { path: "dashboard/admin/Customers", element: <Customers />},
+  { path: "dashboard/admin/GstAuditorform", element: <Gstform/>},
+  { path: "dashboard/admin/GstAuditorlist", element: <GstList />},
+ 
   // default components and apps
   { path: "dashboard/finance", element: <FinanceMonitoring /> },
   { path: "dashboard/events", element: <EventManagement /> },
