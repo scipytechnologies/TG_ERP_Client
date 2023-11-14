@@ -149,6 +149,9 @@ import Admin from "../scenes/admin/Admin"
 import Customers from "../scenes/admin/Customers"
 import Gstform from "../scenes/admin/Gstform"
 import GstList from "../scenes/admin/GstList"
+import GstAuditfiles from "../scenes/GstAuditfile/GstAuditFile";
+////////{Ecommerce}///////////////////////
+import Ecommerce from "../scenes/Ecommerce/Ecommerces";
 
 const protectedRoutes = [
   { path: "dashboard/home", element: <Home /> },
@@ -221,6 +224,9 @@ const protectedRoutes = [
   { path: "dashboard/admin/Customers", element: <Customers />},
   { path: "dashboard/admin/GstAuditorform", element: <Gstform/>},
   { path: "dashboard/admin/GstAuditorlist", element: <GstList />},
+  { path: "dashboard/GstAudit/GstAuditFile", element: <GstAuditfiles/>},
+
+  {path: "dashboard/Ecommerce", element: <Ecommerce />},
  
   // default components and apps
   { path: "dashboard/finance", element: <FinanceMonitoring /> },

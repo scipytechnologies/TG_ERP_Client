@@ -120,11 +120,15 @@ async function GstDetails() {
     return response
 
 }
+///////////////////////////////{GstAuditfiles}///////////////////////////////
+async function GstAuditfile() {
+    const response = await apicall.apicall("post",5000, 'dashboard/GstAudit')
+    return response
+}
 ////////////////////////////////{CRM-Customer}////////////////////////////////////
 
 async function createCustomerCollection(data) {
     const response = await apicall.apicall("post", 5001, "crm/customer/addCustomerCollection", data)
-
     return response
 }
 
@@ -592,6 +596,6 @@ export default {
     createRfqCollection, createInvoiceCollection, createSalesCollection, createAccountCollection, createAppointmentCollection, createOpportunityCollection, createVendorCollection, vendor, vendordetails, createNotificationCollection, postNotification, getNotification
     ,deletecustomer,deleteopportunity,deleteEmployee,deleteInventorymanagementDetails,deletePrjmanagerDetails,deleteProductDetails,deletePurchase,deletePurchaseitem,deletePurchaseorder,deleterfq,deletevendor,deleteInvoice,deleteSales,getEmployee,editEmployee,editInventorymanagementDetails,getidInventorymanagementDetails,
     getInvoiceById,updateInvoice,getRFQ,updaterfq,getPurchaseitemById,updatePurchaseitem,getPurchaseorderid,updatePurchaseorder,getvendorById,updatevendor,getPrjmanagerDetailsById,editPrjmanagerDetails,getSalesById,updateSales,getPurchaseById,updatePurchase,createpurchaseRequisitionCollection,purchaseRequisition,
-    purchaseRequisitiondetails,deletepurchaseRequisition,getpurchaseRequisitionById,updatepurchaseRequisition,getAppointmentById,editAppointment,getOpportunity,editOpportunity,getSaleIndex,users,createGstform,editGST,GstDetails
+    purchaseRequisitiondetails,deletepurchaseRequisition,getpurchaseRequisitionById,updatepurchaseRequisition,getAppointmentById,editAppointment,getOpportunity,editOpportunity,getSaleIndex,users,createGstform,editGST,GstDetails,GstAuditfile
 };
 

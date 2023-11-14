@@ -1,0 +1,132 @@
+/* pos modal */
+.pos_modal_container {
+    position: fixed;
+    z-index: 1000;
+    padding-top: 150px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: .2s ease-in-out;
+}
+
+.pos_modal_container_none {
+    display: none;
+}
+
+.pos_modal {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 10px;
+    border: none;
+    width: 40%;
+    transition: .2s ease-in-out;
+}
+
+.pos-sidebar {
+    position: fixed;
+}
+
+.hide-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.table-containers {
+    max-height: 28vh;
+    width: 27vw;
+    overflow-y: scroll;
+
+}
+
+.tables {
+    table-layout: fixed;
+}
+
+
+
+
+
+
+
+
+/* .pos_modal_img img {
+    height: 100%;
+    width: 100%;
+}
+
+.pos_modal_details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pos_modal_details p:nth-child(1) {
+    font-size: 14px;
+    font-weight: 500;
+    color: #252525;
+}
+
+.pos_modal_details p:nth-child(2) {
+    font-size: 13px;
+    color: #fd0707;
+}
+
+.pos_modal_actions {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: .7rem;
+    background-color: #5861FD;
+}
+
+.pos_modal_actions select {
+    font-size: 12px;
+    width: 7.6rem;
+}
+
+.pos_modal_actions_counter {
+    min-width: 6.5rem;
+    display: flex;
+    background-color: rgb(235, 232, 232);
+    border-radius: 3rem;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #5861FD;
+}
+
+.pos_modal_actions_counter button {
+    height: 1.6rem;
+    width: 1.6rem;
+    background-color: #5861FD;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 800;
+    border-radius: 50%;
+    padding: .2rem;
+}
+
+.pos_modal_actions_counter button:hover {
+    background-color: #fff;
+    color: #5861FD;
+    border: 1px solid #5861FD;
+    font-weight: 700;
+}
+
+.pos_modal_actions_counter p {
+    font-size: 13px;
+    color: #000000;
+}
+
+.pos_modal_actions_button button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #5861FD;
+    color: #fff;
+    width: 100%;
+} */
