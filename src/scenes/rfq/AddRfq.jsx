@@ -1,41 +1,57 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
 import Header from "../../layouts/Header";
 import Footer from "../../layouts/Footer";
-import { useState } from 'react';
-import { Button, Card, Col, Nav, ProgressBar, Row, Form } from "react-bootstrap";
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import mainservice from '../../services/mainservice';
-import { useSelector } from 'react-redux';
-
+import { useState } from "react";
+import {
+  Button,
+  Card,
+  Col,
+  Nav,
+  ProgressBar,
+  Row,
+  Form,
+  Table,
+} from "react-bootstrap";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import mainservice from "../../services/mainservice";
+import { useSelector } from "react-redux";
 
 function AddRFQ() {
   // to maintain dark and light mode
-  const currentSkin = (localStorage.getItem('skin-mode')) ? 'dark' : '';
+  const currentSkin = localStorage.getItem("skin-mode") ? "dark" : "";
   const [skin, setSkin] = useState(currentSkin);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [form, setform] = useState("");
-  const index = useSelector((state) => state.index)
+  const index = useSelector((state) => state.index);
   console.log(index.RFQID, "RFQ");
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     setform({
       ...form,
-      [event.target.name] : event.target.value
-    })
+      [event.target.name]: event.target.value,
+    });
     setUform({
       ...uform,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
     console.log(uform);
   };
+  const [fields, setFields] = useState([
+    {
+      ItemNo: "",
+      ItemName: "",
+      Quantity: 0,
+      Price: 0,
+      TotalPrice: 0,
+    },
+  ]);
 
   async function PostRFQ(form) {
     console.log(form);
     const res = await mainservice.rfq(form, index.RFQID);
     if (res.data != null) {
       console.log("RFQ Added");
-    }
-    else {
+    } else {
       console.log(res);
     }
   }
@@ -43,21 +59,20 @@ function AddRFQ() {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     PostRFQ(form);
-  }
+  };
 
   const onUpdateHandler = (event) => {
     event.preventDefault();
     console.log(uform);
     updaterfq(uform);
-  }
+  };
 
   async function updaterfq(uform) {
-    const res = await mainservice.updaterfq(index.RFQID,id,uform);
+    const res = await mainservice.updaterfq(index.RFQID, id, uform);
     if (res.data != null) {
-      console.log(res.data, "RFQ details updated")
-    }
-    else {
-      console.log(res)
+      console.log(res.data, "RFQ details updated");
+    } else {
+      console.log(res);
     }
   }
 
@@ -67,14 +82,46 @@ function AddRFQ() {
   const id = searchParams.get("id");
   const CheckEdit = async () => {
     if (id) {
-      setEditMode(true)
+      setEditMode(true);
       const res = await mainservice.getRFQ(index.RFQID, id);
-      setUform(res.data)
+      setUform(res.data);
       console.log(res.data, "this");
     }
-  }
+  };
+
+  const handleAddField = () => {
+    const newItem = {
+      ItemNo: "",
+      ItemName: "",
+      Quantity: 0,
+      Price: 0,
+      TotalPrice: 0,
+    };
+    setFields([...fields, newItem]);
+  };
+
+  const handleRemoveField = (index) => {
+    const newFields = [...fields];
+    newFields.splice(index, 1);
+    setFields(newFields);
+  };
+
+  const handleChangeField = (index, event) => {
+    const { name, value } = event.target;
+    const newFields = [...fields];
+    newFields[index][name] = value;
+
+    // Calculate TotalPrice for the current row
+    if (name === "Quantity" || name === "Price") {
+      newFields[index].TotalPrice = (
+        newFields[index].Quantity * newFields[index].Price
+      ).toFixed(2);
+    }
+    console.log(fields);
+  };
+
   useEffect(() => {
-    CheckEdit()
+    CheckEdit();
   }, []);
 
   return (
@@ -85,234 +132,314 @@ function AddRFQ() {
           <div className="d-md-flex align-items-center justify-content-between mb-4">
             <div>
               <ol className="breadcrumb fs-sm mb-1">
-                <li className="breadcrumb-item"><Link to="/dashboard/home">Dashboard</Link></li>
-                <li className="breadcrumb-item"><Link to="/dashboard/RFQ">RFQ</Link></li>
-                <li className="breadcrumb-item active" aria-current="page">Add RFQ</li>
+                <li className="breadcrumb-item">
+                  <Link to="/dashboard/home">Dashboard</Link>
+                </li>
+                <li className="breadcrumb-item">
+                  <Link to="/dashboard/RFQ">RFQ</Link>
+                </li>
+                <li className="breadcrumb-item active" aria-current="page">
+                  Add RFQ
+                </li>
               </ol>
               <h4 className="main-title mb-0">Create New RFQ</h4>
             </div>
           </div>
 
           {/* responsive form in a card */}
-          <Card>
+          <Card className="mb-4">
             <Card.Body>
               <Row className="g-4">
-              <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="SerialNo">Serial No</Form.Label>
-                    <Form.Control type="Number" id="SerialNo" name="SerialNo" value={uform.SerialNo} placeholder="Serial No" onChange={onChangeHandler} />
+                <Col lg="4" md="6" xs="12"></Col>
+                <Col lg="4" md="6" xs="12"></Col>
+                <Col lg="4" md="6" xs="12">
+                  <div className="mt-3 d-flex">
+                    <small>Type of Purchase Requisition</small>
+                    <Form.Check name="1" type="radio" label="New PR" />
+                    <Form.Check name="1" type="radio" checked label="PR Change Request" />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
-                    <Form.Label htmlFor="ItemNumber">Item Number</Form.Label>
-                    <Form.Control type="Number" id="ItemNumber" name="ItemNumber" value={uform.ItemNumber} placeholder="Item Number" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="Qty">Quantity</Form.Label>
-                    <Form.Control type="text" id="Qty" name="Qty" value={uform.Qty} placeholder="Quantity" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="Unit">Unit</Form.Label>
-                    <Form.Control type="text" id="Unit" name="Unit" value={uform.Unit} placeholder="Unit" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="CapExOrOpEx">CapExOrOpEx</Form.Label>
-                    <Form.Control type="text" id="CapExOrOpEx" name="CapExOrOpEx" value={uform.CapExOrOpEx} placeholder="CapExOrOpEx" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="Day">Day</Form.Label>
-                    <Form.Control type="text" id="Day" name="Day" value={uform.Day} placeholder="Day" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="Month">Month</Form.Label>
-                    <Form.Control type="text" id="Month" name="Month" value={uform.Month} placeholder="Month" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="Year">Year</Form.Label>
-                    <Form.Control type="text" id="Year" name="Year" value={uform.Year} placeholder="Year" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="PurchaseRequisition">Purchase Requisition</Form.Label>
-                    <Form.Control type="text" id="PurchaseRequisition" name="PurchaseRequisition" value={uform.PurchaseRequisition} placeholder="Purchase Requisition" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="TypeofRequisition">Type of Requisition</Form.Label>
-                    <Form.Control type="text" id="TypeofRequisition" name="TypeofRequisition" value={uform.TypeofRequisition} placeholder="Type of Requisition" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="JDERequisition">JDERequisition</Form.Label>
-                    <Form.Control type="text" id="JDERequisition" name="JDERequisition" value={uform.JDERequisition} placeholder="JDERequisition" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="Company">Company</Form.Label>
-                    <Form.Control type="text" id="Company" name="Company" value={uform.Company} placeholder="Company" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="CompanyCode">Company Code</Form.Label>
-                    <Form.Control type="text" id="CompanyCode" name="CompanyCode" value={uform.CompanyCode} placeholder="Company Code" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="RequestorsName">Requestors Name</Form.Label>
-                    <Form.Control type="text" id="RequestorsName" name="RequestorsName" value={uform.RequestorsName} placeholder="Requestors Name" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="ProjectName">Project Name</Form.Label>
-                    <Form.Control type="text" id="ProjectName" name="ProjectName" value={uform.ProjectName} placeholder="Project Name" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="ProjectCode">Project Code</Form.Label>
-                    <Form.Control type="text" id="ProjectCode" name="ProjectCode" value={uform.ProjectCode} placeholder="Project Code" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="Phone">Phone</Form.Label>
-                    <Form.Control type="Number" id="Phone" name="Phone" value={uform.Phone} placeholder="Phone" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="Department">Department</Form.Label>
-                    <Form.Control type="text" id="Department" name="Department" value={uform.Department} placeholder="Department" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="DeliveryDate">Delivery Date</Form.Label>
-                    <Form.Control type="Date" id="DeliveryDate" name="DeliveryDate" value={uform.DeliveryDate} placeholder="Delivery Date" onChange={onChangeHandler} />
+                    <Form.Label htmlFor="DeliveryDate">
+                      Delivery Date
+                    </Form.Label>
+                    <Form.Control
+                      type="Date"
+                      id="DeliveryDate"
+                      name="DeliveryDate"
+                      value={uform.DeliveryDate}
+                      placeholder="Delivery Date"
+                      onChange={onChangeHandler}
+                    />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Priority">Priority</Form.Label>
-                    <Form.Control type="text" id="Priority" name="Priority" value={uform.Priority} placeholder="Priority" onChange={onChangeHandler} />
+                    <Form.Control
+                      type="text"
+                      id="Priority"
+                      name="Priority"
+                      value={uform.Priority}
+                      placeholder="Priority"
+                      onChange={onChangeHandler}
+                    />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
-                    <Form.Label htmlFor="PointofDelivery">Point of Delivery</Form.Label>
-                    <Form.Control type="text" id="PointofDelivery" name="PointofDelivery" value={uform.PointofDelivery} placeholder="Point of Delivery" onChange={onChangeHandler} />
+                    <Form.Label htmlFor="PointofDelivery">
+                      Point of Delivery
+                    </Form.Label>
+                    <Form.Control
+                      type="text"
+                      id="PointofDelivery"
+                      name="PointofDelivery"
+                      value={uform.PointofDelivery}
+                      placeholder="Point of Delivery"
+                      onChange={onChangeHandler}
+                    />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Receivedby">Receivedby</Form.Label>
-                    <Form.Control type="text" id="Receivedby" name="Receivedby" value={uform.Receivedby} placeholder="Receivedby" onChange={onChangeHandler} />
+                    <Form.Control
+                      type="text"
+                      id="Receivedby"
+                      name="Receivedby"
+                      value={uform.Receivedby}
+                      placeholder="Receivedby"
+                      onChange={onChangeHandler}
+                    />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
                     <Form.Label htmlFor="Position">Position</Form.Label>
-                    <Form.Control type="text" id="Position" name="Position" value={uform.Position} placeholder="Position" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-                
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="TelephoneNo">Telephone Number</Form.Label>
-                    <Form.Control type="Number" id="TelephoneNo" name="TelephoneNo" value={uform.TelephoneNo} placeholder="Telephone Number" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="Email">Email</Form.Label>
-                    <Form.Control type="text" id="Email" name="Email" value={uform.Email} placeholder="Email" onChange={onChangeHandler} />
+                    <Form.Control
+                      type="text"
+                      id="Position"
+                      name="Position"
+                      value={uform.Position}
+                      placeholder="Position"
+                      onChange={onChangeHandler}
+                    />
                   </div>
                 </Col>
 
                 <Col lg="4" md="6" xs="12">
                   <div className="mt-3">
-                    <Form.Label htmlFor="SpecialInstructions">Special Instructions</Form.Label>
-                    <Form.Control type="text" id="SpecialInstructions" name="SpecialInstructions" value={uform.SpecialInstructions} placeholder="Special Instructions" onChange={onChangeHandler} />
+                    <Form.Label htmlFor="TelephoneNo">
+                      Telephone Number
+                    </Form.Label>
+                    <Form.Control
+                      type="Number"
+                      id="TelephoneNo"
+                      name="TelephoneNo"
+                      value={uform.TelephoneNo}
+                      placeholder="Telephone Number"
+                      onChange={onChangeHandler}
+                    />
                   </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="Attachments">Attachments</Form.Label>
-                    <Form.Control type="text" id="Attachments" name="Attachments" value={uform.Attachments} placeholder="Attachments" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col lg="4" md="6" xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="Authorization">Authorization</Form.Label>
-                    <Form.Control type="text" id="Authorization" name="Authorization" value={uform.Authorization} placeholder="Authorization" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                <Col xs="12">
-                  <div className="mt-3">
-                    <Form.Label htmlFor="Description">Description</Form.Label>
-                    <Form.Control as="textarea" id="Description" name="Description" value={uform.Description} rows="4" placeholder="Description" onChange={onChangeHandler} />
-                  </div>
-                </Col>
-
-                
-
-                <Col xs="12">
-                  {editMode ?
-                    <div className='mt-1' style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                      <Button onClick={onUpdateHandler} type="submit">Update</Button>
-                    </div> :
-                    <div className='mt-1' style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                      <Button onClick={onSubmitHandler} type="submit">Submit</Button>
-                    </div>}
                 </Col>
               </Row>
+            </Card.Body>
+          </Card>
 
+          <Card>
+            <Card.Body>
+              <Row className="g-1">
+                <Table size="sm" borderless className="mb-0" hover>
+                  <thead>
+                    <tr>
+                      <th scope="col">Item No</th>
+                      <th scope="col">Description</th>
+                      <th scope="col">Quantity</th>
+                      <th scope="col">Unit</th>
+                      <th scope="col">CapEx or OpEx</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {fields.map((field, index) => {
+                      return (
+                        <tr>
+                          <th scope="row">
+                            <div className="mt-2">
+                              <div key={index}>
+                                <Form.Control
+                                  type="Number"
+                                  id="ItemNo"
+                                  name="ItemNo"
+                                  value={field.ItemNo}
+                                  placeholder="Item No"
+                                  onChange={(event) =>
+                                    handleChangeField(index, event)
+                                  }
+                                />
+                              </div>
+                            </div>
+                          </th>
+                          <td>
+                            <div className="mt-2">
+                              <div key={index}>
+                                <Form.Control
+                                  type="text"
+                                  id="ItemName"
+                                  name="ItemName"
+                                  value={field.ItemName}
+                                  placeholder="Item Name"
+                                  onChange={(event) =>
+                                    handleChangeField(index, event)
+                                  }
+                                />
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <div className="mt-2">
+                              <div key={index}>
+                                <Form.Control
+                                  type="Number"
+                                  id="Quantity"
+                                  name="Quantity"
+                                  value={field.Quantity}
+                                  placeholder="Quantity"
+                                  onChange={(event) =>
+                                    handleChangeField(index, event)
+                                  }
+                                />
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            {" "}
+                            <div className="mt-2">
+                              <div key={index}>
+                                <Form.Control
+                                  type="Number"
+                                  id="Price"
+                                  name="Price"
+                                  value={field.Price}
+                                  placeholder="Price"
+                                  onChange={(event) =>
+                                    handleChangeField(index, event)
+                                  }
+                                />
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <div className="mt-2">
+                              <div className="input-group mb-3">
+                                <Form.Control
+                                  type="Number"
+                                  id={`TotalPrice`}
+                                  name="TotalPrice"
+                                  value={field.TotalPrice}
+                                  placeholder="Total Price"
+                                  onChange={(event) =>
+                                    handleChangeField(index, event)
+                                  }
+                                  readOnly
+                                />
+                                <Button
+                                  className="ms-2"
+                                  variant="danger"
+                                  onClick={() => handleRemoveField(index)}
+                                >
+                                  <i class="ri-delete-bin-5-fill"></i>
+                                </Button>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                  <div className="mt-3">
+                    <Button onClick={handleAddField}>
+                      <i class="ri-add-circle-fill"></i> Add Item
+                    </Button>
+                  </div>
+                </Table>
+                <div className="d-flex justify-content-end pe-5">
+                  <div className="w-40"></div>
+                </div>
+
+                <Col xs="12">
+                  {editMode ? (
+                    <div
+                      className="mt-1"
+                      style={{ display: "flex", justifyContent: "flex-end" }}
+                    >
+                      <Button onClick={onUpdateHandler} type="submit">
+                        Update
+                      </Button>
+                    </div>
+                  ) : (
+                    <div
+                      className="mt-1"
+                      style={{ display: "flex", justifyContent: "flex-end" }}
+                    >
+                      <Button onClick={onSubmitHandler} type="submit">
+                        Submit
+                      </Button>
+                    </div>
+                  )}
+                </Col>
+              </Row>
+            </Card.Body>
+          </Card>
+
+          <Card>
+            <Card.Body>
+              <Row className="g-4">
+                <Col xs="12">
+                  <div className="mt-3">
+                    <Form.Label htmlFor="SpecialInstructions">
+                      Special Instructions
+                    </Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      id="SpecialInstructions"
+                      name="SpecialInstructionsn"
+                      value={uform.SpecialInstructions}
+                      rows="4"
+                      placeholder="SpecialInstructions"
+                      onChange={onChangeHandler}
+                    />
+                  </div>
+                </Col>
+
+                <Col xs="12">
+                  {editMode ? (
+                    <div
+                      className="mt-1"
+                      style={{ display: "flex", justifyContent: "flex-end" }}
+                    >
+                      <Button onClick={onUpdateHandler} type="submit">
+                        Update
+                      </Button>
+                    </div>
+                  ) : (
+                    <div
+                      className="mt-1"
+                      style={{ display: "flex", justifyContent: "flex-end" }}
+                    >
+                      <Button onClick={onSubmitHandler} type="submit">
+                        Submit
+                      </Button>
+                    </div>
+                  )}
+                </Col>
+              </Row>
             </Card.Body>
           </Card>
 
@@ -320,7 +447,7 @@ function AddRFQ() {
         </div>
       </form>
     </>
-  )
+  );
 }
 
-export default AddRFQ
+export default AddRFQ;

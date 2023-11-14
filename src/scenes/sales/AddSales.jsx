@@ -31,6 +31,14 @@ function AddSales() {
   const [salesIndex, setSalesIndex] = useState(0);
   const index = useSelector((state) => state.index);
   const user = useSelector((state) => state.loginedUser);
+
+  const [grandTotal, setGrandTotal] = useState(0);
+  const [gst, setGST] = useState(0);
+  const [sgst, setSGST] = useState(0);
+  const [finalAmount, setFinalAmount] = useState(0);
+  const [discountAmount, setDiscountAmount] = useState(0);
+  const [discountPercentage, setDiscountPercentage] = useState(0);
+  const [Rounded, setRounded] = useState(0);
   // const onChangeHandler = (event) => {
   //   const { name, value } = event.target;
   //   setform({
@@ -55,7 +63,17 @@ function AddSales() {
   }
 
   async function PostSales(form) {
-    const addon = { SalesItems: fields, OrderNumber: salesIndex };
+    const addon = {
+      SalesItems: fields,
+      OrderNumber: salesIndex,
+      SubTotal: grandTotal,
+      GST: gst,
+      SGST: sgst,
+      GrandTotal: finalAmount,
+      Roundoff: Rounded,
+      discountPercentage: discountPercentage,
+      discountAmount: discountAmount,
+    };
     const employee = {
       EmpId: user.id,
       SalesPerson: user.firstName + " " + user.lastName,
@@ -145,6 +163,7 @@ function AddSales() {
 
     setFields(newFields);
     calculateTotals();
+    console.log(fields);
   };
 
   useEffect(() => {
@@ -186,15 +205,6 @@ function AddSales() {
   };
   const currentDate = new Date();
   const formattedDate = moment(currentDate).format("ll");
-
-  const [grandTotal, setGrandTotal] = useState(0);
-  const [discount, setDiscount] = useState(0);
-  const [gst, setGST] = useState(0);
-  const [sgst, setSGST] = useState(0);
-  const [finalAmount, setFinalAmount] = useState(0);
-  const [discountAmount, setDiscountAmount] = useState(0);
-  const [discountPercentage, setDiscountPercentage] = useState(0);
-  const [Rounded, setRounded] = useState(0);
 
   useEffect(() => {
     calculateTotals();
@@ -560,15 +570,24 @@ function AddSales() {
 
                         <tr className="bg-primary">
                           <td colSpan="3"></td>
-                          <td className="text-white"> <h5>Grand Total :</h5></td>
-                          <td className="text-white"> <h5>{finalAmount.toFixed(2)}</h5></td>
+                          <td className="text-white">
+                            {" "}
+                            <h5>Grand Total :</h5>
+                          </td>
+                          <td className="text-white">
+                            {" "}
+                            <h5>{finalAmount.toFixed(2)}</h5>
+                          </td>
                         </tr>
-                        { Rounded? <tr>
-                          <td colSpan="3"></td>
-                          <td>Round-off :</td>
-                          <td>{Rounded.toFixed(2)}</td>
-                        </tr>:[] }
-                      
+                        {Rounded ? (
+                          <tr>
+                            <td colSpan="3"></td>
+                            <td>Round-off :</td>
+                            <td>{Rounded.toFixed(2)}</td>
+                          </tr>
+                        ) : (
+                          []
+                        )}
                       </tbody>
                     </Table>
                   </div>

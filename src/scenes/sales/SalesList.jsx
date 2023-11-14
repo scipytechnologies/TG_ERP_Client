@@ -12,6 +12,7 @@ import {
   Form,
   Dropdown,
   Offcanvas,
+  Modal,
   ButtonGroup,
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
@@ -19,6 +20,8 @@ import mainservice from "../../services/mainservice";
 import { Grid } from "gridjs-react";
 import { _ } from "gridjs-react";
 import { useSelector } from "react-redux";
+import moment from "moment";
+import SalesBill from "../invoice/Sales/Body/SalesBill";
 
 function SalesList() {
   // to maintain dark and light mode
@@ -60,14 +63,17 @@ function SalesList() {
 
   // Grid js each row clicking funciton
   const [offCanvas, setOffCanvas] = useState(false);
+  const [offCanvasData,setOffCanvasData] = useState()
   const handleCanvas = (row) => {
-    console.log(row);
+    setOffCanvasData(row)
     setOffCanvas(true);
   };
   const handleCloseCanvas = () => {
+    
     setOffCanvas(false);
   };
- 
+
+  // console.log(data[6].SalesItems.length);
 
   return (
     <>
@@ -95,17 +101,19 @@ function SalesList() {
               data={
                 data !== undefined
                   ? data.toReversed().map((item) => [
-                      item.OrderNumber.toString().padStart(6, '0'),
+                      item.OrderNumber.toString().padStart(6, "0"),
+                      _(moment(item.createdAt).format("ll")),
                       item.CustomerName,
-                      item.createdAt,
-
+                      item.SalesItems.length,
+                      item.GrandTotal,
+                      _(<p className="text-color-success">Paid</p>),
                       _(
                         <>
                           <ButtonGroup>
                             <Button
                               size="sm"
                               variant="white"
-                              onClick={() => handleCanvas()}
+                              onClick={() => handleCanvas(item)}
                             >
                               <i className="ri-eye-line"></i>
                             </Button>
@@ -150,7 +158,15 @@ function SalesList() {
                     ])
                   : []
               }
-              columns={["Order Number", "Customer", "Day", "Action"]}
+              columns={[
+                "Order Number",
+                "Billed Date",
+                "Customer",
+                "No. of Items",
+                "Total",
+                "Status",
+                "Action",
+              ]}
               search={true}
               pagination={true}
               sort={true}
@@ -161,66 +177,24 @@ function SalesList() {
             />
           </Card.Body>
           {/* sidebar offcanvars */}
-          <Offcanvas
-            show={offCanvas}
-            onHide={handleCloseCanvas}
-            placement="end"
-          >
-            <Offcanvas.Header closeButton>
-              <Offcanvas.Title>Sales Details</Offcanvas.Title>
-            </Offcanvas.Header>
-            <Offcanvas.Body>
-              <Card>
-                <Card.Body>
-                  <div className="d-flex align-item-center justify-content-between me-2">
-                    <div>
-                      <p className="mb-0">Order Number</p>
-                      <p className="mb-0">Product</p>
-                    </div>
+  
 
-                    <div>
-                      <p className="mb-0">1001</p>
-                      <p className="mb-0">Widget X</p>
-                    </div>
-                  </div>
-
-                  {/* Order Date */}
-                  <div className="divider">
-                    <span>Order Date</span>
-                  </div>
-                  <div className="d-flex align-item-center justify-content-between me-2">
-                    <div>
-                      <p className="mb-0">Day</p>
-                      <p className="mb-0">Month</p>
-                      <p className="mb-0">Year</p>
-                    </div>
-
-                    <div>
-                      <p className="mb-0">15</p>
-                      <p className="mb-0">May</p>
-                      <p className="mb-0"> 2023</p>
-                    </div>
-                  </div>
-
-                  {/* Sales Status and Amount */}
-                  <div className="divider">
-                    <span>Sales Status and Amount</span>
-                  </div>
-                  <div className="d-flex align-item-center justify-content-between me-2">
-                    <div>
-                      <p className="mb-0">Status</p>
-                      <p className="mb-0">Total Amount</p>
-                    </div>
-
-                    <div>
-                      <p className="mb-0">Shipped</p>
-                      <p className="mb-0">$500.00</p>
-                    </div>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Offcanvas.Body>
-          </Offcanvas>
+          <Modal show={offCanvas} onHide={handleCloseCanvas} size="xl">
+            <Modal.Header closeButton>
+              <Modal.Title>Modal heading</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <SalesBill data={offCanvasData} />
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleCloseCanvas}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={handleCloseCanvas}>
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </Card>
         <Footer />
       </div>

@@ -561,8 +561,8 @@ async function TopSellingProductsInHome() {
 async function OffersInHome() {
     const response = await apicall.apicall("get", "OffersInHome", "");
     return response;
-}
-
+} 
+    
 export default {
     Auth, SignUp, Login, GetUserById, Index, AddIndex, GetIndexbyId,
      RegisterCompany, GetCompanyById, InitializeCompany, MainProductsInHome, CategoriesInHome, LatestProductsInHome, RandomProductsInHome, CategoriesWithProductsForHome, TopSellingProductsInHome, OffersInHome,

@@ -19,12 +19,14 @@ import mainservice from "./services/mainservice";
 import { useSelector, useDispatch } from 'react-redux'
 import { isConnected, loggeduser, setRole, setUserProfile } from './store/loginedUser';
 import { setCompanyProfile } from './store/company';
+import { setSocket } from './store/socket';
 
 import Redirect from './routeProtection/ForceRedirect';
 import ProtectedRoute from './routeProtection/ProtectedRoute';
 import CompanyRegistraton from './scenes/company/CompanyRegistraton';
 import Signup2 from "./pages/Signup2";
 import { setindex } from './store';
+import { io } from "socket.io-client";
 
 
 // set skin on load
@@ -43,6 +45,8 @@ export default function App() {
   const user = useSelector((state) => state.loginedUser)
   const companyProfile = useSelector((state) => state.company)
   const indexData = useSelector((state) => state.index)
+  // const socket = useSelector((state) => state.socket.socket)
+  // console.log(socket,"hello");
 
 
   async function Auth() {
@@ -148,7 +152,7 @@ export default function App() {
   setTimeout(() => {
     setLoading(false);
   }, 3000);
-  return (
+  return (   
 
     <>
       {loading ? (
